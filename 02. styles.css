@@ -37,7 +37,7 @@
     background:var(--glass);border:1px solid var(--glass-border);border-radius:16px;
     backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);padding:10px 22px}
   .brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--text);font-weight:700;font-size:18px;letter-spacing:.5px}
-  .brand .mark{width:38px;height:38px;border-radius:11px;background:var(--crimson);display:flex;align-items:center;justify-content:center;font-weight:900;font-size:21px;color:#fff;box-shadow:0 0 24px rgba(220,20,60,.45)}
+  .brand .mark{width:38px;height:38px;object-fit:contain;display:block;flex:none}
   .brand small{color:var(--crimson)}
   /* Header icons, drawer, search */
   .head-left{display:flex;align-items:center;gap:14px;min-width:0}
@@ -61,7 +61,7 @@
   .drawer.open{transform:none;visibility:visible;transition:transform .3s ease}
   .drawer-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}
   .drawer-title{display:flex;align-items:center;gap:10px;font-weight:700;font-size:18px}
-  .drawer-title .mark{width:38px;height:38px;border-radius:11px;background:var(--crimson);display:flex;align-items:center;justify-content:center;font-weight:900;font-size:21px;color:#fff}
+  .drawer-title .mark{width:38px;height:38px;object-fit:contain;display:block;flex:none}
   .drawer-nav{display:flex;flex-direction:column;gap:4px}
   .drawer-nav a{display:flex;align-items:baseline;gap:14px;text-decoration:none;color:var(--text);font-weight:700;font-size:18px;
     padding:13px 14px;border-radius:12px;transition:background .2s ease}

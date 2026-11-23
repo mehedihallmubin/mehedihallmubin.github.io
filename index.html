@@ -7,6 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Mehedi H. All Mubin — Designer, Video Editor &amp; Social Media Manager</title>
 <meta name="description" content="Mehedi H. All Mubin — designer, video editor and social media manager. Founder of QuickShoppingNow and LUXAUR. Portfolio at the bottom of this page.">
+<link rel="icon" type="image/png" href="m-logo.png">
 <style>/* 02. styles.css - Mehedi H. All Mubin personal website: design system.
    Red glass interim design (Nov 2026). Vantablack background, blood red
    glow, crimson highlight, glass cards with 16px backdrop blur.
@@ -46,7 +47,7 @@
     background:var(--glass);border:1px solid var(--glass-border);border-radius:16px;
     backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);padding:10px 22px}
   .brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--text);font-weight:700;font-size:18px;letter-spacing:.5px}
-  .brand .mark{width:38px;height:38px;border-radius:11px;background:var(--crimson);display:flex;align-items:center;justify-content:center;font-weight:900;font-size:21px;color:#fff;box-shadow:0 0 24px rgba(220,20,60,.45)}
+  .brand .mark{width:38px;height:38px;object-fit:contain;display:block;flex:none}
   .brand small{color:var(--crimson)}
   /* Header icons, drawer, search */
   .head-left{display:flex;align-items:center;gap:14px;min-width:0}
@@ -70,7 +71,7 @@
   .drawer.open{transform:none;visibility:visible;transition:transform .3s ease}
   .drawer-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}
   .drawer-title{display:flex;align-items:center;gap:10px;font-weight:700;font-size:18px}
-  .drawer-title .mark{width:38px;height:38px;border-radius:11px;background:var(--crimson);display:flex;align-items:center;justify-content:center;font-weight:900;font-size:21px;color:#fff}
+  .drawer-title .mark{width:38px;height:38px;object-fit:contain;display:block;flex:none}
   .drawer-nav{display:flex;flex-direction:column;gap:4px}
   .drawer-nav a{display:flex;align-items:baseline;gap:14px;text-decoration:none;color:var(--text);font-weight:700;font-size:18px;
     padding:13px 14px;border-radius:12px;transition:background .2s ease}
@@ -353,7 +354,7 @@
   <div class="wrap head">
     <div class="head-left">
       <button id="menu-btn" class="icon-btn menu-btn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="nav-drawer"><span></span><span></span><span></span></button>
-      <a class="brand" href="index.html"><span class="mark">M</span>mehedih.<small>allmubin</small></a>
+      <a class="brand" href="index.html"><img class="mark" src="m-logo.png" alt="M">mehedih.<small>allmubin</small></a>
     </div>
     <div class="head-right">
       <button id="search-btn" class="icon-btn" type="button" aria-label="Search this site"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></button>
@@ -366,7 +367,7 @@
 <div id="drawer-backdrop" class="drawer-backdrop" aria-hidden="true"></div>
 <aside id="nav-drawer" class="drawer" aria-label="Site navigation" aria-hidden="true">
   <div class="drawer-head">
-    <span class="drawer-title"><span class="mark">M</span>Menu</span>
+    <span class="drawer-title"><img class="mark" src="m-logo.png" alt="M">Menu</span>
     <button id="drawer-close" class="icon-btn" type="button" aria-label="Close menu">&times;</button>
   </div>
   <nav class="drawer-nav" aria-label="Pages">
