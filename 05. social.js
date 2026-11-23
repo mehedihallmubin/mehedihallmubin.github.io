@@ -49,22 +49,22 @@
     var t = $('toast'); t.textContent = msg; t.hidden = false;
     clearTimeout(t._h); t._h = setTimeout(function(){ t.hidden = true; }, 3600);
   }
-  // Point every Connect button at the saved profile, or the platform home.
+  // Point every Connect button (or tile link) at the saved profile, or the platform home.
   function render(){
     var links = getLinks();
-    Array.prototype.slice.call(document.querySelectorAll('.social-card')).forEach(function(card){
-      var id = card.getAttribute('data-platform');
-      var btn = card.querySelector('.social-btn');
-      if(!btn) return;
+    Array.prototype.slice.call(document.querySelectorAll('[data-platform]')).forEach(function(el){
+      var id = el.getAttribute('data-platform');
       var saved = (links[id] || '').trim();
+      var btn = el.tagName === 'A' ? el : el.querySelector('.social-btn');
+      if(!btn) return;
       if(validUrl(saved)){
         btn.setAttribute('href', saved);
-        btn.textContent = 'Open profile';
-        card.classList.add('linked');
+        if(btn.classList.contains('social-btn')) btn.textContent = 'Open profile';
+        el.classList.add('linked');
       } else {
         btn.setAttribute('href', PLATFORMS[id] || '#');
-        btn.textContent = 'Connect';
-        card.classList.remove('linked');
+        if(btn.classList.contains('social-btn')) btn.textContent = 'Connect';
+        el.classList.remove('linked');
       }
     });
   }

@@ -14,13 +14,15 @@
   // Load the saved invite links (empty object when none are saved).
   function getLinks(){ try{ return JSON.parse(read()||'{}'); }catch(e){ return {}; } }
   // Platform homepages used while no real invite link is saved.
-  var DEFAULTS={ discord:'https://discord.com', whatsapp:'https://www.whatsapp.com', telegram:'https://telegram.org', facebook:'https://www.facebook.com' };
+  var DEFAULTS={ discord:'https://discord.com', whatsapp:'https://www.whatsapp.com', telegram:'https://telegram.org', facebook:'https://www.facebook.com', youtube:'https://www.youtube.com', reddit:'https://www.reddit.com', instagram:'https://www.instagram.com', x:'https://x.com', linkedin:'https://www.linkedin.com' };
   // Apply the saved links to the Join buttons (the cards live on Home only).
   function render(){
     var links=getLinks();
-    Array.prototype.slice.call(document.querySelectorAll('.community-join')).forEach(function(a){
-      var key=a.getAttribute('data-community');
+    Array.prototype.slice.call(document.querySelectorAll('[data-community]')).forEach(function(el){
+      var key=el.getAttribute('data-community');
       var url=(links[key]||'').trim();
+      var a = el.tagName === 'A' ? el : el.querySelector('.community-join');
+      if(!a) return;
       if(url){ a.setAttribute('href',url); a.classList.add('linked'); }
       else { a.setAttribute('href',DEFAULTS[key]||'#'); a.classList.remove('linked'); }
     });
