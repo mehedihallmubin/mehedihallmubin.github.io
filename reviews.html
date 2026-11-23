@@ -48,6 +48,15 @@
   .brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--text);font-weight:700;font-size:18px;letter-spacing:.5px}
   .brand .mark{width:38px;height:38px;object-fit:contain;display:block;flex:none}
   .brand small{color:var(--crimson)}
+  .brand-text{display:flex;flex-direction:column;align-items:flex-start;line-height:1.25;min-width:0}
+  .brand-name{font-size:17px;font-weight:700;color:var(--text);white-space:nowrap}
+  .brand-sub{font-size:11px;font-weight:600;color:var(--muted);letter-spacing:.4px;white-space:nowrap}
+  .brand-sub i{color:var(--crimson);font-style:normal;margin:0 2px}
+  /* Inline nav (home page): sections + pages, Home is the active red pill. */
+  .links{display:flex;align-items:center;gap:6px}
+  .links a{color:var(--muted2);text-decoration:none;font-weight:600;font-size:15px;padding:8px 16px;border-radius:999px;transition:color .2s,background .2s;white-space:nowrap}
+  .links a:hover{color:var(--text)}
+  .links a.active{color:#fff;background:var(--crimson);box-shadow:0 4px 16px rgba(220,20,60,.4)}
   /* Header icons, drawer, search */
   .head-left{display:flex;align-items:center;gap:14px;min-width:0}
   .head-right{display:flex;align-items:center;gap:10px}
@@ -113,10 +122,24 @@
   .greet{display:flex;align-items:center;gap:14px;font-size:19px;font-weight:600;color:var(--text);margin-bottom:14px}
   .greet-dash{width:44px;height:3px;background:var(--crimson);border-radius:2px;flex:none}
   h1{font-size:clamp(34px,4.8vw,52px);line-height:1.08;letter-spacing:-1px;font-weight:700;margin:0 0 20px}
-  .role-ribbon{display:inline-block;background:linear-gradient(90deg,#B8001F,#DC143C 55%,#A3001B);color:#fff;
-    font-size:clamp(14px,1.6vw,19px);font-weight:700;padding:11px 24px;margin-bottom:22px;
-    clip-path:polygon(12px 0,100% 0,calc(100% - 12px) 100%,0 100%)}
+  .role-ribbon{display:inline-block;background:rgba(255,255,255,.05);border:1px solid rgba(220,20,60,.55);color:#fff;
+    font-size:clamp(14px,1.6vw,19px);font-weight:700;padding:11px 24px;margin-bottom:22px;border-radius:999px}
   .role-ribbon b{font-weight:700}
+  .name-red{background:linear-gradient(90deg,#FF5C7A,#DC143C 60%,#FF2E4D);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .hero-desc{color:var(--muted);font-size:17px;max-width:560px;margin-bottom:28px;line-height:1.65}
+  /* Hero stats: 3 numbers with icons, divided by thin lines. */
+  .hero-stats{display:flex;align-items:stretch;margin-bottom:32px;flex-wrap:wrap}
+  .hero-stat{display:flex;align-items:center;gap:12px;padding:0 22px;border-left:1px solid rgba(255,255,255,.14)}
+  .hero-stat:first-child{padding-left:0;border-left:0}
+  .hero-stat svg{color:var(--crimson);flex:none}
+  .hero-stat b{display:block;font-size:17px;color:var(--text);line-height:1.25}
+  .hero-stat span{display:block;font-size:13px;color:var(--muted)}
+  /* Hero social icons: small circles after the CTAs. */
+  .hero-social{display:flex;align-items:center;gap:12px;margin-top:26px}
+  .hero-social-div{width:32px;height:1px;background:rgba(255,255,255,.25)}
+  .hero-social a{display:inline-flex;align-items:center;justify-content:center;width:42px;height:42px;border-radius:50%;background:var(--glass);border:1px solid var(--glass-border);color:var(--text);text-decoration:none;transition:border-color .2s,background .2s}
+  .hero-social a:hover{border-color:var(--crimson-soft);background:rgba(139,0,0,.25)}
+  .hero-social svg{width:18px;height:18px}
   .exp-line{display:flex;align-items:center;gap:10px;color:var(--muted2);font-size:17px;margin-bottom:32px}
   .exp-line svg{color:var(--crimson);flex:none}
   .exp-line b{color:var(--text)}
@@ -130,6 +153,13 @@
     border-radius:20px;padding:12px;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
     box-shadow:0 0 44px rgba(220,20,60,.22),0 24px 60px rgba(0,0,0,.5)}
   .portrait img{display:block;width:100%;height:auto;border-radius:12px}
+  /* Floating glass cards over the portrait (desktop only). */
+  .float-card{position:absolute;z-index:2;display:flex;align-items:center;gap:12px;background:rgba(20,10,12,.72);border:1px solid rgba(220,20,60,.4);border-radius:16px;padding:14px 18px;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:0 16px 40px rgba(0,0,0,.5)}
+  .float-card svg{color:var(--crimson);flex:none}
+  .float-card b{display:block;font-size:15px;color:var(--text)}
+  .float-card span{display:block;font-size:12px;color:var(--muted);margin-top:2px}
+  .float-expert{top:6%;right:-8%}
+  .float-flow{bottom:8%;left:-14%}
   .hero-streaks{position:absolute;left:0;bottom:0;width:100%;height:90px;pointer-events:none;z-index:0}
   /* Sections */
   section{padding:44px 0;position:relative;scroll-margin-top:84px}
@@ -144,19 +174,26 @@
     box-shadow:0 0 40px rgba(220,20,60,.18),0 20px 50px rgba(0,0,0,.45)}
   .brand-logo{display:flex;flex-direction:column;align-items:center;gap:12px;text-align:center}
   .brand-logo span{font-weight:700;font-size:17px;color:var(--text)}
+  .brand-logo small{font-size:12px;color:var(--muted);font-weight:500;margin-top:-6px}
   .brand-logo:last-child span{letter-spacing:3px}
   .brand-div{width:1px;align-self:stretch;background:linear-gradient(180deg,transparent,rgba(255,255,255,.25),transparent)}
   .skills{margin-top:44px}
+  .skills-head{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:22px}
+  .skills-head h2{margin:0}
+  .view-all{color:var(--crimson);font-weight:700;font-size:15px;text-decoration:none;white-space:nowrap}
+  .view-all:hover{text-decoration:underline}
   .skills h2{display:flex;align-items:center;gap:14px;margin-bottom:22px}
-  .skills-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
-  .skill{position:relative;overflow:hidden;display:flex;align-items:center;gap:16px;background:var(--glass);
-    border:1px solid var(--glass-border);border-radius:14px;padding:18px 20px;
+  .skills-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+  .skill{position:relative;overflow:hidden;display:flex;flex-direction:column;align-items:flex-start;gap:12px;background:var(--glass);
+    border:1px solid var(--glass-border);border-radius:14px;padding:22px 20px;
     transition:transform .2s ease,border-color .2s ease}
   .skill::after{content:"";position:absolute;left:12%;right:12%;bottom:0;height:2px;
-    background:linear-gradient(90deg,transparent,rgba(220,20,60,.8),transparent);border-radius:2px}
+    background:linear-gradient(90deg,transparent,rgba(220,60,.8),transparent);border-radius:2px}
   .skill:hover{transform:translateY(-3px);border-color:var(--crimson-soft)}
-  .skill svg{color:var(--crimson);flex:none}
-  .skill span{font-weight:600;font-size:16px;color:var(--text)}
+  .skill-icon{display:inline-flex;align-items:center;justify-content:center;width:52px;height:52px;border-radius:14px;background:rgba(139,0,0,.28);border:1px solid rgba(220,20,60,.35);color:var(--crimson)}
+  .skill-icon svg{color:var(--crimson)}
+  .skill h3{margin:0;font-size:17px;font-weight:700;color:var(--text)}
+  .skill p{margin:0;color:var(--muted);font-size:14px;line-height:1.6}
   /* Timeline */
   .timeline{border-left:2px solid rgba(220,20,60,.4);margin-left:8px;padding-left:30px;display:grid;gap:0}
   .timeline>div{position:relative;padding-bottom:34px}
@@ -266,6 +303,11 @@
     .greet{justify-content:flex-start;font-size:17px}
     .greet-dash{width:32px}
     .role-ribbon{font-size:13px;padding:10px 18px;margin-bottom:16px}
+    .hero-desc{font-size:15px;margin-bottom:22px}
+    .hero-stats{margin-bottom:24px}
+    .hero-stat{padding:0 14px}
+    .hero-stat b{font-size:15px}
+    .float-card{display:none}
     .exp-line{justify-content:flex-start;font-size:15px;margin-bottom:24px}
     .cta-row{justify-content:flex-start}
     .portrait-wrap{max-width:180px;margin:0}
@@ -280,14 +322,18 @@
     .contact-box{padding:32px 22px}
     section{padding:44px 0}
   }
-  @media (max-width:760px){
-    .links{display:none}
-  }
+  @media (max-width:1080px){ .links{display:none} }
   @media (max-width:520px){
     .grid{grid-template-columns:1fr}
     .hero-grid{grid-template-columns:1fr 128px;gap:14px}
     h1{font-size:28px}
+    .brand-name{font-size:15px}
+    .brand-sub{display:none}
     .role-ribbon{font-size:12px;padding:9px 12px}
+    .hero-desc{font-size:14px}
+    .hero-stat{padding:0 10px}
+    .hero-stat b{font-size:14px}
+    .hero-stat span{font-size:12px}
     .exp-line{font-size:13px}
     .cta-row{flex-direction:column}
     .cta-row .btn{width:100%;padding:11px 16px;font-size:14px;min-height:44px}
@@ -1029,6 +1075,7 @@
   var FIELDS=[
     {group:'Hero', key:'hero-eyebrow', label:'Greeting', kind:'text', def:'Hello, I’m'},
     {group:'Hero', key:'hero-roles', label:'Roles line', kind:'text', def:'Designer / Video Editor / Social Media Manager'},
+    {group:'Hero', key:'hero-desc', label:'Hero description', kind:'textarea', def:'I create impactful visual content, edit engaging videos, and manage brand presence across social media to help businesses grow online.'},
     {group:'Services', key:'svc-1-title', label:'Service 1 title', kind:'text', def:'Graphic Design'},
     {group:'Services', key:'svc-1-desc', label:'Service 1 text', kind:'textarea', def:'Posts, banners, posters and brand visuals — clean, premium, made to be read at a glance.'},
     {group:'Services', key:'svc-2-title', label:'Service 2 title', kind:'text', def:'Video Editing'},

@@ -18,6 +18,7 @@
   var FIELDS=[
     {group:'Hero', key:'hero-eyebrow', label:'Greeting', kind:'text', def:'Hello, I’m'},
     {group:'Hero', key:'hero-roles', label:'Roles line', kind:'text', def:'Designer / Video Editor / Social Media Manager'},
+    {group:'Hero', key:'hero-desc', label:'Hero description', kind:'textarea', def:'I create impactful visual content, edit engaging videos, and manage brand presence across social media to help businesses grow online.'},
     {group:'Services', key:'svc-1-title', label:'Service 1 title', kind:'text', def:'Graphic Design'},
     {group:'Services', key:'svc-1-desc', label:'Service 1 text', kind:'textarea', def:'Posts, banners, posters and brand visuals — clean, premium, made to be read at a glance.'},
     {group:'Services', key:'svc-2-title', label:'Service 2 title', kind:'text', def:'Video Editing'},
