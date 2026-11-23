@@ -298,6 +298,11 @@
     .social-grid{grid-template-columns:repeat(2,1fr)}
     .brand small{display:none}
   }
+  /* Wide screens: use more of the viewport so the sides don't sit empty.
+     Text stays readable because it lives in grid columns, not full-width lines. */
+  @media (min-width:1280px){ .wrap{max-width:1200px} }
+  @media (min-width:1600px){ .wrap{max-width:1400px} .portrait-wrap{max-width:340px} }
+  @media (min-width:1920px){ .wrap{max-width:1560px} .hero-grid{gap:64px} .about-grid{gap:64px} .portrait-wrap{max-width:360px} }
   @media (prefers-reduced-motion:reduce){
     html{scroll-behavior:auto}
     *{transition:none!important;animation:none!important}
