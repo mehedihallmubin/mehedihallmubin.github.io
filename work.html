@@ -59,7 +59,11 @@
   .links a:hover{color:var(--text)}
   .links a.active{color:#fff;background:var(--crimson);box-shadow:0 4px 16px rgba(220,20,60,.4)}
   /* Contact page (dashboard layout) */
-  .contact-hero{display:flex;gap:48px;align-items:flex-start;padding:28px 0 8px}
+  .contact-hero{display:flex;gap:48px;align-items:center;padding:28px 0 8px}
+  /* Contact page: tighter spacing (no big empty gaps between sections). */
+  .contact-page section{padding:12px 0}
+  .contact-page .panel{margin:12px 0}
+  .contact-page footer{margin-top:32px}
   .contact-intro{flex:1 1 340px;min-width:0}
   .contact-eyebrow{display:flex;align-items:center;gap:14px;color:var(--muted2);font-size:13px;font-weight:800;letter-spacing:.22em;text-transform:uppercase;margin:0 0 18px}
   .contact-intro h1{font-size:clamp(38px,4.5vw,64px);line-height:1.05;margin:0 0 18px}
@@ -116,7 +120,7 @@
   .bl-dt{background:#8CC63F;font-size:26px}
   .bl-rf{background:#FFC107}
   .bl-fp{background:#1A73E8}
-  .duo-panels{display:grid;grid-template-columns:1fr 2fr;gap:24px}
+  .duo-panels{display:grid;grid-template-columns:1fr 2fr;gap:24px;align-items:start}
   .duo-panels .panel{margin:0}
   .head-left{display:flex;align-items:center;gap:14px;min-width:0}
   .head-right{display:flex;align-items:center;gap:10px}
