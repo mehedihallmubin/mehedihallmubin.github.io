@@ -166,8 +166,21 @@
       <!-- ============ SOCIAL LINKS VIEW ============ -->
       <section class="admin-view" data-view="social" hidden>
         <div class="admin-panel admin-form-panel">
-          <div class="admin-panel-head"><h3>Social links</h3></div>
+          <div class="admin-panel-head"><h3>Social links</h3><button type="button" class="admin-add-btn" id="sl-add-open">＋ Add Social Media</button></div>
           <p class="hint">Prottek platform-er profile link paste korun — khali thakle Connect button platform-er site-e jabe. Link gula ei device-ei save thakbe.</p>
+          <div class="admin-add-form" id="sl-add-form" hidden>
+            <label for="sl-add-name">Platform name</label>
+            <input id="sl-add-name" type="text" placeholder="e.g. Medium" autocomplete="off">
+            <label for="sl-add-url">Profile link</label>
+            <input id="sl-add-url" type="url" placeholder="https://yourprofile" autocomplete="off">
+            <div class="admin-add-actions">
+              <button type="button" class="btn btn-solid btn-sm" id="sl-add-save">Add</button>
+              <button type="button" class="admin-link-btn" id="sl-add-cancel">Cancel</button>
+            </div>
+            <p class="hint">Jekono social media-r nam ar profile link din — list-e jog hobe ar Contact page-eo dekhabe. Live sign-in lage na, link paste korlei connect hobe.</p>
+          </div>
+          <h4 class="admin-subhead">All Social Media</h4>
+          <ul class="admin-social-list" id="sl-list"></ul>
           <div class="social-admin-list">
             <div class="social-admin-row"><label for="sl-facebook">Facebook</label><input id="sl-facebook" type="url" placeholder="https://www.facebook.com/yourprofile"></div>
             <div class="social-admin-row"><label for="sl-instagram">Instagram</label><input id="sl-instagram" type="url" placeholder="https://www.instagram.com/yourprofile"></div>

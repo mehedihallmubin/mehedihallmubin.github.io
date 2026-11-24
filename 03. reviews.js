@@ -101,8 +101,11 @@
     var brands=read('pw_brands');
     var bn=9; // site ships 9 real brands; an edited list lives in pw_brands
     if(brands){ try{ var a=JSON.parse(brands); if(Array.isArray(a)) bn=a.length; }catch(e){} }
+    // Social = 26 fixed platforms + any custom platforms added in Admin.
+    var sc=DS_FIXED.social;
+    try{ var cu=JSON.parse(read('pw_social_custom')||'[]'); if(Array.isArray(cu)) sc+=cu.length; }catch(e){}
     return {posts:countArr('pw_blog_posts'), brands:bn, reviews:countArr(K_MANUAL),
-      social:DS_FIXED.social, community:DS_FIXED.community, texts:DS_FIXED.texts};
+      social:sc, community:DS_FIXED.community, texts:DS_FIXED.texts};
   }
   function setTxt(id,v){ var el=$(id); if(el) el.textContent=v; }
   function relTime(ts){

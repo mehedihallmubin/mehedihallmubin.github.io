@@ -13,25 +13,23 @@
 <body>
 <div class="glow glow-a"></div>
 <div class="glow glow-b"></div>
-<!-- Header: hamburger menu, brand, search, mail, Get in Touch -->
-<header>
+<!-- Header: M logo, name, nav, search (home redesign, Option A) -->
+<header class="home-head">
   <div class="wrap head">
     <div class="head-left">
       <button id="menu-btn" class="icon-btn menu-btn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="nav-drawer"><svg class="menu-ic" width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="15" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg><svg class="close-ic" width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
-      <a class="brand" href="index.html"><img class="mark" src="m-logo.png" alt="M"><span class="brand-text"><span class="brand-name">Mehedi H. All Mubin</span><span class="brand-sub">Creative <i>&bull;</i> Profession</span></span></a>
+      <a class="brand" href="index.html"><img class="mark" src="m-logo.png" alt="M"><span class="brand-div" aria-hidden="true"></span><span class="brand-text"><span class="brand-name home-brand-name">Mehedi H. All Mubin</span></span></a>
     </div>
-    <nav class="links" aria-label="Sections">
+    <nav class="links home-links" aria-label="Sections">
       <a href="index.html" class="active">Home</a>
       <a href="#about">About</a>
+      <a href="#brands">Brands</a>
       <a href="#skills">Skills</a>
-      <a href="portfolio.html">Works</a>
-      <a href="work.html">Experience</a>
+      <a href="portfolio.html">Work</a>
       <a href="contact.html">Contact</a>
     </nav>
     <div class="head-right">
       <button id="search-btn" class="icon-btn" type="button" aria-label="Search this site"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></button>
-      <a class="icon-btn" href="mailto:mehedih.allmubin@gmail.com" aria-label="Email me"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 7l-10 6L2 7"/></svg></a>
-      <a class="btn btn-solid btn-sm" href="contact.html">Get in Touch &#8599;</a>
     </div>
   </div>
 </header>
@@ -68,89 +66,95 @@
 </div>
 
 <main id="top">
-<!-- Hero: introduction, portrait, stats -->
-  <div class="hero">
-    <div class="wrap">
-      <div class="hero-grid">
-        <div class="hero-copy">
-          <p class="greet"><span data-text-key="hero-eyebrow">Hello, I&rsquo;m</span><i class="greet-dash" aria-hidden="true"></i></p>
-          <h1>Mehedi H. <span class="name-red">All Mubin</span></h1>
-          <p class="role-ribbon"><span data-text-key="hero-roles">Designer, Video Editor &amp; Social Media Manager</span></p>
-          <p class="hero-desc" data-text-key="hero-desc">I create impactful visual content, edit engaging videos, and manage brand presence across social media to help businesses grow online.</p>
-          <div class="hero-stats">
-            <div class="hero-stat"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg><div><b>5+ Years</b><span>Personal Experience</span></div></div>
-            <div class="hero-stat"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg><div><b>2+ Years</b><span>Working Experience</span></div></div>
-            <div class="hero-stat"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="M12 15l-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></svg><div><b>10+ Projects</b><span>Delivered</span></div></div>
-          </div>
+  <!-- Home redesign (Option A, liquid glass): portrait card + panels + social bar -->
+  <div class="wrap home-wrap">
+    <div class="home-grid">
+      <!-- Left: portrait card -->
+      <div class="home-hero-card">
+        <div class="home-portrait"><img src="mehedi-portrait.jpg" alt="Mehedi H. All Mubin"></div>
+        <div class="home-hero-info">
+          <h1>Mehedi H. All Mubin</h1>
+          <p class="home-role">Graphic Designer &amp; Video Editor &mdash; Jax Corporation</p>
+          <p class="home-exp"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg> 5+ years personal / 2+ years working experience</p>
           <div class="cta-row">
             <a class="btn btn-red" href="contact.html"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22 2 11 13"/><path d="M22 2 15 22l-4-9-9-4z"/></svg>Let&rsquo;s Talk</a>
             <a class="btn btn-glass" href="portfolio.html"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="6 3 20 12 6 21 6 3"/></svg>View My Work</a>
           </div>
-          <div class="hero-social">
-            <span class="hero-social-div" aria-hidden="true"></span>
-            <a href="https://www.linkedin.com" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg></a>
-            <a href="https://www.instagram.com" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
-            <a href="https://www.youtube.com" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.5 6.19a3.02 3.02 0 0 0-2.12-2.14C19.5 3.55 12 3.55 12 3.55s-7.5 0-9.38.5A3.02 3.02 0 0 0 .5 6.19C0 8.07 0 12 0 12s0 3.93.5 5.81a3.02 3.02 0 0 0 2.12 2.14c1.88.5 9.38.5 9.38.5s7.5 0 9.38-.5a3.02 3.02 0 0 0 2.12-2.14C24 15.93 24 12 24 12s0-3.93-.5-5.81zM9.55 15.57V8.43L15.82 12l-6.27 3.57z"/></svg></a>
-            <a href="https://www.facebook.com" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
-          </div>
-        </div>
-        <div class="portrait-wrap">
-          <span class="portrait-ring" aria-hidden="true"></span>
-          <div class="portrait">
-            <img src="mehedi-portrait.jpg" alt="Mehedi H. All Mubin" width="200" height="226">
-          </div>
-          <div class="float-card float-expert"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9L12 3z"/><path d="M19 15l.9 2.1L22 18l-2.1.9L19 21l-.9-2.1L16 18l2.1-.9L19 15z"/></svg><div><b>Expert</b><span>Design &bull; Video &bull; Social</span></div></div>
-          <div class="float-card float-flow"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.6" y1="13.5" x2="15.4" y2="17.5"/><line x1="15.4" y1="6.5" x2="8.6" y2="10.5"/></svg><div><b>Agentic Work Flow</b><span>Plan &bull; Create &bull; Edit &bull; Publish</span></div></div>
         </div>
       </div>
+      <!-- Right: panels -->
+      <div class="home-panels">
+        <section class="home-panel home-about" id="about" aria-labelledby="home-about-h">
+          <h2 id="home-about-h">About Me</h2>
+          <p>I&rsquo;m a designer and video editor with a passion for visual storytelling and brand building. I create engaging content, manage social media, and build e-commerce brands. I&rsquo;m the founder of QuickShoppingNow and LUXAUR.</p>
+        </section>
+        <section class="home-panel home-skills" id="skills" aria-labelledby="home-skills-h">
+          <h2 id="home-skills-h">Core Skills</h2>
+          <div class="home-skill-tiles">
+            <div class="home-skill"><span class="home-skill-ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/></svg></span><span>Graphic Design</span></div>
+            <div class="home-skill"><span class="home-skill-ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="4"/><polygon points="10 9 15 12 10 15 10 9" fill="currentColor" stroke="none"/></svg></span><span>Video Editing</span></div>
+            <div class="home-skill"><span class="home-skill-ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.9"/><path d="M16 3.1a4 4 0 0 1 0 7.8"/></svg></span><span>Social Media</span></div>
+            <div class="home-skill"><span class="home-skill-ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v18h18"/><path d="M7 15v3M12 10v8M17 6v12"/></svg></span><span>Digital Marketing</span></div>
+            <div class="home-skill"><span class="home-skill-ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg></span><span>E-commerce</span></div>
+            <div class="home-skill"><span class="home-skill-ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></span><span>Web Design</span></div>
+          </div>
+        </section>
+        <section class="home-panel home-brands" id="brands" aria-labelledby="home-brands-h">
+          <h2 id="home-brands-h">My Brands &amp; Projects</h2>
+          <div class="home-brand-grid" id="home-brands"></div>
+        </section>
+      </div>
     </div>
-    <svg class="hero-streaks" viewBox="0 0 1200 120" preserveAspectRatio="none" aria-hidden="true"><path d="M0 90 C 300 20, 600 110, 900 40 S 1150 70, 1200 50" fill="none" stroke="rgba(220,20,60,.45)" stroke-width="2"/><path d="M0 110 C 350 50, 650 120, 950 70 S 1150 95, 1200 80" fill="none" stroke="rgba(220,20,60,.25)" stroke-width="1.5"/></svg>
+    <!-- Social Links bar -->
+    <section class="home-social-bar" aria-labelledby="home-social-h">
+      <h2 id="home-social-h">Social Links</h2>
+      <span class="home-social-count" id="home-social-count">26 platforms</span>
+      <div class="home-social-icons">
+          <a class="home-social-ic" data-platform="youtube" aria-label="YouTube" href="https://www.youtube.com" target="_blank" rel="noopener"><span class="bl bl-yt"><svg width="26" height="26" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M23.5 6.19a3.02 3.02 0 0 0-2.12-2.14C19.5 3.55 12 3.55 12 3.55s-7.5 0-9.38.5A3.02 3.02 0 0 0 .5 6.19C0 8.07 0 12 0 12s0 3.93.5 5.81a3.02 3.02 0 0 0 2.12 2.14c1.88.5 9.38.5 9.38.5s7.5 0 9.38-.5a3.02 3.02 0 0 0 2.12-2.14C24 15.93 24 12 24 12s0-3.93-.5-5.81zM9.55 15.57V8.43L15.82 12l-6.27 3.57z"/></svg></span></a>
+          <a class="home-social-ic" data-platform="facebook" aria-label="Facebook" href="https://www.facebook.com" target="_blank" rel="noopener"><span class="bl bl-fb">f</span></a>
+          <a class="home-social-ic" data-platform="instagram" aria-label="Instagram" href="https://www.instagram.com" target="_blank" rel="noopener"><span class="bl bl-ig"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></span></a>
+          <a class="home-social-ic" data-platform="linkedin" aria-label="LinkedIn" href="https://www.linkedin.com" target="_blank" rel="noopener"><span class="bl bl-li">in</span></a>
+          <a class="home-social-ic" data-platform="x" aria-label="X" href="https://x.com" target="_blank" rel="noopener"><span class="bl bl-x"><svg width="24" height="24" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></span></a>
+          <a class="home-social-ic" data-platform="tiktok" aria-label="TikTok" href="https://www.tiktok.com" target="_blank" rel="noopener"><span class="bl bl-tk"><svg width="26" height="26" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/></svg></span></a>
+          <a class="home-social-ic" data-platform="pinterest" aria-label="Pinterest" href="https://www.pinterest.com" target="_blank" rel="noopener"><span class="bl bl-pi">P</span></a>
+          <a class="home-social-ic" data-platform="reddit" aria-label="Reddit" href="https://www.reddit.com" target="_blank" rel="noopener"><span class="bl bl-re"><svg width="26" height="26" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm5.01 4.744c.688 0 1.25.561 1.25 1.249a1.25 1.25 0 0 1-2.498.056l-2.597-.547-.8 3.747c1.824.07 3.48.632 4.674 1.488.308-.309.73-.491 1.207-.491.968 0 1.754.786 1.754 1.754 0 .716-.435 1.333-1.01 1.614a3.111 3.111 0 0 1 .042.52c0 2.694-3.13 4.87-7.004 4.87-3.874 0-7.004-2.176-7.004-4.87 0-.183.015-.366.043-.534A1.748 1.748 0 0 1 4.028 12c0-.968.786-1.754 1.754-1.754.463 0 .898.196 1.207.49 1.207-.883 2.878-1.43 4.744-1.487l.885-4.182a.342.342 0 0 1 .14-.197.35.35 0 0 1 .238-.042l2.906.617a1.214 1.214 0 0 1 1.108-.701zM9.25 12C8.561 12 8 12.562 8 13.25c0 .688.561 1.248 1.25 1.248.687 0 1.248-.561 1.248-1.249 0-.688-.561-1.249-1.249-1.249zm5.5 0c-.687 0-1.248.561-1.248 1.25 0 .688.561 1.248 1.249 1.248.688 0 1.249-.561 1.249-1.249 0-.688-.562-1.249-1.25-1.249zm-5.466 3.99a.327.327 0 0 0-.231.094.33.33 0 0 0 0 .463c.842.842 2.484.913 2.961.913.477 0 2.105-.056 2.961-.913a.361.361 0 0 0 .029-.463.33.33 0 0 0-.464 0c-.547.533-1.684.73-2.512.73-.828 0-1.979-.196-2.512-.73a.326.326 0 0 0-.232-.095z"/></svg></span></a>
+          <a class="home-social-ic" data-platform="telegram" aria-label="Telegram" href="https://telegram.org" target="_blank" rel="noopener"><span class="bl bl-tg"><svg width="26" height="26" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg></span></a>
+          <a class="home-social-ic" data-platform="whatsapp" aria-label="WhatsApp" href="https://www.whatsapp.com" target="_blank" rel="noopener"><span class="bl bl-wa"><svg width="26" height="26" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg></span></a>
+        <a class="home-social-ic home-social-more" href="contact.html" aria-label="All social links"><span class="bl bl-more">&middot;&middot;&middot;</span></a>
+      </div>
+    </section>
   </div>
+</main>
 
-<!-- About: introduction, brands, core skills -->
-  <section id="about" aria-labelledby="about-h">
-    <div class="wrap">
-      <div class="about-grid">
-        <div class="about-text">
-          <h2 id="about-h"><i class="dash" aria-hidden="true"></i>About Me</h2>
-          <p>I&rsquo;m a designer and video editor, passionate about creating impactful visual content and managing strong online presence. I&rsquo;m the founder of <b>QuickShoppingNow</b> and <b>LUXAUR</b>, where I work on building digital products and fashion brands.</p>
-        </div>
-        <div class="brand-card" aria-label="Brands I founded">
-          <div class="brand-logo">
-            <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#DC143C" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
-            <span>QuickShoppingNow</span>
-            <small>E-commerce &amp; Digital Brand</small>
-          </div>
-          <span class="brand-div" aria-hidden="true"></span>
-          <div class="brand-logo">
-            <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#FBBF24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="6" r="2"/><path d="M12 8v2"/><path d="M12 10 4 18"/><path d="M12 10l8 8"/><path d="M4 18h16"/></svg>
-            <span>LUXAUR</span>
-            <small>Fashion &amp; Lifestyle Brand</small>
-          </div>
-        </div>
-      </div>
-      <div class="skills" id="skills">
-        <div class="skills-head">
-          <h2><i class="dash" aria-hidden="true"></i>My Core Skills</h2>
-          <a class="view-all" href="work.html#services">View All Skills &#8599;</a>
-        </div>
-        <div class="skills-grid">
-          <div class="skill"><span class="skill-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/></svg></span><h3>Graphic Design</h3><p>Branding, posters, and marketing creatives.</p></div>
-          <div class="skill"><span class="skill-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg></span><h3>Video Editing</h3><p>Engaging edits for social media, ads &amp; brand content.</p></div>
-          <div class="skill"><span class="skill-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.6" y1="13.5" x2="15.4" y2="17.5"/><line x1="15.4" y1="6.5" x2="8.6" y2="10.5"/></svg></span><h3>Social Media</h3><p>Content planning, management &amp; audience engagement.</p></div>
-          <div class="skill"><span class="skill-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg></span><h3>Content Creation</h3><p>Visual storytelling that builds brand value and trust.</p></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  </main>
-
-<!-- Footer -->
-<footer>
-  <div class="wrap"><span>&copy; 2026 <b>Mehedi H. All Mubin</b> &middot; mehedih.allmubin</span><span>Designer &middot; Video Editor &middot; Social Media Manager</span></div>
+<!-- Footer (home redesign, Option A) -->
+<footer class="home-foot">
+  <div class="wrap"><span>&copy; 2026 <b>Mehedi H. All Mubin</b></span><span class="home-foot-div" aria-hidden="true"></span><span><a href="mailto:mehedih.allmubin@gmail.com"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 7l-10 6L2 7"/></svg> mehedih.allmubin@gmail.com</a></span></div>
 </footer>
 <!-- Reviews Admin: settings panel (discreet, opened from the footer Admin link) -->
+<!-- 17. admin-dashboard.html — Admin dashboard (Option A, liquid glass).
+     SOURCE OF TRUTH for the admin panel. Splice into all 6 page sources with
+     apply-admin-dashboard.py (replaces the old admin-modal block
+     up to the toast div). Then run 00. build.py.
+     ALL form IDs below must stay exactly as-is — 03/05/13/14/15/16.js read them.
+     Real data only: stats/donut/at-a-glance read localStorage counts;
+     views/visitors + the analytics chart are honest empty states (static site
+     tracks nothing); recent activity logs real admin opens to localStorage. -->
+<!-- 17. admin-dashboard.html — Admin dashboard (Option A, liquid glass).
+     SOURCE OF TRUTH for the admin panel. Splice into all 6 page sources with
+     apply-admin-dashboard.py (replaces the old admin-modal block
+     up to the toast div). Then run 00. build.py.
+     ALL form IDs below must stay exactly as-is — 03/05/13/14/15/16.js read them.
+     Real data only: stats/donut/at-a-glance read localStorage counts;
+     views/visitors + the analytics chart are honest empty states (static site
+     tracks nothing); recent activity logs real admin opens to localStorage. -->
+<!-- 17. admin-dashboard.html — Admin dashboard (Option A, liquid glass).
+     SOURCE OF TRUTH for the admin panel. Splice into all 6 page sources with
+     apply-admin-dashboard.py (replaces the old admin-modal block
+     up to the toast div). Then run 00. build.py.
+     ALL form IDs below must stay exactly as-is — 03/05/13/14/15/16.js read them.
+     Real data only: stats/donut/at-a-glance read localStorage counts;
+     views/visitors + the analytics chart are honest empty states (static site
+     tracks nothing); recent activity logs real admin opens to localStorage. -->
 <!-- 17. admin-dashboard.html — Admin dashboard (Option A, liquid glass).
      SOURCE OF TRUTH for the admin panel. Splice into all 6 page sources with
      apply-admin-dashboard.py (replaces the old admin-modal block
@@ -327,8 +331,21 @@
       <!-- ============ SOCIAL LINKS VIEW ============ -->
       <section class="admin-view" data-view="social" hidden>
         <div class="admin-panel admin-form-panel">
-          <div class="admin-panel-head"><h3>Social links</h3></div>
+          <div class="admin-panel-head"><h3>Social links</h3><button type="button" class="admin-add-btn" id="sl-add-open">＋ Add Social Media</button></div>
           <p class="hint">Prottek platform-er profile link paste korun — khali thakle Connect button platform-er site-e jabe. Link gula ei device-ei save thakbe.</p>
+          <div class="admin-add-form" id="sl-add-form" hidden>
+            <label for="sl-add-name">Platform name</label>
+            <input id="sl-add-name" type="text" placeholder="e.g. Medium" autocomplete="off">
+            <label for="sl-add-url">Profile link</label>
+            <input id="sl-add-url" type="url" placeholder="https://yourprofile" autocomplete="off">
+            <div class="admin-add-actions">
+              <button type="button" class="btn btn-solid btn-sm" id="sl-add-save">Add</button>
+              <button type="button" class="admin-link-btn" id="sl-add-cancel">Cancel</button>
+            </div>
+            <p class="hint">Jekono social media-r nam ar profile link din — list-e jog hobe ar Contact page-eo dekhabe. Live sign-in lage na, link paste korlei connect hobe.</p>
+          </div>
+          <h4 class="admin-subhead">All Social Media</h4>
+          <ul class="admin-social-list" id="sl-list"></ul>
           <div class="social-admin-list">
             <div class="social-admin-row"><label for="sl-facebook">Facebook</label><input id="sl-facebook" type="url" placeholder="https://www.facebook.com/yourprofile"></div>
             <div class="social-admin-row"><label for="sl-instagram">Instagram</label><input id="sl-instagram" type="url" placeholder="https://www.instagram.com/yourprofile"></div>

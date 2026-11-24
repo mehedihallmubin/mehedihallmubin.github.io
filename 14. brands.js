@@ -21,16 +21,20 @@
     clearTimeout(t._h); t._h=setTimeout(function(){ t.hidden=true; }, 3600);
   }
   // The 9 real brands (same as the static cards on the Brands page).
+  // logo = tile mark (text or SVG, as in the home mockup); tile = tile colour.
+  var HOUSE='<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11 12 4l9 7"/><path d="M5.5 9.5V20a1 1 0 0 0 1 1H10v-5h4v5h3.5a1 1 0 0 0 1-1V9.5"/></svg>';
+  var SOFA='<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 11V8a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v3"/><path d="M4 11a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-2z"/><path d="M6 19v-2M18 19v-2"/></svg>';
+  var CROWN='<svg width="26" height="26" viewBox="0 0 24 24" fill="#FFD700" aria-hidden="true"><path d="M3 7l4 4 5-5 5 5 4-4-1.5 9h-15L3 7z"/><rect x="5" y="17.5" width="14" height="2"/></svg>';
   var DEFAULTS=[
-    {mono:'JC', name:'Jax Corporation', role:'Graphic Designer & Video Editor', line:'My current role, since October 2026.'},
-    {mono:'RH', name:'Raju Interior House', role:'Designer, Video Editor & Social Media Manager', line:'December 2025 – October 2026.'},
-    {mono:'GF', name:'Gold Furniture', role:'Designer, Video Editor & Social Media Manager', line:'December 2025 – October 2026.'},
-    {mono:'QSN', name:'QuickShoppingNow', role:'Founder', line:'A fashion marketplace for Bangladesh, launching on my own stores first.'},
-    {mono:'LX', name:'LUXAUR', role:'Founder', line:'My own shoe brand, starting with a black leather backless mule.'},
-    {mono:'SJ', name:'Sajghar', role:'Owner', line:'My store on QuickShoppingNow.'},
-    {mono:'JF', name:'Jomidar Fashion', role:'Owner', line:'My store on QuickShoppingNow.'},
-    {mono:'RC', name:"Rekha's Craft", role:'Owner', line:'My store on QuickShoppingNow.'},
-    {mono:'AMI', name:'Al Mubin Industries', role:'Founder & Sole Owner', line:'Planned company — QuickShoppingNow is its first project.'}
+    {mono:'JAX', logo:'JAX', tile:'bt-jax', name:'Jax Corporation', role:'Graphic Designer & Video Editor', line:'My current role, since October 2026.'},
+    {mono:'RH', logo:HOUSE, tile:'bt-raju', name:'Raju Interior House', role:'Designer, Video Editor & Social Media Manager', line:'December 2025 – October 2026.'},
+    {mono:'GF', logo:SOFA, tile:'bt-gold', name:'Gold Furniture', role:'Designer, Video Editor & Social Media Manager', line:'December 2025 – October 2026.'},
+    {mono:'QSN', logo:'QSN', tile:'bt-qsn', name:'QuickShoppingNow', role:'Founder', line:'A fashion marketplace for Bangladesh, launching on my own stores first.'},
+    {mono:'LUXAUR', logo:'LUXAUR', tile:'bt-luxaur', name:'LUXAUR', role:'Founder', line:'My own shoe brand, starting with a black leather backless mule.'},
+    {mono:'SJ', logo:'সাজঘর', tile:'bt-sajghar', name:'Sajghar', role:'Owner', line:'My store on QuickShoppingNow.'},
+    {mono:'JF', logo:CROWN, tile:'bt-jomidar', name:'Jomidar Fashion', role:'Owner', line:'My store on QuickShoppingNow.'},
+    {mono:'RC', logo:'RC', tile:'bt-rekha', name:"Rekha's Craft", role:'Owner', line:'My store on QuickShoppingNow.'},
+    {mono:'AMI', logo:'AMI', tile:'bt-ami', name:'Al Mubin Industries', role:'Founder & Sole Owner', line:'Planned company — QuickShoppingNow is its first project.'}
   ];
   // Load the brand list (defaults when nothing is saved).
   function getList(){
@@ -56,6 +60,26 @@
       card.innerHTML='<div class="who"><span class="avatar">'+esc(b.mono)+'</span><div><h3></h3><span></span></div></div><p></p>';
       card.querySelector('h3').textContent=b.name;
       card.querySelector('.who div span').textContent=b.role;
+      card.querySelector('p').textContent=b.line;
+      grid.appendChild(card);
+    });
+  }
+  // Render the home page "My Brands & Projects" grid (home page only).
+  // Tile mark comes from the brand's logo (default brands) or its monogram
+  // (Admin-added brands); tile colour from the brand's tile class.
+  function renderHome(){
+    var grid=document.getElementById('home-brands');
+    if(!grid) return;
+    var list=getList();
+    grid.innerHTML='';
+    list.forEach(function(b){
+      var card=document.createElement('article');
+      card.className='home-brand';
+      var logo=b.logo || b.mono || mono(b.name);
+      var tile=b.tile || 'bt-default';
+      card.innerHTML='<span class="home-brand-tile '+esc(tile)+'">'+logo+'</span><div class="home-brand-txt"><h3></h3><span></span><p></p></div>';
+      card.querySelector('h3').textContent=b.name;
+      card.querySelector('.home-brand-txt span').textContent=b.role;
       card.querySelector('p').textContent=b.line;
       grid.appendChild(card);
     });
@@ -98,7 +122,7 @@
       del.addEventListener('click', function(){
         armDelete(del, function(){
           var l=getList(); l.splice(i,1); store(JSON.stringify(l));
-          renderAdminList(); render(); toast('Brand removed.');
+          renderAdminList(); render(); renderHome(); toast('Brand removed.');
         });
       });
       top.appendChild(s); top.appendChild(e); top.appendChild(del);
@@ -112,14 +136,15 @@
     if(!name || !role){ toast('Brand name and role both needed.'); return; }
     var l=getList();
     if(editing!==null && l[editing]){
-      l[editing]={mono:l[editing].mono, name:name, role:role, line:line};
+      l[editing]={mono:l[editing].mono, logo:l[editing].logo, tile:l[editing].tile, name:name, role:role, line:line};
       toast('Brand updated.');
     } else {
-      l.push({mono:mono(name), name:name, role:role, line:line});
+      var m=mono(name);
+      l.push({mono:m, logo:m, tile:'bt-default', name:name, role:role, line:line});
       toast('Brand added.');
     }
     store(JSON.stringify(l));
-    resetForm(); renderAdminList(); render();
+    resetForm(); renderAdminList(); render(); renderHome();
   }
   var addBtn=$('br-add');
   if(addBtn) addBtn.addEventListener('click', saveForm);
@@ -127,4 +152,5 @@
   if(cancelBtn) cancelBtn.addEventListener('click', resetForm);
   renderAdminList();
   render();
+  renderHome();
 })();
