@@ -25,6 +25,11 @@
   var HOUSE='<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11 12 4l9 7"/><path d="M5.5 9.5V20a1 1 0 0 0 1 1H10v-5h4v5h3.5a1 1 0 0 0 1-1V9.5"/></svg>';
   var SOFA='<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 11V8a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v3"/><path d="M4 11a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-2z"/><path d="M6 19v-2M18 19v-2"/></svg>';
   var CROWN='<svg width="26" height="26" viewBox="0 0 24 24" fill="#FFD700" aria-hidden="true"><path d="M3 7l4 4 5-5 5 5 4-4-1.5 9h-15L3 7z"/><rect x="5" y="17.5" width="14" height="2"/></svg>';
+  var FLOWER='<svg width="20" height="20" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M12 2c1.2 2.6 1.2 4.6 0 6-1.2-1.4-1.2-3.4 0-6zm6.9 3.1c-2.6 1.2-4.6 1.2-6 0 1.4-1.2 3.4-1.2 6 0zM22 12c-2.6-1.2-4.6-1.2-6 0 1.4 1.2 3.4 1.2 6 0zM18.9 18.9c-1.2-2.6-1.2-4.6 0-6 1.2 1.4 1.2 3.4 0 6zM12 22c-1.2-2.6-1.2-4.6 0-6 1.2 1.4 1.2 3.4 0 6zM5.1 18.9c1.2-2.6 1.2-4.6 0-6-1.2 1.4-1.2 3.4 0 6zM2 12c2.6-1.2 4.6-1.2 6 0-1.4 1.2-3.4 1.2-6 0zM5.1 5.1c2.6 1.2 4.6 1.2 6 0-1.4-1.2-3.4-1.2-6 0z"/><circle cx="12" cy="12" r="2.4" fill="#C0392B"/></svg>';
+  // Stacked tile marks (icon + tiny brand name), as in the home mockup.
+  var JOMIDAR='<span class="bt-stack">'+CROWN+'<small>Jomidar<br>Fashion</small></span>';
+  var REKHA='<span class="bt-stack">'+FLOWER+'<small>Rekha\'s<br>Craft</small></span>';
+  var AMI='<span class="bt-stack"><b class="bt-a">A</b><small>AL MUBIN</small></span>';
   var DEFAULTS=[
     {mono:'JAX', logo:'JAX', tile:'bt-jax', name:'Jax Corporation', role:'Graphic Designer & Video Editor', line:'My current role, since October 2026.'},
     {mono:'RH', logo:HOUSE, tile:'bt-raju', name:'Raju Interior House', role:'Designer, Video Editor & Social Media Manager', line:'December 2025 – October 2026.'},
@@ -32,9 +37,9 @@
     {mono:'QSN', logo:'QSN', tile:'bt-qsn', name:'QuickShoppingNow', role:'Founder', line:'A fashion marketplace for Bangladesh, launching on my own stores first.'},
     {mono:'LUXAUR', logo:'LUXAUR', tile:'bt-luxaur', name:'LUXAUR', role:'Founder', line:'My own shoe brand, starting with a black leather backless mule.'},
     {mono:'SJ', logo:'সাজঘর', tile:'bt-sajghar', name:'Sajghar', role:'Owner', line:'My store on QuickShoppingNow.'},
-    {mono:'JF', logo:CROWN, tile:'bt-jomidar', name:'Jomidar Fashion', role:'Owner', line:'My store on QuickShoppingNow.'},
-    {mono:'RC', logo:'RC', tile:'bt-rekha', name:"Rekha's Craft", role:'Owner', line:'My store on QuickShoppingNow.'},
-    {mono:'AMI', logo:'AMI', tile:'bt-ami', name:'Al Mubin Industries', role:'Founder & Sole Owner', line:'Planned company — QuickShoppingNow is its first project.'}
+    {mono:'JF', logo:JOMIDAR, tile:'bt-jomidar', name:'Jomidar Fashion', role:'Owner', line:'My store on QuickShoppingNow.'},
+    {mono:'RC', logo:REKHA, tile:'bt-rekha', name:"Rekha's Craft", role:'Owner', line:'My store on QuickShoppingNow.'},
+    {mono:'AMI', logo:AMI, tile:'bt-ami', name:'Al Mubin Industries', role:'Founder & Sole Owner', line:'Planned company — QuickShoppingNow is its first project.'}
   ];
   // Load the brand list (defaults when nothing is saved).
   function getList(){
