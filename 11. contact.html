@@ -200,103 +200,310 @@
   <div class="wrap"><span>&copy; 2026 <b>Mehedi H. All Mubin</b> &middot; mehedih.allmubin</span><span>Designer &middot; Video Editor &middot; Social Media Manager</span></div>
 </footer>
 <!-- Reviews Admin: settings panel (discreet, opened from the footer Admin link) -->
-<div id="admin-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="admin-h" hidden>
-  <div class="modal-box">
-    <div class="modal-head"><h3 id="admin-h">Site Admin</h3><button id="admin-close" class="modal-close" type="button" aria-label="Close">&times;</button></div>
-    <div class="admin-note"><b>Changes save on this device only.</b> Visitors won&rsquo;t see them until Rio publishes them live — ask Rio in the Personal Website chat. Anyone can open Admin on their own device, but their changes stay on their device and never touch yours or the live site.</div>
-    <label for="admin-link">Google review link</label>
-    <input id="admin-link" type="url" placeholder="https://g.page/r/.../review">
-    <p class="hint">Google Business Profile &rarr; &ldquo;Ask for reviews&rdquo; theke link ta nin.</p>
-    <label for="admin-widget">Review widget embed code</label>
-    <textarea id="admin-widget" rows="4" placeholder="Elfsight / EmbedSocial theke embed code paste korun"></textarea>
-    <p class="hint">Code paste korlei Reviews section e Google review dekhabe; notun review aslei auto update hobe. Free: Elfsight 200 views/month, EmbedSocial 500 views/month.</p>
-    <h4>Add a real review (manual)</h4>
-    <p class="hint">Shudhu asol review add korben — fake review kokhono na.</p>
-    <div class="form-row">
-      <input id="mr-name" type="text" placeholder="Reviewer name" maxlength="60">
-      <select id="mr-stars" aria-label="Stars">
-        <option value="5">5 stars</option><option value="4">4 stars</option><option value="3">3 stars</option><option value="2">2 stars</option><option value="1">1 star</option>
-      </select>
+<!-- 17. admin-dashboard.html — Admin dashboard (Option A, liquid glass).
+     SOURCE OF TRUTH for the admin panel. Splice into all 6 page sources with
+     apply-admin-dashboard.py (replaces the old admin-modal block
+     up to the toast div). Then run 00. build.py.
+     ALL form IDs below must stay exactly as-is — 03/05/13/14/15/16.js read them.
+     Real data only: stats/donut/at-a-glance read localStorage counts;
+     views/visitors + the analytics chart are honest empty states (static site
+     tracks nothing); recent activity logs real admin opens to localStorage. -->
+<div id="admin-modal" class="modal admin-dash-modal" role="dialog" aria-modal="true" aria-labelledby="admin-h" hidden>
+  <div class="admin-dash">
+    <aside class="admin-side">
+      <div class="admin-side-brand">
+        <img class="mark" src="m-logo.png" alt="M">
+        <div class="admin-side-brand-txt"><b>Mehedi H. All Mubin</b><span>Admin Panel</span></div>
+      </div>
+      <nav class="admin-nav" aria-label="Admin sections">
+        <button type="button" class="admin-nav-item active" data-admin-view="dashboard"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/></svg><span>Dashboard</span></button>
+        <button type="button" class="admin-nav-item" data-admin-view="blog"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M9 13h6M9 17h6"/></svg><span>Blog Posts</span></button>
+        <button type="button" class="admin-nav-item" data-admin-view="social"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/></svg><span>Social Links</span></button>
+        <button type="button" class="admin-nav-item" data-admin-view="brands"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.6 13.4 12 22 2 12V2h10l8.6 8.6a2 2 0 0 1 0 2.8z"/><circle cx="7.5" cy="7.5" r="1.5"/></svg><span>Brands</span></button>
+        <button type="button" class="admin-nav-item" data-admin-view="reviews"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg><span>Reviews</span></button>
+        <button type="button" class="admin-nav-item" data-admin-view="community"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.9"/><path d="M16 3.1a4 4 0 0 1 0 7.8"/></svg><span>Community Links</span></button>
+        <button type="button" class="admin-nav-item" data-admin-view="texts"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7V4h16v3"/><path d="M9 20h6"/><path d="M12 4v16"/></svg><span>Texts</span></button>
+        <button type="button" class="admin-nav-item" data-admin-view="analytics"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 15v3M12 10v8M17 6v12"/></svg><span>Analytics</span></button>
+        <button type="button" class="admin-nav-item" data-admin-view="settings"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.9l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.9-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1-1.6 1.7 1.7 0 0 0-1.9.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.9 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.6-1 1.7 1.7 0 0 0-.3-1.9l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.9.3h.1a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5h.1a1.7 1.7 0 0 0 1.9-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.9v.1a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg><span>Settings</span></button>
+      </nav>
+      <div class="admin-side-foot">
+        <a class="admin-view-site" href="index.html">View Website <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6"/><path d="M10 14 21 3"/></svg></a>
+        <button type="button" id="admin-logout" class="admin-logout"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="m16 17 5-5-5-5"/><path d="M21 12H9"/></svg><span>Logout</span></button>
+      </div>
+    </aside>
+    <div class="admin-main">
+      <div class="admin-topbar">
+        <h2 id="admin-h">Admin Panel <span class="admin-top-sep">|</span> <span class="admin-top-name">Mehedi H. All Mubin</span></h2>
+        <div class="admin-top-actions">
+          <button type="button" id="admin-bell" class="admin-icon-btn" aria-label="Notifications"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></svg><span class="admin-bell-dot"></span></button>
+          <span class="admin-avatar" aria-label="Mehedi H. All Mubin"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span>
+          <button id="admin-close" class="modal-close" type="button" aria-label="Close">&times;</button>
+        </div>
+      </div>
+      <nav class="admin-tabs" aria-label="Admin sections">
+        <button type="button" class="admin-tab active" data-admin-view="dashboard"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/></svg><span>Dashboard</span></button>
+        <button type="button" class="admin-tab" data-admin-view="blog"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M9 13h6M9 17h6"/></svg><span>Posts</span></button>
+        <button type="button" class="admin-tab" data-admin-view="social"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/></svg><span>Links</span></button>
+        <button type="button" class="admin-tab" data-admin-view="brands"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.6 13.4 12 22 2 12V2h10l8.6 8.6a2 2 0 0 1 0 2.8z"/><circle cx="7.5" cy="7.5" r="1.5"/></svg><span>Brands</span></button>
+        <button type="button" class="admin-tab" data-admin-view="reviews"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg><span>Reviews</span></button>
+        <button type="button" class="admin-tab admin-tab-more" id="admin-tab-more" aria-label="More sections"><svg viewBox="0 0 24 24" width="17" height="17" fill="currentColor"><circle cx="12" cy="5" r="1.8"/><circle cx="12" cy="12" r="1.8"/><circle cx="12" cy="19" r="1.8"/></svg></button>
+        <div class="admin-more-menu" id="admin-more-menu" hidden>
+          <button type="button" data-admin-view="community">Community Links</button>
+          <button type="button" data-admin-view="texts">Texts</button>
+          <button type="button" data-admin-view="analytics">Analytics</button>
+          <button type="button" data-admin-view="settings">Settings</button>
+        </div>
+      </nav>
+
+      <!-- ============ DASHBOARD VIEW ============ -->
+      <section class="admin-view" data-view="dashboard">
+        <div class="admin-stats">
+          <div class="admin-stat"><span class="admin-stat-ic"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></span><div><span class="admin-stat-label">Total Views</span><b class="admin-stat-num" id="ds-views">0</b><span class="admin-stat-sub">&mdash;</span></div></div>
+          <div class="admin-stat"><span class="admin-stat-ic"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.9"/><path d="M16 3.1a4 4 0 0 1 0 7.8"/></svg></span><div><span class="admin-stat-label">Unique Visitors</span><b class="admin-stat-num" id="ds-visitors">0</b><span class="admin-stat-sub">&mdash;</span></div></div>
+          <div class="admin-stat"><span class="admin-stat-ic"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M9 13h6M9 17h6"/></svg></span><div><span class="admin-stat-label">Blog Posts</span><b class="admin-stat-num" id="ds-posts">0</b><span class="admin-stat-sub">&mdash;</span></div></div>
+          <div class="admin-stat"><span class="admin-stat-ic"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/></svg></span><div><span class="admin-stat-label">Social Platforms</span><b class="admin-stat-num" id="ds-social">26</b><span class="admin-stat-sub">&mdash;</span></div></div>
+          <div class="admin-stat"><span class="admin-stat-ic"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.6 13.4 12 22 2 12V2h10l8.6 8.6a2 2 0 0 1 0 2.8z"/><circle cx="7.5" cy="7.5" r="1.5"/></svg></span><div><span class="admin-stat-label">Brands</span><b class="admin-stat-num" id="ds-brands">9</b><span class="admin-stat-sub">&mdash;</span></div></div>
+          <div class="admin-stat"><span class="admin-stat-ic"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg></span><div><span class="admin-stat-label">Reviews</span><b class="admin-stat-num" id="ds-reviews">0</b><span class="admin-stat-sub">&mdash;</span></div></div>
+        </div>
+
+        <div class="admin-trio">
+          <div class="admin-panel admin-analytics">
+            <div class="admin-panel-head"><h3><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 15v3M12 10v8M17 6v12"/></svg> Analytics Overview</h3>
+              <select id="ds-range" aria-label="Date range"><option value="30">Last 30 Days</option><option value="7">Last 7 Days</option><option value="90">Last 90 Days</option></select>
+            </div>
+            <div class="admin-empty-chart">
+              <svg viewBox="0 0 24 24" width="34" height="34" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 15v3M12 10v8M17 6v12"/></svg>
+              <b>No visitor data yet</b>
+              <span>This site is static &mdash; it doesn&rsquo;t track visitors. Connect an analytics service to see visits here.</span>
+            </div>
+          </div>
+          <div class="admin-panel admin-donut-panel">
+            <div class="admin-panel-head"><h3><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 2 10 5.5v9L12 22 2 16.5v-9z"/><path d="M12 22V12"/><path d="m2 7 10 5 10-5"/></svg> Content Distribution</h3></div>
+            <div class="admin-donut-wrap">
+              <div class="admin-donut" id="ds-donut"><span id="ds-donut-center">All<br>Content</span></div>
+              <ul class="admin-donut-legend" id="ds-donut-legend"></ul>
+            </div>
+          </div>
+          <div class="admin-panel admin-quick">
+            <div class="admin-panel-head"><h3><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg> Quick Actions</h3></div>
+            <div class="admin-quick-grid">
+              <button type="button" class="admin-qa admin-qa-red" data-admin-view="blog" data-admin-focus="bp-title"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg> New Post</button>
+              <button type="button" class="admin-qa" data-admin-view="social"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/></svg> Manage Social</button>
+              <button type="button" class="admin-qa" data-admin-view="brands"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.6 13.4 12 22 2 12V2h10l8.6 8.6a2 2 0 0 1 0 2.8z"/><circle cx="7.5" cy="7.5" r="1.5"/></svg> Manage Brands</button>
+              <button type="button" class="admin-qa" data-admin-view="reviews"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg> Manage Reviews</button>
+              <button type="button" class="admin-qa" data-admin-view="community"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.9"/><path d="M16 3.1a4 4 0 0 1 0 7.8"/></svg> Manage Community</button>
+              <button type="button" class="admin-qa" data-admin-view="texts"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7V4h16v3"/><path d="M9 20h6"/><path d="M12 4v16"/></svg> Manage Texts</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="admin-manage-grid">
+          <div class="admin-panel admin-mcard">
+            <div class="admin-mcard-head"><span class="admin-mcard-ic"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M9 13h6M9 17h6"/></svg></span><h3>Blog Posts</h3></div>
+            <p class="admin-mcard-sub" id="ds-mc-posts">No posts yet</p>
+            <button type="button" class="admin-qa admin-qa-red admin-mcard-btn" data-admin-view="blog" data-admin-focus="bp-title">New Post</button>
+          </div>
+          <div class="admin-panel admin-mcard">
+            <div class="admin-mcard-head"><span class="admin-mcard-ic"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/></svg></span><h3>Social Links</h3></div>
+            <p class="admin-mcard-sub"><b id="ds-mc-social">26</b> platforms</p>
+            <button type="button" class="admin-qa admin-mcard-btn" data-admin-view="social">Manage &rarr;</button>
+          </div>
+          <div class="admin-panel admin-mcard">
+            <div class="admin-mcard-head"><span class="admin-mcard-ic"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.6 13.4 12 22 2 12V2h10l8.6 8.6a2 2 0 0 1 0 2.8z"/><circle cx="7.5" cy="7.5" r="1.5"/></svg></span><h3>Brands</h3></div>
+            <p class="admin-mcard-sub"><span id="ds-mc-brands">9 brands</span></p>
+            <button type="button" class="admin-qa admin-mcard-btn" data-admin-view="brands">Manage &rarr;</button>
+          </div>
+          <div class="admin-panel admin-mcard">
+            <div class="admin-mcard-head"><span class="admin-mcard-ic"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg></span><h3>Reviews</h3></div>
+            <p class="admin-mcard-sub"><span id="ds-mc-reviews">No reviews yet</span></p>
+            <button type="button" class="admin-qa admin-mcard-btn" data-admin-view="reviews">Manage &rarr;</button>
+          </div>
+          <div class="admin-panel admin-mcard">
+            <div class="admin-mcard-head"><span class="admin-mcard-ic"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.9"/><path d="M16 3.1a4 4 0 0 1 0 7.8"/></svg></span><h3>Community Links</h3></div>
+            <p class="admin-mcard-sub"><span id="ds-mc-community">9 communities</span></p>
+            <button type="button" class="admin-qa admin-mcard-btn" data-admin-view="community">Manage &rarr;</button>
+          </div>
+          <div class="admin-panel admin-mcard">
+            <div class="admin-mcard-head"><span class="admin-mcard-ic"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7V4h16v3"/><path d="M9 20h6"/><path d="M12 4v16"/></svg></span><h3>Texts</h3></div>
+            <p class="admin-mcard-sub"><span id="ds-mc-texts">29 texts</span></p>
+            <button type="button" class="admin-qa admin-mcard-btn" data-admin-view="texts">Manage &rarr;</button>
+          </div>
+        </div>
+
+        <div class="admin-bottom">
+          <div class="admin-panel admin-activity">
+            <div class="admin-panel-head"><h3><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg> Recent Activity</h3><button type="button" class="admin-link-btn" data-admin-view="dashboard">All Activity &rsaquo;</button></div>
+            <ul class="admin-activity-list" id="ds-activity"></ul>
+          </div>
+          <div class="admin-panel admin-glance">
+            <div class="admin-panel-head"><h3><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg> At a Glance</h3></div>
+            <div class="admin-glance-grid">
+              <div class="admin-glance-row"><span><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg> Blog Posts</span><b id="ds-ag-posts">0</b></div>
+              <div class="admin-glance-row"><span><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/></svg> Social Platforms</span><b id="ds-ag-social">26</b></div>
+              <div class="admin-glance-row"><span><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.6 13.4 12 22 2 12V2h10l8.6 8.6a2 2 0 0 1 0 2.8z"/><circle cx="7.5" cy="7.5" r="1.5"/></svg> Brands</span><b id="ds-ag-brands">9</b></div>
+              <div class="admin-glance-row"><span><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg> Reviews</span><b id="ds-ag-reviews">0</b></div>
+              <div class="admin-glance-row"><span><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.9"/><path d="M16 3.1a4 4 0 0 1 0 7.8"/></svg> Community Links</span><b id="ds-ag-community">9</b></div>
+              <div class="admin-glance-row"><span><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7V4h16v3"/><path d="M9 20h6"/><path d="M12 4v16"/></svg> Texts</span><b id="ds-ag-texts">29</b></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ BLOG POSTS VIEW ============ -->
+      <section class="admin-view" data-view="blog" hidden>
+        <div class="admin-panel admin-form-panel">
+          <div class="admin-panel-head"><h3>Blog posts</h3></div>
+          <p class="hint">Shudhu asol post likhben — fake post kokhono na. Post ekhane likhle Blog page-e dekhabe (ei device-e).</p>
+          <label for="bp-title">Post title</label>
+          <input id="bp-title" type="text" placeholder="Post title" maxlength="120">
+          <label for="bp-text">Post text</label>
+          <textarea id="bp-text" rows="5" placeholder="Write your post here..." maxlength="5000"></textarea>
+          <div style="margin-top:12px"><button id="bp-add" class="btn btn-solid btn-sm" type="button">Add post</button> <button id="bp-cancel" class="btn btn-ghost btn-sm" type="button" hidden>Cancel edit</button></div>
+          <div id="bp-list" class="admin-list"></div>
+        </div>
+      </section>
+
+      <!-- ============ SOCIAL LINKS VIEW ============ -->
+      <section class="admin-view" data-view="social" hidden>
+        <div class="admin-panel admin-form-panel">
+          <div class="admin-panel-head"><h3>Social links</h3></div>
+          <p class="hint">Prottek platform-er profile link paste korun — khali thakle Connect button platform-er site-e jabe. Link gula ei device-ei save thakbe.</p>
+          <div class="social-admin-list">
+            <div class="social-admin-row"><label for="sl-facebook">Facebook</label><input id="sl-facebook" type="url" placeholder="https://www.facebook.com/yourprofile"></div>
+            <div class="social-admin-row"><label for="sl-instagram">Instagram</label><input id="sl-instagram" type="url" placeholder="https://www.instagram.com/yourprofile"></div>
+            <div class="social-admin-row"><label for="sl-youtube">YouTube</label><input id="sl-youtube" type="url" placeholder="https://www.youtube.com/@yourchannel"></div>
+            <div class="social-admin-row"><label for="sl-linkedin">LinkedIn</label><input id="sl-linkedin" type="url" placeholder="https://www.linkedin.com/in/yourprofile"></div>
+            <div class="social-admin-row"><label for="sl-tiktok">TikTok</label><input id="sl-tiktok" type="url" placeholder="https://www.tiktok.com/@yourprofile"></div>
+            <div class="social-admin-row"><label for="sl-pinterest">Pinterest</label><input id="sl-pinterest" type="url" placeholder="https://www.pinterest.com/yourprofile"></div>
+            <div class="social-admin-row"><label for="sl-rumble">Rumble</label><input id="sl-rumble" type="url" placeholder="https://rumble.com/c/yourchannel"></div>
+            <div class="social-admin-row"><label for="sl-threads">Threads</label><input id="sl-threads" type="url" placeholder="https://www.threads.net/@yourprofile"></div>
+            <div class="social-admin-row"><label for="sl-x">X</label><input id="sl-x" type="url" placeholder="https://x.com/yourprofile"></div>
+            <div class="social-admin-row"><label for="sl-telegram">Telegram</label><input id="sl-telegram" type="url" placeholder="https://t.me/yourname"></div>
+            <div class="social-admin-row"><label for="sl-vimeo">Vimeo</label><input id="sl-vimeo" type="url" placeholder="https://vimeo.com/yourprofile"></div>
+            <div class="social-admin-row"><label for="sl-snapchat">Snapchat</label><input id="sl-snapchat" type="url" placeholder="https://www.snapchat.com/add/yourname"></div>
+            <div class="social-admin-row"><label for="sl-reddit">Reddit</label><input id="sl-reddit" type="url" placeholder="https://www.reddit.com/user/yourname"></div>
+            <div class="social-admin-row"><label for="sl-tumblr">Tumblr</label><input id="sl-tumblr" type="url" placeholder="https://yourname.tumblr.com"></div>
+            <div class="social-admin-row"><label for="sl-discord">Discord</label><input id="sl-discord" type="url" placeholder="https://discord.com/users/yourid"></div>
+            <div class="social-admin-row"><label for="sl-whatsapp">WhatsApp</label><input id="sl-whatsapp" type="url" placeholder="https://wa.me/your-number"></div>
+            <div class="social-admin-row"><label for="sl-behance">Behance</label><input id="sl-behance" type="url" placeholder="https://www.behance.net/yourprofile"></div>
+            <div class="social-admin-row"><label for="sl-dribbble">Dribbble</label><input id="sl-dribbble" type="url" placeholder="https://dribbble.com/yourprofile"></div>
+            <div class="social-admin-row"><label for="sl-adobe-stock">Adobe Stock</label><input id="sl-adobe-stock" type="url" placeholder="https://stock.adobe.com/contributor/yourprofile"></div>
+            <div class="social-admin-row"><label for="sl-shutterstock">Shutterstock</label><input id="sl-shutterstock" type="url" placeholder="https://www.shutterstock.com/g/yourprofile"></div>
+            <div class="social-admin-row"><label for="sl-istock">iStock</label><input id="sl-istock" type="url" placeholder="https://www.istockphoto.com/portfolio/yourprofile"></div>
+            <div class="social-admin-row"><label for="sl-alamy">Alamy</label><input id="sl-alamy" type="url" placeholder="https://www.alamy.com/portfolio/yourprofile"></div>
+            <div class="social-admin-row"><label for="sl-depositphotos">Depositphotos</label><input id="sl-depositphotos" type="url" placeholder="https://depositphotos.com/yourprofile"></div>
+            <div class="social-admin-row"><label for="sl-dreamstime">Dreamstime</label><input id="sl-dreamstime" type="url" placeholder="https://www.dreamstime.com/yourprofile"></div>
+            <div class="social-admin-row"><label for="sl-123rf">123RF</label><input id="sl-123rf" type="url" placeholder="https://www.123rf.com/profile_yourprofile"></div>
+            <div class="social-admin-row"><label for="sl-freepik">Freepik (now Magnific)</label><input id="sl-freepik" type="url" placeholder="https://www.freepik.com/author/yourprofile"></div>
+          </div>
+          <div style="margin-top:14px"><button id="social-save" class="btn btn-solid btn-sm" type="button">Save social links</button></div>
+          <p id="social-saved" class="saved-msg" hidden>Saved — social links updated.</p>
+        </div>
+      </section>
+
+      <!-- ============ BRANDS VIEW ============ -->
+      <section class="admin-view" data-view="brands" hidden>
+        <div class="admin-panel admin-form-panel">
+          <div class="admin-panel-head"><h3>Brands</h3></div>
+          <p class="hint">Shudhu asol brand — fake brand kokhono na. Brand add/edit/remove korle Brands page-e dekhabe (ei device-e).</p>
+          <label for="br-name">Brand name</label>
+          <input id="br-name" type="text" placeholder="Brand name" maxlength="60">
+          <label for="br-role">Your role</label>
+          <input id="br-role" type="text" placeholder="e.g. Founder" maxlength="80">
+          <label for="br-line">One line about it</label>
+          <input id="br-line" type="text" placeholder="e.g. My own shoe brand." maxlength="140">
+          <div style="margin-top:12px"><button id="br-add" class="btn btn-solid btn-sm" type="button">Add brand</button> <button id="br-cancel" class="btn btn-ghost btn-sm" type="button" hidden>Cancel edit</button></div>
+          <div id="br-list" class="admin-list"></div>
+        </div>
+      </section>
+
+      <!-- ============ REVIEWS VIEW ============ -->
+      <section class="admin-view" data-view="reviews" hidden>
+        <div class="admin-panel admin-form-panel">
+          <div class="admin-panel-head"><h3>Reviews</h3></div>
+          <div class="admin-note"><b>Changes save on this device only.</b> Visitors won&rsquo;t see them until Rio publishes them live — ask Rio in the Personal Website chat. Anyone can open Admin on their own device, but their changes stay on their device and never touch yours or the live site.</div>
+          <label for="admin-link">Google review link</label>
+          <input id="admin-link" type="url" placeholder="https://g.page/r/.../review">
+          <p class="hint">Google Business Profile &rarr; &ldquo;Ask for reviews&rdquo; theke link ta nin.</p>
+          <label for="admin-widget">Review widget embed code</label>
+          <textarea id="admin-widget" rows="4" placeholder="Elfsight / EmbedSocial theke embed code paste korun"></textarea>
+          <p class="hint">Code paste korlei Reviews section e Google review dekhabe; notun review aslei auto update hobe. Free: Elfsight 200 views/month, EmbedSocial 500 views/month.</p>
+          <h4>Add a real review (manual)</h4>
+          <p class="hint">Shudhu asol review add korben — fake review kokhono na.</p>
+          <div class="form-row">
+            <input id="mr-name" type="text" placeholder="Reviewer name" maxlength="60">
+            <select id="mr-stars" aria-label="Stars">
+              <option value="5">5 stars</option><option value="4">4 stars</option><option value="3">3 stars</option><option value="2">2 stars</option><option value="1">1 star</option>
+            </select>
+          </div>
+          <label for="mr-text">Review text</label>
+          <textarea id="mr-text" rows="3" placeholder="What did they say?" maxlength="500"></textarea>
+          <div style="margin-top:12px"><button id="mr-add" class="btn btn-ghost btn-sm" type="button">Add review</button></div>
+          <div id="mr-list"></div>
+          <div style="margin-top:22px"><button id="admin-save" class="btn btn-solid btn-sm" type="button">Save settings</button></div>
+          <p id="admin-saved" class="saved-msg" hidden>Saved — reviews updated.</p>
+        </div>
+      </section>
+
+      <!-- ============ COMMUNITY LINKS VIEW ============ -->
+      <section class="admin-view" data-view="community" hidden>
+        <div class="admin-panel admin-form-panel">
+          <div class="admin-panel-head"><h3>Community links</h3></div>
+          <p class="hint">Prottek community-r invite/join link paste korun — khali thakle Join button platform-er site-e jabe. Link gula ei device-ei save thakbe.</p>
+          <div class="social-admin-list">
+            <div class="social-admin-row"><label for="cl-discord">Discord</label><input id="cl-discord" type="url" placeholder="https://discord.gg/your-invite"></div>
+            <div class="social-admin-row"><label for="cl-whatsapp">WhatsApp Group</label><input id="cl-whatsapp" type="url" placeholder="https://chat.whatsapp.com/your-invite"></div>
+            <div class="social-admin-row"><label for="cl-telegram">Telegram</label><input id="cl-telegram" type="url" placeholder="https://t.me/your-group"></div>
+            <div class="social-admin-row"><label for="cl-facebook">Facebook Group</label><input id="cl-facebook" type="url" placeholder="https://www.facebook.com/groups/your-group"></div>
+            <div class="social-admin-row"><label for="cl-youtube">YouTube</label><input id="cl-youtube" type="url" placeholder="https://www.youtube.com/@yourchannel"></div>
+            <div class="social-admin-row"><label for="cl-reddit">Reddit</label><input id="cl-reddit" type="url" placeholder="https://www.reddit.com/r/yoursubreddit"></div>
+            <div class="social-admin-row"><label for="cl-instagram">Instagram</label><input id="cl-instagram" type="url" placeholder="https://www.instagram.com/yourprofile"></div>
+            <div class="social-admin-row"><label for="cl-x">X</label><input id="cl-x" type="url" placeholder="https://x.com/i/communities/yourcommunity"></div>
+            <div class="social-admin-row"><label for="cl-linkedin">LinkedIn</label><input id="cl-linkedin" type="url" placeholder="https://www.linkedin.com/groups/your-group"></div>
+          </div>
+          <div style="margin-top:14px"><button id="community-save" class="btn btn-solid btn-sm" type="button">Save community links</button></div>
+          <p id="community-saved" class="saved-msg" hidden>Saved — community links updated.</p>
+        </div>
+      </section>
+
+      <!-- ============ TEXTS VIEW ============ -->
+      <section class="admin-view" data-view="texts" hidden>
+        <div class="admin-panel admin-form-panel">
+          <div class="admin-panel-head"><h3>Texts</h3></div>
+          <p class="hint">Hero, Services ar Experience-er lekha bodlan. Khali rakhle ager lekha thakbe.</p>
+          <div id="tx-list"></div>
+          <div style="margin-top:14px"><button id="tx-save" class="btn btn-solid btn-sm" type="button">Save texts</button> <button id="tx-reset" class="btn btn-ghost btn-sm" type="button">Reset all to original</button></div>
+          <p id="tx-saved" class="saved-msg" hidden>Saved — texts updated.</p>
+        </div>
+      </section>
+
+      <!-- ============ ANALYTICS VIEW ============ -->
+      <section class="admin-view" data-view="analytics" hidden>
+        <div class="admin-panel admin-form-panel">
+          <div class="admin-panel-head"><h3>Analytics</h3></div>
+          <div class="admin-empty-chart admin-empty-chart-tall">
+            <svg viewBox="0 0 24 24" width="34" height="34" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 15v3M12 10v8M17 6v12"/></svg>
+            <b>No visitor data yet</b>
+            <span>This site is static &mdash; it doesn&rsquo;t track visitors. Connect an analytics service (for example Google Analytics or Cloudflare Web Analytics) to see visits here.</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ SETTINGS VIEW ============ -->
+      <section class="admin-view" data-view="settings" hidden>
+        <div class="admin-panel admin-form-panel">
+          <div class="admin-panel-head"><h3>Settings</h3></div>
+          <div class="admin-note"><b>Changes save on this device only.</b> Visitors won&rsquo;t see them until Rio publishes them live — ask Rio in the Personal Website chat. Anyone can open Admin on their own device, but their changes stay on their device and never touch yours or the live site.</div>
+          <p class="hint">Admin panel opens only from the <b>#admin</b> link — there is no Admin button on the public site. Bookmark <b>https://mehedihallmubin.github.io/#admin</b>. No password is needed.</p>
+          <h4>Clear saved admin data</h4>
+          <p class="hint">Removes every change saved on this device (blog posts, reviews, links, brands, texts) and restores the original content.</p>
+          <div style="margin-top:12px"><button id="admin-clear-data" class="btn btn-ghost btn-sm" type="button">Clear all saved admin data</button></div>
+          <p id="admin-cleared" class="saved-msg" hidden>Cleared — original content restored. Reload the page to see it.</p>
+        </div>
+      </section>
     </div>
-    <label for="mr-text">Review text</label>
-    <textarea id="mr-text" rows="3" placeholder="What did they say?" maxlength="500"></textarea>
-    <div style="margin-top:12px"><button id="mr-add" class="btn btn-ghost btn-sm" type="button">Add review</button></div>
-    <div id="mr-list"></div>
-    <div style="margin-top:22px"><button id="admin-save" class="btn btn-solid btn-sm" type="button">Save settings</button></div>
-    <p id="admin-saved" class="saved-msg" hidden>Saved — reviews updated.</p>
-    <h4>Social links</h4>
-    <p class="hint">Prottek platform-er profile link paste korun — khali thakle Connect button platform-er site-e jabe. Link gula ei device-ei save thakbe.</p>
-    <div class="social-admin-list">
-      <div class="social-admin-row"><label for="sl-facebook">Facebook</label><input id="sl-facebook" type="url" placeholder="https://www.facebook.com/yourprofile"></div>
-      <div class="social-admin-row"><label for="sl-instagram">Instagram</label><input id="sl-instagram" type="url" placeholder="https://www.instagram.com/yourprofile"></div>
-      <div class="social-admin-row"><label for="sl-youtube">YouTube</label><input id="sl-youtube" type="url" placeholder="https://www.youtube.com/@yourchannel"></div>
-      <div class="social-admin-row"><label for="sl-linkedin">LinkedIn</label><input id="sl-linkedin" type="url" placeholder="https://www.linkedin.com/in/yourprofile"></div>
-      <div class="social-admin-row"><label for="sl-tiktok">TikTok</label><input id="sl-tiktok" type="url" placeholder="https://www.tiktok.com/@yourprofile"></div>
-      <div class="social-admin-row"><label for="sl-pinterest">Pinterest</label><input id="sl-pinterest" type="url" placeholder="https://www.pinterest.com/yourprofile"></div>
-      <div class="social-admin-row"><label for="sl-rumble">Rumble</label><input id="sl-rumble" type="url" placeholder="https://rumble.com/c/yourchannel"></div>
-      <div class="social-admin-row"><label for="sl-threads">Threads</label><input id="sl-threads" type="url" placeholder="https://www.threads.net/@yourprofile"></div>
-      <div class="social-admin-row"><label for="sl-x">X</label><input id="sl-x" type="url" placeholder="https://x.com/yourprofile"></div>
-      <div class="social-admin-row"><label for="sl-telegram">Telegram</label><input id="sl-telegram" type="url" placeholder="https://t.me/yourname"></div>
-      <div class="social-admin-row"><label for="sl-vimeo">Vimeo</label><input id="sl-vimeo" type="url" placeholder="https://vimeo.com/yourprofile"></div>
-      <div class="social-admin-row"><label for="sl-snapchat">Snapchat</label><input id="sl-snapchat" type="url" placeholder="https://www.snapchat.com/add/yourname"></div>
-      <div class="social-admin-row"><label for="sl-reddit">Reddit</label><input id="sl-reddit" type="url" placeholder="https://www.reddit.com/user/yourname"></div>
-      <div class="social-admin-row"><label for="sl-tumblr">Tumblr</label><input id="sl-tumblr" type="url" placeholder="https://yourname.tumblr.com"></div>
-      <div class="social-admin-row"><label for="sl-discord">Discord</label><input id="sl-discord" type="url" placeholder="https://discord.com/users/yourid"></div>
-      <div class="social-admin-row"><label for="sl-whatsapp">WhatsApp</label><input id="sl-whatsapp" type="url" placeholder="https://wa.me/your-number"></div>
-      <div class="social-admin-row"><label for="sl-behance">Behance</label><input id="sl-behance" type="url" placeholder="https://www.behance.net/yourprofile"></div>
-      <div class="social-admin-row"><label for="sl-dribbble">Dribbble</label><input id="sl-dribbble" type="url" placeholder="https://dribbble.com/yourprofile"></div>
-      <div class="social-admin-row"><label for="sl-adobe-stock">Adobe Stock</label><input id="sl-adobe-stock" type="url" placeholder="https://stock.adobe.com/contributor/yourprofile"></div>
-      <div class="social-admin-row"><label for="sl-shutterstock">Shutterstock</label><input id="sl-shutterstock" type="url" placeholder="https://www.shutterstock.com/g/yourprofile"></div>
-      <div class="social-admin-row"><label for="sl-istock">iStock</label><input id="sl-istock" type="url" placeholder="https://www.istockphoto.com/portfolio/yourprofile"></div>
-      <div class="social-admin-row"><label for="sl-alamy">Alamy</label><input id="sl-alamy" type="url" placeholder="https://www.alamy.com/portfolio/yourprofile"></div>
-      <div class="social-admin-row"><label for="sl-depositphotos">Depositphotos</label><input id="sl-depositphotos" type="url" placeholder="https://depositphotos.com/yourprofile"></div>
-      <div class="social-admin-row"><label for="sl-dreamstime">Dreamstime</label><input id="sl-dreamstime" type="url" placeholder="https://www.dreamstime.com/yourprofile"></div>
-      <div class="social-admin-row"><label for="sl-123rf">123RF</label><input id="sl-123rf" type="url" placeholder="https://www.123rf.com/profile_yourprofile"></div>
-      <div class="social-admin-row"><label for="sl-freepik">Freepik (now Magnific)</label><input id="sl-freepik" type="url" placeholder="https://www.freepik.com/author/yourprofile"></div>
-    </div>
-    <div style="margin-top:14px"><button id="social-save" class="btn btn-solid btn-sm" type="button">Save social links</button></div>
-    <p id="social-saved" class="saved-msg" hidden>Saved — social links updated.</p>
-    <h4>Community links</h4>
-    <p class="hint">Prottek community-r invite/join link paste korun — khali thakle Join button platform-er site-e jabe. Link gula ei device-ei save thakbe.</p>
-    <div class="social-admin-list">
-      <div class="social-admin-row"><label for="cl-discord">Discord</label><input id="cl-discord" type="url" placeholder="https://discord.gg/your-invite"></div>
-      <div class="social-admin-row"><label for="cl-whatsapp">WhatsApp Group</label><input id="cl-whatsapp" type="url" placeholder="https://chat.whatsapp.com/your-invite"></div>
-      <div class="social-admin-row"><label for="cl-telegram">Telegram</label><input id="cl-telegram" type="url" placeholder="https://t.me/your-group"></div>
-      <div class="social-admin-row"><label for="cl-facebook">Facebook Group</label><input id="cl-facebook" type="url" placeholder="https://www.facebook.com/groups/your-group"></div>
-      <div class="social-admin-row"><label for="cl-youtube">YouTube</label><input id="cl-youtube" type="url" placeholder="https://www.youtube.com/@yourchannel"></div>
-      <div class="social-admin-row"><label for="cl-reddit">Reddit</label><input id="cl-reddit" type="url" placeholder="https://www.reddit.com/r/yoursubreddit"></div>
-      <div class="social-admin-row"><label for="cl-instagram">Instagram</label><input id="cl-instagram" type="url" placeholder="https://www.instagram.com/yourprofile"></div>
-      <div class="social-admin-row"><label for="cl-x">X</label><input id="cl-x" type="url" placeholder="https://x.com/i/communities/yourcommunity"></div>
-      <div class="social-admin-row"><label for="cl-linkedin">LinkedIn</label><input id="cl-linkedin" type="url" placeholder="https://www.linkedin.com/groups/your-group"></div>
-    </div>
-    <div style="margin-top:14px"><button id="community-save" class="btn btn-solid btn-sm" type="button">Save community links</button></div>
-    <p id="community-saved" class="saved-msg" hidden>Saved — community links updated.</p>
-    <h4>Blog posts</h4>
-    <p class="hint">Shudhu asol post likhben — fake post kokhono na. Post ekhane likhle Blog page-e dekhabe (ei device-e).</p>
-    <label for="bp-title">Post title</label>
-    <input id="bp-title" type="text" placeholder="Post title" maxlength="120">
-    <label for="bp-text">Post text</label>
-    <textarea id="bp-text" rows="5" placeholder="Write your post here..." maxlength="5000"></textarea>
-    <div style="margin-top:12px"><button id="bp-add" class="btn btn-solid btn-sm" type="button">Add post</button> <button id="bp-cancel" class="btn btn-ghost btn-sm" type="button" hidden>Cancel edit</button></div>
-    <div id="bp-list" class="admin-list"></div>
-    <h4>Brands</h4>
-    <p class="hint">Shudhu asol brand — fake brand kokhono na. Brand add/edit/remove korle Brands page-e dekhabe (ei device-e).</p>
-    <label for="br-name">Brand name</label>
-    <input id="br-name" type="text" placeholder="Brand name" maxlength="60">
-    <label for="br-role">Your role</label>
-    <input id="br-role" type="text" placeholder="e.g. Founder" maxlength="80">
-    <label for="br-line">One line about it</label>
-    <input id="br-line" type="text" placeholder="e.g. My own shoe brand." maxlength="140">
-    <div style="margin-top:12px"><button id="br-add" class="btn btn-solid btn-sm" type="button">Add brand</button> <button id="br-cancel" class="btn btn-ghost btn-sm" type="button" hidden>Cancel edit</button></div>
-    <div id="br-list" class="admin-list"></div>
-    <h4>Texts</h4>
-    <p class="hint">Hero, Services ar Experience-er lekha bodlan. Khali rakhle ager lekha thakbe.</p>
-    <div id="tx-list"></div>
-    <div style="margin-top:14px"><button id="tx-save" class="btn btn-solid btn-sm" type="button">Save texts</button> <button id="tx-reset" class="btn btn-ghost btn-sm" type="button">Reset all to original</button></div>
-    <p id="tx-saved" class="saved-msg" hidden>Saved — texts updated.</p>
   </div>
 </div>
-<!-- Toast: short status messages -->
 <div id="toast" class="toast" role="status" hidden></div>
 <script src="03. reviews.js"></script>
 <script src="05. social.js"></script>

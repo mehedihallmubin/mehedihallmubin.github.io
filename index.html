@@ -481,6 +481,144 @@
   .blog-post h3{margin:0 0 4px}
   .blog-post .post-date{font-size:13px;color:var(--muted);margin-bottom:10px}
   .blog-post p{white-space:pre-line}
+
+  /* ============ Admin dashboard (Option A, liquid glass) ============ */
+  #admin-modal.admin-dash-modal{padding:0;align-items:stretch;justify-content:stretch;background:#050101;backdrop-filter:none;-webkit-backdrop-filter:none}
+  .admin-dash{display:grid;grid-template-columns:272px minmax(0,1fr);width:100%;height:100%;min-height:0;background:
+    radial-gradient(900px 500px at 85% -10%,rgba(220,20,60,.16),transparent 60%),
+    radial-gradient(700px 500px at -10% 110%,rgba(139,0,0,.22),transparent 60%),
+    #070101;color:var(--text);text-align:left}
+  .admin-side{background:rgba(255,255,255,.03);border-right:1px solid rgba(255,255,255,.08);padding:22px 16px;display:flex;flex-direction:column;gap:18px;min-height:0;overflow-y:auto}
+  .admin-side-brand{display:flex;align-items:center;gap:12px;padding:2px 8px 14px;border-bottom:1px solid rgba(255,255,255,.08)}
+  .admin-side-brand .mark{width:40px;height:40px}
+  .admin-side-brand-txt{display:flex;flex-direction:column;min-width:0}
+  .admin-side-brand-txt b{font-size:15px;font-weight:800;white-space:nowrap}
+  .admin-side-brand-txt span{font-size:12px;color:var(--muted)}
+  .admin-nav{display:flex;flex-direction:column;gap:4px}
+  .admin-nav-item{display:flex;align-items:center;gap:12px;width:100%;padding:11px 14px;border:0;border-radius:12px;background:transparent;color:var(--muted2);font:inherit;font-size:15px;font-weight:600;cursor:pointer;text-align:left}
+  .admin-nav-item svg{flex:none}
+  .admin-nav-item:hover{background:rgba(255,255,255,.05);color:var(--text)}
+  .admin-nav-item.active{background:linear-gradient(90deg,#DC143C,#8B0000);color:#fff;box-shadow:0 8px 24px rgba(220,20,60,.35)}
+  .admin-side-foot{margin-top:auto;display:flex;flex-direction:column;gap:8px}
+  .admin-view-site{display:flex;align-items:center;justify-content:center;gap:8px;padding:12px;border-radius:12px;background:linear-gradient(90deg,#DC143C,#8B0000);color:#fff;font-weight:700;font-size:14px;text-decoration:none}
+  .admin-logout{display:flex;align-items:center;gap:10px;padding:11px 14px;border:0;border-radius:12px;background:transparent;color:var(--muted2);font:inherit;font-size:15px;font-weight:600;cursor:pointer}
+  .admin-logout:hover{background:rgba(255,255,255,.05);color:var(--text)}
+  .admin-main{min-width:0;min-height:0;overflow-y:auto;padding:20px 26px 30px}
+  .admin-topbar{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:4px 0 18px}
+  .admin-topbar h2{font-size:26px;font-weight:800;letter-spacing:-.01em;margin:0}
+  .admin-top-sep{color:var(--crimson);font-weight:800;margin:0 6px}
+  .admin-top-name{font-weight:600;color:var(--muted2);font-size:22px}
+  .admin-top-actions{display:flex;align-items:center;gap:10px}
+  .admin-icon-btn{position:relative;width:42px;height:42px;border-radius:12px;background:rgba(255,255,255,.05);border:1px solid var(--glass-border);color:var(--text);cursor:pointer;display:flex;align-items:center;justify-content:center}
+  .admin-bell-dot{position:absolute;top:9px;right:10px;width:8px;height:8px;border-radius:50%;background:var(--crimson);border:2px solid #0A0A0A}
+  .admin-avatar{width:42px;height:42px;border-radius:50%;background:rgba(255,255,255,.05);border:1px solid var(--glass-border);display:flex;align-items:center;justify-content:center;color:var(--text)}
+  .admin-top-actions .modal-close{width:42px;height:42px}
+  .admin-tabs{display:none}
+  .admin-view{display:flex;flex-direction:column;gap:18px}
+  .admin-stats{display:grid;grid-template-columns:repeat(6,1fr);gap:14px}
+  .admin-stat{display:flex;gap:12px;align-items:flex-start;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);border-radius:16px;padding:16px}
+  .admin-stat-ic{flex:none;width:42px;height:42px;border-radius:12px;background:rgba(220,20,60,.16);border:1px solid rgba(220,20,60,.3);display:flex;align-items:center;justify-content:center;color:#F87171}
+  .admin-stat-label{display:block;font-size:13px;color:var(--muted2);font-weight:600}
+  .admin-stat-num{display:block;font-size:24px;font-weight:800;line-height:1.15}
+  .admin-stat-sub{display:block;font-size:12px;color:var(--muted);margin-top:2px}
+  .admin-trio{display:grid;grid-template-columns:1.7fr 1fr 1fr;gap:14px}
+  .admin-panel{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);border-radius:18px;padding:18px}
+  .admin-panel-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:14px}
+  .admin-panel-head h3{font-size:16px;font-weight:800;display:flex;align-items:center;gap:8px;margin:0}
+  .admin-panel-head h3 svg{color:#F87171;flex:none}
+  .admin-panel-head select{background:rgba(255,255,255,.05);border:1px solid var(--glass-border);border-radius:10px;color:var(--text);padding:7px 10px;font:inherit;font-size:13px}
+  .admin-empty-chart{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:8px;min-height:170px;color:var(--muted);padding:10px}
+  .admin-empty-chart svg{color:#F87171;opacity:.7}
+  .admin-empty-chart b{color:var(--text);font-size:15px}
+  .admin-empty-chart span{font-size:13px;line-height:1.55;max-width:340px}
+  .admin-empty-chart-tall{min-height:220px}
+  .admin-donut-wrap{display:flex;align-items:center;gap:16px}
+  .admin-donut{flex:none;width:132px;height:132px;border-radius:50%;background:conic-gradient(#DC143C 0 0);display:flex;align-items:center;justify-content:center;position:relative}
+  .admin-donut::after{content:"";position:absolute;inset:22px;border-radius:50%;background:#120404}
+  .admin-donut span{position:relative;z-index:1;text-align:center;font-size:14px;font-weight:800;line-height:1.25}
+  .admin-donut-legend{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:9px;font-size:13px;min-width:0}
+  .admin-donut-legend li{display:flex;align-items:center;gap:8px;color:var(--muted2)}
+  .admin-donut-legend .dot{flex:none;width:11px;height:11px;border-radius:3px}
+  .admin-donut-legend b{margin-left:auto;color:var(--text);font-weight:700}
+  .admin-quick-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .admin-qa{display:flex;align-items:center;justify-content:center;gap:8px;padding:11px 8px;border-radius:12px;background:rgba(255,255,255,.05);border:1px solid var(--glass-border);color:var(--text);font:inherit;font-size:13px;font-weight:700;cursor:pointer;text-align:center}
+  .admin-qa:hover{background:rgba(255,255,255,.09)}
+  .admin-qa-red{background:linear-gradient(90deg,#DC143C,#8B0000);border-color:transparent;color:#fff}
+  .admin-qa-red:hover{filter:brightness(1.1)}
+  .admin-manage-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:14px}
+  .admin-mcard{display:flex;flex-direction:column;gap:10px}
+  .admin-mcard-head{display:flex;align-items:center;gap:9px}
+  .admin-mcard-ic{flex:none;width:34px;height:34px;border-radius:10px;background:rgba(220,20,60,.16);border:1px solid rgba(220,20,60,.3);display:flex;align-items:center;justify-content:center;color:#F87171}
+  .admin-mcard-head h3{font-size:14px;margin:0}
+  .admin-mcard-sub{font-size:13px;color:var(--muted);margin:0}
+  .admin-mcard-sub b{color:var(--text);font-size:16px}
+  .admin-mcard-btn{margin-top:auto;width:100%}
+  .admin-bottom{display:grid;grid-template-columns:1.4fr 1fr;gap:14px}
+  .admin-link-btn{background:none;border:0;color:var(--muted2);font:inherit;font-size:13px;font-weight:700;cursor:pointer;padding:6px 8px;border-radius:8px}
+  .admin-link-btn:hover{color:var(--text)}
+  .admin-activity-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
+  .admin-activity-list li{display:flex;align-items:center;gap:10px;padding:11px 4px;border-bottom:1px solid rgba(255,255,255,.07);font-size:14px}
+  .admin-activity-list li:last-child{border-bottom:0}
+  .admin-activity-list .act-ic{flex:none;width:30px;height:30px;border-radius:9px;background:rgba(255,255,255,.05);border:1px solid var(--glass-border);display:flex;align-items:center;justify-content:center;color:#F87171}
+  .admin-activity-list time{margin-left:auto;color:var(--muted);font-size:12px;white-space:nowrap}
+  .admin-activity-empty{color:var(--muted);font-size:14px;padding:8px 4px}
+  .admin-glance-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .admin-glance-row{display:flex;align-items:center;justify-content:space-between;gap:10px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:11px 13px;font-size:14px}
+  .admin-glance-row span{display:flex;align-items:center;gap:9px;color:var(--muted2)}
+  .admin-glance-row svg{color:#F87171;flex:none}
+  .admin-glance-row b{font-size:17px;font-weight:800}
+  .admin-form-panel{max-width:760px}
+  .admin-form-panel label{display:block;font-weight:700;font-size:14px;margin:18px 0 6px}
+  .admin-form-panel input[type=url],.admin-form-panel input[type=text],.admin-form-panel textarea,.admin-form-panel select{width:100%;background:rgba(255,255,255,.05);border:1px solid var(--glass-border);border-radius:12px;color:var(--text);padding:12px 14px;font:inherit;font-size:15px}
+  .admin-form-panel input::placeholder,.admin-form-panel textarea::placeholder{color:var(--muted)}
+  .admin-form-panel textarea{resize:vertical}
+  .admin-form-panel select{width:auto}
+  .admin-form-panel .hint{font-size:13px;color:var(--muted);margin:5px 0 0}
+  .admin-form-panel h4{margin:24px 0 2px;font-size:16px;font-weight:800}
+  @media (max-width:1280px){
+    .admin-stats{grid-template-columns:repeat(3,1fr)}
+    .admin-trio{grid-template-columns:1fr 1fr}
+    .admin-analytics{grid-column:1 / -1}
+    .admin-manage-grid{grid-template-columns:repeat(3,1fr)}
+    .admin-bottom{grid-template-columns:1fr}
+  }
+  @media (max-width:960px){
+    .admin-dash{grid-template-columns:1fr}
+    .admin-side{display:none}
+    .admin-main{padding:14px 14px 26px}
+    .admin-topbar{padding:2px 0 12px}
+    .admin-topbar h2{font-size:22px}
+    .admin-top-name{display:block;font-size:14px}
+    .admin-top-sep{display:none}
+    .admin-tabs{display:flex;align-items:center;gap:6px;overflow-x:auto;padding:10px 12px;margin-bottom:14px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);border-radius:14px;position:relative;scrollbar-width:none}
+    .admin-tabs::-webkit-scrollbar{display:none}
+    .admin-tab{flex:none;display:flex;align-items:center;gap:7px;padding:9px 13px;border:0;border-radius:999px;background:transparent;color:var(--muted2);font:inherit;font-size:14px;font-weight:700;cursor:pointer;white-space:nowrap}
+    .admin-tab.active{background:linear-gradient(90deg,#DC143C,#8B0000);color:#fff}
+    .admin-tab-more{padding:9px 10px}
+    .admin-more-menu{position:absolute;top:calc(100% + 6px);right:8px;z-index:5;background:#160404;border:1px solid var(--glass-border);border-radius:12px;padding:6px;min-width:170px;box-shadow:0 18px 40px rgba(0,0,0,.6)}
+    .admin-more-menu button{display:block;width:100%;text-align:left;background:none;border:0;color:var(--text);font:inherit;font-size:14px;font-weight:600;padding:10px 12px;border-radius:8px;cursor:pointer}
+    .admin-more-menu button:hover{background:rgba(255,255,255,.07)}
+    .admin-stats{grid-template-columns:repeat(4,1fr)}
+    .admin-stat{padding:12px}
+    .admin-stat-ic{width:36px;height:36px}
+    .admin-stat-num{font-size:20px}
+    .admin-trio{grid-template-columns:1fr}
+    .admin-donut-wrap{justify-content:center}
+    .admin-manage-grid{grid-template-columns:1fr}
+    .admin-mcard{flex-direction:row;align-items:center;gap:12px}
+    .admin-mcard-head{flex:1;min-width:0}
+    .admin-mcard-sub{flex:none;text-align:right}
+    .admin-mcard-btn{flex:none;width:auto;margin-top:0;padding:9px 14px}
+    .admin-glance-grid{grid-template-columns:1fr 1fr}
+  }
+  @media (max-width:520px){
+    .admin-stats{grid-template-columns:repeat(2,1fr)}
+    .admin-topbar h2{font-size:20px}
+    .admin-glance-grid{grid-template-columns:1fr}
+    .admin-mcard{flex-wrap:wrap}
+    .admin-mcard-sub{flex:1 1 100%;text-align:left}
+    .admin-mcard-btn{width:100%}
+  }
 </style>
 </head>
 <body>
@@ -624,103 +762,310 @@
   <div class="wrap"><span>&copy; 2026 <b>Mehedi H. All Mubin</b> &middot; mehedih.allmubin</span><span>Designer &middot; Video Editor &middot; Social Media Manager</span></div>
 </footer>
 <!-- Reviews Admin: settings panel (discreet, opened from the footer Admin link) -->
-<div id="admin-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="admin-h" hidden>
-  <div class="modal-box">
-    <div class="modal-head"><h3 id="admin-h">Site Admin</h3><button id="admin-close" class="modal-close" type="button" aria-label="Close">&times;</button></div>
-    <div class="admin-note"><b>Changes save on this device only.</b> Visitors won&rsquo;t see them until Rio publishes them live — ask Rio in the Personal Website chat. Anyone can open Admin on their own device, but their changes stay on their device and never touch yours or the live site.</div>
-    <label for="admin-link">Google review link</label>
-    <input id="admin-link" type="url" placeholder="https://g.page/r/.../review">
-    <p class="hint">Google Business Profile &rarr; &ldquo;Ask for reviews&rdquo; theke link ta nin.</p>
-    <label for="admin-widget">Review widget embed code</label>
-    <textarea id="admin-widget" rows="4" placeholder="Elfsight / EmbedSocial theke embed code paste korun"></textarea>
-    <p class="hint">Code paste korlei Reviews section e Google review dekhabe; notun review aslei auto update hobe. Free: Elfsight 200 views/month, EmbedSocial 500 views/month.</p>
-    <h4>Add a real review (manual)</h4>
-    <p class="hint">Shudhu asol review add korben — fake review kokhono na.</p>
-    <div class="form-row">
-      <input id="mr-name" type="text" placeholder="Reviewer name" maxlength="60">
-      <select id="mr-stars" aria-label="Stars">
-        <option value="5">5 stars</option><option value="4">4 stars</option><option value="3">3 stars</option><option value="2">2 stars</option><option value="1">1 star</option>
-      </select>
+<!-- 17. admin-dashboard.html — Admin dashboard (Option A, liquid glass).
+     SOURCE OF TRUTH for the admin panel. Splice into all 6 page sources with
+     apply-admin-dashboard.py (replaces the old admin-modal block
+     up to the toast div). Then run 00. build.py.
+     ALL form IDs below must stay exactly as-is — 03/05/13/14/15/16.js read them.
+     Real data only: stats/donut/at-a-glance read localStorage counts;
+     views/visitors + the analytics chart are honest empty states (static site
+     tracks nothing); recent activity logs real admin opens to localStorage. -->
+<div id="admin-modal" class="modal admin-dash-modal" role="dialog" aria-modal="true" aria-labelledby="admin-h" hidden>
+  <div class="admin-dash">
+    <aside class="admin-side">
+      <div class="admin-side-brand">
+        <img class="mark" src="m-logo.png" alt="M">
+        <div class="admin-side-brand-txt"><b>Mehedi H. All Mubin</b><span>Admin Panel</span></div>
+      </div>
+      <nav class="admin-nav" aria-label="Admin sections">
+        <button type="button" class="admin-nav-item active" data-admin-view="dashboard"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/></svg><span>Dashboard</span></button>
+        <button type="button" class="admin-nav-item" data-admin-view="blog"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M9 13h6M9 17h6"/></svg><span>Blog Posts</span></button>
+        <button type="button" class="admin-nav-item" data-admin-view="social"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/></svg><span>Social Links</span></button>
+        <button type="button" class="admin-nav-item" data-admin-view="brands"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.6 13.4 12 22 2 12V2h10l8.6 8.6a2 2 0 0 1 0 2.8z"/><circle cx="7.5" cy="7.5" r="1.5"/></svg><span>Brands</span></button>
+        <button type="button" class="admin-nav-item" data-admin-view="reviews"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg><span>Reviews</span></button>
+        <button type="button" class="admin-nav-item" data-admin-view="community"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.9"/><path d="M16 3.1a4 4 0 0 1 0 7.8"/></svg><span>Community Links</span></button>
+        <button type="button" class="admin-nav-item" data-admin-view="texts"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7V4h16v3"/><path d="M9 20h6"/><path d="M12 4v16"/></svg><span>Texts</span></button>
+        <button type="button" class="admin-nav-item" data-admin-view="analytics"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 15v3M12 10v8M17 6v12"/></svg><span>Analytics</span></button>
+        <button type="button" class="admin-nav-item" data-admin-view="settings"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.9l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.9-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1-1.6 1.7 1.7 0 0 0-1.9.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.9 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.6-1 1.7 1.7 0 0 0-.3-1.9l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.9.3h.1a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5h.1a1.7 1.7 0 0 0 1.9-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.9v.1a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg><span>Settings</span></button>
+      </nav>
+      <div class="admin-side-foot">
+        <a class="admin-view-site" href="index.html">View Website <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6"/><path d="M10 14 21 3"/></svg></a>
+        <button type="button" id="admin-logout" class="admin-logout"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="m16 17 5-5-5-5"/><path d="M21 12H9"/></svg><span>Logout</span></button>
+      </div>
+    </aside>
+    <div class="admin-main">
+      <div class="admin-topbar">
+        <h2 id="admin-h">Admin Panel <span class="admin-top-sep">|</span> <span class="admin-top-name">Mehedi H. All Mubin</span></h2>
+        <div class="admin-top-actions">
+          <button type="button" id="admin-bell" class="admin-icon-btn" aria-label="Notifications"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></svg><span class="admin-bell-dot"></span></button>
+          <span class="admin-avatar" aria-label="Mehedi H. All Mubin"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span>
+          <button id="admin-close" class="modal-close" type="button" aria-label="Close">&times;</button>
+        </div>
+      </div>
+      <nav class="admin-tabs" aria-label="Admin sections">
+        <button type="button" class="admin-tab active" data-admin-view="dashboard"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/></svg><span>Dashboard</span></button>
+        <button type="button" class="admin-tab" data-admin-view="blog"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M9 13h6M9 17h6"/></svg><span>Posts</span></button>
+        <button type="button" class="admin-tab" data-admin-view="social"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/></svg><span>Links</span></button>
+        <button type="button" class="admin-tab" data-admin-view="brands"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.6 13.4 12 22 2 12V2h10l8.6 8.6a2 2 0 0 1 0 2.8z"/><circle cx="7.5" cy="7.5" r="1.5"/></svg><span>Brands</span></button>
+        <button type="button" class="admin-tab" data-admin-view="reviews"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg><span>Reviews</span></button>
+        <button type="button" class="admin-tab admin-tab-more" id="admin-tab-more" aria-label="More sections"><svg viewBox="0 0 24 24" width="17" height="17" fill="currentColor"><circle cx="12" cy="5" r="1.8"/><circle cx="12" cy="12" r="1.8"/><circle cx="12" cy="19" r="1.8"/></svg></button>
+        <div class="admin-more-menu" id="admin-more-menu" hidden>
+          <button type="button" data-admin-view="community">Community Links</button>
+          <button type="button" data-admin-view="texts">Texts</button>
+          <button type="button" data-admin-view="analytics">Analytics</button>
+          <button type="button" data-admin-view="settings">Settings</button>
+        </div>
+      </nav>
+
+      <!-- ============ DASHBOARD VIEW ============ -->
+      <section class="admin-view" data-view="dashboard">
+        <div class="admin-stats">
+          <div class="admin-stat"><span class="admin-stat-ic"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></span><div><span class="admin-stat-label">Total Views</span><b class="admin-stat-num" id="ds-views">0</b><span class="admin-stat-sub">&mdash;</span></div></div>
+          <div class="admin-stat"><span class="admin-stat-ic"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.9"/><path d="M16 3.1a4 4 0 0 1 0 7.8"/></svg></span><div><span class="admin-stat-label">Unique Visitors</span><b class="admin-stat-num" id="ds-visitors">0</b><span class="admin-stat-sub">&mdash;</span></div></div>
+          <div class="admin-stat"><span class="admin-stat-ic"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M9 13h6M9 17h6"/></svg></span><div><span class="admin-stat-label">Blog Posts</span><b class="admin-stat-num" id="ds-posts">0</b><span class="admin-stat-sub">&mdash;</span></div></div>
+          <div class="admin-stat"><span class="admin-stat-ic"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/></svg></span><div><span class="admin-stat-label">Social Platforms</span><b class="admin-stat-num" id="ds-social">26</b><span class="admin-stat-sub">&mdash;</span></div></div>
+          <div class="admin-stat"><span class="admin-stat-ic"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.6 13.4 12 22 2 12V2h10l8.6 8.6a2 2 0 0 1 0 2.8z"/><circle cx="7.5" cy="7.5" r="1.5"/></svg></span><div><span class="admin-stat-label">Brands</span><b class="admin-stat-num" id="ds-brands">9</b><span class="admin-stat-sub">&mdash;</span></div></div>
+          <div class="admin-stat"><span class="admin-stat-ic"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg></span><div><span class="admin-stat-label">Reviews</span><b class="admin-stat-num" id="ds-reviews">0</b><span class="admin-stat-sub">&mdash;</span></div></div>
+        </div>
+
+        <div class="admin-trio">
+          <div class="admin-panel admin-analytics">
+            <div class="admin-panel-head"><h3><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 15v3M12 10v8M17 6v12"/></svg> Analytics Overview</h3>
+              <select id="ds-range" aria-label="Date range"><option value="30">Last 30 Days</option><option value="7">Last 7 Days</option><option value="90">Last 90 Days</option></select>
+            </div>
+            <div class="admin-empty-chart">
+              <svg viewBox="0 0 24 24" width="34" height="34" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 15v3M12 10v8M17 6v12"/></svg>
+              <b>No visitor data yet</b>
+              <span>This site is static &mdash; it doesn&rsquo;t track visitors. Connect an analytics service to see visits here.</span>
+            </div>
+          </div>
+          <div class="admin-panel admin-donut-panel">
+            <div class="admin-panel-head"><h3><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 2 10 5.5v9L12 22 2 16.5v-9z"/><path d="M12 22V12"/><path d="m2 7 10 5 10-5"/></svg> Content Distribution</h3></div>
+            <div class="admin-donut-wrap">
+              <div class="admin-donut" id="ds-donut"><span id="ds-donut-center">All<br>Content</span></div>
+              <ul class="admin-donut-legend" id="ds-donut-legend"></ul>
+            </div>
+          </div>
+          <div class="admin-panel admin-quick">
+            <div class="admin-panel-head"><h3><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg> Quick Actions</h3></div>
+            <div class="admin-quick-grid">
+              <button type="button" class="admin-qa admin-qa-red" data-admin-view="blog" data-admin-focus="bp-title"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg> New Post</button>
+              <button type="button" class="admin-qa" data-admin-view="social"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/></svg> Manage Social</button>
+              <button type="button" class="admin-qa" data-admin-view="brands"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.6 13.4 12 22 2 12V2h10l8.6 8.6a2 2 0 0 1 0 2.8z"/><circle cx="7.5" cy="7.5" r="1.5"/></svg> Manage Brands</button>
+              <button type="button" class="admin-qa" data-admin-view="reviews"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg> Manage Reviews</button>
+              <button type="button" class="admin-qa" data-admin-view="community"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.9"/><path d="M16 3.1a4 4 0 0 1 0 7.8"/></svg> Manage Community</button>
+              <button type="button" class="admin-qa" data-admin-view="texts"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7V4h16v3"/><path d="M9 20h6"/><path d="M12 4v16"/></svg> Manage Texts</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="admin-manage-grid">
+          <div class="admin-panel admin-mcard">
+            <div class="admin-mcard-head"><span class="admin-mcard-ic"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M9 13h6M9 17h6"/></svg></span><h3>Blog Posts</h3></div>
+            <p class="admin-mcard-sub" id="ds-mc-posts">No posts yet</p>
+            <button type="button" class="admin-qa admin-qa-red admin-mcard-btn" data-admin-view="blog" data-admin-focus="bp-title">New Post</button>
+          </div>
+          <div class="admin-panel admin-mcard">
+            <div class="admin-mcard-head"><span class="admin-mcard-ic"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/></svg></span><h3>Social Links</h3></div>
+            <p class="admin-mcard-sub"><b id="ds-mc-social">26</b> platforms</p>
+            <button type="button" class="admin-qa admin-mcard-btn" data-admin-view="social">Manage &rarr;</button>
+          </div>
+          <div class="admin-panel admin-mcard">
+            <div class="admin-mcard-head"><span class="admin-mcard-ic"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.6 13.4 12 22 2 12V2h10l8.6 8.6a2 2 0 0 1 0 2.8z"/><circle cx="7.5" cy="7.5" r="1.5"/></svg></span><h3>Brands</h3></div>
+            <p class="admin-mcard-sub"><span id="ds-mc-brands">9 brands</span></p>
+            <button type="button" class="admin-qa admin-mcard-btn" data-admin-view="brands">Manage &rarr;</button>
+          </div>
+          <div class="admin-panel admin-mcard">
+            <div class="admin-mcard-head"><span class="admin-mcard-ic"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg></span><h3>Reviews</h3></div>
+            <p class="admin-mcard-sub"><span id="ds-mc-reviews">No reviews yet</span></p>
+            <button type="button" class="admin-qa admin-mcard-btn" data-admin-view="reviews">Manage &rarr;</button>
+          </div>
+          <div class="admin-panel admin-mcard">
+            <div class="admin-mcard-head"><span class="admin-mcard-ic"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.9"/><path d="M16 3.1a4 4 0 0 1 0 7.8"/></svg></span><h3>Community Links</h3></div>
+            <p class="admin-mcard-sub"><span id="ds-mc-community">9 communities</span></p>
+            <button type="button" class="admin-qa admin-mcard-btn" data-admin-view="community">Manage &rarr;</button>
+          </div>
+          <div class="admin-panel admin-mcard">
+            <div class="admin-mcard-head"><span class="admin-mcard-ic"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7V4h16v3"/><path d="M9 20h6"/><path d="M12 4v16"/></svg></span><h3>Texts</h3></div>
+            <p class="admin-mcard-sub"><span id="ds-mc-texts">29 texts</span></p>
+            <button type="button" class="admin-qa admin-mcard-btn" data-admin-view="texts">Manage &rarr;</button>
+          </div>
+        </div>
+
+        <div class="admin-bottom">
+          <div class="admin-panel admin-activity">
+            <div class="admin-panel-head"><h3><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg> Recent Activity</h3><button type="button" class="admin-link-btn" data-admin-view="dashboard">All Activity &rsaquo;</button></div>
+            <ul class="admin-activity-list" id="ds-activity"></ul>
+          </div>
+          <div class="admin-panel admin-glance">
+            <div class="admin-panel-head"><h3><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg> At a Glance</h3></div>
+            <div class="admin-glance-grid">
+              <div class="admin-glance-row"><span><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg> Blog Posts</span><b id="ds-ag-posts">0</b></div>
+              <div class="admin-glance-row"><span><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/></svg> Social Platforms</span><b id="ds-ag-social">26</b></div>
+              <div class="admin-glance-row"><span><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.6 13.4 12 22 2 12V2h10l8.6 8.6a2 2 0 0 1 0 2.8z"/><circle cx="7.5" cy="7.5" r="1.5"/></svg> Brands</span><b id="ds-ag-brands">9</b></div>
+              <div class="admin-glance-row"><span><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg> Reviews</span><b id="ds-ag-reviews">0</b></div>
+              <div class="admin-glance-row"><span><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.9"/><path d="M16 3.1a4 4 0 0 1 0 7.8"/></svg> Community Links</span><b id="ds-ag-community">9</b></div>
+              <div class="admin-glance-row"><span><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7V4h16v3"/><path d="M9 20h6"/><path d="M12 4v16"/></svg> Texts</span><b id="ds-ag-texts">29</b></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ BLOG POSTS VIEW ============ -->
+      <section class="admin-view" data-view="blog" hidden>
+        <div class="admin-panel admin-form-panel">
+          <div class="admin-panel-head"><h3>Blog posts</h3></div>
+          <p class="hint">Shudhu asol post likhben — fake post kokhono na. Post ekhane likhle Blog page-e dekhabe (ei device-e).</p>
+          <label for="bp-title">Post title</label>
+          <input id="bp-title" type="text" placeholder="Post title" maxlength="120">
+          <label for="bp-text">Post text</label>
+          <textarea id="bp-text" rows="5" placeholder="Write your post here..." maxlength="5000"></textarea>
+          <div style="margin-top:12px"><button id="bp-add" class="btn btn-solid btn-sm" type="button">Add post</button> <button id="bp-cancel" class="btn btn-ghost btn-sm" type="button" hidden>Cancel edit</button></div>
+          <div id="bp-list" class="admin-list"></div>
+        </div>
+      </section>
+
+      <!-- ============ SOCIAL LINKS VIEW ============ -->
+      <section class="admin-view" data-view="social" hidden>
+        <div class="admin-panel admin-form-panel">
+          <div class="admin-panel-head"><h3>Social links</h3></div>
+          <p class="hint">Prottek platform-er profile link paste korun — khali thakle Connect button platform-er site-e jabe. Link gula ei device-ei save thakbe.</p>
+          <div class="social-admin-list">
+            <div class="social-admin-row"><label for="sl-facebook">Facebook</label><input id="sl-facebook" type="url" placeholder="https://www.facebook.com/yourprofile"></div>
+            <div class="social-admin-row"><label for="sl-instagram">Instagram</label><input id="sl-instagram" type="url" placeholder="https://www.instagram.com/yourprofile"></div>
+            <div class="social-admin-row"><label for="sl-youtube">YouTube</label><input id="sl-youtube" type="url" placeholder="https://www.youtube.com/@yourchannel"></div>
+            <div class="social-admin-row"><label for="sl-linkedin">LinkedIn</label><input id="sl-linkedin" type="url" placeholder="https://www.linkedin.com/in/yourprofile"></div>
+            <div class="social-admin-row"><label for="sl-tiktok">TikTok</label><input id="sl-tiktok" type="url" placeholder="https://www.tiktok.com/@yourprofile"></div>
+            <div class="social-admin-row"><label for="sl-pinterest">Pinterest</label><input id="sl-pinterest" type="url" placeholder="https://www.pinterest.com/yourprofile"></div>
+            <div class="social-admin-row"><label for="sl-rumble">Rumble</label><input id="sl-rumble" type="url" placeholder="https://rumble.com/c/yourchannel"></div>
+            <div class="social-admin-row"><label for="sl-threads">Threads</label><input id="sl-threads" type="url" placeholder="https://www.threads.net/@yourprofile"></div>
+            <div class="social-admin-row"><label for="sl-x">X</label><input id="sl-x" type="url" placeholder="https://x.com/yourprofile"></div>
+            <div class="social-admin-row"><label for="sl-telegram">Telegram</label><input id="sl-telegram" type="url" placeholder="https://t.me/yourname"></div>
+            <div class="social-admin-row"><label for="sl-vimeo">Vimeo</label><input id="sl-vimeo" type="url" placeholder="https://vimeo.com/yourprofile"></div>
+            <div class="social-admin-row"><label for="sl-snapchat">Snapchat</label><input id="sl-snapchat" type="url" placeholder="https://www.snapchat.com/add/yourname"></div>
+            <div class="social-admin-row"><label for="sl-reddit">Reddit</label><input id="sl-reddit" type="url" placeholder="https://www.reddit.com/user/yourname"></div>
+            <div class="social-admin-row"><label for="sl-tumblr">Tumblr</label><input id="sl-tumblr" type="url" placeholder="https://yourname.tumblr.com"></div>
+            <div class="social-admin-row"><label for="sl-discord">Discord</label><input id="sl-discord" type="url" placeholder="https://discord.com/users/yourid"></div>
+            <div class="social-admin-row"><label for="sl-whatsapp">WhatsApp</label><input id="sl-whatsapp" type="url" placeholder="https://wa.me/your-number"></div>
+            <div class="social-admin-row"><label for="sl-behance">Behance</label><input id="sl-behance" type="url" placeholder="https://www.behance.net/yourprofile"></div>
+            <div class="social-admin-row"><label for="sl-dribbble">Dribbble</label><input id="sl-dribbble" type="url" placeholder="https://dribbble.com/yourprofile"></div>
+            <div class="social-admin-row"><label for="sl-adobe-stock">Adobe Stock</label><input id="sl-adobe-stock" type="url" placeholder="https://stock.adobe.com/contributor/yourprofile"></div>
+            <div class="social-admin-row"><label for="sl-shutterstock">Shutterstock</label><input id="sl-shutterstock" type="url" placeholder="https://www.shutterstock.com/g/yourprofile"></div>
+            <div class="social-admin-row"><label for="sl-istock">iStock</label><input id="sl-istock" type="url" placeholder="https://www.istockphoto.com/portfolio/yourprofile"></div>
+            <div class="social-admin-row"><label for="sl-alamy">Alamy</label><input id="sl-alamy" type="url" placeholder="https://www.alamy.com/portfolio/yourprofile"></div>
+            <div class="social-admin-row"><label for="sl-depositphotos">Depositphotos</label><input id="sl-depositphotos" type="url" placeholder="https://depositphotos.com/yourprofile"></div>
+            <div class="social-admin-row"><label for="sl-dreamstime">Dreamstime</label><input id="sl-dreamstime" type="url" placeholder="https://www.dreamstime.com/yourprofile"></div>
+            <div class="social-admin-row"><label for="sl-123rf">123RF</label><input id="sl-123rf" type="url" placeholder="https://www.123rf.com/profile_yourprofile"></div>
+            <div class="social-admin-row"><label for="sl-freepik">Freepik (now Magnific)</label><input id="sl-freepik" type="url" placeholder="https://www.freepik.com/author/yourprofile"></div>
+          </div>
+          <div style="margin-top:14px"><button id="social-save" class="btn btn-solid btn-sm" type="button">Save social links</button></div>
+          <p id="social-saved" class="saved-msg" hidden>Saved — social links updated.</p>
+        </div>
+      </section>
+
+      <!-- ============ BRANDS VIEW ============ -->
+      <section class="admin-view" data-view="brands" hidden>
+        <div class="admin-panel admin-form-panel">
+          <div class="admin-panel-head"><h3>Brands</h3></div>
+          <p class="hint">Shudhu asol brand — fake brand kokhono na. Brand add/edit/remove korle Brands page-e dekhabe (ei device-e).</p>
+          <label for="br-name">Brand name</label>
+          <input id="br-name" type="text" placeholder="Brand name" maxlength="60">
+          <label for="br-role">Your role</label>
+          <input id="br-role" type="text" placeholder="e.g. Founder" maxlength="80">
+          <label for="br-line">One line about it</label>
+          <input id="br-line" type="text" placeholder="e.g. My own shoe brand." maxlength="140">
+          <div style="margin-top:12px"><button id="br-add" class="btn btn-solid btn-sm" type="button">Add brand</button> <button id="br-cancel" class="btn btn-ghost btn-sm" type="button" hidden>Cancel edit</button></div>
+          <div id="br-list" class="admin-list"></div>
+        </div>
+      </section>
+
+      <!-- ============ REVIEWS VIEW ============ -->
+      <section class="admin-view" data-view="reviews" hidden>
+        <div class="admin-panel admin-form-panel">
+          <div class="admin-panel-head"><h3>Reviews</h3></div>
+          <div class="admin-note"><b>Changes save on this device only.</b> Visitors won&rsquo;t see them until Rio publishes them live — ask Rio in the Personal Website chat. Anyone can open Admin on their own device, but their changes stay on their device and never touch yours or the live site.</div>
+          <label for="admin-link">Google review link</label>
+          <input id="admin-link" type="url" placeholder="https://g.page/r/.../review">
+          <p class="hint">Google Business Profile &rarr; &ldquo;Ask for reviews&rdquo; theke link ta nin.</p>
+          <label for="admin-widget">Review widget embed code</label>
+          <textarea id="admin-widget" rows="4" placeholder="Elfsight / EmbedSocial theke embed code paste korun"></textarea>
+          <p class="hint">Code paste korlei Reviews section e Google review dekhabe; notun review aslei auto update hobe. Free: Elfsight 200 views/month, EmbedSocial 500 views/month.</p>
+          <h4>Add a real review (manual)</h4>
+          <p class="hint">Shudhu asol review add korben — fake review kokhono na.</p>
+          <div class="form-row">
+            <input id="mr-name" type="text" placeholder="Reviewer name" maxlength="60">
+            <select id="mr-stars" aria-label="Stars">
+              <option value="5">5 stars</option><option value="4">4 stars</option><option value="3">3 stars</option><option value="2">2 stars</option><option value="1">1 star</option>
+            </select>
+          </div>
+          <label for="mr-text">Review text</label>
+          <textarea id="mr-text" rows="3" placeholder="What did they say?" maxlength="500"></textarea>
+          <div style="margin-top:12px"><button id="mr-add" class="btn btn-ghost btn-sm" type="button">Add review</button></div>
+          <div id="mr-list"></div>
+          <div style="margin-top:22px"><button id="admin-save" class="btn btn-solid btn-sm" type="button">Save settings</button></div>
+          <p id="admin-saved" class="saved-msg" hidden>Saved — reviews updated.</p>
+        </div>
+      </section>
+
+      <!-- ============ COMMUNITY LINKS VIEW ============ -->
+      <section class="admin-view" data-view="community" hidden>
+        <div class="admin-panel admin-form-panel">
+          <div class="admin-panel-head"><h3>Community links</h3></div>
+          <p class="hint">Prottek community-r invite/join link paste korun — khali thakle Join button platform-er site-e jabe. Link gula ei device-ei save thakbe.</p>
+          <div class="social-admin-list">
+            <div class="social-admin-row"><label for="cl-discord">Discord</label><input id="cl-discord" type="url" placeholder="https://discord.gg/your-invite"></div>
+            <div class="social-admin-row"><label for="cl-whatsapp">WhatsApp Group</label><input id="cl-whatsapp" type="url" placeholder="https://chat.whatsapp.com/your-invite"></div>
+            <div class="social-admin-row"><label for="cl-telegram">Telegram</label><input id="cl-telegram" type="url" placeholder="https://t.me/your-group"></div>
+            <div class="social-admin-row"><label for="cl-facebook">Facebook Group</label><input id="cl-facebook" type="url" placeholder="https://www.facebook.com/groups/your-group"></div>
+            <div class="social-admin-row"><label for="cl-youtube">YouTube</label><input id="cl-youtube" type="url" placeholder="https://www.youtube.com/@yourchannel"></div>
+            <div class="social-admin-row"><label for="cl-reddit">Reddit</label><input id="cl-reddit" type="url" placeholder="https://www.reddit.com/r/yoursubreddit"></div>
+            <div class="social-admin-row"><label for="cl-instagram">Instagram</label><input id="cl-instagram" type="url" placeholder="https://www.instagram.com/yourprofile"></div>
+            <div class="social-admin-row"><label for="cl-x">X</label><input id="cl-x" type="url" placeholder="https://x.com/i/communities/yourcommunity"></div>
+            <div class="social-admin-row"><label for="cl-linkedin">LinkedIn</label><input id="cl-linkedin" type="url" placeholder="https://www.linkedin.com/groups/your-group"></div>
+          </div>
+          <div style="margin-top:14px"><button id="community-save" class="btn btn-solid btn-sm" type="button">Save community links</button></div>
+          <p id="community-saved" class="saved-msg" hidden>Saved — community links updated.</p>
+        </div>
+      </section>
+
+      <!-- ============ TEXTS VIEW ============ -->
+      <section class="admin-view" data-view="texts" hidden>
+        <div class="admin-panel admin-form-panel">
+          <div class="admin-panel-head"><h3>Texts</h3></div>
+          <p class="hint">Hero, Services ar Experience-er lekha bodlan. Khali rakhle ager lekha thakbe.</p>
+          <div id="tx-list"></div>
+          <div style="margin-top:14px"><button id="tx-save" class="btn btn-solid btn-sm" type="button">Save texts</button> <button id="tx-reset" class="btn btn-ghost btn-sm" type="button">Reset all to original</button></div>
+          <p id="tx-saved" class="saved-msg" hidden>Saved — texts updated.</p>
+        </div>
+      </section>
+
+      <!-- ============ ANALYTICS VIEW ============ -->
+      <section class="admin-view" data-view="analytics" hidden>
+        <div class="admin-panel admin-form-panel">
+          <div class="admin-panel-head"><h3>Analytics</h3></div>
+          <div class="admin-empty-chart admin-empty-chart-tall">
+            <svg viewBox="0 0 24 24" width="34" height="34" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 15v3M12 10v8M17 6v12"/></svg>
+            <b>No visitor data yet</b>
+            <span>This site is static &mdash; it doesn&rsquo;t track visitors. Connect an analytics service (for example Google Analytics or Cloudflare Web Analytics) to see visits here.</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ SETTINGS VIEW ============ -->
+      <section class="admin-view" data-view="settings" hidden>
+        <div class="admin-panel admin-form-panel">
+          <div class="admin-panel-head"><h3>Settings</h3></div>
+          <div class="admin-note"><b>Changes save on this device only.</b> Visitors won&rsquo;t see them until Rio publishes them live — ask Rio in the Personal Website chat. Anyone can open Admin on their own device, but their changes stay on their device and never touch yours or the live site.</div>
+          <p class="hint">Admin panel opens only from the <b>#admin</b> link — there is no Admin button on the public site. Bookmark <b>https://mehedihallmubin.github.io/#admin</b>. No password is needed.</p>
+          <h4>Clear saved admin data</h4>
+          <p class="hint">Removes every change saved on this device (blog posts, reviews, links, brands, texts) and restores the original content.</p>
+          <div style="margin-top:12px"><button id="admin-clear-data" class="btn btn-ghost btn-sm" type="button">Clear all saved admin data</button></div>
+          <p id="admin-cleared" class="saved-msg" hidden>Cleared — original content restored. Reload the page to see it.</p>
+        </div>
+      </section>
     </div>
-    <label for="mr-text">Review text</label>
-    <textarea id="mr-text" rows="3" placeholder="What did they say?" maxlength="500"></textarea>
-    <div style="margin-top:12px"><button id="mr-add" class="btn btn-ghost btn-sm" type="button">Add review</button></div>
-    <div id="mr-list"></div>
-    <div style="margin-top:22px"><button id="admin-save" class="btn btn-solid btn-sm" type="button">Save settings</button></div>
-    <p id="admin-saved" class="saved-msg" hidden>Saved — reviews updated.</p>
-    <h4>Social links</h4>
-    <p class="hint">Prottek platform-er profile link paste korun — khali thakle Connect button platform-er site-e jabe. Link gula ei device-ei save thakbe.</p>
-    <div class="social-admin-list">
-      <div class="social-admin-row"><label for="sl-facebook">Facebook</label><input id="sl-facebook" type="url" placeholder="https://www.facebook.com/yourprofile"></div>
-      <div class="social-admin-row"><label for="sl-instagram">Instagram</label><input id="sl-instagram" type="url" placeholder="https://www.instagram.com/yourprofile"></div>
-      <div class="social-admin-row"><label for="sl-youtube">YouTube</label><input id="sl-youtube" type="url" placeholder="https://www.youtube.com/@yourchannel"></div>
-      <div class="social-admin-row"><label for="sl-linkedin">LinkedIn</label><input id="sl-linkedin" type="url" placeholder="https://www.linkedin.com/in/yourprofile"></div>
-      <div class="social-admin-row"><label for="sl-tiktok">TikTok</label><input id="sl-tiktok" type="url" placeholder="https://www.tiktok.com/@yourprofile"></div>
-      <div class="social-admin-row"><label for="sl-pinterest">Pinterest</label><input id="sl-pinterest" type="url" placeholder="https://www.pinterest.com/yourprofile"></div>
-      <div class="social-admin-row"><label for="sl-rumble">Rumble</label><input id="sl-rumble" type="url" placeholder="https://rumble.com/c/yourchannel"></div>
-      <div class="social-admin-row"><label for="sl-threads">Threads</label><input id="sl-threads" type="url" placeholder="https://www.threads.net/@yourprofile"></div>
-      <div class="social-admin-row"><label for="sl-x">X</label><input id="sl-x" type="url" placeholder="https://x.com/yourprofile"></div>
-      <div class="social-admin-row"><label for="sl-telegram">Telegram</label><input id="sl-telegram" type="url" placeholder="https://t.me/yourname"></div>
-      <div class="social-admin-row"><label for="sl-vimeo">Vimeo</label><input id="sl-vimeo" type="url" placeholder="https://vimeo.com/yourprofile"></div>
-      <div class="social-admin-row"><label for="sl-snapchat">Snapchat</label><input id="sl-snapchat" type="url" placeholder="https://www.snapchat.com/add/yourname"></div>
-      <div class="social-admin-row"><label for="sl-reddit">Reddit</label><input id="sl-reddit" type="url" placeholder="https://www.reddit.com/user/yourname"></div>
-      <div class="social-admin-row"><label for="sl-tumblr">Tumblr</label><input id="sl-tumblr" type="url" placeholder="https://yourname.tumblr.com"></div>
-      <div class="social-admin-row"><label for="sl-discord">Discord</label><input id="sl-discord" type="url" placeholder="https://discord.com/users/yourid"></div>
-      <div class="social-admin-row"><label for="sl-whatsapp">WhatsApp</label><input id="sl-whatsapp" type="url" placeholder="https://wa.me/your-number"></div>
-      <div class="social-admin-row"><label for="sl-behance">Behance</label><input id="sl-behance" type="url" placeholder="https://www.behance.net/yourprofile"></div>
-      <div class="social-admin-row"><label for="sl-dribbble">Dribbble</label><input id="sl-dribbble" type="url" placeholder="https://dribbble.com/yourprofile"></div>
-      <div class="social-admin-row"><label for="sl-adobe-stock">Adobe Stock</label><input id="sl-adobe-stock" type="url" placeholder="https://stock.adobe.com/contributor/yourprofile"></div>
-      <div class="social-admin-row"><label for="sl-shutterstock">Shutterstock</label><input id="sl-shutterstock" type="url" placeholder="https://www.shutterstock.com/g/yourprofile"></div>
-      <div class="social-admin-row"><label for="sl-istock">iStock</label><input id="sl-istock" type="url" placeholder="https://www.istockphoto.com/portfolio/yourprofile"></div>
-      <div class="social-admin-row"><label for="sl-alamy">Alamy</label><input id="sl-alamy" type="url" placeholder="https://www.alamy.com/portfolio/yourprofile"></div>
-      <div class="social-admin-row"><label for="sl-depositphotos">Depositphotos</label><input id="sl-depositphotos" type="url" placeholder="https://depositphotos.com/yourprofile"></div>
-      <div class="social-admin-row"><label for="sl-dreamstime">Dreamstime</label><input id="sl-dreamstime" type="url" placeholder="https://www.dreamstime.com/yourprofile"></div>
-      <div class="social-admin-row"><label for="sl-123rf">123RF</label><input id="sl-123rf" type="url" placeholder="https://www.123rf.com/profile_yourprofile"></div>
-      <div class="social-admin-row"><label for="sl-freepik">Freepik (now Magnific)</label><input id="sl-freepik" type="url" placeholder="https://www.freepik.com/author/yourprofile"></div>
-    </div>
-    <div style="margin-top:14px"><button id="social-save" class="btn btn-solid btn-sm" type="button">Save social links</button></div>
-    <p id="social-saved" class="saved-msg" hidden>Saved — social links updated.</p>
-    <h4>Community links</h4>
-    <p class="hint">Prottek community-r invite/join link paste korun — khali thakle Join button platform-er site-e jabe. Link gula ei device-ei save thakbe.</p>
-    <div class="social-admin-list">
-      <div class="social-admin-row"><label for="cl-discord">Discord</label><input id="cl-discord" type="url" placeholder="https://discord.gg/your-invite"></div>
-      <div class="social-admin-row"><label for="cl-whatsapp">WhatsApp Group</label><input id="cl-whatsapp" type="url" placeholder="https://chat.whatsapp.com/your-invite"></div>
-      <div class="social-admin-row"><label for="cl-telegram">Telegram</label><input id="cl-telegram" type="url" placeholder="https://t.me/your-group"></div>
-      <div class="social-admin-row"><label for="cl-facebook">Facebook Group</label><input id="cl-facebook" type="url" placeholder="https://www.facebook.com/groups/your-group"></div>
-      <div class="social-admin-row"><label for="cl-youtube">YouTube</label><input id="cl-youtube" type="url" placeholder="https://www.youtube.com/@yourchannel"></div>
-      <div class="social-admin-row"><label for="cl-reddit">Reddit</label><input id="cl-reddit" type="url" placeholder="https://www.reddit.com/r/yoursubreddit"></div>
-      <div class="social-admin-row"><label for="cl-instagram">Instagram</label><input id="cl-instagram" type="url" placeholder="https://www.instagram.com/yourprofile"></div>
-      <div class="social-admin-row"><label for="cl-x">X</label><input id="cl-x" type="url" placeholder="https://x.com/i/communities/yourcommunity"></div>
-      <div class="social-admin-row"><label for="cl-linkedin">LinkedIn</label><input id="cl-linkedin" type="url" placeholder="https://www.linkedin.com/groups/your-group"></div>
-    </div>
-    <div style="margin-top:14px"><button id="community-save" class="btn btn-solid btn-sm" type="button">Save community links</button></div>
-    <p id="community-saved" class="saved-msg" hidden>Saved — community links updated.</p>
-    <h4>Blog posts</h4>
-    <p class="hint">Shudhu asol post likhben — fake post kokhono na. Post ekhane likhle Blog page-e dekhabe (ei device-e).</p>
-    <label for="bp-title">Post title</label>
-    <input id="bp-title" type="text" placeholder="Post title" maxlength="120">
-    <label for="bp-text">Post text</label>
-    <textarea id="bp-text" rows="5" placeholder="Write your post here..." maxlength="5000"></textarea>
-    <div style="margin-top:12px"><button id="bp-add" class="btn btn-solid btn-sm" type="button">Add post</button> <button id="bp-cancel" class="btn btn-ghost btn-sm" type="button" hidden>Cancel edit</button></div>
-    <div id="bp-list" class="admin-list"></div>
-    <h4>Brands</h4>
-    <p class="hint">Shudhu asol brand — fake brand kokhono na. Brand add/edit/remove korle Brands page-e dekhabe (ei device-e).</p>
-    <label for="br-name">Brand name</label>
-    <input id="br-name" type="text" placeholder="Brand name" maxlength="60">
-    <label for="br-role">Your role</label>
-    <input id="br-role" type="text" placeholder="e.g. Founder" maxlength="80">
-    <label for="br-line">One line about it</label>
-    <input id="br-line" type="text" placeholder="e.g. My own shoe brand." maxlength="140">
-    <div style="margin-top:12px"><button id="br-add" class="btn btn-solid btn-sm" type="button">Add brand</button> <button id="br-cancel" class="btn btn-ghost btn-sm" type="button" hidden>Cancel edit</button></div>
-    <div id="br-list" class="admin-list"></div>
-    <h4>Texts</h4>
-    <p class="hint">Hero, Services ar Experience-er lekha bodlan. Khali rakhle ager lekha thakbe.</p>
-    <div id="tx-list"></div>
-    <div style="margin-top:14px"><button id="tx-save" class="btn btn-solid btn-sm" type="button">Save texts</button> <button id="tx-reset" class="btn btn-ghost btn-sm" type="button">Reset all to original</button></div>
-    <p id="tx-saved" class="saved-msg" hidden>Saved — texts updated.</p>
   </div>
 </div>
-<!-- Toast: short status messages -->
 <div id="toast" class="toast" role="status" hidden></div>
 <script>/* 03. reviews.js - Review system for the personal website.
    Google reviews widget + Give a Review button + manual reviews + admin.
@@ -812,6 +1157,117 @@
       d.appendChild(s); d.appendChild(b); box.appendChild(d);
     });
   }
+  // ---- Admin dashboard (Option A) ----
+  // Real counts only: blog posts + manual reviews + brands come from
+  // localStorage (defaults where the site ships them); social (26),
+  // community (9) and texts (29) are fixed section sizes. Views/visitors
+  // are 0 — this static site tracks nothing. Recent activity logs real
+  // admin opens to localStorage; nothing here is invented.
+  var K_ACT='pw_admin_activity';
+  var DS_FIXED={social:26, community:9, texts:29};
+  function countArr(k){ try{ var a=JSON.parse(read(k)||'[]'); return Array.isArray(a)?a.length:0; }catch(e){ return 0; } }
+  function getCounts(){
+    var brands=read('pw_brands');
+    var bn=9; // site ships 9 real brands; an edited list lives in pw_brands
+    if(brands){ try{ var a=JSON.parse(brands); if(Array.isArray(a)) bn=a.length; }catch(e){} }
+    return {posts:countArr('pw_blog_posts'), brands:bn, reviews:countArr(K_MANUAL),
+      social:DS_FIXED.social, community:DS_FIXED.community, texts:DS_FIXED.texts};
+  }
+  function setTxt(id,v){ var el=$(id); if(el) el.textContent=v; }
+  function relTime(ts){
+    var d=Math.max(0, Date.now()-ts), m=Math.floor(d/60000);
+    if(m<1) return 'Just now';
+    if(m<60) return m+(m===1?' min ago':' min ago');
+    var h=Math.floor(m/60); if(h<24) return h+(h===1?' hour ago':' hours ago');
+    return new Date(ts).toLocaleDateString('en-GB',{day:'numeric',month:'short'});
+  }
+  function getActivity(){ try{ var a=JSON.parse(read(K_ACT)||'[]'); return Array.isArray(a)?a:[]; }catch(e){ return []; } }
+  function logActivity(label){
+    var a=getActivity(); a.unshift({label:label, ts:Date.now()});
+    store(K_ACT, JSON.stringify(a.slice(0,20)));
+  }
+  function renderAdminDashboard(){
+    var c=getCounts();
+    setTxt('ds-posts', c.posts); setTxt('ds-brands', c.brands); setTxt('ds-reviews', c.reviews);
+    setTxt('ds-social', c.social);
+    setTxt('ds-mc-posts', c.posts===0?'No posts yet':(c.posts+(c.posts===1?' post':' posts')));
+    setTxt('ds-mc-brands', c.brands+(c.brands===1?' brand':' brands'));
+    setTxt('ds-mc-reviews', c.reviews===0?'No reviews yet':(c.reviews+(c.reviews===1?' review':' reviews')));
+    setTxt('ds-mc-community', c.community+' communities');
+    setTxt('ds-mc-texts', c.texts+' texts');
+    setTxt('ds-ag-posts', c.posts); setTxt('ds-ag-brands', c.brands); setTxt('ds-ag-reviews', c.reviews);
+    setTxt('ds-ag-social', c.social); setTxt('ds-ag-community', c.community); setTxt('ds-ag-texts', c.texts);
+    // Donut: real distribution over Blog / Brands / Reviews / Community / Texts.
+    var cats=[['Blog Posts',c.posts,'#F87171'],['Brands',c.brands,'#DC143C'],['Reviews',c.reviews,'#B91C1C'],['Community',c.community,'#FCA5A5'],['Texts',c.texts,'#7F1D1D']];
+    var total=cats.reduce(function(s,x){ return s+x[1]; },0);
+    var donut=$('ds-donut'), legend=$('ds-donut-legend'), center=$('ds-donut-center');
+    if(donut){
+      if(total===0){ donut.style.background='rgba(255,255,255,.08)'; if(center) center.innerHTML='No<br>content'; }
+      else{
+        var stops=[], acc=0;
+        cats.forEach(function(x){ var p=x[1]/total*100; stops.push(x[2]+' '+acc+'% '+(acc+p)+'%'); acc+=p; });
+        donut.style.background='conic-gradient('+stops.join(',')+')';
+        if(center) center.innerHTML='All<br>Content';
+      }
+    }
+    if(legend){
+      legend.innerHTML=cats.map(function(x){
+        var pc=total===0?0:Math.round(x[1]/total*100);
+        return '<li><span class="dot" style="background:'+x[2]+'"></span>'+esc(x[0])+'<b>'+pc+'%</b></li>';
+      }).join('');
+    }
+    // Recent activity: last 3 real admin opens/views.
+    var list=$('ds-activity');
+    if(list){
+      var a=getActivity().slice(0,3);
+      if(a.length===0){ list.innerHTML='<li class="admin-activity-empty">No activity yet — opens and views will appear here.</li>'; }
+      else{
+        list.innerHTML=a.map(function(x){
+          return '<li><span class="act-ic"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.9l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.9-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1-1.6 1.7 1.7 0 0 0-1.9.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.9 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.6-1 1.7 1.7 0 0 0-.3-1.9l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.9.3h.1a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5h.1a1.7 1.7 0 0 0 1.9-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.9v.1a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg></span>'+esc(x.label)+'<time>'+relTime(x.ts)+'</time></li>';
+        }).join('');
+      }
+    }
+  }
+  // Switch the admin view (dashboard + 8 sections). Logs the view as real activity.
+  var VIEW_LABELS={dashboard:'Dashboard viewed', blog:'Blog Posts viewed', social:'Social Links viewed', brands:'Brands viewed', reviews:'Reviews viewed', community:'Community Links viewed', texts:'Texts viewed', analytics:'Analytics viewed', settings:'Settings viewed'};
+  function showAdminView(name, focusId){
+    var views=document.querySelectorAll('#admin-modal .admin-view');
+    views.forEach(function(v){ v.hidden=(v.getAttribute('data-view')!==name); });
+    document.querySelectorAll('#admin-modal [data-admin-view]').forEach(function(b){
+      var isNav=b.classList.contains('admin-nav-item')||b.classList.contains('admin-tab');
+      if(isNav) b.classList.toggle('active', b.getAttribute('data-admin-view')===name);
+    });
+    var more=$('admin-more-menu'); if(more) more.hidden=true;
+    logActivity(VIEW_LABELS[name]||'Admin viewed');
+    renderAdminDashboard();
+    if(focusId){ var f=$(focusId); if(f) setTimeout(function(){ f.focus(); }, 60); }
+    var main=document.querySelector('#admin-modal .admin-main'); if(main) main.scrollTop=0;
+  }
+  // Wire every dashboard navigation button (sidebar, phone tabs, quick
+  // actions, manage cards, more-menu) to the view switcher.
+  document.querySelectorAll('#admin-modal [data-admin-view]').forEach(function(b){
+    b.addEventListener('click', function(){ showAdminView(b.getAttribute('data-admin-view'), b.getAttribute('data-admin-focus')); });
+  });
+  // Phone "more" menu (Community / Texts / Analytics / Settings).
+  var moreBtn=$('admin-tab-more'), moreMenu=$('admin-more-menu');
+  if(moreBtn && moreMenu){
+    moreBtn.addEventListener('click', function(e){ e.stopPropagation(); moreMenu.hidden=!moreMenu.hidden; });
+    document.addEventListener('click', function(e){ if(!moreMenu.hidden && !moreMenu.contains(e.target)) moreMenu.hidden=true; });
+  }
+  // Bell: no notification system exists — say so honestly.
+  var bell=$('admin-bell'); if(bell) bell.addEventListener('click', function(){ toast('No new notifications.'); });
+  // Logout: no password exists — it just closes the panel.
+  var logout=$('admin-logout'); if(logout) logout.addEventListener('click', function(){ closeAdmin(); toast('Admin closed.'); });
+  // Date-range select: no visitor data to filter — say so honestly.
+  var range=$('ds-range'); if(range) range.addEventListener('change', function(){ toast('No visitor data yet — nothing to filter.'); });
+  // Settings: clear every saved admin change on this device.
+  var clearBtn=$('admin-clear-data');
+  if(clearBtn) clearBtn.addEventListener('click', function(){
+    ['pw_review_link','pw_review_widget','pw_manual_reviews','pw_social_links','pw_community_links','pw_blog_posts','pw_brands','pw_texts','pw_admin_activity'].forEach(function(k){ try{ localStorage.removeItem(k); }catch(e){} });
+    var m=$('admin-cleared'); if(m) m.hidden=false;
+    renderAdminDashboard();
+    toast('Saved admin data cleared.');
+  });
   // Open the admin panel and fill it with the saved settings.
   function openAdmin(){
     $('admin-link').value=(read(K_LINK)||'');
@@ -819,6 +1275,9 @@
     renderMrList();
     $('admin-saved').hidden=true;
     $('admin-modal').hidden=false;
+    showAdminView('dashboard');
+    logActivity('Admin panel accessed');
+    renderAdminDashboard();
     // Let the other admin sections (social, community) fill their fields.
     document.dispatchEvent(new CustomEvent('pw-admin-open'));
   }

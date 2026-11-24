@@ -88,6 +88,117 @@
       d.appendChild(s); d.appendChild(b); box.appendChild(d);
     });
   }
+  // ---- Admin dashboard (Option A) ----
+  // Real counts only: blog posts + manual reviews + brands come from
+  // localStorage (defaults where the site ships them); social (26),
+  // community (9) and texts (29) are fixed section sizes. Views/visitors
+  // are 0 — this static site tracks nothing. Recent activity logs real
+  // admin opens to localStorage; nothing here is invented.
+  var K_ACT='pw_admin_activity';
+  var DS_FIXED={social:26, community:9, texts:29};
+  function countArr(k){ try{ var a=JSON.parse(read(k)||'[]'); return Array.isArray(a)?a.length:0; }catch(e){ return 0; } }
+  function getCounts(){
+    var brands=read('pw_brands');
+    var bn=9; // site ships 9 real brands; an edited list lives in pw_brands
+    if(brands){ try{ var a=JSON.parse(brands); if(Array.isArray(a)) bn=a.length; }catch(e){} }
+    return {posts:countArr('pw_blog_posts'), brands:bn, reviews:countArr(K_MANUAL),
+      social:DS_FIXED.social, community:DS_FIXED.community, texts:DS_FIXED.texts};
+  }
+  function setTxt(id,v){ var el=$(id); if(el) el.textContent=v; }
+  function relTime(ts){
+    var d=Math.max(0, Date.now()-ts), m=Math.floor(d/60000);
+    if(m<1) return 'Just now';
+    if(m<60) return m+(m===1?' min ago':' min ago');
+    var h=Math.floor(m/60); if(h<24) return h+(h===1?' hour ago':' hours ago');
+    return new Date(ts).toLocaleDateString('en-GB',{day:'numeric',month:'short'});
+  }
+  function getActivity(){ try{ var a=JSON.parse(read(K_ACT)||'[]'); return Array.isArray(a)?a:[]; }catch(e){ return []; } }
+  function logActivity(label){
+    var a=getActivity(); a.unshift({label:label, ts:Date.now()});
+    store(K_ACT, JSON.stringify(a.slice(0,20)));
+  }
+  function renderAdminDashboard(){
+    var c=getCounts();
+    setTxt('ds-posts', c.posts); setTxt('ds-brands', c.brands); setTxt('ds-reviews', c.reviews);
+    setTxt('ds-social', c.social);
+    setTxt('ds-mc-posts', c.posts===0?'No posts yet':(c.posts+(c.posts===1?' post':' posts')));
+    setTxt('ds-mc-brands', c.brands+(c.brands===1?' brand':' brands'));
+    setTxt('ds-mc-reviews', c.reviews===0?'No reviews yet':(c.reviews+(c.reviews===1?' review':' reviews')));
+    setTxt('ds-mc-community', c.community+' communities');
+    setTxt('ds-mc-texts', c.texts+' texts');
+    setTxt('ds-ag-posts', c.posts); setTxt('ds-ag-brands', c.brands); setTxt('ds-ag-reviews', c.reviews);
+    setTxt('ds-ag-social', c.social); setTxt('ds-ag-community', c.community); setTxt('ds-ag-texts', c.texts);
+    // Donut: real distribution over Blog / Brands / Reviews / Community / Texts.
+    var cats=[['Blog Posts',c.posts,'#F87171'],['Brands',c.brands,'#DC143C'],['Reviews',c.reviews,'#B91C1C'],['Community',c.community,'#FCA5A5'],['Texts',c.texts,'#7F1D1D']];
+    var total=cats.reduce(function(s,x){ return s+x[1]; },0);
+    var donut=$('ds-donut'), legend=$('ds-donut-legend'), center=$('ds-donut-center');
+    if(donut){
+      if(total===0){ donut.style.background='rgba(255,255,255,.08)'; if(center) center.innerHTML='No<br>content'; }
+      else{
+        var stops=[], acc=0;
+        cats.forEach(function(x){ var p=x[1]/total*100; stops.push(x[2]+' '+acc+'% '+(acc+p)+'%'); acc+=p; });
+        donut.style.background='conic-gradient('+stops.join(',')+')';
+        if(center) center.innerHTML='All<br>Content';
+      }
+    }
+    if(legend){
+      legend.innerHTML=cats.map(function(x){
+        var pc=total===0?0:Math.round(x[1]/total*100);
+        return '<li><span class="dot" style="background:'+x[2]+'"></span>'+esc(x[0])+'<b>'+pc+'%</b></li>';
+      }).join('');
+    }
+    // Recent activity: last 3 real admin opens/views.
+    var list=$('ds-activity');
+    if(list){
+      var a=getActivity().slice(0,3);
+      if(a.length===0){ list.innerHTML='<li class="admin-activity-empty">No activity yet — opens and views will appear here.</li>'; }
+      else{
+        list.innerHTML=a.map(function(x){
+          return '<li><span class="act-ic"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.9l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.9-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1-1.6 1.7 1.7 0 0 0-1.9.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.9 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.6-1 1.7 1.7 0 0 0-.3-1.9l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.9.3h.1a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5h.1a1.7 1.7 0 0 0 1.9-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.9v.1a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg></span>'+esc(x.label)+'<time>'+relTime(x.ts)+'</time></li>';
+        }).join('');
+      }
+    }
+  }
+  // Switch the admin view (dashboard + 8 sections). Logs the view as real activity.
+  var VIEW_LABELS={dashboard:'Dashboard viewed', blog:'Blog Posts viewed', social:'Social Links viewed', brands:'Brands viewed', reviews:'Reviews viewed', community:'Community Links viewed', texts:'Texts viewed', analytics:'Analytics viewed', settings:'Settings viewed'};
+  function showAdminView(name, focusId){
+    var views=document.querySelectorAll('#admin-modal .admin-view');
+    views.forEach(function(v){ v.hidden=(v.getAttribute('data-view')!==name); });
+    document.querySelectorAll('#admin-modal [data-admin-view]').forEach(function(b){
+      var isNav=b.classList.contains('admin-nav-item')||b.classList.contains('admin-tab');
+      if(isNav) b.classList.toggle('active', b.getAttribute('data-admin-view')===name);
+    });
+    var more=$('admin-more-menu'); if(more) more.hidden=true;
+    logActivity(VIEW_LABELS[name]||'Admin viewed');
+    renderAdminDashboard();
+    if(focusId){ var f=$(focusId); if(f) setTimeout(function(){ f.focus(); }, 60); }
+    var main=document.querySelector('#admin-modal .admin-main'); if(main) main.scrollTop=0;
+  }
+  // Wire every dashboard navigation button (sidebar, phone tabs, quick
+  // actions, manage cards, more-menu) to the view switcher.
+  document.querySelectorAll('#admin-modal [data-admin-view]').forEach(function(b){
+    b.addEventListener('click', function(){ showAdminView(b.getAttribute('data-admin-view'), b.getAttribute('data-admin-focus')); });
+  });
+  // Phone "more" menu (Community / Texts / Analytics / Settings).
+  var moreBtn=$('admin-tab-more'), moreMenu=$('admin-more-menu');
+  if(moreBtn && moreMenu){
+    moreBtn.addEventListener('click', function(e){ e.stopPropagation(); moreMenu.hidden=!moreMenu.hidden; });
+    document.addEventListener('click', function(e){ if(!moreMenu.hidden && !moreMenu.contains(e.target)) moreMenu.hidden=true; });
+  }
+  // Bell: no notification system exists — say so honestly.
+  var bell=$('admin-bell'); if(bell) bell.addEventListener('click', function(){ toast('No new notifications.'); });
+  // Logout: no password exists — it just closes the panel.
+  var logout=$('admin-logout'); if(logout) logout.addEventListener('click', function(){ closeAdmin(); toast('Admin closed.'); });
+  // Date-range select: no visitor data to filter — say so honestly.
+  var range=$('ds-range'); if(range) range.addEventListener('change', function(){ toast('No visitor data yet — nothing to filter.'); });
+  // Settings: clear every saved admin change on this device.
+  var clearBtn=$('admin-clear-data');
+  if(clearBtn) clearBtn.addEventListener('click', function(){
+    ['pw_review_link','pw_review_widget','pw_manual_reviews','pw_social_links','pw_community_links','pw_blog_posts','pw_brands','pw_texts','pw_admin_activity'].forEach(function(k){ try{ localStorage.removeItem(k); }catch(e){} });
+    var m=$('admin-cleared'); if(m) m.hidden=false;
+    renderAdminDashboard();
+    toast('Saved admin data cleared.');
+  });
   // Open the admin panel and fill it with the saved settings.
   function openAdmin(){
     $('admin-link').value=(read(K_LINK)||'');
@@ -95,6 +206,9 @@
     renderMrList();
     $('admin-saved').hidden=true;
     $('admin-modal').hidden=false;
+    showAdminView('dashboard');
+    logActivity('Admin panel accessed');
+    renderAdminDashboard();
     // Let the other admin sections (social, community) fill their fields.
     document.dispatchEvent(new CustomEvent('pw-admin-open'));
   }
