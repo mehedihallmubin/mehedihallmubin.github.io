@@ -14,7 +14,8 @@ PAGES = ['01. index.html', '07. blog.html', '08. portfolio.html',
          '09. work.html', '11. contact.html', '12. reviews.html']
 REQUIRED_IDS = [
     'admin-modal', 'admin-h', 'admin-close', 'admin-logout', 'admin-bell',
-    'admin-tab-more', 'admin-more-menu',
+    'admin-tab-more', 'admin-more-menu', 'admin-tab-menu', 'admin-side-backdrop',
+    'ds-all-activity',
     'ds-views', 'ds-visitors', 'ds-posts', 'ds-social', 'ds-brands', 'ds-reviews',
     'ds-range', 'ds-donut', 'ds-donut-center', 'ds-donut-legend',
     'ds-mc-posts', 'ds-mc-social', 'ds-mc-brands', 'ds-mc-reviews',

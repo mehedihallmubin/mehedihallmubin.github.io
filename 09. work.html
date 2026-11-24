@@ -148,8 +148,17 @@
      Real data only: stats/donut/at-a-glance read localStorage counts;
      views/visitors + the analytics chart are honest empty states (static site
      tracks nothing); recent activity logs real admin opens to localStorage. -->
+<!-- 17. admin-dashboard.html — Admin dashboard (Option A, liquid glass).
+     SOURCE OF TRUTH for the admin panel. Splice into all 6 page sources with
+     apply-admin-dashboard.py (replaces the old admin-modal block
+     up to the toast div). Then run 00. build.py.
+     ALL form IDs below must stay exactly as-is — 03/05/13/14/15/16.js read them.
+     Real data only: stats/donut/at-a-glance read localStorage counts;
+     views/visitors + the analytics chart are honest empty states (static site
+     tracks nothing); recent activity logs real admin opens to localStorage. -->
 <div id="admin-modal" class="modal admin-dash-modal" role="dialog" aria-modal="true" aria-labelledby="admin-h" hidden>
   <div class="admin-dash">
+    <div class="admin-side-backdrop" id="admin-side-backdrop" hidden></div>
     <aside class="admin-side">
       <div class="admin-side-brand">
         <img class="mark" src="m-logo.png" alt="M">
@@ -181,6 +190,7 @@
         </div>
       </div>
       <nav class="admin-tabs" aria-label="Admin sections">
+        <button type="button" class="admin-tab admin-tab-menu" id="admin-tab-menu" aria-label="Open menu"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button>
         <button type="button" class="admin-tab active" data-admin-view="dashboard"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/></svg><span>Dashboard</span></button>
         <button type="button" class="admin-tab" data-admin-view="blog"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M9 13h6M9 17h6"/></svg><span>Posts</span></button>
         <button type="button" class="admin-tab" data-admin-view="social"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/></svg><span>Links</span></button>
@@ -272,7 +282,7 @@
 
         <div class="admin-bottom">
           <div class="admin-panel admin-activity">
-            <div class="admin-panel-head"><h3><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg> Recent Activity</h3><button type="button" class="admin-link-btn" data-admin-view="dashboard">All Activity &rsaquo;</button></div>
+            <div class="admin-panel-head"><h3><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg> Recent Activity</h3><button type="button" class="admin-link-btn" id="ds-all-activity">All Activity &rsaquo;</button></div>
             <ul class="admin-activity-list" id="ds-activity"></ul>
           </div>
           <div class="admin-panel admin-glance">

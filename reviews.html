@@ -337,7 +337,7 @@
   .form-row input{flex:1}
   .form-row select{flex:none}
   .mr-item{display:flex;justify-content:space-between;gap:10px;align-items:center;background:var(--glass);border:1px solid var(--glass-border);border-radius:12px;padding:10px 12px;margin-top:8px;font-size:14px}
-  .mr-item button{background:none;border:1px solid var(--glass-border);color:#F87171;border-radius:8px;padding:6px 10px;cursor:pointer;font-size:13px;font-weight:700}
+  .mr-item button{background:none;border:1px solid var(--glass-border);color:var(--crimson);border-radius:8px;padding:6px 10px;cursor:pointer;font-size:13px;font-weight:700}
   .saved-msg{color:var(--green);font-weight:700;font-size:14px;margin-top:14px}
   /* Connect */
   .social-groups{display:grid;gap:36px;margin-top:4px}
@@ -491,22 +491,22 @@
   .admin-side-brand{display:flex;align-items:center;gap:12px;padding:2px 8px 14px;border-bottom:1px solid rgba(255,255,255,.08)}
   .admin-side-brand .mark{width:40px;height:40px}
   .admin-side-brand-txt{display:flex;flex-direction:column;min-width:0}
-  .admin-side-brand-txt b{font-size:15px;font-weight:800;white-space:nowrap}
-  .admin-side-brand-txt span{font-size:12px;color:var(--muted)}
+  .admin-side-brand-txt b{font-size:13px;font-weight:800;white-space:nowrap}
+  .admin-side-brand-txt span{font-size:11px;color:var(--muted)}
   .admin-nav{display:flex;flex-direction:column;gap:4px}
-  .admin-nav-item{display:flex;align-items:center;gap:12px;width:100%;padding:11px 14px;border:0;border-radius:12px;background:transparent;color:var(--muted2);font:inherit;font-size:15px;font-weight:600;cursor:pointer;text-align:left}
+  .admin-nav-item{display:flex;align-items:center;gap:12px;width:100%;padding:11px 14px;border:0;border-radius:12px;background:transparent;color:var(--muted2);font:inherit;font-size:13px;font-weight:600;cursor:pointer;text-align:left}
   .admin-nav-item svg{flex:none}
   .admin-nav-item:hover{background:rgba(255,255,255,.05);color:var(--text)}
   .admin-nav-item.active{background:linear-gradient(90deg,#DC143C,#8B0000);color:#fff;box-shadow:0 8px 24px rgba(220,20,60,.35)}
   .admin-side-foot{margin-top:auto;display:flex;flex-direction:column;gap:8px}
-  .admin-view-site{display:flex;align-items:center;justify-content:center;gap:8px;padding:12px;border-radius:12px;background:linear-gradient(90deg,#DC143C,#8B0000);color:#fff;font-weight:700;font-size:14px;text-decoration:none}
-  .admin-logout{display:flex;align-items:center;gap:10px;padding:11px 14px;border:0;border-radius:12px;background:transparent;color:var(--muted2);font:inherit;font-size:15px;font-weight:600;cursor:pointer}
+  .admin-view-site{display:flex;align-items:center;justify-content:center;gap:8px;padding:12px;border-radius:12px;background:linear-gradient(90deg,#DC143C,#8B0000);color:#fff;font-weight:700;font-size:13px;text-decoration:none}
+  .admin-logout{display:flex;align-items:center;gap:10px;padding:11px 14px;border:0;border-radius:12px;background:transparent;color:var(--muted2);font:inherit;font-size:13px;font-weight:600;cursor:pointer}
   .admin-logout:hover{background:rgba(255,255,255,.05);color:var(--text)}
   .admin-main{min-width:0;min-height:0;overflow-y:auto;padding:20px 26px 30px}
   .admin-topbar{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:4px 0 18px}
-  .admin-topbar h2{font-size:26px;font-weight:800;letter-spacing:-.01em;margin:0}
+  .admin-topbar h2{font-size:22px;font-weight:800;letter-spacing:-.01em;margin:0}
   .admin-top-sep{color:var(--crimson);font-weight:800;margin:0 6px}
-  .admin-top-name{font-weight:600;color:var(--muted2);font-size:22px}
+  .admin-top-name{font-weight:600;color:var(--muted2);font-size:18px}
   .admin-top-actions{display:flex;align-items:center;gap:10px}
   .admin-icon-btn{position:relative;width:42px;height:42px;border-radius:12px;background:rgba(255,255,255,.05);border:1px solid var(--glass-border);color:var(--text);cursor:pointer;display:flex;align-items:center;justify-content:center}
   .admin-bell-dot{position:absolute;top:9px;right:10px;width:8px;height:8px;border-radius:50%;background:var(--crimson);border:2px solid #0A0A0A}
@@ -516,64 +516,65 @@
   .admin-view{display:flex;flex-direction:column;gap:18px}
   .admin-stats{display:grid;grid-template-columns:repeat(6,1fr);gap:14px}
   .admin-stat{display:flex;gap:12px;align-items:flex-start;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);border-radius:16px;padding:16px}
-  .admin-stat-ic{flex:none;width:42px;height:42px;border-radius:12px;background:rgba(220,20,60,.16);border:1px solid rgba(220,20,60,.3);display:flex;align-items:center;justify-content:center;color:#F87171}
-  .admin-stat-label{display:block;font-size:13px;color:var(--muted2);font-weight:600}
-  .admin-stat-num{display:block;font-size:24px;font-weight:800;line-height:1.15}
-  .admin-stat-sub{display:block;font-size:12px;color:var(--muted);margin-top:2px}
+  .admin-stat-ic{flex:none;width:42px;height:42px;border-radius:12px;background:rgba(220,20,60,.16);border:1px solid rgba(220,20,60,.3);display:flex;align-items:center;justify-content:center;color:var(--crimson)}
+  .admin-stat-label{display:block;font-size:12px;color:var(--muted2);font-weight:600}
+  .admin-stat-num{display:block;font-size:21px;font-weight:800;line-height:1.15}
+  .admin-stat-sub{display:block;font-size:11px;color:var(--muted);margin-top:2px}
   .admin-trio{display:grid;grid-template-columns:1.7fr 1fr 1fr;gap:14px}
-  .admin-panel{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);border-radius:18px;padding:18px}
+  .admin-trio>*{min-width:0}
+  .admin-panel{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);border-radius:18px;padding:18px;min-width:0}
   .admin-panel-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:14px}
-  .admin-panel-head h3{font-size:16px;font-weight:800;display:flex;align-items:center;gap:8px;margin:0}
-  .admin-panel-head h3 svg{color:#F87171;flex:none}
-  .admin-panel-head select{background:rgba(255,255,255,.05);border:1px solid var(--glass-border);border-radius:10px;color:var(--text);padding:7px 10px;font:inherit;font-size:13px}
+  .admin-panel-head h3{font-size:14px;font-weight:800;display:flex;align-items:center;gap:8px;margin:0}
+  .admin-panel-head h3 svg{color:var(--crimson);flex:none}
+  .admin-panel-head select{background:rgba(255,255,255,.05);border:1px solid var(--glass-border);border-radius:10px;color:var(--text);padding:7px 10px;font:inherit;font-size:12px}
   .admin-empty-chart{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:8px;min-height:170px;color:var(--muted);padding:10px}
-  .admin-empty-chart svg{color:#F87171;opacity:.7}
-  .admin-empty-chart b{color:var(--text);font-size:15px}
-  .admin-empty-chart span{font-size:13px;line-height:1.55;max-width:340px}
+  .admin-empty-chart svg{color:var(--crimson);opacity:.7}
+  .admin-empty-chart b{color:var(--text);font-size:14px}
+  .admin-empty-chart span{font-size:12px;line-height:1.55;max-width:340px}
   .admin-empty-chart-tall{min-height:220px}
   .admin-donut-wrap{display:flex;align-items:center;gap:16px}
   .admin-donut{flex:none;width:132px;height:132px;border-radius:50%;background:conic-gradient(#DC143C 0 0);display:flex;align-items:center;justify-content:center;position:relative}
   .admin-donut::after{content:"";position:absolute;inset:22px;border-radius:50%;background:#120404}
-  .admin-donut span{position:relative;z-index:1;text-align:center;font-size:14px;font-weight:800;line-height:1.25}
-  .admin-donut-legend{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:9px;font-size:13px;min-width:0}
+  .admin-donut span{position:relative;z-index:1;text-align:center;font-size:13px;font-weight:800;line-height:1.25}
+  .admin-donut-legend{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:9px;font-size:12px;min-width:0}
   .admin-donut-legend li{display:flex;align-items:center;gap:8px;color:var(--muted2)}
   .admin-donut-legend .dot{flex:none;width:11px;height:11px;border-radius:3px}
   .admin-donut-legend b{margin-left:auto;color:var(--text);font-weight:700}
   .admin-quick-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-  .admin-qa{display:flex;align-items:center;justify-content:center;gap:8px;padding:11px 8px;border-radius:12px;background:rgba(255,255,255,.05);border:1px solid var(--glass-border);color:var(--text);font:inherit;font-size:13px;font-weight:700;cursor:pointer;text-align:center}
+  .admin-qa{display:flex;align-items:center;justify-content:center;gap:8px;padding:11px 8px;border-radius:12px;background:rgba(255,255,255,.05);border:1px solid var(--glass-border);color:var(--text);font:inherit;font-size:12px;font-weight:700;cursor:pointer;text-align:center;min-width:0;line-height:1.3}
   .admin-qa:hover{background:rgba(255,255,255,.09)}
   .admin-qa-red{background:linear-gradient(90deg,#DC143C,#8B0000);border-color:transparent;color:#fff}
   .admin-qa-red:hover{filter:brightness(1.1)}
   .admin-manage-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:14px}
   .admin-mcard{display:flex;flex-direction:column;gap:10px}
   .admin-mcard-head{display:flex;align-items:center;gap:9px}
-  .admin-mcard-ic{flex:none;width:34px;height:34px;border-radius:10px;background:rgba(220,20,60,.16);border:1px solid rgba(220,20,60,.3);display:flex;align-items:center;justify-content:center;color:#F87171}
-  .admin-mcard-head h3{font-size:14px;margin:0}
-  .admin-mcard-sub{font-size:13px;color:var(--muted);margin:0}
-  .admin-mcard-sub b{color:var(--text);font-size:16px}
+  .admin-mcard-ic{flex:none;width:34px;height:34px;border-radius:10px;background:rgba(220,20,60,.16);border:1px solid rgba(220,20,60,.3);display:flex;align-items:center;justify-content:center;color:var(--crimson)}
+  .admin-mcard-head h3{font-size:13px;margin:0}
+  .admin-mcard-sub{font-size:12px;color:var(--muted);margin:0}
+  .admin-mcard-sub b{color:var(--text);font-size:14px}
   .admin-mcard-btn{margin-top:auto;width:100%}
   .admin-bottom{display:grid;grid-template-columns:1.4fr 1fr;gap:14px}
-  .admin-link-btn{background:none;border:0;color:var(--muted2);font:inherit;font-size:13px;font-weight:700;cursor:pointer;padding:6px 8px;border-radius:8px}
+  .admin-link-btn{background:none;border:0;color:var(--muted2);font:inherit;font-size:12px;font-weight:700;cursor:pointer;padding:6px 8px;border-radius:8px}
   .admin-link-btn:hover{color:var(--text)}
   .admin-activity-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
-  .admin-activity-list li{display:flex;align-items:center;gap:10px;padding:11px 4px;border-bottom:1px solid rgba(255,255,255,.07);font-size:14px}
+  .admin-activity-list li{display:flex;align-items:center;gap:10px;padding:11px 4px;border-bottom:1px solid rgba(255,255,255,.07);font-size:13px}
   .admin-activity-list li:last-child{border-bottom:0}
-  .admin-activity-list .act-ic{flex:none;width:30px;height:30px;border-radius:9px;background:rgba(255,255,255,.05);border:1px solid var(--glass-border);display:flex;align-items:center;justify-content:center;color:#F87171}
-  .admin-activity-list time{margin-left:auto;color:var(--muted);font-size:12px;white-space:nowrap}
-  .admin-activity-empty{color:var(--muted);font-size:14px;padding:8px 4px}
+  .admin-activity-list .act-ic{flex:none;width:30px;height:30px;border-radius:9px;background:rgba(255,255,255,.05);border:1px solid var(--glass-border);display:flex;align-items:center;justify-content:center;color:var(--crimson)}
+  .admin-activity-list time{margin-left:auto;color:var(--muted);font-size:11px;white-space:nowrap}
+  .admin-activity-empty{color:var(--muted);font-size:13px;padding:8px 4px}
   .admin-glance-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-  .admin-glance-row{display:flex;align-items:center;justify-content:space-between;gap:10px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:11px 13px;font-size:14px}
+  .admin-glance-row{display:flex;align-items:center;justify-content:space-between;gap:10px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:11px 13px;font-size:13px}
   .admin-glance-row span{display:flex;align-items:center;gap:9px;color:var(--muted2)}
-  .admin-glance-row svg{color:#F87171;flex:none}
-  .admin-glance-row b{font-size:17px;font-weight:800}
+  .admin-glance-row svg{color:var(--crimson);flex:none}
+  .admin-glance-row b{font-size:15px;font-weight:800}
   .admin-form-panel{max-width:760px}
-  .admin-form-panel label{display:block;font-weight:700;font-size:14px;margin:18px 0 6px}
-  .admin-form-panel input[type=url],.admin-form-panel input[type=text],.admin-form-panel textarea,.admin-form-panel select{width:100%;background:rgba(255,255,255,.05);border:1px solid var(--glass-border);border-radius:12px;color:var(--text);padding:12px 14px;font:inherit;font-size:15px}
+  .admin-form-panel label{display:block;font-weight:700;font-size:13px;margin:18px 0 6px}
+  .admin-form-panel input[type=url],.admin-form-panel input[type=text],.admin-form-panel textarea,.admin-form-panel select{width:100%;background:rgba(255,255,255,.05);border:1px solid var(--glass-border);border-radius:12px;color:var(--text);padding:12px 14px;font:inherit;font-size:14px}
   .admin-form-panel input::placeholder,.admin-form-panel textarea::placeholder{color:var(--muted)}
   .admin-form-panel textarea{resize:vertical}
   .admin-form-panel select{width:auto}
-  .admin-form-panel .hint{font-size:13px;color:var(--muted);margin:5px 0 0}
-  .admin-form-panel h4{margin:24px 0 2px;font-size:16px;font-weight:800}
+  .admin-form-panel .hint{font-size:12px;color:var(--muted);margin:5px 0 0}
+  .admin-form-panel h4{margin:24px 0 2px;font-size:14px;font-weight:800}
   @media (max-width:1280px){
     .admin-stats{grid-template-columns:repeat(3,1fr)}
     .admin-trio{grid-template-columns:1fr 1fr}
@@ -584,25 +585,33 @@
   @media (max-width:960px){
     .admin-dash{grid-template-columns:1fr}
     .admin-side{display:none}
+    .admin-side.open{display:flex;position:fixed;left:0;top:0;bottom:0;width:280px;max-width:84vw;z-index:55;background:#0D0202;box-shadow:30px 0 60px rgba(0,0,0,.6)}
+    .admin-side-backdrop{position:fixed;inset:0;z-index:54;background:rgba(0,0,0,.6)}
     .admin-main{padding:14px 14px 26px}
     .admin-topbar{padding:2px 0 12px}
-    .admin-topbar h2{font-size:22px}
-    .admin-top-name{display:block;font-size:14px}
+    .admin-topbar h2{font-size:18px}
+    .admin-top-name{display:block;font-size:13px}
     .admin-top-sep{display:none}
     .admin-tabs{display:flex;align-items:center;gap:6px;overflow-x:auto;padding:10px 12px;margin-bottom:14px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);border-radius:14px;position:relative;scrollbar-width:none}
     .admin-tabs::-webkit-scrollbar{display:none}
-    .admin-tab{flex:none;display:flex;align-items:center;gap:7px;padding:9px 13px;border:0;border-radius:999px;background:transparent;color:var(--muted2);font:inherit;font-size:14px;font-weight:700;cursor:pointer;white-space:nowrap}
+    .admin-tab{flex:none;display:flex;align-items:center;gap:7px;padding:9px 13px;border:0;border-radius:999px;background:transparent;color:var(--muted2);font:inherit;font-size:12px;font-weight:700;cursor:pointer;white-space:nowrap}
     .admin-tab.active{background:linear-gradient(90deg,#DC143C,#8B0000);color:#fff}
+    .admin-tab-menu{padding:9px 10px}
     .admin-tab-more{padding:9px 10px}
     .admin-more-menu{position:absolute;top:calc(100% + 6px);right:8px;z-index:5;background:#160404;border:1px solid var(--glass-border);border-radius:12px;padding:6px;min-width:170px;box-shadow:0 18px 40px rgba(0,0,0,.6)}
-    .admin-more-menu button{display:block;width:100%;text-align:left;background:none;border:0;color:var(--text);font:inherit;font-size:14px;font-weight:600;padding:10px 12px;border-radius:8px;cursor:pointer}
+    .admin-more-menu button{display:block;width:100%;text-align:left;background:none;border:0;color:var(--text);font:inherit;font-size:12px;font-weight:600;padding:10px 12px;border-radius:8px;cursor:pointer}
     .admin-more-menu button:hover{background:rgba(255,255,255,.07)}
     .admin-stats{grid-template-columns:repeat(4,1fr)}
-    .admin-stat{padding:12px}
-    .admin-stat-ic{width:36px;height:36px}
-    .admin-stat-num{font-size:20px}
-    .admin-trio{grid-template-columns:1fr}
-    .admin-donut-wrap{justify-content:center}
+    .admin-stat{padding:10px 8px;gap:8px;flex-direction:column;align-items:flex-start}
+    .admin-stat-ic{width:32px;height:32px}
+    .admin-stat-label{font-size:9px}
+    .admin-stat-num{font-size:16px}
+    .admin-stat-sub{display:none}
+    .admin-donut{width:104px;height:104px}
+    .admin-donut::after{inset:17px}
+    .admin-donut span{font-size:11px}
+    .admin-donut-wrap{flex-direction:column;gap:12px;align-items:center}
+    .admin-donut-legend{width:100%;font-size:11px;gap:7px}
     .admin-manage-grid{grid-template-columns:1fr}
     .admin-mcard{flex-direction:row;align-items:center;gap:12px}
     .admin-mcard-head{flex:1;min-width:0}
@@ -611,8 +620,14 @@
     .admin-glance-grid{grid-template-columns:1fr 1fr}
   }
   @media (max-width:520px){
-    .admin-stats{grid-template-columns:repeat(2,1fr)}
     .admin-topbar h2{font-size:20px}
+    .admin-stat{padding:9px 7px}
+    .admin-stat-label{font-size:10px}
+    .admin-stat-num{font-size:17px}
+    .admin-donut-wrap{flex-direction:column;gap:12px}
+    .admin-donut-legend{width:100%}
+    .admin-quick-grid{grid-template-columns:1fr 1fr}
+    .admin-qa{font-size:11px;padding:10px 6px}
     .admin-glance-grid{grid-template-columns:1fr}
     .admin-mcard{flex-wrap:wrap}
     .admin-mcard-sub{flex:1 1 100%;text-align:left}
@@ -713,8 +728,17 @@
      Real data only: stats/donut/at-a-glance read localStorage counts;
      views/visitors + the analytics chart are honest empty states (static site
      tracks nothing); recent activity logs real admin opens to localStorage. -->
+<!-- 17. admin-dashboard.html — Admin dashboard (Option A, liquid glass).
+     SOURCE OF TRUTH for the admin panel. Splice into all 6 page sources with
+     apply-admin-dashboard.py (replaces the old admin-modal block
+     up to the toast div). Then run 00. build.py.
+     ALL form IDs below must stay exactly as-is — 03/05/13/14/15/16.js read them.
+     Real data only: stats/donut/at-a-glance read localStorage counts;
+     views/visitors + the analytics chart are honest empty states (static site
+     tracks nothing); recent activity logs real admin opens to localStorage. -->
 <div id="admin-modal" class="modal admin-dash-modal" role="dialog" aria-modal="true" aria-labelledby="admin-h" hidden>
   <div class="admin-dash">
+    <div class="admin-side-backdrop" id="admin-side-backdrop" hidden></div>
     <aside class="admin-side">
       <div class="admin-side-brand">
         <img class="mark" src="m-logo.png" alt="M">
@@ -746,6 +770,7 @@
         </div>
       </div>
       <nav class="admin-tabs" aria-label="Admin sections">
+        <button type="button" class="admin-tab admin-tab-menu" id="admin-tab-menu" aria-label="Open menu"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button>
         <button type="button" class="admin-tab active" data-admin-view="dashboard"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/></svg><span>Dashboard</span></button>
         <button type="button" class="admin-tab" data-admin-view="blog"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M9 13h6M9 17h6"/></svg><span>Posts</span></button>
         <button type="button" class="admin-tab" data-admin-view="social"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/></svg><span>Links</span></button>
@@ -837,7 +862,7 @@
 
         <div class="admin-bottom">
           <div class="admin-panel admin-activity">
-            <div class="admin-panel-head"><h3><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg> Recent Activity</h3><button type="button" class="admin-link-btn" data-admin-view="dashboard">All Activity &rsaquo;</button></div>
+            <div class="admin-panel-head"><h3><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg> Recent Activity</h3><button type="button" class="admin-link-btn" id="ds-all-activity">All Activity &rsaquo;</button></div>
             <ul class="admin-activity-list" id="ds-activity"></ul>
           </div>
           <div class="admin-panel admin-glance">
@@ -1141,7 +1166,7 @@
     setTxt('ds-ag-posts', c.posts); setTxt('ds-ag-brands', c.brands); setTxt('ds-ag-reviews', c.reviews);
     setTxt('ds-ag-social', c.social); setTxt('ds-ag-community', c.community); setTxt('ds-ag-texts', c.texts);
     // Donut: real distribution over Blog / Brands / Reviews / Community / Texts.
-    var cats=[['Blog Posts',c.posts,'#F87171'],['Brands',c.brands,'#DC143C'],['Reviews',c.reviews,'#B91C1C'],['Community',c.community,'#FCA5A5'],['Texts',c.texts,'#7F1D1D']];
+    var cats=[['Blog Posts',c.posts,'rgba(220,20,60,.35)'],['Brands',c.brands,'#8B0000'],['Reviews',c.reviews,'rgba(220,20,60,.25)'],['Community',c.community,'rgba(220,20,60,.6)'],['Texts',c.texts,'#DC143C']];
     var total=cats.reduce(function(s,x){ return s+x[1]; },0);
     var donut=$('ds-donut'), legend=$('ds-donut-legend'), center=$('ds-donut-center');
     if(donut){
@@ -1159,10 +1184,10 @@
         return '<li><span class="dot" style="background:'+x[2]+'"></span>'+esc(x[0])+'<b>'+pc+'%</b></li>';
       }).join('');
     }
-    // Recent activity: last 3 real admin opens/views.
+    // Recent activity: last 3 real admin opens/views (or all, when expanded).
     var list=$('ds-activity');
     if(list){
-      var a=getActivity().slice(0,3);
+      var a=getActivity().slice(0, activityExpanded?20:3);
       if(a.length===0){ list.innerHTML='<li class="admin-activity-empty">No activity yet — opens and views will appear here.</li>'; }
       else{
         list.innerHTML=a.map(function(x){
@@ -1181,6 +1206,7 @@
       if(isNav) b.classList.toggle('active', b.getAttribute('data-admin-view')===name);
     });
     var more=$('admin-more-menu'); if(more) more.hidden=true;
+    closeSideDrawer();
     logActivity(VIEW_LABELS[name]||'Admin viewed');
     renderAdminDashboard();
     if(focusId){ var f=$(focusId); if(f) setTimeout(function(){ f.focus(); }, 60); }
@@ -1191,6 +1217,25 @@
   document.querySelectorAll('#admin-modal [data-admin-view]').forEach(function(b){
     b.addEventListener('click', function(){ showAdminView(b.getAttribute('data-admin-view'), b.getAttribute('data-admin-focus')); });
   });
+  // "All Activity" toggles the full real activity log (up to 20 entries).
+  var activityExpanded=false;
+  var allActBtn=$('ds-all-activity');
+  if(allActBtn) allActBtn.addEventListener('click', function(){
+    activityExpanded=!activityExpanded;
+    allActBtn.innerHTML=activityExpanded?'Show less &lsaquo;':'All Activity &rsaquo;';
+    renderAdminDashboard();
+  });
+  // Phone hamburger: open the sidebar as an overlay drawer.
+  var sideBar=document.querySelector('#admin-modal .admin-side');
+  var sideBackdrop=$('admin-side-backdrop');
+  var menuBtn=$('admin-tab-menu');
+  function closeSideDrawer(){ if(sideBar) sideBar.classList.remove('open'); if(sideBackdrop) sideBackdrop.hidden=true; }
+  if(menuBtn) menuBtn.addEventListener('click', function(e){
+    e.stopPropagation();
+    var open=sideBar && sideBar.classList.toggle('open');
+    if(sideBackdrop) sideBackdrop.hidden=!open;
+  });
+  if(sideBackdrop) sideBackdrop.addEventListener('click', closeSideDrawer);
   // Phone "more" menu (Community / Texts / Analytics / Settings).
   var moreBtn=$('admin-tab-more'), moreMenu=$('admin-more-menu');
   if(moreBtn && moreMenu){

@@ -129,7 +129,7 @@
     setTxt('ds-ag-posts', c.posts); setTxt('ds-ag-brands', c.brands); setTxt('ds-ag-reviews', c.reviews);
     setTxt('ds-ag-social', c.social); setTxt('ds-ag-community', c.community); setTxt('ds-ag-texts', c.texts);
     // Donut: real distribution over Blog / Brands / Reviews / Community / Texts.
-    var cats=[['Blog Posts',c.posts,'#F87171'],['Brands',c.brands,'#DC143C'],['Reviews',c.reviews,'#B91C1C'],['Community',c.community,'#FCA5A5'],['Texts',c.texts,'#7F1D1D']];
+    var cats=[['Blog Posts',c.posts,'rgba(220,20,60,.35)'],['Brands',c.brands,'#8B0000'],['Reviews',c.reviews,'rgba(220,20,60,.25)'],['Community',c.community,'rgba(220,20,60,.6)'],['Texts',c.texts,'#DC143C']];
     var total=cats.reduce(function(s,x){ return s+x[1]; },0);
     var donut=$('ds-donut'), legend=$('ds-donut-legend'), center=$('ds-donut-center');
     if(donut){
@@ -147,10 +147,10 @@
         return '<li><span class="dot" style="background:'+x[2]+'"></span>'+esc(x[0])+'<b>'+pc+'%</b></li>';
       }).join('');
     }
-    // Recent activity: last 3 real admin opens/views.
+    // Recent activity: last 3 real admin opens/views (or all, when expanded).
     var list=$('ds-activity');
     if(list){
-      var a=getActivity().slice(0,3);
+      var a=getActivity().slice(0, activityExpanded?20:3);
       if(a.length===0){ list.innerHTML='<li class="admin-activity-empty">No activity yet — opens and views will appear here.</li>'; }
       else{
         list.innerHTML=a.map(function(x){
@@ -169,6 +169,7 @@
       if(isNav) b.classList.toggle('active', b.getAttribute('data-admin-view')===name);
     });
     var more=$('admin-more-menu'); if(more) more.hidden=true;
+    closeSideDrawer();
     logActivity(VIEW_LABELS[name]||'Admin viewed');
     renderAdminDashboard();
     if(focusId){ var f=$(focusId); if(f) setTimeout(function(){ f.focus(); }, 60); }
@@ -179,6 +180,25 @@
   document.querySelectorAll('#admin-modal [data-admin-view]').forEach(function(b){
     b.addEventListener('click', function(){ showAdminView(b.getAttribute('data-admin-view'), b.getAttribute('data-admin-focus')); });
   });
+  // "All Activity" toggles the full real activity log (up to 20 entries).
+  var activityExpanded=false;
+  var allActBtn=$('ds-all-activity');
+  if(allActBtn) allActBtn.addEventListener('click', function(){
+    activityExpanded=!activityExpanded;
+    allActBtn.innerHTML=activityExpanded?'Show less &lsaquo;':'All Activity &rsaquo;';
+    renderAdminDashboard();
+  });
+  // Phone hamburger: open the sidebar as an overlay drawer.
+  var sideBar=document.querySelector('#admin-modal .admin-side');
+  var sideBackdrop=$('admin-side-backdrop');
+  var menuBtn=$('admin-tab-menu');
+  function closeSideDrawer(){ if(sideBar) sideBar.classList.remove('open'); if(sideBackdrop) sideBackdrop.hidden=true; }
+  if(menuBtn) menuBtn.addEventListener('click', function(e){
+    e.stopPropagation();
+    var open=sideBar && sideBar.classList.toggle('open');
+    if(sideBackdrop) sideBackdrop.hidden=!open;
+  });
+  if(sideBackdrop) sideBackdrop.addEventListener('click', closeSideDrawer);
   // Phone "more" menu (Community / Texts / Analytics / Settings).
   var moreBtn=$('admin-tab-more'), moreMenu=$('admin-more-menu');
   if(moreBtn && moreMenu){
