@@ -745,53 +745,68 @@
     .home-brand-grid{grid-template-columns:1fr 1fr}
   }
   @media (max-width:520px){
-    .home-wrap{padding-top:14px}
-    .home-head .brand-name{font-size:17px}
-    .home-head .brand .mark{width:32px;height:32px}
-    .home-hero-card{border-radius:16px}
-    .home-portrait{width:118px;min-height:200px}
-    .home-hero-info{padding:12px 10px}
+    /* Compact premium phone: small text, tight spacing, no wasted space. */
+    .home-wrap{padding-top:10px}
+    .home-grid{gap:12px}
+    .home-panels{gap:12px}
+    .home-head .head{padding:8px 12px;gap:10px;min-height:52px}
+    .home-head .head-left{gap:8px;flex:1;min-width:0}
+    .home-head .head-right{flex:none}
+    .home-head .icon-btn{width:38px;height:38px;min-width:38px;min-height:38px}
+    .home-head .brand{min-width:0;overflow:hidden;gap:8px}
+    .home-head .brand-name{font-size:15px;overflow:hidden;text-overflow:ellipsis}
+    .home-head .brand .mark{width:28px;height:28px}
+    .home-hero-card{border-radius:14px}
+    .home-portrait{width:112px;min-height:176px}
+    .home-hero-info{padding:10px 8px}
     .home-hero-info{min-width:0}
-    .home-hero-info h1{font-size:21px;margin-bottom:6px}
-    .home-role{font-size:12.5px;margin-bottom:9px}
-    .home-exp{font-size:11px;padding:7px 9px;margin-bottom:11px}
-    .home-hero-info .cta-row{flex-direction:row;flex-wrap:nowrap;gap:7px}
-    .home-hero-info .cta-row .btn{flex:1 1 0;width:auto;justify-content:center;padding:10px 5px;font-size:11.5px;white-space:nowrap;min-width:0}
-    .home-hero-info .cta-row .btn svg{width:14px;height:14px}
-    .home-panel{padding:16px;border-radius:16px}
-    .home-panel h2{font-size:23px}
-    .home-about{gap:12px}
-    .home-about h2{width:96px}
-    .home-about p{font-size:13.5px;padding-left:12px}
-    .home-skill-tiles{grid-template-columns:repeat(6,1fr);gap:6px}
-    .home-skill{padding:10px 2px 8px;gap:5px;min-width:0;overflow:hidden}
-    .home-skill-ic svg{width:20px;height:20px}
-    .home-skill span:last-child{font-size:9px;line-height:1.2}
-    .home-brand-grid{grid-template-columns:1fr}
-    .home-brand-tile{width:52px;height:52px}
-    .home-social-bar{flex-direction:column;align-items:flex-start;gap:12px;padding:14px 16px}
-    .home-social-bar h2{font-size:22px}
+    .home-hero-info h1{font-size:19px;margin-bottom:5px}
+    .home-role{font-size:11.5px;margin-bottom:8px;line-height:1.35}
+    .home-exp{font-size:10.5px;padding:6px 8px;margin-bottom:10px;line-height:1.35}
+    .home-hero-info .cta-row{flex-direction:row;flex-wrap:nowrap;gap:6px}
+    .home-hero-info .cta-row .btn{flex:1 1 0;width:auto;justify-content:center;padding:9px 4px;font-size:11px;white-space:nowrap;min-width:0}
+    .home-hero-info .cta-row .btn svg{width:13px;height:13px}
+    .home-panel{padding:12px;border-radius:14px}
+    .home-panel h2{font-size:20px}
+    .home-about{flex-direction:column;align-items:flex-start;gap:8px}
+    .home-about h2{width:auto;white-space:nowrap}
+    .home-about p{font-size:12.5px;line-height:1.45;border-left:0;padding-left:0}
+    .home-skill-tiles{grid-template-columns:repeat(6,1fr);gap:5px}
+    .home-skill{padding:8px 2px 6px;gap:4px;min-width:0;overflow:hidden}
+    .home-skill-ic svg{width:18px;height:18px}
+    .home-skill span:last-child{font-size:8.5px;line-height:1.2}
+    .home-brand-grid{grid-template-columns:1fr;gap:10px}
+    .home-brand{padding:10px;gap:10px}
+    .home-brand-tile{width:48px;height:48px}
+    .bt-luxaur{font-size:9px;letter-spacing:0}
+    .home-brand-txt h3{font-size:13.5px}
+    .home-brand-txt span{font-size:11px}
+    .home-brand-txt p{font-size:11px;line-height:1.4}
+    .home-social-bar{flex-direction:column;align-items:flex-start;gap:10px;padding:12px;margin-top:12px}
+    .home-social-bar h2{font-size:20px}
+    .home-social-count{font-size:11px;padding:6px 11px}
     .home-social-icons{width:100%;justify-content:flex-start;gap:6px;flex-wrap:nowrap}
     .home-social-icons .home-social-more{display:none}
     .home-social-ic{flex:none}
     .home-social-ic .bl{width:24px;height:24px;border-radius:8px}
     .home-social-ic .bl svg{width:13px;height:13px}
-    .home-foot .wrap{flex-wrap:nowrap;gap:8px;font-size:11px}
+    .home-foot .wrap{flex-wrap:nowrap;gap:6px;font-size:10.5px}
     .home-foot .wrap span{white-space:nowrap}
     .home-foot a{white-space:nowrap}
   }
-  /* Extra-small phones (360px): shrink the hero so nothing is cut off. */
+  /* Extra-small phones (360px): shrink further so nothing is cut off. */
   @media (max-width:400px){
-    .home-portrait{width:100px;min-height:190px}
-    .home-hero-info h1{font-size:19px}
-    .home-role{font-size:11.5px}
-    .home-hero-info .cta-row .btn{font-size:10.5px;padding:9px 4px}
-    .home-panel{padding:14px 12px}
-    .home-about h2{width:88px}
-    .home-about p{font-size:12.5px}
+    .home-portrait{width:96px;min-height:168px}
+    .home-hero-info h1{font-size:18px}
+    .home-role{font-size:11px}
+    .home-hero-info .cta-row .btn{font-size:10.5px;padding:8px 3px}
+    .home-panel{padding:10px}
+    .home-about p{font-size:12px}
     .home-skill span:last-child{font-size:8px}
+    .home-brand-tile{width:44px;height:44px}
+    .home-social-icons{gap:4px}
     .home-social-ic .bl{width:22px;height:22px}
-    .home-foot .wrap{font-size:10.5px;gap:6px}
+    .home-foot .wrap{font-size:10px;gap:5px}
   }
 </style>
 </head>
@@ -937,6 +952,30 @@
   <div class="wrap"><span>&copy; 2026 <b>Mehedi H. All Mubin</b> &middot; mehedih.allmubin</span><span>Designer &middot; Video Editor &middot; Social Media Manager</span></div>
 </footer>
 <!-- Reviews Admin: settings panel (discreet, opened from the footer Admin link) -->
+<!-- 17. admin-dashboard.html — Admin dashboard (Option A, liquid glass).
+     SOURCE OF TRUTH for the admin panel. Splice into all 6 page sources with
+     apply-admin-dashboard.py (replaces the old admin-modal block
+     up to the toast div). Then run 00. build.py.
+     ALL form IDs below must stay exactly as-is — 03/05/13/14/15/16.js read them.
+     Real data only: stats/donut/at-a-glance read localStorage counts;
+     views/visitors + the analytics chart are honest empty states (static site
+     tracks nothing); recent activity logs real admin opens to localStorage. -->
+<!-- 17. admin-dashboard.html — Admin dashboard (Option A, liquid glass).
+     SOURCE OF TRUTH for the admin panel. Splice into all 6 page sources with
+     apply-admin-dashboard.py (replaces the old admin-modal block
+     up to the toast div). Then run 00. build.py.
+     ALL form IDs below must stay exactly as-is — 03/05/13/14/15/16.js read them.
+     Real data only: stats/donut/at-a-glance read localStorage counts;
+     views/visitors + the analytics chart are honest empty states (static site
+     tracks nothing); recent activity logs real admin opens to localStorage. -->
+<!-- 17. admin-dashboard.html — Admin dashboard (Option A, liquid glass).
+     SOURCE OF TRUTH for the admin panel. Splice into all 6 page sources with
+     apply-admin-dashboard.py (replaces the old admin-modal block
+     up to the toast div). Then run 00. build.py.
+     ALL form IDs below must stay exactly as-is — 03/05/13/14/15/16.js read them.
+     Real data only: stats/donut/at-a-glance read localStorage counts;
+     views/visitors + the analytics chart are honest empty states (static site
+     tracks nothing); recent activity logs real admin opens to localStorage. -->
 <!-- 17. admin-dashboard.html — Admin dashboard (Option A, liquid glass).
      SOURCE OF TRUTH for the admin panel. Splice into all 6 page sources with
      apply-admin-dashboard.py (replaces the old admin-modal block
