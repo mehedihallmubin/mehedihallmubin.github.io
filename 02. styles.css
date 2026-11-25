@@ -20,7 +20,7 @@
   ::selection{background:var(--crimson);color:#fff}
   a{color:var(--crimson)}
   a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid var(--crimson);outline-offset:2px}
-  .wrap{position:relative;z-index:1;max-width:1080px;margin:0 auto;padding:0 24px}
+  .wrap{position:relative;z-index:1;max-width:min(96vw,2400px);margin:0 auto;padding:0 24px}
   .crimson{color:var(--crimson)}
   .label{font-size:12px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--crimson)}
   .label::before{content:"";display:inline-block;width:28px;height:2px;background:var(--blood);vertical-align:middle;margin-right:10px}
@@ -429,9 +429,8 @@
   }
   /* Wide screens: use more of the viewport so the sides don't sit empty.
      Text stays readable because it lives in grid columns, not full-width lines. */
-  @media (min-width:1280px){ .wrap{max-width:1200px} }
-  @media (min-width:1600px){ .wrap{max-width:1400px} .portrait-wrap{max-width:340px} }
-  @media (min-width:1920px){ .wrap{max-width:1560px} .hero-grid{gap:64px} .about-grid{gap:64px} .portrait-wrap{max-width:360px} }
+  @media (min-width:1600px){ .portrait-wrap{max-width:340px} }
+  @media (min-width:1920px){ .hero-grid{gap:64px} .about-grid{gap:64px} .portrait-wrap{max-width:360px} }
   @media (prefers-reduced-motion:reduce){
     html{scroll-behavior:auto}
     *{transition:none!important;animation:none!important}

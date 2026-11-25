@@ -29,7 +29,7 @@
   ::selection{background:var(--crimson);color:#fff}
   a{color:var(--crimson)}
   a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid var(--crimson);outline-offset:2px}
-  .wrap{position:relative;z-index:1;max-width:1080px;margin:0 auto;padding:0 24px}
+  .wrap{position:relative;z-index:1;max-width:min(96vw,2400px);margin:0 auto;padding:0 24px}
   .crimson{color:var(--crimson)}
   .label{font-size:12px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--crimson)}
   .label::before{content:"";display:inline-block;width:28px;height:2px;background:var(--blood);vertical-align:middle;margin-right:10px}
@@ -438,9 +438,8 @@
   }
   /* Wide screens: use more of the viewport so the sides don't sit empty.
      Text stays readable because it lives in grid columns, not full-width lines. */
-  @media (min-width:1280px){ .wrap{max-width:1200px} }
-  @media (min-width:1600px){ .wrap{max-width:1400px} .portrait-wrap{max-width:340px} }
-  @media (min-width:1920px){ .wrap{max-width:1560px} .hero-grid{gap:64px} .about-grid{gap:64px} .portrait-wrap{max-width:360px} }
+  @media (min-width:1600px){ .portrait-wrap{max-width:340px} }
+  @media (min-width:1920px){ .hero-grid{gap:64px} .about-grid{gap:64px} .portrait-wrap{max-width:360px} }
   @media (prefers-reduced-motion:reduce){
     html{scroll-behavior:auto}
     *{transition:none!important;animation:none!important}
@@ -1411,6 +1410,22 @@ html.light .admin-dash-modal,html.light .admin-side{background:#fff;color:var(--
      Real data only: stats/donut/at-a-glance read localStorage counts;
      views/visitors + the analytics chart are honest empty states (static site
      tracks nothing); recent activity logs real admin opens to localStorage. -->
+<!-- 17. admin-dashboard.html — Admin dashboard (Option A, liquid glass).
+     SOURCE OF TRUTH for the admin panel. Splice into all 6 page sources with
+     apply-admin-dashboard.py (replaces the old admin-modal block
+     up to the toast div). Then run 00. build.py.
+     ALL form IDs below must stay exactly as-is — 03/05/13/14/15/16.js read them.
+     Real data only: stats/donut/at-a-glance read localStorage counts;
+     views/visitors + the analytics chart are honest empty states (static site
+     tracks nothing); recent activity logs real admin opens to localStorage. -->
+<!-- 17. admin-dashboard.html — Admin dashboard (Option A, liquid glass).
+     SOURCE OF TRUTH for the admin panel. Splice into all 6 page sources with
+     apply-admin-dashboard.py (replaces the old admin-modal block
+     up to the toast div). Then run 00. build.py.
+     ALL form IDs below must stay exactly as-is — 03/05/13/14/15/16.js read them.
+     Real data only: stats/donut/at-a-glance read localStorage counts;
+     views/visitors + the analytics chart are honest empty states (static site
+     tracks nothing); recent activity logs real admin opens to localStorage. -->
 <div id="admin-modal" class="modal admin-dash-modal" role="dialog" aria-modal="true" aria-labelledby="admin-h" hidden>
   <div class="admin-dash">
     <div class="admin-side-backdrop" id="admin-side-backdrop" hidden></div>
@@ -1894,9 +1909,10 @@ html.light .admin-dash-modal,html.light .admin-side{background:#fff;color:var(--
 <!-- #mawa login: full-page, only email + password. No other content. -->
 <div id="mawa-login" class="mawa-login" hidden>
   <div class="mawa-login-card">
-    <input id="mawa-email" type="email" autocomplete="username" placeholder="Email" aria-label="Email">
+    <input id="mawa-user" type="text" autocomplete="username" placeholder="Username" aria-label="Username">
+    <input id="mawa-email" type="email" autocomplete="email" placeholder="Email" aria-label="Email">
     <input id="mawa-pass" type="password" autocomplete="current-password" placeholder="Password" aria-label="Password">
-    <p id="mawa-error" class="mawa-error" hidden>Wrong email or password.</p>
+    <p id="mawa-error" class="mawa-error" hidden>Wrong username, email or password.</p>
     <button type="button" id="mawa-submit" class="btn btn-solid">Log In</button>
   </div>
 </div>
@@ -2680,8 +2696,9 @@ html.light .admin-dash-modal,html.light .admin-side{background:#fff;color:var(--
   // email + password hash below are the admin login; the check runs in
   // the browser. It keeps casual visitors out, but it is NOT real
   // server security — anyone who reads the page code can bypass it.
+  var MAWA_USER='allmubinmawa';
   var MAWA_EMAIL='mehedih.allmubin@gmail.com';
-  var MAWA_PASS_HASH='6e5686b96b350e83e7fae76d4655c40735688987fd84b2346a516fe7d1ad3bba';
+  var MAWA_PASS_HASH='24edc38247bae02bb4d73540562bdd659fc35020cee8401cb0f65ddb9cadeb23';
   var MAWA_SESSION_KEY='pw_admin_session';
   var MAWA_SESSION_DAYS=7;
   function mawaSessionValid(){
@@ -2692,17 +2709,19 @@ html.light .admin-dash-modal,html.light .admin-side{background:#fff;color:var(--
   function mawaClearSession(){ try{ localStorage.removeItem(MAWA_SESSION_KEY); }catch(e){} }
   function mawaShowLogin(){
     var l=$('mawa-login'); if(l) l.hidden=false;
+    var u=$('mawa-user'); if(u) u.value='';
     var e=$('mawa-email'); if(e) e.value='';
     var p=$('mawa-pass'); if(p) p.value='';
     var err=$('mawa-error'); if(err) err.hidden=true;
-    if(e) setTimeout(function(){ e.focus(); }, 60);
+    if(u) setTimeout(function(){ u.focus(); }, 60);
   }
   function mawaHideLogin(){ var l=$('mawa-login'); if(l) l.hidden=true; }
   function mawaTryLogin(){
+    var un=(($('mawa-user')&&$('mawa-user').value)||'').trim().toLowerCase();
     var em=(($('mawa-email')&&$('mawa-email').value)||'').trim().toLowerCase();
     var pw=(($('mawa-pass')&&$('mawa-pass').value)||'');
     var err=$('mawa-error');
-    if(em===MAWA_EMAIL && sha256Hex(pw)===MAWA_PASS_HASH){
+    if(un===MAWA_USER && em===MAWA_EMAIL && sha256Hex(pw)===MAWA_PASS_HASH){
       mawaHideLogin();
       mawaSetSession();
       openAdmin();
@@ -2714,7 +2733,7 @@ html.light .admin-dash-modal,html.light .admin-side{background:#fff;color:var(--
   }
   var mawaSubmit=$('mawa-submit');
   if(mawaSubmit) mawaSubmit.addEventListener('click', mawaTryLogin);
-  ['mawa-email','mawa-pass'].forEach(function(id){
+  ['mawa-user','mawa-email','mawa-pass'].forEach(function(id){
     var el=$(id);
     if(el) el.addEventListener('keydown', function(e){ if(e.key==='Enter') mawaTryLogin(); });
   });
