@@ -55,21 +55,24 @@
     if(m.length===1 && parts[0]) m=parts[0].slice(0,2).toUpperCase();
     return m||'?';
   }
-  // Render the Brands page grid from the list (Brands page only).
+  // Render the terminal Portfolio brands panel (#pf-brands) from the list
+  // (Portfolio page only). Admin edits re-render here too.
   function render(){
-    var grid=document.querySelector('#brands .grid');
-    if(!grid) return;
+    var box=document.getElementById('pf-brands');
+    if(!box) return;
     var list=getList();
-    grid.innerHTML='';
+    box.innerHTML='';
     list.forEach(function(b){
-      var card=document.createElement('article');
-      card.className='card brand-card';
-      card.innerHTML='<div class="who"><span class="avatar">'+esc(b.mono)+'</span><div><h3></h3><span></span></div></div><p></p>';
-      card.querySelector('h3').textContent=b.name;
-      card.querySelector('.who div span').textContent=b.role;
-      card.querySelector('p').textContent=b.line;
-      grid.appendChild(card);
+      var d=document.createElement('div'); d.className='pf-brand';
+      var monoTxt=b.mono||mono(b.name);
+      var tile=b.tile||'bt-default';
+      d.innerHTML='<span class="pf-b-mono '+esc(tile)+'"></span><div><b></b><span></span></div>';
+      d.querySelector('.pf-b-mono').textContent=monoTxt;
+      d.querySelector('b').textContent=b.name;
+      d.querySelector('div span').textContent=b.role+' — '+b.line;
+      box.appendChild(d);
     });
+    var c=$('pf-brands-count'); if(c) c.textContent=list.length;
   }
   // Render the home page "My Brands & Projects" grid (home page only).
   // Tile mark comes from the brand's logo (default brands) or its monogram
@@ -182,7 +185,233 @@
   if(addBtn) addBtn.addEventListener('click', saveForm);
   var cancelBtn=$('br-cancel');
   if(cancelBtn) cancelBtn.addEventListener('click', resetForm);
+  // ---- Terminal portfolio (portfolio.html only) ----
+  // Infinite canvas: drag to pan, wheel to zoom, rail / arrows / keys to jump
+  // between the 8 panels, counter [n/8]. On phone the panels stack and
+  // scroll normally (see the phone CSS).
+  var THEMES=[
+    {id:'blackmoney', name:'Blackmoney', bg:'#0a0a0a', acc:'#ff5c38'},
+    {id:'circuit', name:'Circuit', bg:'#0b1220', acc:'#38bdf8'},
+    {id:'lightning', name:'Lightning', bg:'#0a0a08', acc:'#facc15'},
+    {id:'crimson', name:'Crimson', bg:'#0d0205', acc:'#dc143c'},
+    {id:'gold', name:'Gold', bg:'#0d0b06', acc:'#d4af37'},
+    {id:'forest', name:'Forest', bg:'#060d08', acc:'#22c55e'},
+    {id:'ocean', name:'Ocean', bg:'#050a12', acc:'#38bdf8'},
+    {id:'mono', name:'Mono', bg:'#000000', acc:'#ffffff'}
+  ];
+  // Real GitHub commit counts per day (api.github.com, 2026-11-26).
+  var COMMITS={'2026-11-22':3,'2026-11-23':11,'2026-11-24':7,'2026-11-25':6};
+  function initTerminal(){
+    var app=document.querySelector('.pf-app');
+    if(!app) return;
+    var stage=$('pf-stage'), canvas=$('pf-canvas');
+    if(!stage||!canvas) return;
+    var panels=Array.prototype.slice.call(canvas.querySelectorAll('.pf-panel'));
+    var railItems=Array.prototype.slice.call(document.querySelectorAll('.pf-rail-item'));
+    var counter=$('pf-counter'), zoomLabel=$('pf-zoom-label');
+    var N=panels.length;
+    var state={x:0,y:0,s:1,cur:0};
+    var isPhone=function(){ return window.innerWidth<=760; };
+    function apply(){ canvas.style.transform='translate('+state.x+'px,'+state.y+'px) scale('+state.s+')'; }
+    function stageSize(){ return {w:stage.clientWidth,h:stage.clientHeight}; }
+    function setAnim(on){ canvas.classList.toggle('no-anim', !on); }
+    function updateCounter(){
+      var best=0, bd=1e9, i, d;
+      if(isPhone()){
+        var mid=window.scrollY+window.innerHeight/2;
+        panels.forEach(function(p,idx){
+          var r=p.getBoundingClientRect();
+          var c=r.top+window.scrollY+r.height/2;
+          d=Math.abs(c-mid); if(d<bd){bd=d;best=idx;}
+        });
+      } else {
+        var st=stageSize();
+        var cx=(st.w/2-state.x)/state.s, cy=(st.h/2-state.y)/state.s;
+        panels.forEach(function(p,idx){
+          var px=p.offsetLeft+p.offsetWidth/2, py=p.offsetTop+p.offsetHeight/2;
+          d=Math.hypot(px-cx,py-cy); if(d<bd){bd=d;best=idx;}
+        });
+      }
+      state.cur=best;
+      if(counter) counter.textContent='['+(best+1)+'/'+N+']';
+      railItems.forEach(function(it,idx){ it.classList.toggle('is-active', idx===best); });
+    }
+    function goTo(i, animate){
+      i=Math.max(0, Math.min(N-1, i));
+      state.cur=i;
+      if(isPhone()){
+        panels[i].scrollIntoView({behavior:animate===false?'auto':'smooth', block:'start'});
+        updateCounter();
+        return;
+      }
+      var st=stageSize();
+      var fitS=Math.min(1, (st.w-80)/880);
+      var s=Math.max(fitS, 0.35);
+      state.s=s;
+      var cx=panels[i].offsetLeft+panels[i].offsetWidth/2;
+      var cy=panels[i].offsetTop+panels[i].offsetHeight/2;
+      state.x=st.w/2-cx*s;
+      state.y=st.h/2-cy*s;
+      setAnim(animate!==false);
+      apply();
+      if(zoomLabel) zoomLabel.textContent=Math.round(s*100)+'%';
+      updateCounter();
+    }
+    function fitAll(animate){
+      if(isPhone()) return;
+      var st=stageSize();
+      var cw=canvas.scrollWidth, ch=canvas.scrollHeight;
+      if(!cw||!ch) return;
+      var s=Math.min((st.w-60)/cw, (st.h-60)/ch, 1);
+      state.s=s;
+      state.x=(st.w-cw*s)/2;
+      state.y=(st.h-ch*s)/2;
+      setAnim(animate!==false);
+      apply();
+      if(zoomLabel) zoomLabel.textContent=Math.round(s*100)+'%';
+      updateCounter();
+    }
+    function zoomBy(f, cx, cy){
+      if(isPhone()) return;
+      var ns=Math.max(0.25, Math.min(1.5, state.s*f));
+      var st=stageSize();
+      cx=(cx===undefined)?st.w/2:cx;
+      cy=(cy===undefined)?st.h/2:cy;
+      var wx=(cx-state.x)/state.s, wy=(cy-state.y)/state.s;
+      state.s=ns;
+      state.x=cx-wx*ns;
+      state.y=cy-wy*ns;
+      setAnim(false);
+      apply();
+      if(zoomLabel) zoomLabel.textContent=Math.round(ns*100)+'%';
+      updateCounter();
+    }
+    // Drag to pan (a real drag pans; a plain click still follows links).
+    var pDown=null, pDrag=false, suppressClick=false;
+    stage.addEventListener('pointerdown', function(e){
+      if(isPhone()) return;
+      pDown={x:e.clientX, y:e.clientY, sx:state.x, sy:state.y};
+      pDrag=false;
+    });
+    window.addEventListener('pointermove', function(e){
+      if(!pDown||isPhone()) return;
+      var dx=e.clientX-pDown.x, dy=e.clientY-pDown.y;
+      if(!pDrag && Math.hypot(dx,dy)>5){ pDrag=true; stage.classList.add('dragging'); }
+      if(pDrag){
+        state.x=pDown.sx+dx; state.y=pDown.sy+dy;
+        setAnim(false);
+        apply();
+      }
+    });
+    window.addEventListener('pointerup', function(){
+      if(pDown && pDrag){ suppressClick=true; setTimeout(function(){ suppressClick=false; }, 50); setTimeout(updateCounter, 60); }
+      pDown=null;
+      if(pDrag){ pDrag=false; stage.classList.remove('dragging'); }
+    });
+    stage.addEventListener('click', function(e){
+      if(suppressClick){ e.stopPropagation(); e.preventDefault(); }
+    }, true);
+    // Wheel: zoom over the canvas background; scroll inside a panel's content.
+    stage.addEventListener('wheel', function(e){
+      if(isPhone()) return;
+      var el=e.target.closest ? e.target.closest('.pf-content') : null;
+      if(el){
+        var canUp=el.scrollTop>0;
+        var canDown=el.scrollTop+el.clientHeight<el.scrollHeight-1;
+        if((e.deltaY<0 && canUp)||(e.deltaY>0 && canDown)) return;
+      }
+      e.preventDefault();
+      var r=stage.getBoundingClientRect();
+      var f=e.deltaY<0 ? 1.12 : 1/1.12;
+      zoomBy(f, e.clientX-r.left, e.clientY-r.top);
+    }, {passive:false});
+    // Rail / prev / next / zoom buttons.
+    railItems.forEach(function(it,i){ it.addEventListener('click', function(){ goTo(i); }); });
+    var prevBtn=$('pf-prev'), nextBtn=$('pf-next');
+    if(prevBtn) prevBtn.addEventListener('click', function(){ goTo(state.cur-1); });
+    if(nextBtn) nextBtn.addEventListener('click', function(){ goTo(state.cur+1); });
+    var zi=$('pf-zoom-in'), zo=$('pf-zoom-out'), zf=$('pf-zoom-fit');
+    if(zi) zi.addEventListener('click', function(){ zoomBy(1.25); });
+    if(zo) zo.addEventListener('click', function(){ zoomBy(1/1.25); });
+    if(zf) zf.addEventListener('click', function(){ fitAll(); });
+    document.addEventListener('keydown', function(e){
+      if(!app) return;
+      var t=e.target;
+      if(t && (t.tagName==='INPUT'||t.tagName==='TEXTAREA'||t.tagName==='SELECT'||t.isContentEditable)) return;
+      var adm=$('admin-modal');
+      if(adm && !adm.hidden) return;
+      if(e.key==='ArrowRight'){ goTo(state.cur+1); }
+      else if(e.key==='ArrowLeft'){ goTo(state.cur-1); }
+      else if(e.key==='+'||e.key==='='){ zoomBy(1.25); }
+      else if(e.key==='-'){ zoomBy(1/1.25); }
+      else if(e.key==='0'){ fitAll(); }
+    });
+    var rT=null;
+    window.addEventListener('resize', function(){
+      clearTimeout(rT);
+      rT=setTimeout(function(){ goTo(state.cur, false); }, 150);
+    });
+    window.addEventListener('load', function(){ goTo(state.cur, false); });
+    // Themes: build the 8 cards, click recolors the whole terminal.
+    var themeBox=$('pf-themes');
+    if(themeBox){
+      themeBox.innerHTML='';
+      THEMES.forEach(function(t){
+        var b=document.createElement('button');
+        b.type='button'; b.className='pf-theme'; b.setAttribute('data-theme', t.id);
+        b.innerHTML='<span class="pf-theme-mini">'
+          +'<span class="t-line"><span class="t-kw">const</span> <span class="t-var">theme</span> = <span class="t-str">"'+esc(t.id)+'"</span>;</span>'
+          +'<span class="t-line"><span class="t-com">// bg '+esc(t.bg)+' &middot; accent '+esc(t.acc)+'</span></span>'
+          +'<span class="t-line"><span class="t-fn">apply</span>(theme);</span>'
+          +'</span><span class="pf-theme-name">'+esc(t.name)+'<i>&#9679; active</i></span>';
+        b.addEventListener('click', function(){ applyTheme(t.id); });
+        themeBox.appendChild(b);
+      });
+    }
+    function applyTheme(id){
+      var t=THEMES[0];
+      THEMES.forEach(function(x){ if(x.id===id) t=x; });
+      app.setAttribute('data-theme', t.id);
+      var cs=$('pf-cs-name'); if(cs) cs.textContent=t.id;
+      var at=$('pf-active-theme'); if(at) at.textContent=t.id;
+      Array.prototype.slice.call(document.querySelectorAll('.pf-theme')).forEach(function(c){
+        c.classList.toggle('is-active', c.getAttribute('data-theme')===t.id);
+      });
+      try{ localStorage.setItem('pw_pf_theme', t.id); }catch(e){}
+    }
+    var saved=null;
+    try{ saved=localStorage.getItem('pw_pf_theme'); }catch(e){}
+    applyTheme(saved||'blackmoney');
+    // Contribution calendar (real commit counts, see COMMITS).
+    var cal=$('pf-cal');
+    if(cal){
+      var weeks=26, today=new Date(); today.setHours(0,0,0,0);
+      var start=new Date(today);
+      start.setDate(start.getDate()-start.getDay()-(weeks-1)*7);
+      cal.innerHTML='';
+      var total=0;
+      for(var w=0; w<weeks; w++){
+        for(var d=0; d<7; d++){
+          var dt=new Date(start); dt.setDate(start.getDate()+w*7+d);
+          var key=dt.getFullYear()+'-'+String(dt.getMonth()+1).padStart(2,'0')+'-'+String(dt.getDate()).padStart(2,'0');
+          var c=COMMITS[key]||0; total+=c;
+          var lv=c===0?0:c<=3?1:c<=6?2:c<=10?3:4;
+          var cell=document.createElement('span');
+          cell.className='pf-cal-cell lv'+lv;
+          cell.title=key+' · '+c+' commit'+(c===1?'':'s');
+          if(dt>today) cell.classList.add('future');
+          cal.appendChild(cell);
+        }
+      }
+      var cap=$('pf-cal-cap');
+      if(cap) cap.textContent=total+' commits · since 22 Nov 2026 · github.com/mehedihallmubin';
+    }
+    // Start on the intro panel.
+    goTo(0, false);
+    window.addEventListener('scroll', updateCounter, {passive:true});
+  }
   renderAdminList();
   render();
   renderHome();
+  initTerminal();
 })();
