@@ -707,6 +707,7 @@
   .bt-jomidar{background:#1B4D2E}
   .bt-rekha{background:#C0392B}
   .bt-ami{background:#000;color:#D4AF37}
+  .bt-luna{background:linear-gradient(135deg,#8B5CF6,#6D28D9)}
   .bt-default{background:rgba(220,20,60,.16);color:var(--crimson);border:1px solid rgba(220,20,60,.3)}
   /* Social Links bar. */
   .home-social-bar{display:flex;align-items:center;gap:18px;margin-top:20px;padding:16px 22px;border-radius:18px;background:linear-gradient(135deg,rgba(255,255,255,.07),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.11);backdrop-filter:blur(14px);box-shadow:0 12px 34px rgba(0,0,0,.35)}
@@ -1254,6 +1255,14 @@ html.light .admin-dash-modal,html.light .admin-side{background:#fff;color:var(--
   <div class="wrap"><span>&copy; 2026 <b>Mehedi H. All Mubin</b> &middot; mehedih.allmubin</span><span>Designer &middot; Video Editor &middot; Social Media Manager</span></div>
 </footer>
 <!-- Reviews Admin: settings panel (discreet, opened from the footer Admin link) -->
+<!-- 17. admin-dashboard.html — Admin dashboard (Option A, liquid glass).
+     SOURCE OF TRUTH for the admin panel. Splice into all 6 page sources with
+     apply-admin-dashboard.py (replaces the old admin-modal block
+     up to the toast div). Then run 00. build.py.
+     ALL form IDs below must stay exactly as-is — 03/05/13/14/15/16.js read them.
+     Real data only: stats/donut/at-a-glance read localStorage counts;
+     views/visitors + the analytics chart are honest empty states (static site
+     tracks nothing); recent activity logs real admin opens to localStorage. -->
 <!-- 17. admin-dashboard.html — Admin dashboard (Option A, liquid glass).
      SOURCE OF TRUTH for the admin panel. Splice into all 6 page sources with
      apply-admin-dashboard.py (replaces the old admin-modal block
@@ -3102,10 +3111,11 @@ html.light .admin-dash-modal,html.light .admin-side{background:#fff;color:var(--
     t.textContent=msg; t.hidden=false;
     clearTimeout(t._h); t._h=setTimeout(function(){ t.hidden=true; }, 3600);
   }
-  // The 9 real brands (same as the static cards on the Brands page).
+  // The 10 real brands (same as the static cards on the Brands page).
   // logo = tile mark (text or SVG, as in the home mockup); tile = tile colour.
   var HOUSE='<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11 12 4l9 7"/><path d="M5.5 9.5V20a1 1 0 0 0 1 1H10v-5h4v5h3.5a1 1 0 0 0 1-1V9.5"/></svg>';
   var SOFA='<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 11V8a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v3"/><path d="M4 11a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-2z"/><path d="M6 19v-2M18 19v-2"/></svg>';
+  var MOON='<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>';
   var CROWN='<svg width="26" height="26" viewBox="0 0 24 24" fill="#FFD700" aria-hidden="true"><path d="M3 7l4 4 5-5 5 5 4-4-1.5 9h-15L3 7z"/><rect x="5" y="17.5" width="14" height="2"/></svg>';
   var FLOWER='<svg width="20" height="20" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M12 2c1.2 2.6 1.2 4.6 0 6-1.2-1.4-1.2-3.4 0-6zm6.9 3.1c-2.6 1.2-4.6 1.2-6 0 1.4-1.2 3.4-1.2 6 0zM22 12c-2.6-1.2-4.6-1.2-6 0 1.4 1.2 3.4 1.2 6 0zM18.9 18.9c-1.2-2.6-1.2-4.6 0-6 1.2 1.4 1.2 3.4 0 6zM12 22c-1.2-2.6-1.2-4.6 0-6 1.2 1.4 1.2 3.4 0 6zM5.1 18.9c1.2-2.6 1.2-4.6 0-6-1.2 1.4-1.2 3.4 0 6zM2 12c2.6-1.2 4.6-1.2 6 0-1.4 1.2-3.4 1.2-6 0zM5.1 5.1c2.6 1.2 4.6 1.2 6 0-1.4-1.2-3.4-1.2-6 0z"/><circle cx="12" cy="12" r="2.4" fill="#C0392B"/></svg>';
   // Stacked tile marks (icon + tiny brand name), as in the home mockup.
@@ -3121,7 +3131,8 @@ html.light .admin-dash-modal,html.light .admin-side{background:#fff;color:var(--
     {mono:'SJ', logo:'সাজঘর', tile:'bt-sajghar', name:'Sajghar', role:'Owner', line:'My store on QuickShoppingNow.'},
     {mono:'JF', logo:JOMIDAR, tile:'bt-jomidar', name:'Jomidar Fashion', role:'Owner', line:'My store on QuickShoppingNow.'},
     {mono:'RC', logo:REKHA, tile:'bt-rekha', name:"Rekha's Craft", role:'Owner', line:'My store on QuickShoppingNow.'},
-    {mono:'AMI', logo:AMI, tile:'bt-ami', name:'Al Mubin Industries', role:'Founder & Sole Owner', line:'Planned company — QuickShoppingNow is its first project.'}
+    {mono:'AMI', logo:AMI, tile:'bt-ami', name:'Al Mubin Industries', role:'Founder & Sole Owner', line:'Planned company — QuickShoppingNow is its first project.'},
+    {mono:'LUNA', logo:MOON, tile:'bt-luna', name:'Luna', role:'Founder', line:'My AI voice assistant, launching ~May 2027.'}
   ];
   // Load the brand list (defaults when nothing is saved).
   function getList(){
@@ -3159,8 +3170,8 @@ html.light .admin-dash-modal,html.light .admin-side{background:#fff;color:var(--
   // edits to those brands show here. The full list lives on Portfolio.
   // Short role lines are the mockup's (the full roles are too long for the
   // narrow home cards).
-  var FEATURED=['Jax Corporation','LUXAUR','QuickShoppingNow','Raju Interior House'];
-  var SHORT_ROLE={'Jax Corporation':'Design & Video','LUXAUR':'Fashion Brand','QuickShoppingNow':'E-commerce','Raju Interior House':'Interior & Media'};
+  var FEATURED=['Al Mubin Industries','QuickShoppingNow','LUXAUR','Luna'];
+  var SHORT_ROLE={'Al Mubin Industries':'Parent Company','QuickShoppingNow':'E-commerce','LUXAUR':'Fashion Brand','Luna':'AI Assistant'};
   function renderHome(){
     var grid=document.getElementById('hp-brands');
     if(!grid) return;
@@ -3175,7 +3186,7 @@ html.light .admin-dash-modal,html.light .admin-side{background:#fff;color:var(--
       var logo=b.logo || b.mono || mono(b.name);
       var tile=b.tile || 'bt-default';
       card.innerHTML='<span class="hp-brand-tile '+esc(tile)+'">'+logo+'</span><span class="hp-brand-txt"><b></b><span></span></span><span class="hp-brand-arrow" aria-hidden="true">&#8599;</span>';
-      card.querySelector('b').textContent=b.name;
+      card.querySelector('.hp-brand-txt b').textContent=b.name;
       card.querySelector('.hp-brand-txt span').textContent=SHORT_ROLE[b.name]||b.role;
       grid.appendChild(card);
     });
