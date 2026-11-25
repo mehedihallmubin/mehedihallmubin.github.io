@@ -790,19 +790,17 @@
   function mawaClearSession(){ try{ localStorage.removeItem(MAWA_SESSION_KEY); }catch(e){} }
   function mawaShowLogin(){
     var l=$('mawa-login'); if(l) l.hidden=false;
-    var u=$('mawa-user'); if(u) u.value='';
-    var e=$('mawa-email'); if(e) e.value='';
+    var id=$('mawa-id'); if(id) id.value='';
     var p=$('mawa-pass'); if(p) p.value='';
     var err=$('mawa-error'); if(err) err.hidden=true;
-    if(u) setTimeout(function(){ u.focus(); }, 60);
+    if(id) setTimeout(function(){ id.focus(); }, 60);
   }
   function mawaHideLogin(){ var l=$('mawa-login'); if(l) l.hidden=true; }
   function mawaTryLogin(){
-    var un=(($('mawa-user')&&$('mawa-user').value)||'').trim().toLowerCase();
-    var em=(($('mawa-email')&&$('mawa-email').value)||'').trim().toLowerCase();
+    var id=(($('mawa-id')&&$('mawa-id').value)||'').trim().toLowerCase();
     var pw=(($('mawa-pass')&&$('mawa-pass').value)||'');
     var err=$('mawa-error');
-    if(un===MAWA_USER && em===MAWA_EMAIL && sha256Hex(pw)===MAWA_PASS_HASH){
+    if((id===MAWA_USER || id===MAWA_EMAIL) && sha256Hex(pw)===MAWA_PASS_HASH){
       mawaHideLogin();
       mawaSetSession();
       openAdmin();
@@ -814,7 +812,7 @@
   }
   var mawaSubmit=$('mawa-submit');
   if(mawaSubmit) mawaSubmit.addEventListener('click', mawaTryLogin);
-  ['mawa-user','mawa-email','mawa-pass'].forEach(function(id){
+  ['mawa-id','mawa-pass'].forEach(function(id){
     var el=$(id);
     if(el) el.addEventListener('keydown', function(e){ if(e.key==='Enter') mawaTryLogin(); });
   });
