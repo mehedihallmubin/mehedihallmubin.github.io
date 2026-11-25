@@ -217,8 +217,9 @@
   }
   // Bell: no notification system exists — say so honestly.
   var bell=$('admin-bell'); if(bell) bell.addEventListener('click', function(){ toast('No new notifications.'); });
-  // Logout: no password exists — it just closes the panel.
-  var logout=$('admin-logout'); if(logout) logout.addEventListener('click', function(){ closeAdmin(); toast('Admin closed.'); });
+  // Logout: closes the panel and clears the login session, so the next
+  // #mawa visit asks for email + password again.
+  var logout=$('admin-logout'); if(logout) logout.addEventListener('click', function(){ mawaClearSession(); closeAdmin(); toast('Admin closed.'); });
   // Date-range select: no visitor data to filter — say so honestly.
   var range=$('ds-range'); if(range) range.addEventListener('change', function(){ toast('No visitor data yet — nothing to filter.'); });
   // Settings: clear every saved admin change on this device.
@@ -242,8 +243,8 @@
     favicon:'',
     portrait:'',
     banner:'',
-    role:'Graphic Designer & Video Editor \u2014 Jax Corporation',
-    about:'I\u2019m a designer and video editor with a passion for visual storytelling and brand building. I create engaging content, manage social media, and build e-commerce brands. I\u2019m the founder of QuickShoppingNow and LUXAUR.',
+    role:'Creative \u2022 Professional',
+    about:'I\u2019m a designer and video editor passionate about visual storytelling, brand building, and digital growth.',
     email:'mehedih.allmubin@gmail.com',
     phone:'+8801611541164',
     location:'',
@@ -265,7 +266,7 @@
     var s=getSettings();
     var t=s.title||SET_DEFAULTS.title;
     document.title=t+(s.tagline?' \u2014 '+s.tagline:'');
-    Array.prototype.slice.call(document.querySelectorAll('.brand-name, .home-brand-name, .home-hero-info h1')).forEach(function(el){ el.textContent=t; });
+    Array.prototype.slice.call(document.querySelectorAll('.brand-name, .home-brand-name, .home-hero-info h1, .hp-hero-info h1')).forEach(function(el){ el.textContent=t; });
     var m=document.querySelector('meta[name="description"]');
     if(m) m.setAttribute('content', s.meta||SET_DEFAULTS.meta);
     var fav=s.favicon||'m-logo.png';
@@ -273,16 +274,16 @@
     if(link) link.setAttribute('href', fav);
     // Customize: portrait, banner, role, about, email, phone, location.
     var pic=s.portrait||'mehedi-portrait.jpg';
-    Array.prototype.slice.call(document.querySelectorAll('.home-portrait img')).forEach(function(img){ img.src=pic; });
+    Array.prototype.slice.call(document.querySelectorAll('.home-portrait img, .hp-portrait img')).forEach(function(img){ img.src=pic; });
     var bn=$('home-banner'), bi=$('home-banner-img');
     if(bn && bi){
       if(s.banner){ bi.src=s.banner; bn.hidden=false; }
       else { bi.src=''; bn.hidden=true; }
     }
     var role=s.role||SET_DEFAULTS.role;
-    Array.prototype.slice.call(document.querySelectorAll('.home-role')).forEach(function(el){ el.textContent=role; });
+    Array.prototype.slice.call(document.querySelectorAll('.home-role, .hp-role')).forEach(function(el){ el.textContent=role; });
     var about=s.about||SET_DEFAULTS.about;
-    Array.prototype.slice.call(document.querySelectorAll('.home-about p:not(.home-about-loc)')).forEach(function(el){ el.textContent=about; });
+    Array.prototype.slice.call(document.querySelectorAll('.home-about p:not(.home-about-loc), .hp-about p:not(.hp-about-loc)')).forEach(function(el){ el.textContent=about; });
     var locEl=$('home-about-loc');
     if(locEl){
       if(s.location){ locEl.textContent=s.location; locEl.hidden=false; }
@@ -455,6 +456,9 @@
   if(czAboutEl) czAboutEl.addEventListener('input', updateAboutCount);
   var czSaveBtn=$('cz-save');
   if(czSaveBtn) czSaveBtn.addEventListener('click', saveCustomizeForm);
+  // Home header bell (public site): same as the admin bell.
+  var hpBell=$('hp-bell');
+  if(hpBell) hpBell.addEventListener('click', function(){ toast('No new notifications.'); });
   // ============ ANALYTICS ============
   // The site is static and tracks nothing, so every number is 0. The chart
   // still draws its grid + real date labels for the selected period, with an
@@ -706,7 +710,7 @@
   function closeAdmin(){ $('admin-modal').hidden=true; }
   // Admin open/close wiring (close button, backdrop, Escape).
   // There is no visible Admin button on the public site — the panel
-  // opens only from a #admin link (bookmark it). Guarded so removing
+  // opens only from a #mawa link (bookmark it). Guarded so removing
   // the button never breaks the page.
   var openBtn=$('admin-open');
   if(openBtn) openBtn.addEventListener('click', openAdmin);
@@ -714,14 +718,117 @@
   document.addEventListener('pw-social-changed', renderAdminDashboard);
   $('admin-close').addEventListener('click', closeAdmin);
   $('admin-modal').addEventListener('click', function(e){ if(e.target===$('admin-modal')) closeAdmin(); });
-  document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeAdmin(); });
-  // Open the panel from a #admin link, then clear the hash so a reload
-  // does not reopen it. The hashchange listener covers adding #admin
+  document.addEventListener('keydown', function(e){
+    if(e.key==='Escape'){
+      var l=$('mawa-login');
+      if(l && !l.hidden){ mawaHideLogin(); history.replaceState(null,'',location.pathname+location.search); return; }
+      closeAdmin();
+    }
+  });
+  // SHA-256 (sync, lowercase hex; ASCII input). Used to check the #mawa
+  // admin password without storing it in plain text.
+  function sha256Hex(ascii){
+    function rr(v,a){ return (v>>>a)|(v<<(32-a)); }
+    var maxWord=Math.pow(2,32), result='';
+    var words=[], asciiBitLength=ascii.length*8;
+    var hash=sha256Hex.h=sha256Hex.h||[], k=sha256Hex.k=sha256Hex.k||[];
+    var primeCounter=k.length, isComposite={};
+    for(var candidate=2; primeCounter<64; candidate++){
+      if(!isComposite[candidate]){
+        for(var i=0;i<313;i+=candidate){ isComposite[i]=candidate; }
+        hash[primeCounter]=(Math.pow(candidate,.5)*maxWord)|0;
+        k[primeCounter++]=(Math.pow(candidate,1/3)*maxWord)|0;
+      }
+    }
+    ascii+='\x80';
+    while(ascii.length%64-56) ascii+='\x00';
+    for(var i=0;i<ascii.length;i++){
+      var j=ascii.charCodeAt(i); if(j>>8) return '';
+      words[i>>2]|=j<<((3-i)%4)*8;
+    }
+    words[words.length]=(asciiBitLength/maxWord)|0;
+    words[words.length]=asciiBitLength;
+    for(var j=0;j<words.length;){
+      var w=words.slice(j,j+=16), oldHash=hash;
+      hash=hash.slice(0,8);
+      for(var i=0;i<64;i++){
+        var w15=w[i-15], w2=w[i-2], a=hash[0], e=hash[4];
+        var temp1=hash[7]
+          +(rr(e,6)^rr(e,11)^rr(e,25))
+          +((e&hash[5])^((~e)&hash[6]))
+          +k[i]
+          +(w[i]=(i<16)?w[i]:(w[i-16]+(rr(w15,7)^rr(w15,18)^(w15>>>3))+w[i-7]+(rr(w2,17)^rr(w2,19)^(w2>>>10)))|0);
+        var temp2=(rr(a,2)^rr(a,13)^rr(a,22))+((a&hash[1])^(a&hash[2])^(hash[1]&hash[2]));
+        hash=[(temp1+temp2)|0].concat(hash);
+        hash[4]=(hash[4]+temp1)|0;
+      }
+      for(var i=0;i<8;i++){ hash[i]=(hash[i]+oldHash[i])|0; }
+    }
+    for(var i=0;i<8;i++){
+      for(var j=3;j+1;j--){
+        var b=(hash[i]>>(j*8))&255;
+        result+=((b<16)?0:'')+b.toString(16);
+      }
+    }
+    return result;
+  }
+  // #mawa admin login — LOCAL check only. This site is static (GitHub
+  // Pages): there is no server, so there is no server-side account. The
+  // email + password hash below are the admin login; the check runs in
+  // the browser. It keeps casual visitors out, but it is NOT real
+  // server security — anyone who reads the page code can bypass it.
+  var MAWA_EMAIL='mehedih.allmubin@gmail.com';
+  var MAWA_PASS_HASH='6e5686b96b350e83e7fae76d4655c40735688987fd84b2346a516fe7d1ad3bba';
+  var MAWA_SESSION_KEY='pw_admin_session';
+  var MAWA_SESSION_DAYS=7;
+  function mawaSessionValid(){
+    var v=read(MAWA_SESSION_KEY);
+    return v && (+v)>Date.now();
+  }
+  function mawaSetSession(){ store(MAWA_SESSION_KEY, String(Date.now()+MAWA_SESSION_DAYS*24*60*60*1000)); }
+  function mawaClearSession(){ try{ localStorage.removeItem(MAWA_SESSION_KEY); }catch(e){} }
+  function mawaShowLogin(){
+    var l=$('mawa-login'); if(l) l.hidden=false;
+    var e=$('mawa-email'); if(e) e.value='';
+    var p=$('mawa-pass'); if(p) p.value='';
+    var err=$('mawa-error'); if(err) err.hidden=true;
+    if(e) setTimeout(function(){ e.focus(); }, 60);
+  }
+  function mawaHideLogin(){ var l=$('mawa-login'); if(l) l.hidden=true; }
+  function mawaTryLogin(){
+    var em=(($('mawa-email')&&$('mawa-email').value)||'').trim().toLowerCase();
+    var pw=(($('mawa-pass')&&$('mawa-pass').value)||'');
+    var err=$('mawa-error');
+    if(em===MAWA_EMAIL && sha256Hex(pw)===MAWA_PASS_HASH){
+      mawaHideLogin();
+      mawaSetSession();
+      openAdmin();
+      history.replaceState(null,'',location.pathname+location.search);
+    } else {
+      if(err) err.hidden=false;
+      var p=$('mawa-pass'); if(p){ p.value=''; p.focus(); }
+    }
+  }
+  var mawaSubmit=$('mawa-submit');
+  if(mawaSubmit) mawaSubmit.addEventListener('click', mawaTryLogin);
+  ['mawa-email','mawa-pass'].forEach(function(id){
+    var el=$(id);
+    if(el) el.addEventListener('keydown', function(e){ if(e.key==='Enter') mawaTryLogin(); });
+  });
+  var mawaLoginEl=$('mawa-login');
+  if(mawaLoginEl) mawaLoginEl.addEventListener('click', function(e){
+    if(e.target===mawaLoginEl){ mawaHideLogin(); history.replaceState(null,'',location.pathname+location.search); }
+  });
+  // Open the panel from a #mawa link, then clear the hash so a reload
+  // does not reopen it. The hashchange listener covers adding #mawa
   // to a page that is already open (no reload). The first check runs on
   // DOMContentLoaded so the other admin scripts have loaded and are
   // listening for the open event before the panel opens.
   function openFromHash(){
-    if(location.hash==='#admin'){ openAdmin(); history.replaceState(null,'',location.pathname+location.search); }
+    if(location.hash==='#mawa'){
+      if(mawaSessionValid()){ openAdmin(); history.replaceState(null,'',location.pathname+location.search); }
+      else mawaShowLogin();
+    }
   }
   document.addEventListener('DOMContentLoaded', openFromHash);
   window.addEventListener('hashchange', openFromHash);

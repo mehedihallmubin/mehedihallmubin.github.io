@@ -1001,6 +1001,177 @@ html.light .admin-dash-modal,html.light .admin-side{background:#fff;color:var(--
   .an-chart-wrap{overflow-x:auto}
   .an-chart-wrap svg{min-width:560px}
 }
+
+/* ============ #mawa LOGIN (full page, email + password only) ============ */
+.mawa-login{position:fixed;inset:0;z-index:2000;background:#050101;display:flex;align-items:center;justify-content:center;padding:20px}
+.mawa-login-card{width:100%;max-width:360px;display:flex;flex-direction:column;gap:14px}
+.mawa-login-card input{width:100%;background:rgba(255,255,255,.06);border:1px solid var(--glass-border);border-radius:12px;padding:14px 16px;color:var(--text);font:inherit;font-size:15px;outline:none}
+.mawa-login-card input:focus{border-color:var(--crimson);box-shadow:0 0 0 3px rgba(220,20,60,.25)}
+.mawa-login-card .btn{width:100%;padding:13px;font-size:15px}
+.mawa-error{margin:0;color:#ff6b6b;font-size:13.5px;text-align:center}
+
+/* ============ HOME — CRIMSON GLASS (desktop + phone mockups) ============ */
+.hp-wrap{display:flex;flex-direction:column;gap:16px;padding-top:16px}
+.hp-panel{background:linear-gradient(135deg,rgba(220,20,60,.14),rgba(255,255,255,.03) 55%,rgba(255,255,255,.02));border:1px solid rgba(220,20,60,.22);border-radius:18px;padding:18px;box-shadow:0 8px 30px rgba(0,0,0,.35)}
+.hp-panel h2{font-family:'Cormorant',serif;font-size:24px;margin:0 0 10px;display:flex;align-items:center;gap:9px}
+.hp-h-ic{color:var(--crimson);display:inline-flex;flex:none}
+/* --- header --- */
+.hp-head .brand-sub{display:block;font-size:11.5px;color:var(--muted);font-weight:600;letter-spacing:.2px;margin-top:1px}
+.hp-head .brand-sub i{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--crimson);margin:0 3px;vertical-align:2px}
+.hp-head .home-links a{padding:8px 14px}
+.hp-head .home-links a.active{background:linear-gradient(135deg,#DC143C,#8B0000);color:#fff;border-radius:999px}
+.hp-bell{position:relative}
+.hp-bell-dot{position:absolute;top:7px;right:8px;width:8px;height:8px;border-radius:50%;background:var(--crimson);border:2px solid #0a0a0a}
+.hp-touch{white-space:nowrap;padding:10px 16px}
+/* --- hero --- */
+.hp-hero{display:grid;grid-template-columns:1.12fr 1fr;gap:16px}
+.hp-hero-main{display:flex;gap:18px;background:linear-gradient(135deg,rgba(220,20,60,.16),rgba(255,255,255,.03) 60%);border:1px solid rgba(220,20,60,.25);border-radius:18px;padding:18px;box-shadow:0 8px 30px rgba(0,0,0,.35)}
+.hp-portrait{flex:none;width:210px;border-radius:14px;overflow:hidden}
+.hp-portrait img{width:100%;height:100%;object-fit:cover;display:block;min-height:260px}
+.hp-hero-info{flex:1;min-width:0;display:flex;flex-direction:column;justify-content:center}
+.hp-hi{display:inline-block;align-self:flex-start;background:rgba(220,20,60,.18);border:1px solid rgba(220,20,60,.35);color:#ffb3c0;font-size:12.5px;font-weight:700;padding:4px 12px;border-radius:999px;margin-bottom:10px}
+.hp-hero-info h1{font-family:'Cormorant',serif;font-size:40px;line-height:1.05;margin:0 0 6px}
+.hp-role{font-size:15px;font-weight:700;margin:0 0 10px}
+.hp-role i{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--crimson);margin:0 4px;vertical-align:2px}
+.hp-desc{font-size:14px;line-height:1.55;color:var(--muted2);margin:0 0 16px}
+.hp-hero-info .cta-row{display:flex;gap:10px;flex-wrap:wrap}
+.hp-hero-side{display:flex;flex-direction:column;gap:16px;min-width:0}
+.hp-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.hp-stat{background:linear-gradient(135deg,rgba(220,20,60,.2),rgba(255,255,255,.03) 60%);border:1px solid rgba(220,20,60,.25);border-radius:16px;padding:14px 12px;display:flex;flex-direction:column;gap:6px}
+.hp-stat-ic{color:var(--crimson)}
+.hp-stat b{font-size:24px;line-height:1}
+.hp-stat span{font-size:12px;line-height:1.35;color:var(--muted)}
+.hp-skills{display:flex;align-items:center;gap:10px;background:linear-gradient(135deg,rgba(220,20,60,.16),rgba(255,255,255,.03) 60%);border:1px solid rgba(220,20,60,.25);border-radius:16px;padding:14px 16px;flex:1}
+.hp-skills-h{font-family:'Cormorant',serif;font-size:20px;line-height:1.1;border-left:3px solid var(--crimson);padding-left:10px;margin-right:4px;flex:none}
+.hp-tool{flex:none;width:48px;height:48px;border-radius:12px;display:inline-flex;align-items:center;justify-content:center;font-weight:800;font-size:17px;box-shadow:0 4px 14px rgba(0,0,0,.4)}
+.hp-tool-ps{background:linear-gradient(135deg,#31A8FF,#1E7FD6);color:#001E36}
+.hp-tool-ai{background:linear-gradient(135deg,#FF9A00,#E67E00);color:#330000}
+.hp-tool-pr{background:linear-gradient(135deg,#9991FF,#6A5FE0);color:#fff}
+.hp-tool-ae{background:linear-gradient(135deg,#9991FF,#6A5FE0);color:#fff}
+.hp-tool-figma{background:#1E1E1E;border:1px solid rgba(255,255,255,.14)}
+.hp-tool-capcut{background:#000;border:1px solid rgba(255,255,255,.18)}
+.hp-tool-more{background:rgba(255,255,255,.07);border:1px solid var(--glass-border);color:var(--text);font-size:22px;text-decoration:none}
+.hp-tool-wheel{background:rgba(255,255,255,.07);border:1px solid var(--glass-border)}
+.hp-wheel{width:26px;height:26px;border-radius:50%;background:conic-gradient(#f00,#ff0,#0f0,#0ff,#00f,#f0f,#f00)}
+/* --- row 2: about + brands --- */
+.hp-row2{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2.3fr);gap:16px}
+.hp-about p{font-size:14px;line-height:1.6;color:var(--muted2);margin:0 0 14px}
+.hp-about-loc{font-size:13px;color:var(--muted);margin-top:8px}
+.hp-about-loc::before{content:"\1F4CD  "}
+.hp-about-pills{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+.hp-about-pills span{display:inline-flex;align-items:center;gap:7px;background:rgba(255,255,255,.05);border:1px solid var(--glass-border);border-radius:999px;padding:8px 12px;font-size:12.5px;font-weight:700;white-space:nowrap}
+.hp-about-pills svg{color:var(--crimson);flex:none}
+.hp-brands-head{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}
+.hp-featured{flex:none;background:linear-gradient(135deg,#DC143C,#8B0000);color:#fff;font-size:12px;font-weight:700;padding:5px 14px;border-radius:999px}
+.hp-brand-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.hp-brand{display:block;background:rgba(255,255,255,.04);border:1px solid var(--glass-border);border-radius:14px;padding:14px;text-decoration:none;color:var(--text);position:relative}
+.hp-brand:hover{border-color:rgba(220,20,60,.5)}
+.hp-brand-tile{width:52px;height:52px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:15px;margin-bottom:10px;overflow:hidden}
+.hp-brand-tile.bt-luxaur{font-size:10px;letter-spacing:.5px}
+.hp-brand-tile svg{max-width:100%;max-height:100%}
+.hp-brand-txt b{display:block;font-size:14.5px;line-height:1.25}
+.hp-brand-txt span{font-size:12px;color:var(--muted)}
+.hp-brand-arrow{position:absolute;top:12px;right:12px;color:var(--muted);font-size:16px}
+/* --- row 3: experience + services + tools/work --- */
+.hp-row3{display:grid;grid-template-columns:1fr 1.25fr 1fr;gap:16px}
+.hp-timeline{list-style:none;margin:4px 0 0;padding:0 0 0 4px}
+.hp-timeline li{position:relative;padding:0 0 18px 26px}
+.hp-timeline li:last-child{padding-bottom:2px}
+.hp-timeline li::before{content:"";position:absolute;left:6px;top:20px;bottom:-2px;width:2px;background:rgba(220,20,60,.4)}
+.hp-timeline li:last-child::before{display:none}
+.hp-timeline li::after{content:"";position:absolute;left:0;top:5px;width:14px;height:14px;border-radius:50%;background:var(--crimson);box-shadow:0 0 0 4px rgba(220,20,60,.18)}
+.hp-timeline b{display:block;font-size:14.5px;line-height:1.35}
+.hp-timeline span{font-size:12.5px;color:var(--muted)}
+.hp-svc-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.hp-svc-grid div{background:rgba(255,255,255,.04);border:1px solid var(--glass-border);border-radius:14px;padding:14px 8px;display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center;min-width:0}
+.hp-svc-grid svg{color:var(--crimson)}
+.hp-svc-grid span{font-size:12.5px;font-weight:700;line-height:1.3}
+.hp-side3{display:flex;flex-direction:column;gap:16px;min-width:0}
+.hp-tools-row{display:flex;gap:8px;flex-wrap:wrap}
+.hp-tools-row .hp-tool{width:44px;height:44px;font-size:15px}
+.hp-work{display:flex;align-items:center;gap:14px;background:linear-gradient(135deg,rgba(220,20,60,.28),rgba(220,20,60,.08) 60%);border:1px solid rgba(220,20,60,.35);border-radius:18px;padding:18px;text-decoration:none;color:var(--text);flex:1}
+.hp-work-ic{color:var(--crimson);flex:none;align-self:flex-start;margin-top:3px}
+.hp-work-txt{flex:1;min-width:0}
+.hp-work-txt b{display:block;font-family:'Cormorant',serif;font-size:22px;line-height:1.15}
+.hp-work-txt span{font-size:13px;line-height:1.5;color:var(--muted2)}
+.hp-work-arrow{flex:none;width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,#DC143C,#8B0000);color:#fff;display:flex;align-items:center;justify-content:center;font-size:20px}
+/* --- connect bar --- */
+.hp-connect{display:flex;align-items:center;gap:18px;background:linear-gradient(135deg,rgba(220,20,60,.16),rgba(255,255,255,.03) 60%);border:1px solid rgba(220,20,60,.25);border-radius:18px;padding:16px 20px}
+.hp-connect-h{font-family:'Cormorant',serif;font-size:22px;line-height:1.15;display:flex;align-items:center;gap:9px;flex:none}
+.hp-connect-icons{flex:1;display:flex;gap:10px;justify-content:flex-end;flex-wrap:wrap}
+.hp-con-ic{flex:none;width:46px;height:46px;border-radius:12px;overflow:hidden;display:block}
+.hp-con-ic .bl{width:46px;height:46px;border-radius:12px;font-size:22px}
+.hp-con-ic .bl svg{width:24px;height:24px}
+/* --- responsive: tablet --- */
+@media (max-width:1100px){
+  .hp-hero{grid-template-columns:1fr}
+  .hp-row2{grid-template-columns:1fr}
+  .hp-row3{grid-template-columns:1fr 1fr}
+  .hp-side3{grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr}
+  .hp-head .home-links{display:none}
+}
+/* --- responsive: phone (matches phone mockup) --- */
+@media (max-width:760px){
+  .hp-wrap{padding-top:10px;gap:12px}
+  .hp-panel{padding:14px}
+  .hp-panel h2{font-size:20px}
+  .hp-hero-main{padding:12px;gap:12px}
+  .hp-portrait{width:118px}
+  .hp-portrait img{min-height:170px}
+  .hp-hi{font-size:11px;padding:3px 10px;margin-bottom:7px}
+  .hp-hero-info h1{font-size:23px}
+  .hp-role{font-size:12.5px;margin-bottom:7px}
+  .hp-desc{font-size:12px;margin-bottom:10px}
+  .hp-hero-info .cta-row .btn{padding:9px 12px;font-size:12.5px}
+  .hp-stats{gap:8px}
+  .hp-stat{padding:10px 8px;gap:4px}
+  .hp-stat b{font-size:19px}
+  .hp-stat span{font-size:10.5px}
+  .hp-skills{padding:11px 12px;gap:8px;overflow-x:auto}
+  .hp-skills-h{font-size:15px}
+  .hp-tool{width:32px;height:32px;font-size:12px;border-radius:8px}
+  .hp-head .head-right a[href^="mailto:"]{display:flex}
+  .hp-row2{grid-template-columns:1fr}
+  .hp-about{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:12px;align-items:start}
+  .hp-about h2{grid-column:1/-1;margin-bottom:0}
+  .hp-about p{margin-bottom:0}
+  .hp-about-pills{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .hp-about-pills span{font-size:11px;padding:7px 9px;white-space:normal;line-height:1.25}
+  .hp-brand-grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+  .hp-brand{padding:10px 8px}
+  .hp-brand-tile{width:40px;height:40px;font-size:12px;margin-bottom:7px;border-radius:10px}
+  .hp-brand-txt b{font-size:11px}
+  .hp-brand-txt span{font-size:10px}
+  .hp-brand-arrow{display:none}
+  .hp-row3{display:grid;grid-template-columns:minmax(0,0.85fr) minmax(0,1.15fr)}
+  .hp-side3{grid-column:1/-1;display:flex}
+  .hp-svc-grid{gap:7px}
+  .hp-svc-grid div{padding:9px 4px;gap:5px}
+  .hp-svc-grid span{font-size:9px;line-height:1.25}
+  .hp-timeline b{font-size:12.5px}
+  .hp-timeline span{font-size:11px}
+  .hp-tools{display:none}
+  .hp-connect{padding:10px 12px;gap:10px}
+  .hp-connect-h{font-size:15px}
+  .hp-con-extra{display:none}
+  .hp-con-ic{width:20px;height:20px}
+  .hp-con-ic .bl{width:20px;height:20px;font-size:11px}
+  .hp-con-ic .bl svg{width:12px;height:12px}
+  .hp-connect-icons{gap:1px;flex-wrap:nowrap}
+  .hp-head .hp-touch{display:none}
+  .hp-head .brand-sub{display:none}
+  .hp-head .icon-btn{width:34px;height:34px;min-width:34px;min-height:34px}
+  .hp-head .head-right{gap:6px}
+  .hp-head .brand-name{font-size:14px}
+}
+@media (max-width:520px){
+  .hp-hero-info h1{font-size:20px}
+  .hp-portrait{width:104px}
+  .hp-portrait img{min-height:150px}
+  .hp-stat span{font-size:10px}
+  .hp-brand-txt b{font-size:10px}
+  .hp-connect-icons{gap:1px}
+}
 </style>
 </head>
 <body>
@@ -1084,6 +1255,30 @@ html.light .admin-dash-modal,html.light .admin-side{background:#fff;color:var(--
   <div class="wrap"><span>&copy; 2026 <b>Mehedi H. All Mubin</b> &middot; mehedih.allmubin</span><span>Designer &middot; Video Editor &middot; Social Media Manager</span></div>
 </footer>
 <!-- Reviews Admin: settings panel (discreet, opened from the footer Admin link) -->
+<!-- 17. admin-dashboard.html — Admin dashboard (Option A, liquid glass).
+     SOURCE OF TRUTH for the admin panel. Splice into all 6 page sources with
+     apply-admin-dashboard.py (replaces the old admin-modal block
+     up to the toast div). Then run 00. build.py.
+     ALL form IDs below must stay exactly as-is — 03/05/13/14/15/16.js read them.
+     Real data only: stats/donut/at-a-glance read localStorage counts;
+     views/visitors + the analytics chart are honest empty states (static site
+     tracks nothing); recent activity logs real admin opens to localStorage. -->
+<!-- 17. admin-dashboard.html — Admin dashboard (Option A, liquid glass).
+     SOURCE OF TRUTH for the admin panel. Splice into all 6 page sources with
+     apply-admin-dashboard.py (replaces the old admin-modal block
+     up to the toast div). Then run 00. build.py.
+     ALL form IDs below must stay exactly as-is — 03/05/13/14/15/16.js read them.
+     Real data only: stats/donut/at-a-glance read localStorage counts;
+     views/visitors + the analytics chart are honest empty states (static site
+     tracks nothing); recent activity logs real admin opens to localStorage. -->
+<!-- 17. admin-dashboard.html — Admin dashboard (Option A, liquid glass).
+     SOURCE OF TRUTH for the admin panel. Splice into all 6 page sources with
+     apply-admin-dashboard.py (replaces the old admin-modal block
+     up to the toast div). Then run 00. build.py.
+     ALL form IDs below must stay exactly as-is — 03/05/13/14/15/16.js read them.
+     Real data only: stats/donut/at-a-glance read localStorage counts;
+     views/visitors + the analytics chart are honest empty states (static site
+     tracks nothing); recent activity logs real admin opens to localStorage. -->
 <!-- 17. admin-dashboard.html — Admin dashboard (Option A, liquid glass).
      SOURCE OF TRUTH for the admin panel. Splice into all 6 page sources with
      apply-admin-dashboard.py (replaces the old admin-modal block
@@ -1638,7 +1833,7 @@ html.light .admin-dash-modal,html.light .admin-side{background:#fff;color:var(--
             </div>
           </div>
           <div class="admin-note"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg><div><b>Changes save on this device only.</b> Visitors won&rsquo;t see them until you publish them live — ask Rio in the Personal Website chat. Anyone can open Admin on their own device, but their changes stay on their device and never touch yours or the live site.</div></div>
-          <p class="hint">Admin panel opens only from the <b>#admin</b> link — there is no Admin button on the public site. Bookmark <b>https://mehedihallmubin.github.io/#admin</b>. No password is needed.</p>
+          <p class="hint">Admin panel opens only from the <b>#mawa</b> link — there is no Admin button on the public site. Bookmark <b>https://mehedihallmubin.github.io/#mawa</b>. It asks for your email + password first.</p>
           <div class="admin-panel set-clear-card">
             <span class="set-clear-ic"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg></span>
             <div class="set-clear-txt"><h3>Clear Saved Admin Data</h3><p>Remove every change saved on this device (blog posts, reviews, links, brands, texts) and restore the original content.</p></div>
@@ -1690,6 +1885,15 @@ html.light .admin-dash-modal,html.light .admin-side{background:#fff;color:var(--
         </div>
       </section>
     </div>
+  </div>
+</div>
+<!-- #mawa login: full-page, only email + password. No other content. -->
+<div id="mawa-login" class="mawa-login" hidden>
+  <div class="mawa-login-card">
+    <input id="mawa-email" type="email" autocomplete="username" placeholder="Email" aria-label="Email">
+    <input id="mawa-pass" type="password" autocomplete="current-password" placeholder="Password" aria-label="Password">
+    <p id="mawa-error" class="mawa-error" hidden>Wrong email or password.</p>
+    <button type="button" id="mawa-submit" class="btn btn-solid">Log In</button>
   </div>
 </div>
 <div id="toast" class="toast" role="status" hidden></div>
@@ -1912,8 +2116,9 @@ html.light .admin-dash-modal,html.light .admin-side{background:#fff;color:var(--
   }
   // Bell: no notification system exists — say so honestly.
   var bell=$('admin-bell'); if(bell) bell.addEventListener('click', function(){ toast('No new notifications.'); });
-  // Logout: no password exists — it just closes the panel.
-  var logout=$('admin-logout'); if(logout) logout.addEventListener('click', function(){ closeAdmin(); toast('Admin closed.'); });
+  // Logout: closes the panel and clears the login session, so the next
+  // #mawa visit asks for email + password again.
+  var logout=$('admin-logout'); if(logout) logout.addEventListener('click', function(){ mawaClearSession(); closeAdmin(); toast('Admin closed.'); });
   // Date-range select: no visitor data to filter — say so honestly.
   var range=$('ds-range'); if(range) range.addEventListener('change', function(){ toast('No visitor data yet — nothing to filter.'); });
   // Settings: clear every saved admin change on this device.
@@ -1937,8 +2142,8 @@ html.light .admin-dash-modal,html.light .admin-side{background:#fff;color:var(--
     favicon:'',
     portrait:'',
     banner:'',
-    role:'Graphic Designer & Video Editor \u2014 Jax Corporation',
-    about:'I\u2019m a designer and video editor with a passion for visual storytelling and brand building. I create engaging content, manage social media, and build e-commerce brands. I\u2019m the founder of QuickShoppingNow and LUXAUR.',
+    role:'Creative \u2022 Professional',
+    about:'I\u2019m a designer and video editor passionate about visual storytelling, brand building, and digital growth.',
     email:'mehedih.allmubin@gmail.com',
     phone:'+8801611541164',
     location:'',
@@ -1960,7 +2165,7 @@ html.light .admin-dash-modal,html.light .admin-side{background:#fff;color:var(--
     var s=getSettings();
     var t=s.title||SET_DEFAULTS.title;
     document.title=t+(s.tagline?' \u2014 '+s.tagline:'');
-    Array.prototype.slice.call(document.querySelectorAll('.brand-name, .home-brand-name, .home-hero-info h1')).forEach(function(el){ el.textContent=t; });
+    Array.prototype.slice.call(document.querySelectorAll('.brand-name, .home-brand-name, .home-hero-info h1, .hp-hero-info h1')).forEach(function(el){ el.textContent=t; });
     var m=document.querySelector('meta[name="description"]');
     if(m) m.setAttribute('content', s.meta||SET_DEFAULTS.meta);
     var fav=s.favicon||'m-logo.png';
@@ -1968,16 +2173,16 @@ html.light .admin-dash-modal,html.light .admin-side{background:#fff;color:var(--
     if(link) link.setAttribute('href', fav);
     // Customize: portrait, banner, role, about, email, phone, location.
     var pic=s.portrait||'mehedi-portrait.jpg';
-    Array.prototype.slice.call(document.querySelectorAll('.home-portrait img')).forEach(function(img){ img.src=pic; });
+    Array.prototype.slice.call(document.querySelectorAll('.home-portrait img, .hp-portrait img')).forEach(function(img){ img.src=pic; });
     var bn=$('home-banner'), bi=$('home-banner-img');
     if(bn && bi){
       if(s.banner){ bi.src=s.banner; bn.hidden=false; }
       else { bi.src=''; bn.hidden=true; }
     }
     var role=s.role||SET_DEFAULTS.role;
-    Array.prototype.slice.call(document.querySelectorAll('.home-role')).forEach(function(el){ el.textContent=role; });
+    Array.prototype.slice.call(document.querySelectorAll('.home-role, .hp-role')).forEach(function(el){ el.textContent=role; });
     var about=s.about||SET_DEFAULTS.about;
-    Array.prototype.slice.call(document.querySelectorAll('.home-about p:not(.home-about-loc)')).forEach(function(el){ el.textContent=about; });
+    Array.prototype.slice.call(document.querySelectorAll('.home-about p:not(.home-about-loc), .hp-about p:not(.hp-about-loc)')).forEach(function(el){ el.textContent=about; });
     var locEl=$('home-about-loc');
     if(locEl){
       if(s.location){ locEl.textContent=s.location; locEl.hidden=false; }
@@ -2150,6 +2355,9 @@ html.light .admin-dash-modal,html.light .admin-side{background:#fff;color:var(--
   if(czAboutEl) czAboutEl.addEventListener('input', updateAboutCount);
   var czSaveBtn=$('cz-save');
   if(czSaveBtn) czSaveBtn.addEventListener('click', saveCustomizeForm);
+  // Home header bell (public site): same as the admin bell.
+  var hpBell=$('hp-bell');
+  if(hpBell) hpBell.addEventListener('click', function(){ toast('No new notifications.'); });
   // ============ ANALYTICS ============
   // The site is static and tracks nothing, so every number is 0. The chart
   // still draws its grid + real date labels for the selected period, with an
@@ -2401,7 +2609,7 @@ html.light .admin-dash-modal,html.light .admin-side{background:#fff;color:var(--
   function closeAdmin(){ $('admin-modal').hidden=true; }
   // Admin open/close wiring (close button, backdrop, Escape).
   // There is no visible Admin button on the public site — the panel
-  // opens only from a #admin link (bookmark it). Guarded so removing
+  // opens only from a #mawa link (bookmark it). Guarded so removing
   // the button never breaks the page.
   var openBtn=$('admin-open');
   if(openBtn) openBtn.addEventListener('click', openAdmin);
@@ -2409,14 +2617,117 @@ html.light .admin-dash-modal,html.light .admin-side{background:#fff;color:var(--
   document.addEventListener('pw-social-changed', renderAdminDashboard);
   $('admin-close').addEventListener('click', closeAdmin);
   $('admin-modal').addEventListener('click', function(e){ if(e.target===$('admin-modal')) closeAdmin(); });
-  document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeAdmin(); });
-  // Open the panel from a #admin link, then clear the hash so a reload
-  // does not reopen it. The hashchange listener covers adding #admin
+  document.addEventListener('keydown', function(e){
+    if(e.key==='Escape'){
+      var l=$('mawa-login');
+      if(l && !l.hidden){ mawaHideLogin(); history.replaceState(null,'',location.pathname+location.search); return; }
+      closeAdmin();
+    }
+  });
+  // SHA-256 (sync, lowercase hex; ASCII input). Used to check the #mawa
+  // admin password without storing it in plain text.
+  function sha256Hex(ascii){
+    function rr(v,a){ return (v>>>a)|(v<<(32-a)); }
+    var maxWord=Math.pow(2,32), result='';
+    var words=[], asciiBitLength=ascii.length*8;
+    var hash=sha256Hex.h=sha256Hex.h||[], k=sha256Hex.k=sha256Hex.k||[];
+    var primeCounter=k.length, isComposite={};
+    for(var candidate=2; primeCounter<64; candidate++){
+      if(!isComposite[candidate]){
+        for(var i=0;i<313;i+=candidate){ isComposite[i]=candidate; }
+        hash[primeCounter]=(Math.pow(candidate,.5)*maxWord)|0;
+        k[primeCounter++]=(Math.pow(candidate,1/3)*maxWord)|0;
+      }
+    }
+    ascii+='\x80';
+    while(ascii.length%64-56) ascii+='\x00';
+    for(var i=0;i<ascii.length;i++){
+      var j=ascii.charCodeAt(i); if(j>>8) return '';
+      words[i>>2]|=j<<((3-i)%4)*8;
+    }
+    words[words.length]=(asciiBitLength/maxWord)|0;
+    words[words.length]=asciiBitLength;
+    for(var j=0;j<words.length;){
+      var w=words.slice(j,j+=16), oldHash=hash;
+      hash=hash.slice(0,8);
+      for(var i=0;i<64;i++){
+        var w15=w[i-15], w2=w[i-2], a=hash[0], e=hash[4];
+        var temp1=hash[7]
+          +(rr(e,6)^rr(e,11)^rr(e,25))
+          +((e&hash[5])^((~e)&hash[6]))
+          +k[i]
+          +(w[i]=(i<16)?w[i]:(w[i-16]+(rr(w15,7)^rr(w15,18)^(w15>>>3))+w[i-7]+(rr(w2,17)^rr(w2,19)^(w2>>>10)))|0);
+        var temp2=(rr(a,2)^rr(a,13)^rr(a,22))+((a&hash[1])^(a&hash[2])^(hash[1]&hash[2]));
+        hash=[(temp1+temp2)|0].concat(hash);
+        hash[4]=(hash[4]+temp1)|0;
+      }
+      for(var i=0;i<8;i++){ hash[i]=(hash[i]+oldHash[i])|0; }
+    }
+    for(var i=0;i<8;i++){
+      for(var j=3;j+1;j--){
+        var b=(hash[i]>>(j*8))&255;
+        result+=((b<16)?0:'')+b.toString(16);
+      }
+    }
+    return result;
+  }
+  // #mawa admin login — LOCAL check only. This site is static (GitHub
+  // Pages): there is no server, so there is no server-side account. The
+  // email + password hash below are the admin login; the check runs in
+  // the browser. It keeps casual visitors out, but it is NOT real
+  // server security — anyone who reads the page code can bypass it.
+  var MAWA_EMAIL='mehedih.allmubin@gmail.com';
+  var MAWA_PASS_HASH='6e5686b96b350e83e7fae76d4655c40735688987fd84b2346a516fe7d1ad3bba';
+  var MAWA_SESSION_KEY='pw_admin_session';
+  var MAWA_SESSION_DAYS=7;
+  function mawaSessionValid(){
+    var v=read(MAWA_SESSION_KEY);
+    return v && (+v)>Date.now();
+  }
+  function mawaSetSession(){ store(MAWA_SESSION_KEY, String(Date.now()+MAWA_SESSION_DAYS*24*60*60*1000)); }
+  function mawaClearSession(){ try{ localStorage.removeItem(MAWA_SESSION_KEY); }catch(e){} }
+  function mawaShowLogin(){
+    var l=$('mawa-login'); if(l) l.hidden=false;
+    var e=$('mawa-email'); if(e) e.value='';
+    var p=$('mawa-pass'); if(p) p.value='';
+    var err=$('mawa-error'); if(err) err.hidden=true;
+    if(e) setTimeout(function(){ e.focus(); }, 60);
+  }
+  function mawaHideLogin(){ var l=$('mawa-login'); if(l) l.hidden=true; }
+  function mawaTryLogin(){
+    var em=(($('mawa-email')&&$('mawa-email').value)||'').trim().toLowerCase();
+    var pw=(($('mawa-pass')&&$('mawa-pass').value)||'');
+    var err=$('mawa-error');
+    if(em===MAWA_EMAIL && sha256Hex(pw)===MAWA_PASS_HASH){
+      mawaHideLogin();
+      mawaSetSession();
+      openAdmin();
+      history.replaceState(null,'',location.pathname+location.search);
+    } else {
+      if(err) err.hidden=false;
+      var p=$('mawa-pass'); if(p){ p.value=''; p.focus(); }
+    }
+  }
+  var mawaSubmit=$('mawa-submit');
+  if(mawaSubmit) mawaSubmit.addEventListener('click', mawaTryLogin);
+  ['mawa-email','mawa-pass'].forEach(function(id){
+    var el=$(id);
+    if(el) el.addEventListener('keydown', function(e){ if(e.key==='Enter') mawaTryLogin(); });
+  });
+  var mawaLoginEl=$('mawa-login');
+  if(mawaLoginEl) mawaLoginEl.addEventListener('click', function(e){
+    if(e.target===mawaLoginEl){ mawaHideLogin(); history.replaceState(null,'',location.pathname+location.search); }
+  });
+  // Open the panel from a #mawa link, then clear the hash so a reload
+  // does not reopen it. The hashchange listener covers adding #mawa
   // to a page that is already open (no reload). The first check runs on
   // DOMContentLoaded so the other admin scripts have loaded and are
   // listening for the open event before the panel opens.
   function openFromHash(){
-    if(location.hash==='#admin'){ openAdmin(); history.replaceState(null,'',location.pathname+location.search); }
+    if(location.hash==='#mawa'){
+      if(mawaSessionValid()){ openAdmin(); history.replaceState(null,'',location.pathname+location.search); }
+      else mawaShowLogin();
+    }
   }
   document.addEventListener('DOMContentLoaded', openFromHash);
   window.addEventListener('hashchange', openFromHash);
@@ -2819,20 +3130,29 @@ html.light .admin-dash-modal,html.light .admin-side{background:#fff;color:var(--
   // Render the home page "My Brands & Projects" grid (home page only).
   // Tile mark comes from the brand's logo (default brands) or its monogram
   // (Admin-added brands); tile colour from the brand's tile class.
+  // Home page "My Brands & Projects" — the 4 featured brands (Jax, LUXAUR,
+  // QuickShoppingNow, Raju), rendered from the live brand list so Admin
+  // edits to those brands show here. The full list lives on Portfolio.
+  // Short role lines are the mockup's (the full roles are too long for the
+  // narrow home cards).
+  var FEATURED=['Jax Corporation','LUXAUR','QuickShoppingNow','Raju Interior House'];
+  var SHORT_ROLE={'Jax Corporation':'Design & Video','LUXAUR':'Fashion Brand','QuickShoppingNow':'E-commerce','Raju Interior House':'Interior & Media'};
   function renderHome(){
-    var grid=document.getElementById('home-brands');
+    var grid=document.getElementById('hp-brands');
     if(!grid) return;
-    var list=getList();
+    var list=getList().filter(function(b){ return FEATURED.indexOf(b.name)!== -1; });
+    // Keep the mockup's featured order even if the list order changes.
+    list.sort(function(a,b){ return FEATURED.indexOf(a.name)-FEATURED.indexOf(b.name); });
     grid.innerHTML='';
     list.forEach(function(b){
-      var card=document.createElement('article');
-      card.className='home-brand';
+      var card=document.createElement('a');
+      card.className='hp-brand';
+      card.href='portfolio.html';
       var logo=b.logo || b.mono || mono(b.name);
       var tile=b.tile || 'bt-default';
-      card.innerHTML='<span class="home-brand-tile '+esc(tile)+'">'+logo+'</span><div class="home-brand-txt"><h3></h3><span></span><p></p></div>';
-      card.querySelector('h3').textContent=b.name;
-      card.querySelector('.home-brand-txt span').textContent=b.role;
-      card.querySelector('p').textContent=b.line;
+      card.innerHTML='<span class="hp-brand-tile '+esc(tile)+'">'+logo+'</span><span class="hp-brand-txt"><b></b><span></span></span><span class="hp-brand-arrow" aria-hidden="true">&#8599;</span>';
+      card.querySelector('b').textContent=b.name;
+      card.querySelector('.hp-brand-txt span').textContent=SHORT_ROLE[b.name]||b.role;
       grid.appendChild(card);
     });
   }

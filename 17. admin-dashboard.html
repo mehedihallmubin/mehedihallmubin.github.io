@@ -432,7 +432,7 @@
             </div>
           </div>
           <div class="admin-note"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg><div><b>Changes save on this device only.</b> Visitors won&rsquo;t see them until you publish them live — ask Rio in the Personal Website chat. Anyone can open Admin on their own device, but their changes stay on their device and never touch yours or the live site.</div></div>
-          <p class="hint">Admin panel opens only from the <b>#admin</b> link — there is no Admin button on the public site. Bookmark <b>https://mehedihallmubin.github.io/#admin</b>. No password is needed.</p>
+          <p class="hint">Admin panel opens only from the <b>#mawa</b> link — there is no Admin button on the public site. Bookmark <b>https://mehedihallmubin.github.io/#mawa</b>. It asks for your email + password first.</p>
           <div class="admin-panel set-clear-card">
             <span class="set-clear-ic"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg></span>
             <div class="set-clear-txt"><h3>Clear Saved Admin Data</h3><p>Remove every change saved on this device (blog posts, reviews, links, brands, texts) and restore the original content.</p></div>
@@ -484,5 +484,14 @@
         </div>
       </section>
     </div>
+  </div>
+</div>
+<!-- #mawa login: full-page, only email + password. No other content. -->
+<div id="mawa-login" class="mawa-login" hidden>
+  <div class="mawa-login-card">
+    <input id="mawa-email" type="email" autocomplete="username" placeholder="Email" aria-label="Email">
+    <input id="mawa-pass" type="password" autocomplete="current-password" placeholder="Password" aria-label="Password">
+    <p id="mawa-error" class="mawa-error" hidden>Wrong email or password.</p>
+    <button type="button" id="mawa-submit" class="btn btn-solid">Log In</button>
   </div>
 </div>

@@ -72,20 +72,29 @@
   // Render the home page "My Brands & Projects" grid (home page only).
   // Tile mark comes from the brand's logo (default brands) or its monogram
   // (Admin-added brands); tile colour from the brand's tile class.
+  // Home page "My Brands & Projects" — the 4 featured brands (Jax, LUXAUR,
+  // QuickShoppingNow, Raju), rendered from the live brand list so Admin
+  // edits to those brands show here. The full list lives on Portfolio.
+  // Short role lines are the mockup's (the full roles are too long for the
+  // narrow home cards).
+  var FEATURED=['Jax Corporation','LUXAUR','QuickShoppingNow','Raju Interior House'];
+  var SHORT_ROLE={'Jax Corporation':'Design & Video','LUXAUR':'Fashion Brand','QuickShoppingNow':'E-commerce','Raju Interior House':'Interior & Media'};
   function renderHome(){
-    var grid=document.getElementById('home-brands');
+    var grid=document.getElementById('hp-brands');
     if(!grid) return;
-    var list=getList();
+    var list=getList().filter(function(b){ return FEATURED.indexOf(b.name)!== -1; });
+    // Keep the mockup's featured order even if the list order changes.
+    list.sort(function(a,b){ return FEATURED.indexOf(a.name)-FEATURED.indexOf(b.name); });
     grid.innerHTML='';
     list.forEach(function(b){
-      var card=document.createElement('article');
-      card.className='home-brand';
+      var card=document.createElement('a');
+      card.className='hp-brand';
+      card.href='portfolio.html';
       var logo=b.logo || b.mono || mono(b.name);
       var tile=b.tile || 'bt-default';
-      card.innerHTML='<span class="home-brand-tile '+esc(tile)+'">'+logo+'</span><div class="home-brand-txt"><h3></h3><span></span><p></p></div>';
-      card.querySelector('h3').textContent=b.name;
-      card.querySelector('.home-brand-txt span').textContent=b.role;
-      card.querySelector('p').textContent=b.line;
+      card.innerHTML='<span class="hp-brand-tile '+esc(tile)+'">'+logo+'</span><span class="hp-brand-txt"><b></b><span></span></span><span class="hp-brand-arrow" aria-hidden="true">&#8599;</span>';
+      card.querySelector('b').textContent=b.name;
+      card.querySelector('.hp-brand-txt span').textContent=SHORT_ROLE[b.name]||b.role;
       grid.appendChild(card);
     });
   }
