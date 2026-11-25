@@ -97,6 +97,18 @@
   }
   // The brand being edited in the Admin form (null when adding).
   var editing=null;
+  // Show the Add Brand form.
+  function openAddForm(){
+    var f=$('br-add-form');
+    if(!f) return;
+    f.hidden=false;
+    $('br-name').focus();
+  }
+  // Hide the Add Brand form.
+  function closeAddForm(){
+    var f=$('br-add-form');
+    if(f) f.hidden=true;
+  }
   // Fill the Admin form for editing one brand.
   function startEdit(i){
     var b=getList()[i]; if(!b) return;
@@ -104,22 +116,24 @@
     $('br-name').value=b.name; $('br-role').value=b.role; $('br-line').value=b.line;
     $('br-add').textContent='Save changes';
     $('br-cancel').hidden=false;
-    $('br-name').focus();
+    openAddForm();
   }
-  // Clear the Admin form back to "add" mode.
+  // Clear the Admin form back to "add" mode and hide it.
   function resetForm(){
     editing=null;
     $('br-name').value=''; $('br-role').value=''; $('br-line').value='';
     $('br-add').textContent='Add brand';
     $('br-cancel').hidden=true;
+    closeAddForm();
   }
-  // Render the brand list inside the Admin panel.
+  // Render the brand list inside the Admin panel, with serial numbers.
   function renderAdminList(){
     var box=$('br-list'); if(!box) return;
     box.innerHTML='';
     getList().forEach(function(b,i){
       var d=document.createElement('div'); d.className='admin-item';
       var top=document.createElement('div'); top.className='admin-item-top';
+      var num=document.createElement('span'); num.className='admin-item-num'; num.textContent=(i+1);
       var s=document.createElement('span'); s.textContent=b.name+' — '+b.role;
       var e=document.createElement('button'); e.type='button'; e.className='btn btn-ghost btn-sm'; e.textContent='Edit';
       var del=document.createElement('button'); del.type='button'; del.className='btn btn-ghost btn-sm'; del.textContent='Delete';
@@ -130,7 +144,7 @@
           renderAdminList(); render(); renderHome(); toast('Brand removed.');
         });
       });
-      top.appendChild(s); top.appendChild(e); top.appendChild(del);
+      top.appendChild(num); top.appendChild(s); top.appendChild(e); top.appendChild(del);
       var p=document.createElement('p'); p.textContent=b.line;
       d.appendChild(top); d.appendChild(p); box.appendChild(d);
     });
@@ -151,6 +165,8 @@
     store(JSON.stringify(l));
     resetForm(); renderAdminList(); render(); renderHome();
   }
+  var addOpenBtn=$('br-add-open');
+  if(addOpenBtn) addOpenBtn.addEventListener('click', function(){ resetForm(); openAddForm(); });
   var addBtn=$('br-add');
   if(addBtn) addBtn.addEventListener('click', saveForm);
   var cancelBtn=$('br-cancel');

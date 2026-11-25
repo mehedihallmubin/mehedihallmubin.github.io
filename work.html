@@ -473,6 +473,7 @@
   .admin-item{background:var(--glass);border:1px solid var(--glass-border);border-radius:12px;padding:12px 14px}
   .admin-item-top{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
   .admin-item-top span{font-weight:700;flex:1;min-width:140px}
+  .admin-item-num{flex:none !important;min-width:0 !important;width:26px;height:26px;border-radius:8px;background:rgba(220,20,60,.16);border:1px solid rgba(220,20,60,.3);color:var(--crimson);font-size:12px;font-weight:800;display:inline-flex;align-items:center;justify-content:center}
   .admin-item p{color:var(--muted);font-size:13px;margin:6px 0 0}
   .admin-text-row{margin-bottom:12px}
   .admin-text-row label{margin:0 0 5px}
@@ -575,6 +576,7 @@
   .admin-add-form{border:1px solid var(--glass-border);border-radius:14px;padding:14px;background:rgba(255,255,255,.03);margin:4px 0 16px}
   .admin-add-form label{margin:10px 0 6px}
   .admin-add-form label:first-child{margin-top:0}
+  #sl-add-platform{width:100%}
   .admin-add-actions{display:flex;align-items:center;gap:10px;margin-top:14px}
   .admin-subhead{margin:20px 0 10px;font-size:14px;font-weight:800}
   .admin-social-list{list-style:none;margin:0 0 18px;padding:0;display:flex;flex-direction:column;gap:8px}
@@ -809,6 +811,197 @@
     .home-social-ic .bl{width:22px;height:22px}
     .home-foot .wrap{font-size:10px;gap:5px}
   }
+
+/* ============ SETTINGS PAGE (Neon Red Glassmorphism) ============ */
+.set-hero{display:flex;align-items:center;gap:18px;border-radius:18px;padding:26px 28px;margin-bottom:16px;color:#fff;position:relative;overflow:hidden;background:linear-gradient(120deg,#4a0000 0%,#8B0000 45%,#DC143C 78%,#ff2d55 100%)}
+.set-hero::before{content:"";position:absolute;inset:0;background:radial-gradient(60% 120% at 85% 0%,rgba(255,255,255,.28),transparent 60%),radial-gradient(50% 90% at 10% 100%,rgba(0,0,0,.35),transparent 60%);pointer-events:none}
+.set-hero::after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(115deg,transparent 0 90px,rgba(255,255,255,.06) 90px 96px,transparent 96px 190px);pointer-events:none}
+.set-hero-ic{flex:none;width:58px;height:58px;border-radius:16px;background:rgba(0,0,0,.35);border:1px solid rgba(255,255,255,.25);display:flex;align-items:center;justify-content:center;color:#ff5c7a;position:relative;z-index:1}
+.set-hero h2{font-size:30px;font-weight:800;margin:0;position:relative;z-index:1}
+.set-hero p{margin:4px 0 0;color:rgba(255,255,255,.85);font-size:14px;position:relative;z-index:1}
+.set-tabs{display:flex;gap:10px;overflow-x:auto;padding:2px 2px 10px;margin-bottom:16px;scrollbar-width:none}
+.set-tabs::-webkit-scrollbar{display:none}
+.set-tab{flex:none;display:inline-flex;align-items:center;gap:8px;border:1px solid var(--glass-border);background:rgba(255,255,255,.04);color:var(--text);font:inherit;font-size:13.5px;font-weight:700;border-radius:999px;padding:11px 18px;cursor:pointer;white-space:nowrap}
+.set-tab svg{color:var(--muted)}
+.set-tab.active{background:linear-gradient(135deg,#DC143C,#8B0000);border-color:#DC143C;color:#fff;box-shadow:0 6px 18px rgba(220,20,60,.4)}
+.set-tab.active svg{color:#fff}
+.set-panel .admin-note{display:flex;gap:12px;align-items:flex-start}
+.set-panel .admin-note svg{flex:none;color:var(--crimson);margin-top:2px}
+.set-grid{display:grid;grid-template-columns:1.35fr 1fr .95fr;gap:16px;align-items:start;margin-bottom:16px}
+.set-card{padding:20px}
+.set-card-head{display:flex;gap:12px;align-items:flex-start;margin-bottom:18px}
+.set-card-ic{flex:none;width:42px;height:42px;border-radius:12px;background:rgba(220,20,60,.14);border:1px solid rgba(220,20,60,.3);display:flex;align-items:center;justify-content:center;color:var(--crimson)}
+.set-card-head h3{font-size:17px;margin:0}
+.set-card-head span{font-size:12.5px;color:var(--muted);display:block;margin-top:2px}
+.set-card label{display:block;font-weight:700;font-size:13px;margin:14px 0 6px}
+.set-card label:first-of-type{margin-top:0}
+.set-card input[type=text],.set-card input[type=url],.set-card textarea{width:100%;background:rgba(255,255,255,.05);border:1px solid var(--glass-border);border-radius:12px;color:var(--text);padding:12px 14px;font:inherit;font-size:14px}
+.set-card input[readonly]{color:var(--muted2)}
+.set-card textarea{resize:vertical;min-height:76px}
+.set-count{display:block;text-align:right;font-size:11.5px;color:var(--muted);margin-top:5px}
+.set-row2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.set-favicon{display:flex;align-items:center;gap:10px}
+.set-favicon img{width:32px;height:32px;border-radius:8px;background:rgba(220,20,60,.12);border:1px solid rgba(220,20,60,.3);object-fit:contain}
+.set-fav-btn{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--glass-border);background:rgba(255,255,255,.05);color:var(--text);font:inherit;font-size:13px;font-weight:700;border-radius:10px;padding:9px 13px;cursor:pointer}
+.set-fav-del{padding:9px 10px;color:#F87171;border-color:rgba(248,113,113,.35)}
+.set-pref{display:flex;align-items:center;gap:13px;padding:15px 0;border-top:1px solid rgba(255,255,255,.07)}
+.set-pref:first-of-type{border-top:0;padding-top:4px}
+.set-pref-ic{flex:none;width:40px;height:40px;border-radius:11px;background:rgba(220,20,60,.12);border:1px solid rgba(220,20,60,.25);display:flex;align-items:center;justify-content:center;color:var(--crimson)}
+.set-pref-txt{flex:1;min-width:0}
+.set-pref-txt b{display:block;font-size:14px}
+.set-pref-txt span{font-size:12.5px;color:var(--muted)}
+.set-toggle{flex:none;width:52px;height:30px;border-radius:999px;border:0;background:rgba(255,255,255,.16);cursor:pointer;position:relative;padding:0}
+.set-toggle span{position:absolute;top:3px;left:3px;width:24px;height:24px;border-radius:50%;background:#fff;transition:left .2s ease,background .2s ease}
+.set-toggle.on{background:linear-gradient(135deg,#DC143C,#8B0000)}
+.set-toggle.on span{left:25px}
+.set-side{display:flex;flex-direction:column;gap:16px}
+.set-qa{display:flex;align-items:center;justify-content:center;gap:9px;width:100%;border:1px solid var(--glass-border);background:rgba(255,255,255,.05);color:var(--text);font:inherit;font-size:14px;font-weight:700;border-radius:12px;padding:13px 14px;cursor:pointer;margin-bottom:10px}
+.set-qa:last-child{margin-bottom:0}
+.set-qa-red{background:linear-gradient(135deg,#DC143C,#8B0000);border-color:#DC143C;color:#fff;box-shadow:0 6px 16px rgba(220,20,60,.35)}
+.set-info-row{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:11px 0;border-top:1px solid rgba(255,255,255,.07);font-size:13.5px}
+.set-info-row:first-of-type{border-top:0}
+.set-info-row>span{display:inline-flex;align-items:center;gap:9px;color:var(--muted2)}
+.set-info-row b{font-weight:700;text-align:right}
+.set-storage-bar{height:8px;border-radius:99px;background:rgba(255,255,255,.1);overflow:hidden;margin:2px 0 0}
+.set-storage-bar span{display:block;height:100%;width:0%;border-radius:99px;background:linear-gradient(90deg,#DC143C,#ff2d55)}
+.set-storage-pct{padding-top:6px}
+.set-clear-card{display:flex;align-items:center;gap:16px;padding:20px;margin-top:16px}
+.set-clear-ic{flex:none;width:46px;height:46px;border-radius:13px;background:rgba(220,20,60,.14);border:1px solid rgba(220,20,60,.3);display:flex;align-items:center;justify-content:center;color:var(--crimson)}
+.set-clear-txt{flex:1;min-width:0}
+.set-clear-txt h3{font-size:16px;margin:0}
+.set-clear-txt p{font-size:13px;color:var(--muted);margin:4px 0 0;line-height:1.5}
+.set-clear-btn{flex:none;display:inline-flex;align-items:center;gap:7px}
+/* Settings-applied states (public site) */
+html.no-anim *,html.no-anim *::before,html.no-anim *::after{animation:none !important;transition:none !important}
+.maint-banner{position:fixed;top:0;left:0;right:0;z-index:9999;background:#8B0000;color:#fff;text-align:center;font-size:13.5px;font-weight:700;padding:10px 14px}
+html.light{--bg:#FAFAF9;--text:#0C0A09;--muted:#57534E;--muted2:#44403C;--glass:rgba(0,0,0,.04);--glass-border:rgba(0,0,0,.12)}
+html.light body{background:var(--bg);color:var(--text)}
+html.light .admin-dash-modal,html.light .admin-side{background:#fff;color:var(--text)}
+@media (max-width:1100px){
+  .set-grid{grid-template-columns:1fr 1fr}
+  .set-side{grid-column:1 / -1;display:grid;grid-template-columns:1fr 1fr;align-items:start}
+}
+@media (max-width:760px){
+  .set-hero{padding:20px;gap:13px}
+  .set-hero-ic{width:46px;height:46px;border-radius:13px}
+  .set-hero h2{font-size:23px}
+  .set-hero p{font-size:12.5px}
+  .set-grid{grid-template-columns:1fr}
+  .set-side{grid-template-columns:1fr}
+  .set-row2{grid-template-columns:1fr}
+  .set-clear-card{flex-wrap:wrap}
+  .set-clear-btn{width:100%;justify-content:center}
+}
+
+/* ============ CUSTOMIZE YOUR WEBSITE ============ */
+.set-custom-media{display:grid;grid-template-columns:1fr 1.4fr;gap:18px;margin-bottom:6px}
+.set-media-block label{display:block;font-weight:700;font-size:13px;margin:0 0 8px}
+.set-media-preview{border:1px solid var(--glass-border);border-radius:14px;overflow:hidden;background:rgba(255,255,255,.04);display:flex;align-items:center;justify-content:center;min-height:120px}
+.set-media-preview img{width:120px;height:120px;object-fit:cover;display:block}
+.set-banner-preview{min-height:120px}
+.set-banner-preview img{width:100%;height:120px;object-fit:cover}
+.set-banner-preview img[src=""]{display:none}
+#cz-banner-empty{font-size:12.5px;color:var(--muted);padding:14px;text-align:center}
+.set-media-actions{display:flex;gap:8px;margin-top:10px}
+.home-banner{border-radius:16px;overflow:hidden;margin-bottom:16px}
+.home-banner img{width:100%;height:220px;object-fit:cover;display:block}
+@media (max-width:760px){
+  .set-custom-media{grid-template-columns:1fr}
+  .home-banner img{height:150px}
+}
+.home-about-loc{font-size:13px;color:var(--muted);margin-top:8px}
+.home-about-loc::before{content:"\1F4CD  "}
+
+/* ============ ANALYTICS ============ */
+.an-head{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;flex-wrap:wrap;margin:2px 2px 18px}
+.an-kicker{display:inline-flex;align-items:center;gap:7px;font-size:13px;font-weight:700;color:var(--crimson)}
+.an-title h2{font-family:'Cormorant',serif;font-size:34px;line-height:1.1;margin:6px 0 4px}
+.an-title h2 span{color:var(--crimson)}
+.an-title p{margin:0;color:var(--muted);font-size:13.5px}
+.an-head-actions{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.an-period{display:inline-flex;align-items:center;gap:8px;background:var(--glass);border:1px solid var(--glass-border);border-radius:12px;padding:9px 12px;color:var(--text)}
+.an-period select{background:transparent;border:0;color:var(--text);font:inherit;font-weight:600;outline:none;cursor:pointer}
+.an-period select option{color:#111}
+.an-export{display:inline-flex;align-items:center;gap:8px;background:var(--glass);border:1px solid var(--glass-border);border-radius:12px;padding:10px 14px;color:var(--text);font:inherit;font-weight:700;cursor:pointer}
+.an-export:hover{border-color:var(--crimson)}
+.an-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:14px}
+.an-stat{display:flex;align-items:center;gap:12px;background:linear-gradient(135deg,rgba(220,20,60,.22),rgba(220,20,60,.05) 55%,rgba(255,255,255,.03));border:1px solid rgba(220,20,60,.28);border-radius:16px;padding:16px}
+.an-stat-ic{flex:none;width:42px;height:42px;border-radius:12px;background:rgba(220,20,60,.18);border:1px solid rgba(220,20,60,.35);color:var(--crimson);display:flex;align-items:center;justify-content:center}
+.an-stat>div{flex:1;min-width:0}
+.an-stat>div span{display:block;font-size:12.5px;color:var(--muted);font-weight:600}
+.an-stat>div b{display:block;font-size:26px;line-height:1.2}
+.an-stat em{font-style:normal;font-size:11.5px;color:var(--muted)}
+.an-spark{flex:none;color:rgba(220,20,60,.75)}
+.an-mid{display:grid;grid-template-columns:2fr 1fr;gap:14px;margin-bottom:14px}
+.an-bottom{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.an-card{padding:18px}
+.an-card-head{display:flex;align-items:flex-start;gap:11px;margin-bottom:14px}
+.an-card-ic{flex:none;width:38px;height:38px;border-radius:11px;background:rgba(220,20,60,.16);border:1px solid rgba(220,20,60,.3);color:var(--crimson);display:flex;align-items:center;justify-content:center}
+.an-card-head h3{margin:0;font-size:17px}
+.an-card-head span{font-size:12.5px;color:var(--muted)}
+.an-pills{margin-left:auto;display:flex;gap:4px;background:rgba(255,255,255,.05);border:1px solid var(--glass-border);border-radius:999px;padding:3px}
+.an-pill{border:0;background:transparent;color:var(--muted);font:inherit;font-size:12.5px;font-weight:700;padding:6px 12px;border-radius:999px;cursor:pointer}
+.an-pill.active{background:linear-gradient(135deg,#DC143C,#8B0000);color:#fff}
+.an-chart-wrap{position:relative}
+.an-chart-empty{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;text-align:center;pointer-events:none}
+.an-chart-empty b{font-size:15px}
+.an-chart-empty span{font-size:12.5px;color:var(--muted)}
+.an-donut-wrap{display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+.an-donut-num{fill:var(--text);font-size:26px;font-weight:800}
+.an-donut-lbl{fill:var(--muted);font-size:12px}
+.an-legend{list-style:none;margin:0;padding:0;flex:1;min-width:150px;display:flex;flex-direction:column;gap:12px}
+.an-legend li{display:flex;align-items:center;gap:10px;font-size:13.5px}
+.an-leg-ic{color:var(--crimson);display:flex}
+.an-legend b{margin-left:auto}
+.an-table{width:100%;border-collapse:collapse;font-size:13.5px}
+.an-table th{text-align:left;color:var(--muted);font-weight:600;font-size:12.5px;padding:0 6px 8px;border-bottom:1px solid var(--glass-border)}
+.an-table td{padding:9px 6px;border-bottom:1px solid rgba(255,255,255,.05)}
+.an-table tr:last-child td{border-bottom:0}
+.an-page-ic{color:var(--crimson);display:inline-flex;vertical-align:-3px;margin-right:6px}
+.an-bar{flex:1;display:block;height:6px;border-radius:99px;background:rgba(255,255,255,.08);overflow:hidden;min-width:60px}
+.an-bar i{display:block;height:100%;background:linear-gradient(90deg,#8B0000,#DC143C);border-radius:99px}
+.an-src{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:14px}
+.an-src li{display:flex;align-items:center;gap:10px;font-size:13.5px}
+.an-src-ic{flex:none;width:34px;height:34px;border-radius:10px;background:rgba(220,20,60,.14);border:1px solid rgba(220,20,60,.28);color:var(--crimson);display:flex;align-items:center;justify-content:center}
+.an-src li>div{flex:1;min-width:0}
+.an-src li>div b{display:block;font-size:13.5px}
+.an-src li>div span{font-size:11.5px;color:var(--muted)}
+.an-src li>.an-bar{flex:1.4}
+.an-src li>b:last-child{flex:none}
+.an-flag{flex:none;width:26px;height:19px;border-radius:4px;overflow:hidden;display:inline-block;border:1px solid rgba(255,255,255,.2)}
+.an-flag-bd{background:#006A4E;position:relative}
+.an-flag-bd::after{content:"";position:absolute;left:50%;top:50%;width:11px;height:11px;margin:-5.5px 0 0 -5.5px;border-radius:50%;background:#F42A41}
+.an-flag-in{background:linear-gradient(#FF9933 33%,#fff 33% 66%,#138808 66%)}
+.an-flag-us{background:repeating-linear-gradient(#B22234 0 2.7px,#fff 2.7px 5.4px)}
+.an-flag-us::after{content:"";display:block;width:11px;height:10px;background:#3C3B6E}
+.an-flag-gb{background:#012169;position:relative}
+.an-flag-gb::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent 44%,#fff 44% 56%,transparent 56%),linear-gradient(transparent 40%,#fff 40% 60%,transparent 60%)}
+.an-flag-gb::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent 47%,#C8102E 47% 53%,transparent 53%),linear-gradient(transparent 44%,#C8102E 44% 56%,transparent 56%)}
+.an-flag-other{display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.06);color:var(--muted);font-weight:800;font-size:12px}
+.an-note{margin-top:14px}
+@media (max-width:1100px){
+  .an-stats{grid-template-columns:repeat(2,1fr)}
+  .an-mid{grid-template-columns:1fr}
+  .an-bottom{grid-template-columns:1fr}
+}
+@media (max-width:760px){
+  .an-title h2{font-size:26px}
+  .an-stats{grid-template-columns:1fr 1fr;gap:10px}
+  .an-stat{padding:12px}
+  .an-stat>div b{font-size:21px}
+  .an-spark{width:56px}
+  .an-card-head{flex-wrap:wrap}
+  .an-pills{margin-left:0}
+}
+@media (max-width:520px){
+  .an-stat{flex-direction:column;align-items:flex-start;gap:8px}
+  .an-stat>div{width:100%}
+  .an-stat>div span{font-size:12px;white-space:nowrap}
+  .an-stat em{white-space:nowrap}
+  .an-spark{display:none}
+  .an-chart-wrap{overflow-x:auto}
+  .an-chart-wrap svg{min-width:560px}
+}
 </style>
 </head>
 <body>
@@ -941,6 +1134,46 @@
   <div class="wrap"><span>&copy; 2026 <b>Mehedi H. All Mubin</b> &middot; mehedih.allmubin</span><span>Designer &middot; Video Editor &middot; Social Media Manager</span></div>
 </footer>
 <!-- Reviews Admin: settings panel (discreet, opened from the footer Admin link) -->
+<!-- 17. admin-dashboard.html — Admin dashboard (Option A, liquid glass).
+     SOURCE OF TRUTH for the admin panel. Splice into all 6 page sources with
+     apply-admin-dashboard.py (replaces the old admin-modal block
+     up to the toast div). Then run 00. build.py.
+     ALL form IDs below must stay exactly as-is — 03/05/13/14/15/16.js read them.
+     Real data only: stats/donut/at-a-glance read localStorage counts;
+     views/visitors + the analytics chart are honest empty states (static site
+     tracks nothing); recent activity logs real admin opens to localStorage. -->
+<!-- 17. admin-dashboard.html — Admin dashboard (Option A, liquid glass).
+     SOURCE OF TRUTH for the admin panel. Splice into all 6 page sources with
+     apply-admin-dashboard.py (replaces the old admin-modal block
+     up to the toast div). Then run 00. build.py.
+     ALL form IDs below must stay exactly as-is — 03/05/13/14/15/16.js read them.
+     Real data only: stats/donut/at-a-glance read localStorage counts;
+     views/visitors + the analytics chart are honest empty states (static site
+     tracks nothing); recent activity logs real admin opens to localStorage. -->
+<!-- 17. admin-dashboard.html — Admin dashboard (Option A, liquid glass).
+     SOURCE OF TRUTH for the admin panel. Splice into all 6 page sources with
+     apply-admin-dashboard.py (replaces the old admin-modal block
+     up to the toast div). Then run 00. build.py.
+     ALL form IDs below must stay exactly as-is — 03/05/13/14/15/16.js read them.
+     Real data only: stats/donut/at-a-glance read localStorage counts;
+     views/visitors + the analytics chart are honest empty states (static site
+     tracks nothing); recent activity logs real admin opens to localStorage. -->
+<!-- 17. admin-dashboard.html — Admin dashboard (Option A, liquid glass).
+     SOURCE OF TRUTH for the admin panel. Splice into all 6 page sources with
+     apply-admin-dashboard.py (replaces the old admin-modal block
+     up to the toast div). Then run 00. build.py.
+     ALL form IDs below must stay exactly as-is — 03/05/13/14/15/16.js read them.
+     Real data only: stats/donut/at-a-glance read localStorage counts;
+     views/visitors + the analytics chart are honest empty states (static site
+     tracks nothing); recent activity logs real admin opens to localStorage. -->
+<!-- 17. admin-dashboard.html — Admin dashboard (Option A, liquid glass).
+     SOURCE OF TRUTH for the admin panel. Splice into all 6 page sources with
+     apply-admin-dashboard.py (replaces the old admin-modal block
+     up to the toast div). Then run 00. build.py.
+     ALL form IDs below must stay exactly as-is — 03/05/13/14/15/16.js read them.
+     Real data only: stats/donut/at-a-glance read localStorage counts;
+     views/visitors + the analytics chart are honest empty states (static site
+     tracks nothing); recent activity logs real admin opens to localStorage. -->
 <!-- 17. admin-dashboard.html — Admin dashboard (Option A, liquid glass).
      SOURCE OF TRUTH for the admin panel. Splice into all 6 page sources with
      apply-admin-dashboard.py (replaces the old admin-modal block
@@ -1190,65 +1423,73 @@
       <section class="admin-view" data-view="social" hidden>
         <div class="admin-panel admin-form-panel">
           <div class="admin-panel-head"><h3>Social links</h3><button type="button" class="admin-add-btn" id="sl-add-open">＋ Add Social Media</button></div>
-          <p class="hint">Prottek platform-er profile link paste korun — khali thakle Connect button platform-er site-e jabe. Link gula ei device-ei save thakbe.</p>
+          <p class="hint">Ekhane sudhu je koyta social media add kora ache sei koytai dekhabe. Notun ekta add korte Add Social Media button-e chap din.</p>
           <div class="admin-add-form" id="sl-add-form" hidden>
-            <label for="sl-add-name">Platform name</label>
-            <input id="sl-add-name" type="text" placeholder="e.g. Medium" autocomplete="off">
+            <label for="sl-add-platform">Platform</label>
+            <select id="sl-add-platform">
+              <option value="">Platform beche nin…</option>
+              <option value="facebook">Facebook</option>
+              <option value="instagram">Instagram</option>
+              <option value="youtube">YouTube</option>
+              <option value="linkedin">LinkedIn</option>
+              <option value="tiktok">TikTok</option>
+              <option value="pinterest">Pinterest</option>
+              <option value="rumble">Rumble</option>
+              <option value="threads">Threads</option>
+              <option value="x">X</option>
+              <option value="telegram">Telegram</option>
+              <option value="vimeo">Vimeo</option>
+              <option value="snapchat">Snapchat</option>
+              <option value="reddit">Reddit</option>
+              <option value="tumblr">Tumblr</option>
+              <option value="discord">Discord</option>
+              <option value="whatsapp">WhatsApp</option>
+              <option value="behance">Behance</option>
+              <option value="dribbble">Dribbble</option>
+              <option value="adobe-stock">Adobe Stock</option>
+              <option value="shutterstock">Shutterstock</option>
+              <option value="istock">iStock</option>
+              <option value="alamy">Alamy</option>
+              <option value="depositphotos">Depositphotos</option>
+              <option value="dreamstime">Dreamstime</option>
+              <option value="123rf">123RF</option>
+              <option value="freepik">Freepik (now Magnific)</option>
+              <option value="custom">Custom / Other</option>
+            </select>
+            <div id="sl-add-name-wrap" hidden>
+              <label for="sl-add-name">Platform name</label>
+              <input id="sl-add-name" type="text" placeholder="e.g. Medium" autocomplete="off">
+            </div>
             <label for="sl-add-url">Profile link</label>
             <input id="sl-add-url" type="url" placeholder="https://yourprofile" autocomplete="off">
             <div class="admin-add-actions">
               <button type="button" class="btn btn-solid btn-sm" id="sl-add-save">Add</button>
               <button type="button" class="admin-link-btn" id="sl-add-cancel">Cancel</button>
             </div>
-            <p class="hint">Jekono social media-r nam ar profile link din — list-e jog hobe ar Contact page-eo dekhabe. Live sign-in lage na, link paste korlei connect hobe.</p>
+            <p class="hint">Platform beche niye profile link paste korun — list-e jog hobe ar Contact page-eo dekhabe. Live sign-in lage na, link paste korlei connect hobe.</p>
           </div>
           <h4 class="admin-subhead">All Social Media</h4>
           <ul class="admin-social-list" id="sl-list"></ul>
-          <div class="social-admin-list">
-            <div class="social-admin-row"><label for="sl-facebook">Facebook</label><input id="sl-facebook" type="url" placeholder="https://www.facebook.com/yourprofile"></div>
-            <div class="social-admin-row"><label for="sl-instagram">Instagram</label><input id="sl-instagram" type="url" placeholder="https://www.instagram.com/yourprofile"></div>
-            <div class="social-admin-row"><label for="sl-youtube">YouTube</label><input id="sl-youtube" type="url" placeholder="https://www.youtube.com/@yourchannel"></div>
-            <div class="social-admin-row"><label for="sl-linkedin">LinkedIn</label><input id="sl-linkedin" type="url" placeholder="https://www.linkedin.com/in/yourprofile"></div>
-            <div class="social-admin-row"><label for="sl-tiktok">TikTok</label><input id="sl-tiktok" type="url" placeholder="https://www.tiktok.com/@yourprofile"></div>
-            <div class="social-admin-row"><label for="sl-pinterest">Pinterest</label><input id="sl-pinterest" type="url" placeholder="https://www.pinterest.com/yourprofile"></div>
-            <div class="social-admin-row"><label for="sl-rumble">Rumble</label><input id="sl-rumble" type="url" placeholder="https://rumble.com/c/yourchannel"></div>
-            <div class="social-admin-row"><label for="sl-threads">Threads</label><input id="sl-threads" type="url" placeholder="https://www.threads.net/@yourprofile"></div>
-            <div class="social-admin-row"><label for="sl-x">X</label><input id="sl-x" type="url" placeholder="https://x.com/yourprofile"></div>
-            <div class="social-admin-row"><label for="sl-telegram">Telegram</label><input id="sl-telegram" type="url" placeholder="https://t.me/yourname"></div>
-            <div class="social-admin-row"><label for="sl-vimeo">Vimeo</label><input id="sl-vimeo" type="url" placeholder="https://vimeo.com/yourprofile"></div>
-            <div class="social-admin-row"><label for="sl-snapchat">Snapchat</label><input id="sl-snapchat" type="url" placeholder="https://www.snapchat.com/add/yourname"></div>
-            <div class="social-admin-row"><label for="sl-reddit">Reddit</label><input id="sl-reddit" type="url" placeholder="https://www.reddit.com/user/yourname"></div>
-            <div class="social-admin-row"><label for="sl-tumblr">Tumblr</label><input id="sl-tumblr" type="url" placeholder="https://yourname.tumblr.com"></div>
-            <div class="social-admin-row"><label for="sl-discord">Discord</label><input id="sl-discord" type="url" placeholder="https://discord.com/users/yourid"></div>
-            <div class="social-admin-row"><label for="sl-whatsapp">WhatsApp</label><input id="sl-whatsapp" type="url" placeholder="https://wa.me/your-number"></div>
-            <div class="social-admin-row"><label for="sl-behance">Behance</label><input id="sl-behance" type="url" placeholder="https://www.behance.net/yourprofile"></div>
-            <div class="social-admin-row"><label for="sl-dribbble">Dribbble</label><input id="sl-dribbble" type="url" placeholder="https://dribbble.com/yourprofile"></div>
-            <div class="social-admin-row"><label for="sl-adobe-stock">Adobe Stock</label><input id="sl-adobe-stock" type="url" placeholder="https://stock.adobe.com/contributor/yourprofile"></div>
-            <div class="social-admin-row"><label for="sl-shutterstock">Shutterstock</label><input id="sl-shutterstock" type="url" placeholder="https://www.shutterstock.com/g/yourprofile"></div>
-            <div class="social-admin-row"><label for="sl-istock">iStock</label><input id="sl-istock" type="url" placeholder="https://www.istockphoto.com/portfolio/yourprofile"></div>
-            <div class="social-admin-row"><label for="sl-alamy">Alamy</label><input id="sl-alamy" type="url" placeholder="https://www.alamy.com/portfolio/yourprofile"></div>
-            <div class="social-admin-row"><label for="sl-depositphotos">Depositphotos</label><input id="sl-depositphotos" type="url" placeholder="https://depositphotos.com/yourprofile"></div>
-            <div class="social-admin-row"><label for="sl-dreamstime">Dreamstime</label><input id="sl-dreamstime" type="url" placeholder="https://www.dreamstime.com/yourprofile"></div>
-            <div class="social-admin-row"><label for="sl-123rf">123RF</label><input id="sl-123rf" type="url" placeholder="https://www.123rf.com/profile_yourprofile"></div>
-            <div class="social-admin-row"><label for="sl-freepik">Freepik (now Magnific)</label><input id="sl-freepik" type="url" placeholder="https://www.freepik.com/author/yourprofile"></div>
-          </div>
-          <div style="margin-top:14px"><button id="social-save" class="btn btn-solid btn-sm" type="button">Save social links</button></div>
-          <p id="social-saved" class="saved-msg" hidden>Saved — social links updated.</p>
         </div>
       </section>
 
       <!-- ============ BRANDS VIEW ============ -->
       <section class="admin-view" data-view="brands" hidden>
         <div class="admin-panel admin-form-panel">
-          <div class="admin-panel-head"><h3>Brands</h3></div>
+          <div class="admin-panel-head"><h3>Brands</h3><button type="button" class="admin-add-btn" id="br-add-open">＋ Add Brand</button></div>
           <p class="hint">Shudhu asol brand — fake brand kokhono na. Brand add/edit/remove korle Brands page-e dekhabe (ei device-e).</p>
-          <label for="br-name">Brand name</label>
-          <input id="br-name" type="text" placeholder="Brand name" maxlength="60">
-          <label for="br-role">Your role</label>
-          <input id="br-role" type="text" placeholder="e.g. Founder" maxlength="80">
-          <label for="br-line">One line about it</label>
-          <input id="br-line" type="text" placeholder="e.g. My own shoe brand." maxlength="140">
-          <div style="margin-top:12px"><button id="br-add" class="btn btn-solid btn-sm" type="button">Add brand</button> <button id="br-cancel" class="btn btn-ghost btn-sm" type="button" hidden>Cancel edit</button></div>
+          <div class="admin-add-form" id="br-add-form" hidden>
+            <label for="br-name">Brand name</label>
+            <input id="br-name" type="text" placeholder="Brand name" maxlength="60">
+            <label for="br-role">Your role</label>
+            <input id="br-role" type="text" placeholder="e.g. Founder" maxlength="80">
+            <label for="br-line">One line about it</label>
+            <input id="br-line" type="text" placeholder="e.g. My own shoe brand." maxlength="140">
+            <div class="admin-add-actions">
+              <button id="br-add" class="btn btn-solid btn-sm" type="button">Add brand</button>
+              <button id="br-cancel" class="btn btn-ghost btn-sm" type="button" hidden>Cancel edit</button>
+            </div>
+          </div>
           <div id="br-list" class="admin-list"></div>
         </div>
       </section>
@@ -1315,26 +1556,187 @@
 
       <!-- ============ ANALYTICS VIEW ============ -->
       <section class="admin-view" data-view="analytics" hidden>
-        <div class="admin-panel admin-form-panel">
-          <div class="admin-panel-head"><h3>Analytics</h3></div>
-          <div class="admin-empty-chart admin-empty-chart-tall">
-            <svg viewBox="0 0 24 24" width="34" height="34" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 15v3M12 10v8M17 6v12"/></svg>
-            <b>No visitor data yet</b>
-            <span>This site is static &mdash; it doesn&rsquo;t track visitors. Connect an analytics service (for example Google Analytics or Cloudflare Web Analytics) to see visits here.</span>
+        <div class="an-head">
+          <div class="an-title">
+            <span class="an-kicker"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 15v3M12 10v8M17 6v12"/></svg> Analytics</span>
+            <h2>Website <span>Analytics</span></h2>
+            <p>Track visitors, performance, and engagement on your website.</p>
+          </div>
+          <div class="an-head-actions">
+            <label class="an-period"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg><select id="an-period" aria-label="Period"><option value="7">Last 7 Days</option><option value="30" selected>Last 30 Days</option><option value="90">Last 90 Days</option></select></label>
+            <button type="button" class="an-export" id="an-export"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/><path d="M12 15V3"/></svg> Export Report</button>
           </div>
         </div>
+        <div class="an-stats">
+          <div class="an-stat"><span class="an-stat-ic"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.9"/><path d="M16 3.1a4 4 0 0 1 0 7.8"/></svg></span><div><span>Total Visitors</span><b>0</b><em class="an-flat">&mdash; no previous data</em></div><svg class="an-spark" viewBox="0 0 80 28" width="80" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M2 14 H78"/></svg></div>
+          <div class="an-stat"><span class="an-stat-ic"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 2 9 4.9-9 4.9-9-4.9z"/><path d="m3 11.9 9 4.9 9-4.9"/><path d="m3 16.9 9 4.9 9-4.9"/></svg></span><div><span>Page Views</span><b>0</b><em class="an-flat">&mdash; no previous data</em></div><svg class="an-spark" viewBox="0 0 80 28" width="80" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M2 14 H78"/></svg></div>
+          <div class="an-stat"><span class="an-stat-ic"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></span><div><span>Sessions</span><b>0</b><em class="an-flat">&mdash; no previous data</em></div><svg class="an-spark" viewBox="0 0 80 28" width="80" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M2 14 H78"/></svg></div>
+          <div class="an-stat"><span class="an-stat-ic"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></span><div><span>Avg. Session Duration</span><b>&mdash;</b><em class="an-flat">no visits yet</em></div><svg class="an-spark" viewBox="0 0 80 28" width="80" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M2 14 H78"/></svg></div>
+        </div>
+        <div class="an-mid">
+          <div class="admin-panel an-card an-chart-card">
+            <div class="an-card-head"><span class="an-card-ic"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.9"/><path d="M16 3.1a4 4 0 0 1 0 7.8"/></svg></span><div><h3>Visitors Overview</h3><span id="an-chart-sub">Daily visitor trends for the selected period.</span></div>
+              <div class="an-pills" role="tablist" aria-label="Chart metric"><button type="button" class="an-pill active" data-an-metric="visitors">Visitors</button><button type="button" class="an-pill" data-an-metric="views">Page Views</button><button type="button" class="an-pill" data-an-metric="sessions">Sessions</button></div>
+            </div>
+            <div class="an-chart-wrap"><svg id="an-chart" viewBox="0 0 720 260" width="100%" height="260" role="img" aria-label="Visitors chart — no data yet"></svg><div class="an-chart-empty"><b>No visitor data yet</b><span>This site is static &mdash; it doesn&rsquo;t track visitors.</span></div></div>
+          </div>
+          <div class="admin-panel an-card an-device-card">
+            <div class="an-card-head"><span class="an-card-ic"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></span><div><h3>Traffic by Device</h3></div></div>
+            <div class="an-donut-wrap">
+              <svg class="an-donut" viewBox="0 0 160 160" width="160" height="160"><circle cx="80" cy="80" r="62" fill="none" stroke="rgba(255,255,255,.08)" stroke-width="22"/><text x="80" y="78" text-anchor="middle" class="an-donut-num">0</text><text x="80" y="98" text-anchor="middle" class="an-donut-lbl">Visitors</text></svg>
+              <ul class="an-legend">
+                <li><span class="an-leg-ic"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></span><span>Desktop</span><b>0%</b></li>
+                <li><span class="an-leg-ic"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/></svg></span><span>Mobile</span><b>0%</b></li>
+                <li><span class="an-leg-ic"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M12 18h.01"/></svg></span><span>Tablet</span><b>0%</b></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="an-bottom">
+          <div class="admin-panel an-card">
+            <div class="an-card-head"><span class="an-card-ic"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg></span><div><h3>Top Pages</h3><span>Most visited pages on your website.</span></div></div>
+            <table class="an-table"><thead><tr><th>Page</th><th>Views</th><th></th><th>%</th></tr></thead><tbody>
+              <tr><td><span class="an-page-ic"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></span> /(Home)</td><td>0</td><td><span class="an-bar"><i style="width:0%"></i></span></td><td>0%</td></tr>
+              <tr><td><span class="an-page-ic"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></span> /about</td><td>0</td><td><span class="an-bar"><i style="width:0%"></i></span></td><td>0%</td></tr>
+              <tr><td><span class="an-page-ic"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 7l-10 6L2 7"/></svg></span> /contact</td><td>0</td><td><span class="an-bar"><i style="width:0%"></i></span></td><td>0%</td></tr>
+              <tr><td><span class="an-page-ic"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></span> /works</td><td>0</td><td><span class="an-bar"><i style="width:0%"></i></span></td><td>0%</td></tr>
+              <tr><td><span class="an-page-ic"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></span> /blog</td><td>0</td><td><span class="an-bar"><i style="width:0%"></i></span></td><td>0%</td></tr>
+            </tbody></table>
+          </div>
+          <div class="admin-panel an-card">
+            <div class="an-card-head"><span class="an-card-ic"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></span><div><h3>Traffic Sources</h3><span>Where your visitors are coming from.</span></div></div>
+            <ul class="an-src">
+              <li><span class="an-src-ic"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></span><div><b>Direct</b><span>(Typed URL / Bookmark)</span></div><span class="an-bar"><i style="width:0%"></i></span><b>0%</b></li>
+              <li><span class="an-src-ic"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg></span><div><b>Google</b><span>(Organic Search)</span></div><span class="an-bar"><i style="width:0%"></i></span><b>0%</b></li>
+              <li><span class="an-src-ic"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22.5 6.4a2.8 2.8 0 0 0-2-2C18.9 4 12 4 12 4s-6.9 0-8.5.4a2.8 2.8 0 0 0-2 2A29 29 0 0 0 1 11.7a29 29 0 0 0 .5 5.3 2.8 2.8 0 0 0 2 2c1.6.4 8.5.4 8.5.4s6.9 0 8.5-.4a2.8 2.8 0 0 0 2-2 29 29 0 0 0 .5-5.3 29 29 0 0 0-.5-5.3z"/><path d="m10 15 5-3.3L10 8.4z" fill="currentColor" stroke="none"/></svg></span><div><b>YouTube</b><span>(Referral)</span></div><span class="an-bar"><i style="width:0%"></i></span><b>0%</b></li>
+              <li><span class="an-src-ic"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/></svg></span><div><b>Social Media</b><span>(Facebook, X, etc.)</span></div><span class="an-bar"><i style="width:0%"></i></span><b>0%</b></li>
+              <li><span class="an-src-ic"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="1" fill="currentColor"/><circle cx="19" cy="12" r="1" fill="currentColor"/><circle cx="5" cy="12" r="1" fill="currentColor"/></svg></span><div><b>Other</b><span>(Referral / Campaign)</span></div><span class="an-bar"><i style="width:0%"></i></span><b>0%</b></li>
+            </ul>
+          </div>
+          <div class="admin-panel an-card">
+            <div class="an-card-head"><span class="an-card-ic"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></span><div><h3>Top Countries</h3><span>Visitor locations by country.</span></div></div>
+            <ul class="an-src an-countries">
+              <li><span class="an-flag an-flag-bd" aria-hidden="true"></span><div><b>Bangladesh</b></div><span class="an-bar"><i style="width:0%"></i></span><b>0%</b></li>
+              <li><span class="an-flag an-flag-in" aria-hidden="true"></span><div><b>India</b></div><span class="an-bar"><i style="width:0%"></i></span><b>0%</b></li>
+              <li><span class="an-flag an-flag-us" aria-hidden="true"></span><div><b>United States</b></div><span class="an-bar"><i style="width:0%"></i></span><b>0%</b></li>
+              <li><span class="an-flag an-flag-gb" aria-hidden="true"></span><div><b>United Kingdom</b></div><span class="an-bar"><i style="width:0%"></i></span><b>0%</b></li>
+              <li><span class="an-flag an-flag-other" aria-hidden="true">&middot;&middot;&middot;</span><div><b>Other Countries</b></div><span class="an-bar"><i style="width:0%"></i></span><b>0%</b></li>
+            </ul>
+          </div>
+        </div>
+        <div class="admin-note an-note"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><div><b>No visitor data yet.</b> This site is static &mdash; it doesn&rsquo;t track visitors, so every number above is 0. Connect an analytics service (for example Google Analytics or Cloudflare Web Analytics) and the real numbers will appear here.</div></div>
       </section>
 
       <!-- ============ SETTINGS VIEW ============ -->
       <section class="admin-view" data-view="settings" hidden>
-        <div class="admin-panel admin-form-panel">
-          <div class="admin-panel-head"><h3>Settings</h3></div>
-          <div class="admin-note"><b>Changes save on this device only.</b> Visitors won&rsquo;t see them until Rio publishes them live — ask Rio in the Personal Website chat. Anyone can open Admin on their own device, but their changes stay on their device and never touch yours or the live site.</div>
+        <div class="set-hero">
+          <span class="set-hero-ic"><svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.9l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.9-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1-1.6 1.7 1.7 0 0 0-1.9.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.9 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.6-1 1.7 1.7 0 0 0-.3-1.9l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.9.3h.1a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5h.1a1.7 1.7 0 0 0 1.9-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.9v.1a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg></span>
+          <div><h2>Settings</h2><p>Manage your website, content, and preferences from one place.</p></div>
+        </div>
+        <div class="set-tabs" role="tablist" aria-label="Settings sections">
+          <button type="button" class="set-tab active" data-set-tab="general"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.9l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.9-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1-1.6 1.7 1.7 0 0 0-1.9.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.9 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.6-1 1.7 1.7 0 0 0-.3-1.9l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.9.3h.1a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5h.1a1.7 1.7 0 0 0 1.9-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.9v.1a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg><span>General</span></button>
+          <button type="button" class="set-tab" data-set-tab="customize"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg><span>Customize</span></button>
+          <button type="button" class="set-tab" data-set-tab="content"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M9 13h6M9 17h6"/></svg><span>Content</span></button>
+          <button type="button" class="set-tab" data-set-tab="social"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/></svg><span>Social Links</span></button>
+          <button type="button" class="set-tab" data-set-tab="brands"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.6 13.4 12 22 2 12V2h10l8.6 8.6a2 2 0 0 1 0 2.8z"/><circle cx="7.5" cy="7.5" r="1.5"/></svg><span>Brands</span></button>
+          <button type="button" class="set-tab" data-set-tab="reviews"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg><span>Reviews</span></button>
+          <button type="button" class="set-tab" data-set-tab="community"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.9"/><path d="M16 3.1a4 4 0 0 1 0 7.8"/></svg><span>Community</span></button>
+          <button type="button" class="set-tab" data-set-tab="texts"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7V4h16v3"/><path d="M9 20h6"/><path d="M12 4v16"/></svg><span>Texts</span></button>
+          <button type="button" class="set-tab" data-set-tab="advanced"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3"/><path d="M1 14h6M9 8h6M17 16h6"/></svg><span>Advanced</span></button>
+        </div>
+        <div class="set-panel" data-set-panel="general">
+          <div class="set-grid">
+            <div class="admin-panel set-card">
+              <div class="set-card-head"><span class="set-card-ic"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.9l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.9-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1-1.6 1.7 1.7 0 0 0-1.9.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.9 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.6-1 1.7 1.7 0 0 0-.3-1.9l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.9.3h.1a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5h.1a1.7 1.7 0 0 0 1.9-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.9v.1a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg></span><div><h3>General Settings</h3><span>Basic website information and core preferences.</span></div></div>
+              <div class="set-row2">
+                <div><label for="set-title">Website Title</label><input id="set-title" type="text" maxlength="80" autocomplete="off"></div>
+                <div><label for="set-tagline">Website Tagline</label><input id="set-tagline" type="text" maxlength="80" autocomplete="off"></div>
+              </div>
+              <label for="set-meta">Meta Description</label>
+              <textarea id="set-meta" rows="3" maxlength="160"></textarea>
+              <span class="set-count" id="set-meta-count">0 / 160</span>
+              <div class="set-row2">
+                <div><label for="set-url">Website URL</label><input id="set-url" type="url" readonly></div>
+                <div><label>Favicon (32&times;32)</label><div class="set-favicon"><img id="set-favicon-img" src="m-logo.png" alt="Favicon" width="32" height="32"><button type="button" class="set-fav-btn" id="set-favicon-change"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m17 8-5-5-5 5"/><path d="M12 3v12"/></svg> Change</button><button type="button" class="set-fav-btn set-fav-del" id="set-favicon-remove" aria-label="Remove custom favicon"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg></button><input type="file" id="set-favicon-file" accept="image/*" hidden></div></div>
+              </div>
+            </div>
+            <div class="admin-panel set-card">
+              <div class="set-card-head"><span class="set-card-ic"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3"/><path d="M1 14h6M9 8h6M17 16h6"/></svg></span><div><h3>Site Preferences</h3><span>Control how your website works and behaves.</span></div></div>
+              <div class="set-pref"><span class="set-pref-ic"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></span><div class="set-pref-txt"><b>Website Visibility</b><span>Make your website live to everyone</span></div><button type="button" class="set-toggle on" id="set-vis" role="switch" aria-checked="true" aria-label="Website Visibility"><span></span></button></div>
+              <div class="set-pref"><span class="set-pref-ic"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8z"/></svg></span><div class="set-pref-txt"><b>Dark Mode (Default)</b><span>Load dark theme by default</span></div><button type="button" class="set-toggle on" id="set-dark" role="switch" aria-checked="true" aria-label="Dark Mode"><span></span></button></div>
+              <div class="set-pref"><span class="set-pref-ic"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="6 3 20 12 6 21 6 3"/></svg></span><div class="set-pref-txt"><b>UI Animations</b><span>Enable smooth animations and effects</span></div><button type="button" class="set-toggle on" id="set-anim" role="switch" aria-checked="true" aria-label="UI Animations"><span></span></button></div>
+              <div class="set-pref"><span class="set-pref-ic"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 15v3M12 10v8M17 6v12"/></svg></span><div class="set-pref-txt"><b>Show Analytics</b><span>Display visitor insights in dashboard</span></div><button type="button" class="set-toggle on" id="set-analytics" role="switch" aria-checked="true" aria-label="Show Analytics"><span></span></button></div>
+            </div>
+            <div class="set-side">
+              <div class="admin-panel set-card">
+                <div class="set-card-head"><span class="set-card-ic"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></span><div><h3>Quick Actions</h3></div></div>
+                <button type="button" class="set-qa set-qa-red" id="set-save"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><path d="M17 21v-8H7v8"/><path d="M7 3v5h8"/></svg> Save Changes</button>
+                <button type="button" class="set-qa" id="set-clear"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.6 13.4 12 22 2 12V2h10l8.6 8.6a2 2 0 0 1 0 2.8z"/><circle cx="7.5" cy="7.5" r="1.5"/></svg> Clear All Saved Data</button>
+                <button type="button" class="set-qa" id="set-backup"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 10h-1.3A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/><path d="M12 12v9"/><path d="m16 16-4-4-4 4"/></svg> Backup Website Data</button>
+                <button type="button" class="set-qa" id="set-restore"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.7 9.7 0 0 0-6.7 2.8L3 8"/><path d="M3 3v5h5"/><path d="M12 7v5l4 2"/></svg> Restore from Backup</button>
+                <input type="file" id="set-restore-file" accept="application/json,.json" hidden>
+              </div>
+              <div class="admin-panel set-card">
+                <div class="set-card-head"><span class="set-card-ic"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg></span><div><h3>System Info</h3></div></div>
+                <div class="set-info-row"><span><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.7l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.7l7 4a2 2 0 0 0 2 0l7-4a2 2 0 0 0 1-1.7z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg> Admin Panel</span><b id="set-info-version">GitHub Pages</b></div>
+                <div class="set-info-row"><span><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg> Last Saved</span><b id="set-info-saved">&mdash;</b></div>
+                <div class="set-info-row"><span><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg> Total Posts</span><b id="set-info-posts">0</b></div>
+                <div class="set-info-row"><span><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.7-4 3-9 3s-9-1.3-9-3"/><path d="M3 5v14c0 1.7 4 3 9 3s9-1.3 9-3V5"/></svg> Storage Used</span><b id="set-info-storage">0 KB</b></div>
+                <div class="set-storage-bar"><span id="set-storage-fill"></span></div>
+                <div class="set-info-row set-storage-pct"><span></span><b id="set-info-storage-pct">0%</b></div>
+              </div>
+            </div>
+          </div>
+          <div class="admin-note"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg><div><b>Changes save on this device only.</b> Visitors won&rsquo;t see them until you publish them live — ask Rio in the Personal Website chat. Anyone can open Admin on their own device, but their changes stay on their device and never touch yours or the live site.</div></div>
           <p class="hint">Admin panel opens only from the <b>#admin</b> link — there is no Admin button on the public site. Bookmark <b>https://mehedihallmubin.github.io/#admin</b>. No password is needed.</p>
-          <h4>Clear saved admin data</h4>
-          <p class="hint">Removes every change saved on this device (blog posts, reviews, links, brands, texts) and restores the original content.</p>
-          <div style="margin-top:12px"><button id="admin-clear-data" class="btn btn-ghost btn-sm" type="button">Clear all saved admin data</button></div>
+          <div class="admin-panel set-clear-card">
+            <span class="set-clear-ic"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg></span>
+            <div class="set-clear-txt"><h3>Clear Saved Admin Data</h3><p>Remove every change saved on this device (blog posts, reviews, links, brands, texts) and restore the original content.</p></div>
+            <button id="admin-clear-data" class="btn btn-ghost btn-sm set-clear-btn" type="button"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg> Clear All Saved Admin Data</button>
+          </div>
           <p id="admin-cleared" class="saved-msg" hidden>Cleared — original content restored. Reload the page to see it.</p>
+        </div>
+        <div class="set-panel" data-set-panel="customize" hidden>
+          <div class="admin-panel set-card">
+            <div class="set-card-head"><span class="set-card-ic"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></span><div><h3>Customize Your Website</h3><span>Change your name, banner, picture and all info from here.</span></div></div>
+            <div class="set-custom-media">
+              <div class="set-media-block">
+                <label>Profile Picture</label>
+                <div class="set-media-preview"><img id="cz-pic-img" src="mehedi-portrait.jpg" alt="Profile picture"></div>
+                <div class="set-media-actions"><button type="button" class="set-fav-btn" id="cz-pic-change"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m17 8-5-5-5 5"/><path d="M12 3v12"/></svg> Change Picture</button><button type="button" class="set-fav-btn set-fav-del" id="cz-pic-remove" aria-label="Remove custom picture"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg></button><input type="file" id="cz-pic-file" accept="image/*" hidden></div>
+              </div>
+              <div class="set-media-block">
+                <label>Banner Image</label>
+                <div class="set-media-preview set-banner-preview"><img id="cz-banner-img" src="" alt="Banner preview"><span id="cz-banner-empty">No banner yet — upload one to show a cover on the home page.</span></div>
+                <div class="set-media-actions"><button type="button" class="set-fav-btn" id="cz-banner-change"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m17 8-5-5-5 5"/><path d="M12 3v12"/></svg> Change Banner</button><button type="button" class="set-fav-btn set-fav-del" id="cz-banner-remove" aria-label="Remove banner"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg></button><input type="file" id="cz-banner-file" accept="image/*" hidden></div>
+              </div>
+            </div>
+            <div class="set-row2">
+              <div><label for="cz-name">Name</label><input id="cz-name" type="text" maxlength="80" autocomplete="off"></div>
+              <div><label for="cz-role">Role / Profession</label><input id="cz-role" type="text" maxlength="120" autocomplete="off"></div>
+            </div>
+            <div class="set-row2">
+              <div><label for="cz-email">Email</label><input id="cz-email" type="email" maxlength="120" autocomplete="off"></div>
+              <div><label for="cz-phone">Phone</label><input id="cz-phone" type="tel" maxlength="30" autocomplete="off"></div>
+            </div>
+            <label for="cz-location">Location</label>
+            <input id="cz-location" type="text" maxlength="80" autocomplete="off" placeholder="e.g. Dhaka, Bangladesh">
+            <label for="cz-about">About Me</label>
+            <textarea id="cz-about" rows="4" maxlength="600"></textarea>
+            <span class="set-count" id="cz-about-count">0 / 600</span>
+            <div class="admin-add-actions" style="margin-top:14px">
+              <button type="button" class="btn btn-solid btn-sm" id="cz-save">Save Changes</button>
+            </div>
+            <p class="hint">Picture and banner save on this device only — visitors will see them after Rio publishes them live. Ask Rio in the Personal Website chat to publish.</p>
+          </div>
+        </div>
+        <div class="set-panel" data-set-panel="advanced" hidden>
+          <div class="admin-panel set-card">
+            <div class="set-card-head"><span class="set-card-ic"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3"/><path d="M1 14h6M9 8h6M17 16h6"/></svg></span><div><h3>Advanced</h3><span>Reset settings and danger zone.</span></div></div>
+            <p class="hint">Resetting settings restores the original website title, tagline, meta description and all preferences. Your blog posts, brands, links, reviews and texts are NOT touched.</p>
+            <div style="margin-top:12px"><button id="set-reset" class="btn btn-ghost btn-sm" type="button">Reset Settings to Default</button></div>
+            <p id="set-reset-done" class="saved-msg" hidden>Reset — settings restored to default.</p>
+          </div>
         </div>
       </section>
     </div>
@@ -1444,9 +1846,14 @@
     var brands=read('pw_brands');
     var bn=9; // site ships 9 real brands; an edited list lives in pw_brands
     if(brands){ try{ var a=JSON.parse(brands); if(Array.isArray(a)) bn=a.length; }catch(e){} }
-    // Social = 26 fixed platforms + any custom platforms added in Admin.
-    var sc=DS_FIXED.social;
-    try{ var cu=JSON.parse(read('pw_social_custom')||'[]'); if(Array.isArray(cu)) sc+=cu.length; }catch(e){}
+    // Social = platforms actually added (fixed with a saved profile link
+    // + custom platforms), not the 26 fixed slots.
+    var sc=0;
+    try{
+      var lk=JSON.parse(read('pw_social_links')||'{}');
+      Object.keys(lk).forEach(function(id){ if(/^https?:\/\/.+/.test(lk[id]||'')) sc++; });
+    }catch(e){}
+    try{ var cu=JSON.parse(read('pw_social_custom')||'[]'); if(Array.isArray(cu)) cu.forEach(function(c){ if(c && /^https?:\/\/.+/.test(c.url||'')) sc++; }); }catch(e){}
     return {posts:countArr('pw_blog_posts'), brands:bn, reviews:countArr(K_MANUAL),
       social:sc, community:DS_FIXED.community, texts:DS_FIXED.texts};
   }
@@ -1518,6 +1925,8 @@
     closeSideDrawer();
     logActivity(VIEW_LABELS[name]||'Admin viewed');
     renderAdminDashboard();
+    if(name==='settings') fillSettingsForm();
+    if(name==='analytics') renderAnChart();
     if(focusId){ var f=$(focusId); if(f) setTimeout(function(){ f.focus(); }, 60); }
     var main=document.querySelector('#admin-modal .admin-main'); if(main) main.scrollTop=0;
   }
@@ -1560,11 +1969,471 @@
   // Settings: clear every saved admin change on this device.
   var clearBtn=$('admin-clear-data');
   if(clearBtn) clearBtn.addEventListener('click', function(){
-    ['pw_review_link','pw_review_widget','pw_manual_reviews','pw_social_links','pw_community_links','pw_blog_posts','pw_brands','pw_texts','pw_admin_activity'].forEach(function(k){ try{ localStorage.removeItem(k); }catch(e){} });
+    ['pw_review_link','pw_review_widget','pw_manual_reviews','pw_social_links','pw_social_custom','pw_community_links','pw_blog_posts','pw_brands','pw_texts','pw_admin_activity','pw_settings','pw_last_saved'].forEach(function(k){ try{ localStorage.removeItem(k); }catch(e){} });
     var m=$('admin-cleared'); if(m) m.hidden=false;
+    applySettings();
     renderAdminDashboard();
     toast('Saved admin data cleared.');
   });
+  // ============ SETTINGS PAGE (Neon Red Glassmorphism) ============
+  // Settings live in localStorage (this device only) under pw_settings.
+  var K_SET='pw_settings';
+  var K_SAVED='pw_last_saved';
+  var SET_DEFAULTS={
+    title:'Mehedi H. All Mubin',
+    tagline:'Creative \u2022 Professional',
+    meta:'Mehedi H. All Mubin \u2014 designer, video editor and social media manager. Founder of QuickShoppingNow and LUXAUR. Portfolio at the bottom of this page.',
+    url:'https://mehedihallmubin.github.io/',
+    favicon:'',
+    portrait:'',
+    banner:'',
+    role:'Graphic Designer & Video Editor \u2014 Jax Corporation',
+    about:'I\u2019m a designer and video editor with a passion for visual storytelling and brand building. I create engaging content, manage social media, and build e-commerce brands. I\u2019m the founder of QuickShoppingNow and LUXAUR.',
+    email:'mehedih.allmubin@gmail.com',
+    phone:'+8801611541164',
+    location:'',
+    visibility:true, darkMode:true, animations:true, showAnalytics:true
+  };
+  // Email/phone currently applied to the page (defaults on first load).
+  // applySettings() replaces these, so changing them again still works.
+  var appliedEmail=SET_DEFAULTS.email;
+  var appliedPhone=SET_DEFAULTS.phone;
+  function getSettings(){
+    var s={}; for(var k in SET_DEFAULTS) s[k]=SET_DEFAULTS[k];
+    try{ var saved=JSON.parse(read(K_SET)||'null'); if(saved && typeof saved==='object') for(var k2 in saved) if(k2 in s) s[k2]=saved[k2]; }catch(e){}
+    return s;
+  }
+  function storeSettings(s){ store(K_SET, JSON.stringify(s)); markSaved(); }
+  function markSaved(){ try{ localStorage.setItem(K_SAVED, String(Date.now())); }catch(e){} updateSystemInfo(); }
+  // Apply settings to the public site (runs on every page load).
+  function applySettings(){
+    var s=getSettings();
+    var t=s.title||SET_DEFAULTS.title;
+    document.title=t+(s.tagline?' \u2014 '+s.tagline:'');
+    Array.prototype.slice.call(document.querySelectorAll('.brand-name, .home-brand-name, .home-hero-info h1')).forEach(function(el){ el.textContent=t; });
+    var m=document.querySelector('meta[name="description"]');
+    if(m) m.setAttribute('content', s.meta||SET_DEFAULTS.meta);
+    var fav=s.favicon||'m-logo.png';
+    var link=document.querySelector('link[rel="icon"]')||document.querySelector('link[rel="shortcut icon"]');
+    if(link) link.setAttribute('href', fav);
+    // Customize: portrait, banner, role, about, email, phone, location.
+    var pic=s.portrait||'mehedi-portrait.jpg';
+    Array.prototype.slice.call(document.querySelectorAll('.home-portrait img')).forEach(function(img){ img.src=pic; });
+    var bn=$('home-banner'), bi=$('home-banner-img');
+    if(bn && bi){
+      if(s.banner){ bi.src=s.banner; bn.hidden=false; }
+      else { bi.src=''; bn.hidden=true; }
+    }
+    var role=s.role||SET_DEFAULTS.role;
+    Array.prototype.slice.call(document.querySelectorAll('.home-role')).forEach(function(el){ el.textContent=role; });
+    var about=s.about||SET_DEFAULTS.about;
+    Array.prototype.slice.call(document.querySelectorAll('.home-about p:not(.home-about-loc)')).forEach(function(el){ el.textContent=about; });
+    var locEl=$('home-about-loc');
+    if(locEl){
+      if(s.location){ locEl.textContent=s.location; locEl.hidden=false; }
+      else locEl.hidden=true;
+    }
+    var em=s.email||SET_DEFAULTS.email;
+    var ph=s.phone||SET_DEFAULTS.phone;
+    // Replace the previously applied email/phone (or the default on first
+    // load) so changing them again still works.
+    Array.prototype.slice.call(document.querySelectorAll('a[href^="mailto:"]')).forEach(function(a){
+      var href=a.getAttribute('href');
+      if(href.indexOf(appliedEmail)!== -1){
+        a.setAttribute('href', href.split(appliedEmail).join(em));
+        if(a.textContent.indexOf(appliedEmail)!== -1) a.textContent=a.textContent.split(appliedEmail).join(em);
+      }
+    });
+    appliedEmail=em;
+    Array.prototype.slice.call(document.querySelectorAll('a[href^="tel:"]')).forEach(function(a){
+      var href=a.getAttribute('href');
+      var telDigits=appliedPhone.replace(/[\s-]/g,'');
+      if(href.indexOf(telDigits)!== -1){
+        a.setAttribute('href', href.split(telDigits).join(ph.replace(/[\s-]/g,'')));
+        // The visible text is formatted with spaces ("+880 1611 541164"),
+        // so compare digits-only; replace only when the whole text is the number.
+        if(a.textContent.replace(/[\s-]/g,'')===telDigits) a.textContent=ph;
+      }
+    });
+    appliedPhone=ph;
+    var b=document.getElementById('maint-banner');
+    if(!s.visibility){
+      if(!b){ b=document.createElement('div'); b.id='maint-banner'; b.className='maint-banner'; b.textContent='This website is under maintenance \u2014 please check back soon.'; if(document.body) document.body.insertBefore(b, document.body.firstChild); }
+    } else if(b){ b.remove(); }
+    document.documentElement.classList.toggle('light', !s.darkMode);
+    document.documentElement.classList.toggle('no-anim', !s.animations);
+    var showA=!!s.showAnalytics;
+    Array.prototype.slice.call(document.querySelectorAll('[data-admin-view="analytics"]')).forEach(function(el){ el.style.display=showA?'':'none'; });
+    var ov=document.querySelector('.admin-analytics'); if(ov) ov.style.display=showA?'':'none';
+  }
+  function setToggle(id, on){
+    var b=$(id); if(!b) return;
+    b.classList.toggle('on', !!on);
+    b.setAttribute('aria-checked', on?'true':'false');
+  }
+  function getToggle(id){ var b=$(id); return b ? b.classList.contains('on') : true; }
+  // Fill the Settings form from saved settings (when the Settings view opens).
+  function fillSettingsForm(){
+    // Always open on the General tab.
+    document.querySelectorAll('.set-tab').forEach(function(b){ b.classList.toggle('active', b.getAttribute('data-set-tab')==='general'); });
+    document.querySelectorAll('.set-panel').forEach(function(p){ p.hidden=p.getAttribute('data-set-panel')!=='general'; });
+    var s=getSettings();
+    var t=$('set-title'); if(t) t.value=s.title;
+    var tg=$('set-tagline'); if(tg) tg.value=s.tagline;
+    var mt=$('set-meta'); if(mt){ mt.value=s.meta; updateMetaCount(); }
+    var u=$('set-url'); if(u) u.value=s.url;
+    var fi=$('set-favicon-img'); if(fi) fi.src=s.favicon||'m-logo.png';
+    setToggle('set-vis', s.visibility);
+    setToggle('set-dark', s.darkMode);
+    setToggle('set-anim', s.animations);
+    setToggle('set-analytics', s.showAnalytics);
+    updateSystemInfo();
+  }
+  // Save the General fields + toggle states.
+  function saveSettingsForm(){
+    var s=getSettings();
+    var t=$('set-title'); if(t) s.title=t.value.trim()||SET_DEFAULTS.title;
+    var tg=$('set-tagline'); if(tg) s.tagline=tg.value.trim();
+    var mt=$('set-meta'); if(mt) s.meta=mt.value.trim()||SET_DEFAULTS.meta;
+    s.visibility=getToggle('set-vis');
+    s.darkMode=getToggle('set-dark');
+    s.animations=getToggle('set-anim');
+    s.showAnalytics=getToggle('set-analytics');
+    storeSettings(s);
+    applySettings();
+    renderAdminDashboard();
+    toast('Settings saved.');
+  }
+  // ============ CUSTOMIZE YOUR WEBSITE ============
+  // Fill the Customize form from saved settings.
+  function fillCustomizeForm(){
+    var s=getSettings();
+    var pi=$('cz-pic-img'); if(pi) pi.src=s.portrait||'mehedi-portrait.jpg';
+    var bi=$('cz-banner-img'), be=$('cz-banner-empty');
+    if(bi){ bi.src=s.banner||''; if(be) be.style.display=s.banner?'none':''; }
+    var n=$('cz-name'); if(n) n.value=s.title;
+    var r=$('cz-role'); if(r) r.value=s.role;
+    var e=$('cz-email'); if(e) e.value=s.email;
+    var p=$('cz-phone'); if(p) p.value=s.phone;
+    var l=$('cz-location'); if(l) l.value=s.location||'';
+    var a=$('cz-about'); if(a){ a.value=s.about; updateAboutCount(); }
+  }
+  // Save the Customize fields.
+  function saveCustomizeForm(){
+    var s=getSettings();
+    var n=$('cz-name'); if(n) s.title=n.value.trim()||SET_DEFAULTS.title;
+    var r=$('cz-role'); if(r) s.role=r.value.trim()||SET_DEFAULTS.role;
+    var e=$('cz-email'); if(e && e.value.trim()) s.email=e.value.trim();
+    var p=$('cz-phone'); if(p && p.value.trim()) s.phone=p.value.trim();
+    var l=$('cz-location'); if(l) s.location=l.value.trim();
+    var a=$('cz-about'); if(a) s.about=a.value.trim()||SET_DEFAULTS.about;
+    storeSettings(s);
+    applySettings();
+    renderAdminDashboard();
+    toast('Website updated.');
+  }
+  function updateAboutCount(){
+    var a=$('cz-about'), c=$('cz-about-count');
+    if(a && c) c.textContent=a.value.length+' / 600';
+  }
+  // Downscale an image file to a data URL (max dimension px).
+  function imageToDataURL(file, maxDim, cb){
+    if(!/^image\//.test(file.type)){ toast('Please choose an image file.'); return; }
+    var img=new Image();
+    var url=URL.createObjectURL(file);
+    img.onload=function(){
+      var w=img.naturalWidth, h=img.naturalHeight;
+      var scale=Math.min(1, maxDim/Math.max(w,h));
+      var cv=document.createElement('canvas');
+      cv.width=Math.max(1, Math.round(w*scale)); cv.height=Math.max(1, Math.round(h*scale));
+      cv.getContext('2d').drawImage(img, 0, 0, cv.width, cv.height);
+      URL.revokeObjectURL(url);
+      cb(cv.toDataURL('image/jpeg', 0.85));
+    };
+    img.onerror=function(){ URL.revokeObjectURL(url); toast('Could not read that image.'); };
+    img.src=url;
+  }
+  // Profile picture: Change / Remove.
+  var czPicChange=$('cz-pic-change');
+  if(czPicChange) czPicChange.addEventListener('click', function(){ var f=$('cz-pic-file'); if(f) f.click(); });
+  var czPicFile=$('cz-pic-file');
+  if(czPicFile) czPicFile.addEventListener('change', function(){
+    var f=czPicFile.files && czPicFile.files[0];
+    if(!f) return;
+    imageToDataURL(f, 800, function(data){
+      var s=getSettings(); s.portrait=data; storeSettings(s); applySettings();
+      var pi=$('cz-pic-img'); if(pi) pi.src=data;
+      toast('Profile picture updated.');
+    });
+    czPicFile.value='';
+  });
+  var czPicRemove=$('cz-pic-remove');
+  if(czPicRemove) czPicRemove.addEventListener('click', function(){
+    var s=getSettings(); s.portrait=''; storeSettings(s); applySettings();
+    var pi=$('cz-pic-img'); if(pi) pi.src='mehedi-portrait.jpg';
+    toast('Profile picture reset.');
+  });
+  // Banner image: Change / Remove.
+  var czBannerChange=$('cz-banner-change');
+  if(czBannerChange) czBannerChange.addEventListener('click', function(){ var f=$('cz-banner-file'); if(f) f.click(); });
+  var czBannerFile=$('cz-banner-file');
+  if(czBannerFile) czBannerFile.addEventListener('change', function(){
+    var f=czBannerFile.files && czBannerFile.files[0];
+    if(!f) return;
+    imageToDataURL(f, 1400, function(data){
+      var s=getSettings(); s.banner=data; storeSettings(s); applySettings();
+      var bi=$('cz-banner-img'); if(bi) bi.src=data;
+      var be=$('cz-banner-empty'); if(be) be.style.display='none';
+      toast('Banner updated.');
+    });
+    czBannerFile.value='';
+  });
+  var czBannerRemove=$('cz-banner-remove');
+  if(czBannerRemove) czBannerRemove.addEventListener('click', function(){
+    var s=getSettings(); s.banner=''; storeSettings(s); applySettings();
+    var bi=$('cz-banner-img'); if(bi) bi.src='';
+    var be=$('cz-banner-empty'); if(be) be.style.display='';
+    toast('Banner removed.');
+  });
+  // Customize: about counter + save button.
+  var czAboutEl=$('cz-about');
+  if(czAboutEl) czAboutEl.addEventListener('input', updateAboutCount);
+  var czSaveBtn=$('cz-save');
+  if(czSaveBtn) czSaveBtn.addEventListener('click', saveCustomizeForm);
+  // ============ ANALYTICS ============
+  // The site is static and tracks nothing, so every number is 0. The chart
+  // still draws its grid + real date labels for the selected period, with an
+  // honest empty state instead of a fake line.
+  var AN_DAYS=30, AN_METRIC='visitors';
+  function renderAnChart(){
+    var svg=$('an-chart');
+    if(!svg) return;
+    var days=AN_DAYS;
+    var W=720, H=260, L=44, R=10, T=12, B=28;
+    var innerW=W-L-R, innerH=H-T-B;
+    var max=1250;
+    var ns='http://www.w3.org/2000/svg';
+    while(svg.firstChild) svg.removeChild(svg.firstChild);
+    function el(name, attrs){ var e=document.createElementNS(ns,name); for(var k in attrs) e.setAttribute(k, attrs[k]); svg.appendChild(e); return e; }
+    // Grid lines + y labels.
+    var steps=[0,250,500,750,1000,1250];
+    steps.forEach(function(v){
+      var y=T+innerH-(v/max)*innerH;
+      el('line',{x1:L,y1:y,x2:W-R,y2:y,stroke:'rgba(255,255,255,.07)','stroke-width':1});
+      var t=el('text',{x:L-8,y:y+4,'text-anchor':'end',fill:'#A1A1AA','font-size':11});
+      t.textContent=v.toLocaleString('en-US');
+    });
+    // X labels: real dates for the selected period (every ~3 days).
+    var today=new Date();
+    var start=new Date(today); start.setDate(today.getDate()-(days-1));
+    var nLabels=Math.min(10, days);
+    var fmt=function(d){ return d.toLocaleDateString('en-US',{month:'short',day:'numeric'}); };
+    for(var i=0;i<nLabels;i++){
+      var frac=nLabels===1?0:i/(nLabels-1);
+      var d=new Date(start); d.setDate(start.getDate()+Math.round(frac*(days-1)));
+      var x=L+frac*innerW;
+      var t2=el('text',{x:x,y:H-8,'text-anchor':'middle',fill:'#A1A1AA','font-size':11});
+      t2.textContent=fmt(d);
+    }
+    // Baseline (0 line) — no data line is drawn.
+    el('line',{x1:L,y1:T+innerH,x2:W-R,y2:T+innerH,stroke:'rgba(255,255,255,.18)','stroke-width':1});
+    var sub=$('an-chart-sub');
+    if(sub){
+      var label=AN_METRIC==='views'?'Page Views':AN_METRIC==='sessions'?'Sessions':'Visitors';
+      sub.textContent='Daily '+label.toLowerCase()+' trends for the last '+days+' days ('+fmt(start)+' \u2013 '+fmt(today)+'). No data yet.';
+    }
+  }
+  // Period dropdown.
+  var anPeriod=$('an-period');
+  if(anPeriod) anPeriod.addEventListener('change', function(){
+    AN_DAYS=parseInt(anPeriod.value,10)||30;
+    renderAnChart();
+  });
+  // Metric pills.
+  document.querySelectorAll('.an-pill').forEach(function(b){
+    b.addEventListener('click', function(){
+      AN_METRIC=b.getAttribute('data-an-metric')||'visitors';
+      document.querySelectorAll('.an-pill').forEach(function(x){ x.classList.toggle('active', x===b); });
+      renderAnChart();
+    });
+  });
+  // Export Report: downloads a JSON report with the real (zero) data.
+  var anExport=$('an-export');
+  if(anExport) anExport.addEventListener('click', function(){
+    var today=new Date().toISOString().slice(0,10);
+    var report={
+      website:'https://mehedihallmubin.github.io/',
+      generated:today,
+      period_days:AN_DAYS,
+      metric:AN_METRIC,
+      note:'This site is static and does not track visitors. All counts are 0 until an analytics service is connected.',
+      totals:{visitors:0, page_views:0, sessions:0, avg_session_duration_seconds:null},
+      top_pages:[
+        {path:'/(Home)', views:0},{path:'/about', views:0},{path:'/contact', views:0},{path:'/works', views:0},{path:'/blog', views:0}
+      ],
+      traffic_sources:{direct:0, google:0, youtube:0, social_media:0, other:0},
+      devices:{desktop:0, mobile:0, tablet:0},
+      countries:{bangladesh:0, india:0, united_states:0, united_kingdom:0, other:0}
+    };
+    var blob=new Blob([JSON.stringify(report,null,2)],{type:'application/json'});
+    var a=document.createElement('a');
+    a.href=URL.createObjectURL(blob);
+    a.download='analytics-report-'+today+'.json';
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(function(){ URL.revokeObjectURL(a.href); }, 1000);
+    toast('Report downloaded.');
+  });
+  // Meta description live counter.
+  function updateMetaCount(){
+    var mt=$('set-meta'), c=$('set-meta-count');
+    if(mt && c) c.textContent=mt.value.length+' / 160';
+  }
+  // System Info: real data only — last save time, real post count, real
+  // localStorage usage (all pw_* keys) vs the ~5 MB browser limit.
+  function updateSystemInfo(){
+    var sp=$('set-info-posts'); if(sp) sp.textContent=countArr('pw_blog_posts');
+    var saved=read(K_SAVED);
+    var sv=$('set-info-saved');
+    if(sv) sv.textContent=saved ? new Date(parseInt(saved,10)).toLocaleString('en-GB',{day:'numeric',month:'short',year:'numeric',hour:'numeric',minute:'2-digit'}) : '\u2014';
+    var bytes=0;
+    try{
+      for(var i=0;i<localStorage.length;i++){
+        var k=localStorage.key(i);
+        if(k && k.indexOf('pw_')===0) bytes+=(localStorage.getItem(k)||'').length*2;
+      }
+    }catch(e){}
+    var kb=Math.round(bytes/1024);
+    var st=$('set-info-storage'); if(st) st.textContent=kb+' KB';
+    var pct=Math.min(100, Math.round(bytes/(5*1024*1024)*100));
+    var pc=$('set-info-storage-pct'); if(pc) pc.textContent=pct+'%';
+    var fill=$('set-storage-fill'); if(fill) fill.style.width=pct+'%';
+  }
+  // Settings tabs: General / Customize / Advanced stay in Settings; the
+  // rest jump to that admin section (same as the sidebar).
+  var SET_TAB_VIEW={content:'blog', social:'social', brands:'brands', reviews:'reviews', community:'community', texts:'texts'};
+  function showSetTab(name){
+    document.querySelectorAll('.set-tab').forEach(function(b){ b.classList.toggle('active', b.getAttribute('data-set-tab')===name); });
+    if(name==='general' || name==='customize' || name==='advanced'){
+      document.querySelectorAll('.set-panel').forEach(function(p){ p.hidden=p.getAttribute('data-set-panel')!==name; });
+      if(name==='customize') fillCustomizeForm();
+    } else if(SET_TAB_VIEW[name]){
+      showAdminView(SET_TAB_VIEW[name]);
+    }
+  }
+  document.querySelectorAll('.set-tab').forEach(function(b){
+    b.addEventListener('click', function(){ showSetTab(b.getAttribute('data-set-tab')); });
+  });
+  // Toggles: flip + save immediately.
+  ['set-vis','set-dark','set-anim','set-analytics'].forEach(function(id){
+    var b=$(id);
+    if(b) b.addEventListener('click', function(){
+      var on=!b.classList.contains('on');
+      setToggle(id, on);
+      var s=getSettings();
+      s.visibility=getToggle('set-vis'); s.darkMode=getToggle('set-dark');
+      s.animations=getToggle('set-anim'); s.showAnalytics=getToggle('set-analytics');
+      storeSettings(s);
+      applySettings();
+      renderAdminDashboard();
+      toast('Preference saved.');
+    });
+  });
+  // Meta description live counter.
+  var metaEl=$('set-meta');
+  if(metaEl) metaEl.addEventListener('input', updateMetaCount);
+  // Quick Actions: Save / Clear / Backup / Restore.
+  var setSaveBtn=$('set-save');
+  if(setSaveBtn) setSaveBtn.addEventListener('click', saveSettingsForm);
+  var setClearBtn=$('set-clear');
+  if(setClearBtn) setClearBtn.addEventListener('click', function(){ var c=$('admin-clear-data'); if(c) c.click(); });
+  var setBackupBtn=$('set-backup');
+  if(setBackupBtn) setBackupBtn.addEventListener('click', function(){
+    var data={};
+    try{
+      for(var i=0;i<localStorage.length;i++){
+        var k=localStorage.key(i);
+        if(k && k.indexOf('pw_')===0) data[k]=localStorage.getItem(k);
+      }
+    }catch(e){}
+    var blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});
+    var a=document.createElement('a');
+    var d=new Date();
+    var pad=function(n){ return (n<10?'0':'')+n; };
+    a.download='personal-website-backup-'+d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate())+'.json';
+    a.href=URL.createObjectURL(blob);
+    a.click();
+    setTimeout(function(){ URL.revokeObjectURL(a.href); }, 1000);
+    toast('Backup downloaded.');
+  });
+  var setRestoreBtn=$('set-restore');
+  if(setRestoreBtn) setRestoreBtn.addEventListener('click', function(){ var f=$('set-restore-file'); if(f) f.click(); });
+  var setRestoreFile=$('set-restore-file');
+  if(setRestoreFile) setRestoreFile.addEventListener('change', function(){
+    var f=setRestoreFile.files && setRestoreFile.files[0];
+    if(!f) return;
+    var r=new FileReader();
+    r.onload=function(){
+      try{
+        var data=JSON.parse(r.result);
+        var n=0;
+        Object.keys(data).forEach(function(k){
+          if(k.indexOf('pw_')===0){ try{ localStorage.setItem(k, data[k]); n++; }catch(e){} }
+        });
+        if(!n){ toast('No website data found in that file.'); return; }
+        applySettings();
+        renderAdminDashboard();
+        fillSettingsForm();
+        document.dispatchEvent(new CustomEvent('pw-admin-open'));
+        toast('Backup restored ('+n+' items).');
+      }catch(e){ toast('That file is not a valid backup.'); }
+    };
+    r.readAsText(f);
+    setRestoreFile.value='';
+  });
+  // Favicon: Change (upload, downscaled to 32x32) / Remove (back to M logo).
+  var favChange=$('set-favicon-change');
+  if(favChange) favChange.addEventListener('click', function(){ var f=$('set-favicon-file'); if(f) f.click(); });
+  var favFile=$('set-favicon-file');
+  if(favFile) favFile.addEventListener('change', function(){
+    var f=favFile.files && favFile.files[0];
+    if(!f) return;
+    if(!/^image\//.test(f.type)){ toast('Please choose an image file.'); favFile.value=''; return; }
+    var img=new Image();
+    var url=URL.createObjectURL(f);
+    img.onload=function(){
+      var cv=document.createElement('canvas'); cv.width=32; cv.height=32;
+      var ctx=cv.getContext('2d');
+      ctx.drawImage(img, 0, 0, 32, 32);
+      var data=cv.toDataURL('image/png');
+      URL.revokeObjectURL(url);
+      var s=getSettings(); s.favicon=data; storeSettings(s); applySettings();
+      var fi=$('set-favicon-img'); if(fi) fi.src=data;
+      toast('Favicon updated.');
+    };
+    img.onerror=function(){ URL.revokeObjectURL(url); toast('Could not read that image.'); };
+    img.src=url;
+    favFile.value='';
+  });
+  var favRemove=$('set-favicon-remove');
+  if(favRemove) favRemove.addEventListener('click', function(){
+    var s=getSettings(); s.favicon=''; storeSettings(s); applySettings();
+    var fi=$('set-favicon-img'); if(fi) fi.src='m-logo.png';
+    toast('Favicon reset to the M logo.');
+  });
+  // Advanced: reset settings to default (posts/brands/links NOT touched).
+  var setResetBtn=$('set-reset');
+  if(setResetBtn) setResetBtn.addEventListener('click', function(){
+    try{ localStorage.removeItem(K_SET); }catch(e){}
+    try{ localStorage.removeItem(K_SAVED); }catch(e){}
+    applySettings();
+    fillSettingsForm();
+    renderAdminDashboard();
+    var m=$('set-reset-done'); if(m) m.hidden=false;
+    setTimeout(function(){ if(m) m.hidden=true; }, 3000);
+    toast('Settings reset to default.');
+  });
+  // Apply saved settings on every page load.
+  applySettings();
   // Open the admin panel and fill it with the saved settings.
   function openAdmin(){
     $('admin-link').value=(read(K_LINK)||'');
@@ -1586,6 +2455,8 @@
   // the button never breaks the page.
   var openBtn=$('admin-open');
   if(openBtn) openBtn.addEventListener('click', openAdmin);
+  // Social links changed (add/edit/remove) — refresh the dashboard counts.
+  document.addEventListener('pw-social-changed', renderAdminDashboard);
   $('admin-close').addEventListener('click', closeAdmin);
   $('admin-modal').addEventListener('click', function(e){ if(e.target===$('admin-modal')) closeAdmin(); });
   document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeAdmin(); });
@@ -1741,8 +2612,9 @@
       hc.textContent = totalPlatforms + ' platform' + (totalPlatforms === 1 ? '' : 's');
     }
   }
-  // "All Social Media" list in Admin: the 26 fixed platforms (with their
-  // saved link / Not connected status) plus any custom platforms added.
+  // "All Social Media" list in Admin: ONLY the platforms actually added
+  // (fixed platforms with a saved profile link + custom platforms).
+  // Nothing unconnected is shown here.
   function renderAdminList(){
     var list = $('sl-list');
     if(!list) return;
@@ -1750,15 +2622,15 @@
     var custom = getCustom();
     var html = '';
     Object.keys(PLATFORMS).forEach(function(id){
-      var name = NAMES[id] || id;
       var saved = (links[id] || '').trim();
+      if(!validUrl(saved)) return;
+      var name = NAMES[id] || id;
       var letter = name.charAt(0).toUpperCase();
       html += '<li class="admin-social-row"><span class="sl-ic">' + esc(letter) + '</span>'
         + '<span class="sl-main"><span class="sl-name">' + esc(name) + '</span>'
-        + (validUrl(saved)
-            ? '<span class="sl-link connected">' + esc(saved) + '</span>'
-            : '<span class="sl-link">Not connected</span>')
-        + '</span><span class="sl-actions"><button type="button" class="sl-edit" data-edit-fixed="' + esc(id) + '">Edit</button></span></li>';
+        + '<span class="sl-link connected">' + esc(saved) + '</span>'
+        + '</span><span class="sl-actions"><button type="button" class="sl-edit" data-edit-fixed="' + esc(id) + '">Edit</button>'
+        + '<button type="button" class="sl-remove" data-remove-fixed="' + esc(id) + '">Remove</button></span></li>';
     });
     custom.forEach(function(c, i){
       var letter = (c.name || '?').trim().charAt(0).toUpperCase();
@@ -1768,87 +2640,101 @@
         + '</span><span class="sl-actions"><button type="button" class="sl-edit" data-edit-custom="' + i + '">Edit</button>'
         + '<button type="button" class="sl-remove" data-remove-custom="' + i + '">Remove</button></span></li>';
     });
+    if(!html) html = '<li class="hint" style="list-style:none">Ekhono kono social media add kora hoy nai — upore Add Social Media button-e chap diye add korun.</li>';
     list.innerHTML = html;
   }
-  // Fill the Admin inputs with the saved links when the panel opens.
+  // Refresh the Admin list when the panel opens.
   function fillAdmin(){
-    var links = getLinks();
-    Object.keys(PLATFORMS).forEach(function(id){
-      var input = $('sl-' + id);
-      if(input) input.value = links[id] || '';
-    });
-    $('social-saved').hidden = true;
     renderAdminList();
   }
-  // Save the Admin inputs: empty clears a platform, bare domains get https://.
-  function saveAdmin(){
-    var links = getLinks();
-    var changed = false;
-    Object.keys(PLATFORMS).forEach(function(id){
-      var input = $('sl-' + id);
-      if(!input) return;
-      var v = input.value.trim();
-      if(!v){ if(links[id]){ delete links[id]; changed = true; } return; }
-      if(!/^https?:\/\//i.test(v)) v = 'https://' + v;
-      if(links[id] !== v){ links[id] = v; changed = true; }
-    });
-    if(changed) store(KEY, JSON.stringify(links));
-    render();
-    renderAdminList();
-    var s = $('social-saved'); s.hidden = false;
-    setTimeout(function(){ s.hidden = true; }, 3000);
-    toast('Social links saved.');
-  }
-  // "Add Social Media": add any platform (name + profile link). Editing a
-  // custom platform reuses the same form (editing index >= 0).
+  // "Add Social Media": pick a platform preset (or Custom) + paste the
+  // profile link. Editing reuses the same form.
+  var editingFixed = '';
   var editingCustom = -1;
+  function onPlatformChange(){
+    var sel = $('sl-add-platform');
+    var wrap = $('sl-add-name-wrap');
+    if(!sel || !wrap) return;
+    var v = sel.value;
+    if(v === 'custom' || v === ''){
+      wrap.hidden = false;
+    } else {
+      wrap.hidden = true;
+    }
+  }
   function openAddForm(){
     var f = $('sl-add-form');
     if(!f) return;
     f.hidden = false;
-    var n = $('sl-add-name'); if(n) n.focus();
+    var sel = $('sl-add-platform');
+    if(sel) sel.focus();
   }
   function closeAddForm(){
     var f = $('sl-add-form');
     if(f) f.hidden = true;
+    var sel = $('sl-add-platform');
+    if(sel) sel.value = '';
+    var wrap = $('sl-add-name-wrap');
+    if(wrap) wrap.hidden = true;
     var n = $('sl-add-name'); if(n) n.value = '';
     var u = $('sl-add-url'); if(u) u.value = '';
+    editingFixed = '';
     editingCustom = -1;
     var saveBtn = $('sl-add-save');
     if(saveBtn) saveBtn.textContent = 'Add';
   }
   function saveAddForm(){
+    var sel = $('sl-add-platform');
     var nameInput = $('sl-add-name');
     var urlInput = $('sl-add-url');
-    if(!nameInput || !urlInput) return;
-    var name = nameInput.value.trim();
+    if(!sel || !urlInput) return;
+    var platform = sel.value;
     var url = urlInput.value.trim();
-    if(!name){ toast('Platform name din.'); nameInput.focus(); return; }
+    if(!platform){ toast('Platform beche nin.'); sel.focus(); return; }
     if(!url){ toast('Profile link din.'); urlInput.focus(); return; }
     if(!/^https?:\/\//i.test(url)) url = 'https://' + url;
     if(!validUrl(url)){ toast('Thik link din (https://...).'); urlInput.focus(); return; }
-    var custom = getCustom();
-    if(editingCustom >= 0 && custom[editingCustom]){
-      custom[editingCustom] = { name: name, url: url };
-      toast('Social media updated.');
+    if(platform === 'custom'){
+      var name = (nameInput ? nameInput.value : '').trim();
+      if(!name){ toast('Platform name din.'); if(nameInput) nameInput.focus(); return; }
+      var custom = getCustom();
+      if(editingCustom >= 0 && custom[editingCustom]){
+        custom[editingCustom] = { name: name, url: url };
+        toast('Social media updated.');
+      } else {
+        custom.push({ name: name, url: url });
+        toast('Social media added.');
+      }
+      storeCustom(custom);
     } else {
-      custom.push({ name: name, url: url });
-      toast('Social media added.');
+      var links = getLinks();
+      links[platform] = url;
+      store(KEY, JSON.stringify(links));
+      toast(editingFixed ? 'Social media updated.' : 'Social media added.');
     }
-    storeCustom(custom);
     closeAddForm();
     renderAdminList();
+    render();
     renderCustomPublic();
+    document.dispatchEvent(new CustomEvent('pw-social-changed'));
   }
-  // List actions: Edit (fixed -> focus its input; custom -> prefill the
-  // add form), Remove (custom only).
+  // List actions: Edit (fixed -> prefill the add form with that preset;
+  // custom -> prefill name + link), Remove (fixed clears the saved link,
+  // custom deletes the entry).
   function onListClick(e){
     var t = e.target;
     if(!t) return;
     var fixed = t.getAttribute && t.getAttribute('data-edit-fixed');
     if(fixed){
-      var input = $('sl-' + fixed);
-      if(input){ input.scrollIntoView({ block: 'center' }); input.focus(); }
+      var links = getLinks();
+      editingFixed = fixed;
+      editingCustom = -1;
+      var sel = $('sl-add-platform');
+      if(sel){ sel.value = fixed; onPlatformChange(); }
+      var u = $('sl-add-url'); if(u) u.value = links[fixed] || '';
+      var saveBtn = $('sl-add-save');
+      if(saveBtn) saveBtn.textContent = 'Update';
+      openAddForm();
       return;
     }
     var editIdx = t.getAttribute && t.getAttribute('data-edit-custom');
@@ -1857,11 +2743,26 @@
       var c = custom[parseInt(editIdx, 10)];
       if(!c) return;
       editingCustom = parseInt(editIdx, 10);
+      editingFixed = '';
+      var s = $('sl-add-platform');
+      if(s){ s.value = 'custom'; onPlatformChange(); }
       var n = $('sl-add-name'); if(n) n.value = c.name;
-      var u = $('sl-add-url'); if(u) u.value = c.url;
-      var saveBtn = $('sl-add-save');
-      if(saveBtn) saveBtn.textContent = 'Update';
+      var uu = $('sl-add-url'); if(uu) uu.value = c.url;
+      var sb = $('sl-add-save');
+      if(sb) sb.textContent = 'Update';
       openAddForm();
+      return;
+    }
+    var remFixed = t.getAttribute && t.getAttribute('data-remove-fixed');
+    if(remFixed){
+      var l = getLinks();
+      delete l[remFixed];
+      store(KEY, JSON.stringify(l));
+      renderAdminList();
+      render();
+      renderCustomPublic();
+      document.dispatchEvent(new CustomEvent('pw-social-changed'));
+      toast('Social media removed.');
       return;
     }
     var remIdx = t.getAttribute && t.getAttribute('data-remove-custom');
@@ -1871,6 +2772,7 @@
       storeCustom(list);
       renderAdminList();
       renderCustomPublic();
+      document.dispatchEvent(new CustomEvent('pw-social-changed'));
       toast('Social media removed.');
     }
   }
@@ -1879,11 +2781,10 @@
   document.addEventListener('pw-admin-open', fillAdmin);
   var openBtn = $('admin-open');
   if(openBtn) openBtn.addEventListener('click', fillAdmin);
-  var saveBtn = $('social-save');
-  if(saveBtn) saveBtn.addEventListener('click', saveAdmin);
-  // Add Social Media form wiring.
   var addOpenBtn = $('sl-add-open');
   if(addOpenBtn) addOpenBtn.addEventListener('click', function(){ closeAddForm(); openAddForm(); });
+  var addPlatformSel = $('sl-add-platform');
+  if(addPlatformSel) addPlatformSel.addEventListener('change', onPlatformChange);
   var addSaveBtn = $('sl-add-save');
   if(addSaveBtn) addSaveBtn.addEventListener('click', saveAddForm);
   var addCancelBtn = $('sl-add-cancel');
@@ -1993,6 +2894,18 @@
   }
   // The brand being edited in the Admin form (null when adding).
   var editing=null;
+  // Show the Add Brand form.
+  function openAddForm(){
+    var f=$('br-add-form');
+    if(!f) return;
+    f.hidden=false;
+    $('br-name').focus();
+  }
+  // Hide the Add Brand form.
+  function closeAddForm(){
+    var f=$('br-add-form');
+    if(f) f.hidden=true;
+  }
   // Fill the Admin form for editing one brand.
   function startEdit(i){
     var b=getList()[i]; if(!b) return;
@@ -2000,22 +2913,24 @@
     $('br-name').value=b.name; $('br-role').value=b.role; $('br-line').value=b.line;
     $('br-add').textContent='Save changes';
     $('br-cancel').hidden=false;
-    $('br-name').focus();
+    openAddForm();
   }
-  // Clear the Admin form back to "add" mode.
+  // Clear the Admin form back to "add" mode and hide it.
   function resetForm(){
     editing=null;
     $('br-name').value=''; $('br-role').value=''; $('br-line').value='';
     $('br-add').textContent='Add brand';
     $('br-cancel').hidden=true;
+    closeAddForm();
   }
-  // Render the brand list inside the Admin panel.
+  // Render the brand list inside the Admin panel, with serial numbers.
   function renderAdminList(){
     var box=$('br-list'); if(!box) return;
     box.innerHTML='';
     getList().forEach(function(b,i){
       var d=document.createElement('div'); d.className='admin-item';
       var top=document.createElement('div'); top.className='admin-item-top';
+      var num=document.createElement('span'); num.className='admin-item-num'; num.textContent=(i+1);
       var s=document.createElement('span'); s.textContent=b.name+' — '+b.role;
       var e=document.createElement('button'); e.type='button'; e.className='btn btn-ghost btn-sm'; e.textContent='Edit';
       var del=document.createElement('button'); del.type='button'; del.className='btn btn-ghost btn-sm'; del.textContent='Delete';
@@ -2026,7 +2941,7 @@
           renderAdminList(); render(); renderHome(); toast('Brand removed.');
         });
       });
-      top.appendChild(s); top.appendChild(e); top.appendChild(del);
+      top.appendChild(num); top.appendChild(s); top.appendChild(e); top.appendChild(del);
       var p=document.createElement('p'); p.textContent=b.line;
       d.appendChild(top); d.appendChild(p); box.appendChild(d);
     });
@@ -2047,6 +2962,8 @@
     store(JSON.stringify(l));
     resetForm(); renderAdminList(); render(); renderHome();
   }
+  var addOpenBtn=$('br-add-open');
+  if(addOpenBtn) addOpenBtn.addEventListener('click', function(){ resetForm(); openAddForm(); });
   var addBtn=$('br-add');
   if(addBtn) addBtn.addEventListener('click', saveForm);
   var cancelBtn=$('br-cancel');

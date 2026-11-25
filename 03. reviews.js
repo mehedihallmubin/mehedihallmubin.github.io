@@ -101,9 +101,14 @@
     var brands=read('pw_brands');
     var bn=9; // site ships 9 real brands; an edited list lives in pw_brands
     if(brands){ try{ var a=JSON.parse(brands); if(Array.isArray(a)) bn=a.length; }catch(e){} }
-    // Social = 26 fixed platforms + any custom platforms added in Admin.
-    var sc=DS_FIXED.social;
-    try{ var cu=JSON.parse(read('pw_social_custom')||'[]'); if(Array.isArray(cu)) sc+=cu.length; }catch(e){}
+    // Social = platforms actually added (fixed with a saved profile link
+    // + custom platforms), not the 26 fixed slots.
+    var sc=0;
+    try{
+      var lk=JSON.parse(read('pw_social_links')||'{}');
+      Object.keys(lk).forEach(function(id){ if(/^https?:\/\/.+/.test(lk[id]||'')) sc++; });
+    }catch(e){}
+    try{ var cu=JSON.parse(read('pw_social_custom')||'[]'); if(Array.isArray(cu)) cu.forEach(function(c){ if(c && /^https?:\/\/.+/.test(c.url||'')) sc++; }); }catch(e){}
     return {posts:countArr('pw_blog_posts'), brands:bn, reviews:countArr(K_MANUAL),
       social:sc, community:DS_FIXED.community, texts:DS_FIXED.texts};
   }
@@ -175,6 +180,8 @@
     closeSideDrawer();
     logActivity(VIEW_LABELS[name]||'Admin viewed');
     renderAdminDashboard();
+    if(name==='settings') fillSettingsForm();
+    if(name==='analytics') renderAnChart();
     if(focusId){ var f=$(focusId); if(f) setTimeout(function(){ f.focus(); }, 60); }
     var main=document.querySelector('#admin-modal .admin-main'); if(main) main.scrollTop=0;
   }
@@ -217,11 +224,471 @@
   // Settings: clear every saved admin change on this device.
   var clearBtn=$('admin-clear-data');
   if(clearBtn) clearBtn.addEventListener('click', function(){
-    ['pw_review_link','pw_review_widget','pw_manual_reviews','pw_social_links','pw_community_links','pw_blog_posts','pw_brands','pw_texts','pw_admin_activity'].forEach(function(k){ try{ localStorage.removeItem(k); }catch(e){} });
+    ['pw_review_link','pw_review_widget','pw_manual_reviews','pw_social_links','pw_social_custom','pw_community_links','pw_blog_posts','pw_brands','pw_texts','pw_admin_activity','pw_settings','pw_last_saved'].forEach(function(k){ try{ localStorage.removeItem(k); }catch(e){} });
     var m=$('admin-cleared'); if(m) m.hidden=false;
+    applySettings();
     renderAdminDashboard();
     toast('Saved admin data cleared.');
   });
+  // ============ SETTINGS PAGE (Neon Red Glassmorphism) ============
+  // Settings live in localStorage (this device only) under pw_settings.
+  var K_SET='pw_settings';
+  var K_SAVED='pw_last_saved';
+  var SET_DEFAULTS={
+    title:'Mehedi H. All Mubin',
+    tagline:'Creative \u2022 Professional',
+    meta:'Mehedi H. All Mubin \u2014 designer, video editor and social media manager. Founder of QuickShoppingNow and LUXAUR. Portfolio at the bottom of this page.',
+    url:'https://mehedihallmubin.github.io/',
+    favicon:'',
+    portrait:'',
+    banner:'',
+    role:'Graphic Designer & Video Editor \u2014 Jax Corporation',
+    about:'I\u2019m a designer and video editor with a passion for visual storytelling and brand building. I create engaging content, manage social media, and build e-commerce brands. I\u2019m the founder of QuickShoppingNow and LUXAUR.',
+    email:'mehedih.allmubin@gmail.com',
+    phone:'+8801611541164',
+    location:'',
+    visibility:true, darkMode:true, animations:true, showAnalytics:true
+  };
+  // Email/phone currently applied to the page (defaults on first load).
+  // applySettings() replaces these, so changing them again still works.
+  var appliedEmail=SET_DEFAULTS.email;
+  var appliedPhone=SET_DEFAULTS.phone;
+  function getSettings(){
+    var s={}; for(var k in SET_DEFAULTS) s[k]=SET_DEFAULTS[k];
+    try{ var saved=JSON.parse(read(K_SET)||'null'); if(saved && typeof saved==='object') for(var k2 in saved) if(k2 in s) s[k2]=saved[k2]; }catch(e){}
+    return s;
+  }
+  function storeSettings(s){ store(K_SET, JSON.stringify(s)); markSaved(); }
+  function markSaved(){ try{ localStorage.setItem(K_SAVED, String(Date.now())); }catch(e){} updateSystemInfo(); }
+  // Apply settings to the public site (runs on every page load).
+  function applySettings(){
+    var s=getSettings();
+    var t=s.title||SET_DEFAULTS.title;
+    document.title=t+(s.tagline?' \u2014 '+s.tagline:'');
+    Array.prototype.slice.call(document.querySelectorAll('.brand-name, .home-brand-name, .home-hero-info h1')).forEach(function(el){ el.textContent=t; });
+    var m=document.querySelector('meta[name="description"]');
+    if(m) m.setAttribute('content', s.meta||SET_DEFAULTS.meta);
+    var fav=s.favicon||'m-logo.png';
+    var link=document.querySelector('link[rel="icon"]')||document.querySelector('link[rel="shortcut icon"]');
+    if(link) link.setAttribute('href', fav);
+    // Customize: portrait, banner, role, about, email, phone, location.
+    var pic=s.portrait||'mehedi-portrait.jpg';
+    Array.prototype.slice.call(document.querySelectorAll('.home-portrait img')).forEach(function(img){ img.src=pic; });
+    var bn=$('home-banner'), bi=$('home-banner-img');
+    if(bn && bi){
+      if(s.banner){ bi.src=s.banner; bn.hidden=false; }
+      else { bi.src=''; bn.hidden=true; }
+    }
+    var role=s.role||SET_DEFAULTS.role;
+    Array.prototype.slice.call(document.querySelectorAll('.home-role')).forEach(function(el){ el.textContent=role; });
+    var about=s.about||SET_DEFAULTS.about;
+    Array.prototype.slice.call(document.querySelectorAll('.home-about p:not(.home-about-loc)')).forEach(function(el){ el.textContent=about; });
+    var locEl=$('home-about-loc');
+    if(locEl){
+      if(s.location){ locEl.textContent=s.location; locEl.hidden=false; }
+      else locEl.hidden=true;
+    }
+    var em=s.email||SET_DEFAULTS.email;
+    var ph=s.phone||SET_DEFAULTS.phone;
+    // Replace the previously applied email/phone (or the default on first
+    // load) so changing them again still works.
+    Array.prototype.slice.call(document.querySelectorAll('a[href^="mailto:"]')).forEach(function(a){
+      var href=a.getAttribute('href');
+      if(href.indexOf(appliedEmail)!== -1){
+        a.setAttribute('href', href.split(appliedEmail).join(em));
+        if(a.textContent.indexOf(appliedEmail)!== -1) a.textContent=a.textContent.split(appliedEmail).join(em);
+      }
+    });
+    appliedEmail=em;
+    Array.prototype.slice.call(document.querySelectorAll('a[href^="tel:"]')).forEach(function(a){
+      var href=a.getAttribute('href');
+      var telDigits=appliedPhone.replace(/[\s-]/g,'');
+      if(href.indexOf(telDigits)!== -1){
+        a.setAttribute('href', href.split(telDigits).join(ph.replace(/[\s-]/g,'')));
+        // The visible text is formatted with spaces ("+880 1611 541164"),
+        // so compare digits-only; replace only when the whole text is the number.
+        if(a.textContent.replace(/[\s-]/g,'')===telDigits) a.textContent=ph;
+      }
+    });
+    appliedPhone=ph;
+    var b=document.getElementById('maint-banner');
+    if(!s.visibility){
+      if(!b){ b=document.createElement('div'); b.id='maint-banner'; b.className='maint-banner'; b.textContent='This website is under maintenance \u2014 please check back soon.'; if(document.body) document.body.insertBefore(b, document.body.firstChild); }
+    } else if(b){ b.remove(); }
+    document.documentElement.classList.toggle('light', !s.darkMode);
+    document.documentElement.classList.toggle('no-anim', !s.animations);
+    var showA=!!s.showAnalytics;
+    Array.prototype.slice.call(document.querySelectorAll('[data-admin-view="analytics"]')).forEach(function(el){ el.style.display=showA?'':'none'; });
+    var ov=document.querySelector('.admin-analytics'); if(ov) ov.style.display=showA?'':'none';
+  }
+  function setToggle(id, on){
+    var b=$(id); if(!b) return;
+    b.classList.toggle('on', !!on);
+    b.setAttribute('aria-checked', on?'true':'false');
+  }
+  function getToggle(id){ var b=$(id); return b ? b.classList.contains('on') : true; }
+  // Fill the Settings form from saved settings (when the Settings view opens).
+  function fillSettingsForm(){
+    // Always open on the General tab.
+    document.querySelectorAll('.set-tab').forEach(function(b){ b.classList.toggle('active', b.getAttribute('data-set-tab')==='general'); });
+    document.querySelectorAll('.set-panel').forEach(function(p){ p.hidden=p.getAttribute('data-set-panel')!=='general'; });
+    var s=getSettings();
+    var t=$('set-title'); if(t) t.value=s.title;
+    var tg=$('set-tagline'); if(tg) tg.value=s.tagline;
+    var mt=$('set-meta'); if(mt){ mt.value=s.meta; updateMetaCount(); }
+    var u=$('set-url'); if(u) u.value=s.url;
+    var fi=$('set-favicon-img'); if(fi) fi.src=s.favicon||'m-logo.png';
+    setToggle('set-vis', s.visibility);
+    setToggle('set-dark', s.darkMode);
+    setToggle('set-anim', s.animations);
+    setToggle('set-analytics', s.showAnalytics);
+    updateSystemInfo();
+  }
+  // Save the General fields + toggle states.
+  function saveSettingsForm(){
+    var s=getSettings();
+    var t=$('set-title'); if(t) s.title=t.value.trim()||SET_DEFAULTS.title;
+    var tg=$('set-tagline'); if(tg) s.tagline=tg.value.trim();
+    var mt=$('set-meta'); if(mt) s.meta=mt.value.trim()||SET_DEFAULTS.meta;
+    s.visibility=getToggle('set-vis');
+    s.darkMode=getToggle('set-dark');
+    s.animations=getToggle('set-anim');
+    s.showAnalytics=getToggle('set-analytics');
+    storeSettings(s);
+    applySettings();
+    renderAdminDashboard();
+    toast('Settings saved.');
+  }
+  // ============ CUSTOMIZE YOUR WEBSITE ============
+  // Fill the Customize form from saved settings.
+  function fillCustomizeForm(){
+    var s=getSettings();
+    var pi=$('cz-pic-img'); if(pi) pi.src=s.portrait||'mehedi-portrait.jpg';
+    var bi=$('cz-banner-img'), be=$('cz-banner-empty');
+    if(bi){ bi.src=s.banner||''; if(be) be.style.display=s.banner?'none':''; }
+    var n=$('cz-name'); if(n) n.value=s.title;
+    var r=$('cz-role'); if(r) r.value=s.role;
+    var e=$('cz-email'); if(e) e.value=s.email;
+    var p=$('cz-phone'); if(p) p.value=s.phone;
+    var l=$('cz-location'); if(l) l.value=s.location||'';
+    var a=$('cz-about'); if(a){ a.value=s.about; updateAboutCount(); }
+  }
+  // Save the Customize fields.
+  function saveCustomizeForm(){
+    var s=getSettings();
+    var n=$('cz-name'); if(n) s.title=n.value.trim()||SET_DEFAULTS.title;
+    var r=$('cz-role'); if(r) s.role=r.value.trim()||SET_DEFAULTS.role;
+    var e=$('cz-email'); if(e && e.value.trim()) s.email=e.value.trim();
+    var p=$('cz-phone'); if(p && p.value.trim()) s.phone=p.value.trim();
+    var l=$('cz-location'); if(l) s.location=l.value.trim();
+    var a=$('cz-about'); if(a) s.about=a.value.trim()||SET_DEFAULTS.about;
+    storeSettings(s);
+    applySettings();
+    renderAdminDashboard();
+    toast('Website updated.');
+  }
+  function updateAboutCount(){
+    var a=$('cz-about'), c=$('cz-about-count');
+    if(a && c) c.textContent=a.value.length+' / 600';
+  }
+  // Downscale an image file to a data URL (max dimension px).
+  function imageToDataURL(file, maxDim, cb){
+    if(!/^image\//.test(file.type)){ toast('Please choose an image file.'); return; }
+    var img=new Image();
+    var url=URL.createObjectURL(file);
+    img.onload=function(){
+      var w=img.naturalWidth, h=img.naturalHeight;
+      var scale=Math.min(1, maxDim/Math.max(w,h));
+      var cv=document.createElement('canvas');
+      cv.width=Math.max(1, Math.round(w*scale)); cv.height=Math.max(1, Math.round(h*scale));
+      cv.getContext('2d').drawImage(img, 0, 0, cv.width, cv.height);
+      URL.revokeObjectURL(url);
+      cb(cv.toDataURL('image/jpeg', 0.85));
+    };
+    img.onerror=function(){ URL.revokeObjectURL(url); toast('Could not read that image.'); };
+    img.src=url;
+  }
+  // Profile picture: Change / Remove.
+  var czPicChange=$('cz-pic-change');
+  if(czPicChange) czPicChange.addEventListener('click', function(){ var f=$('cz-pic-file'); if(f) f.click(); });
+  var czPicFile=$('cz-pic-file');
+  if(czPicFile) czPicFile.addEventListener('change', function(){
+    var f=czPicFile.files && czPicFile.files[0];
+    if(!f) return;
+    imageToDataURL(f, 800, function(data){
+      var s=getSettings(); s.portrait=data; storeSettings(s); applySettings();
+      var pi=$('cz-pic-img'); if(pi) pi.src=data;
+      toast('Profile picture updated.');
+    });
+    czPicFile.value='';
+  });
+  var czPicRemove=$('cz-pic-remove');
+  if(czPicRemove) czPicRemove.addEventListener('click', function(){
+    var s=getSettings(); s.portrait=''; storeSettings(s); applySettings();
+    var pi=$('cz-pic-img'); if(pi) pi.src='mehedi-portrait.jpg';
+    toast('Profile picture reset.');
+  });
+  // Banner image: Change / Remove.
+  var czBannerChange=$('cz-banner-change');
+  if(czBannerChange) czBannerChange.addEventListener('click', function(){ var f=$('cz-banner-file'); if(f) f.click(); });
+  var czBannerFile=$('cz-banner-file');
+  if(czBannerFile) czBannerFile.addEventListener('change', function(){
+    var f=czBannerFile.files && czBannerFile.files[0];
+    if(!f) return;
+    imageToDataURL(f, 1400, function(data){
+      var s=getSettings(); s.banner=data; storeSettings(s); applySettings();
+      var bi=$('cz-banner-img'); if(bi) bi.src=data;
+      var be=$('cz-banner-empty'); if(be) be.style.display='none';
+      toast('Banner updated.');
+    });
+    czBannerFile.value='';
+  });
+  var czBannerRemove=$('cz-banner-remove');
+  if(czBannerRemove) czBannerRemove.addEventListener('click', function(){
+    var s=getSettings(); s.banner=''; storeSettings(s); applySettings();
+    var bi=$('cz-banner-img'); if(bi) bi.src='';
+    var be=$('cz-banner-empty'); if(be) be.style.display='';
+    toast('Banner removed.');
+  });
+  // Customize: about counter + save button.
+  var czAboutEl=$('cz-about');
+  if(czAboutEl) czAboutEl.addEventListener('input', updateAboutCount);
+  var czSaveBtn=$('cz-save');
+  if(czSaveBtn) czSaveBtn.addEventListener('click', saveCustomizeForm);
+  // ============ ANALYTICS ============
+  // The site is static and tracks nothing, so every number is 0. The chart
+  // still draws its grid + real date labels for the selected period, with an
+  // honest empty state instead of a fake line.
+  var AN_DAYS=30, AN_METRIC='visitors';
+  function renderAnChart(){
+    var svg=$('an-chart');
+    if(!svg) return;
+    var days=AN_DAYS;
+    var W=720, H=260, L=44, R=10, T=12, B=28;
+    var innerW=W-L-R, innerH=H-T-B;
+    var max=1250;
+    var ns='http://www.w3.org/2000/svg';
+    while(svg.firstChild) svg.removeChild(svg.firstChild);
+    function el(name, attrs){ var e=document.createElementNS(ns,name); for(var k in attrs) e.setAttribute(k, attrs[k]); svg.appendChild(e); return e; }
+    // Grid lines + y labels.
+    var steps=[0,250,500,750,1000,1250];
+    steps.forEach(function(v){
+      var y=T+innerH-(v/max)*innerH;
+      el('line',{x1:L,y1:y,x2:W-R,y2:y,stroke:'rgba(255,255,255,.07)','stroke-width':1});
+      var t=el('text',{x:L-8,y:y+4,'text-anchor':'end',fill:'#A1A1AA','font-size':11});
+      t.textContent=v.toLocaleString('en-US');
+    });
+    // X labels: real dates for the selected period (every ~3 days).
+    var today=new Date();
+    var start=new Date(today); start.setDate(today.getDate()-(days-1));
+    var nLabels=Math.min(10, days);
+    var fmt=function(d){ return d.toLocaleDateString('en-US',{month:'short',day:'numeric'}); };
+    for(var i=0;i<nLabels;i++){
+      var frac=nLabels===1?0:i/(nLabels-1);
+      var d=new Date(start); d.setDate(start.getDate()+Math.round(frac*(days-1)));
+      var x=L+frac*innerW;
+      var t2=el('text',{x:x,y:H-8,'text-anchor':'middle',fill:'#A1A1AA','font-size':11});
+      t2.textContent=fmt(d);
+    }
+    // Baseline (0 line) — no data line is drawn.
+    el('line',{x1:L,y1:T+innerH,x2:W-R,y2:T+innerH,stroke:'rgba(255,255,255,.18)','stroke-width':1});
+    var sub=$('an-chart-sub');
+    if(sub){
+      var label=AN_METRIC==='views'?'Page Views':AN_METRIC==='sessions'?'Sessions':'Visitors';
+      sub.textContent='Daily '+label.toLowerCase()+' trends for the last '+days+' days ('+fmt(start)+' \u2013 '+fmt(today)+'). No data yet.';
+    }
+  }
+  // Period dropdown.
+  var anPeriod=$('an-period');
+  if(anPeriod) anPeriod.addEventListener('change', function(){
+    AN_DAYS=parseInt(anPeriod.value,10)||30;
+    renderAnChart();
+  });
+  // Metric pills.
+  document.querySelectorAll('.an-pill').forEach(function(b){
+    b.addEventListener('click', function(){
+      AN_METRIC=b.getAttribute('data-an-metric')||'visitors';
+      document.querySelectorAll('.an-pill').forEach(function(x){ x.classList.toggle('active', x===b); });
+      renderAnChart();
+    });
+  });
+  // Export Report: downloads a JSON report with the real (zero) data.
+  var anExport=$('an-export');
+  if(anExport) anExport.addEventListener('click', function(){
+    var today=new Date().toISOString().slice(0,10);
+    var report={
+      website:'https://mehedihallmubin.github.io/',
+      generated:today,
+      period_days:AN_DAYS,
+      metric:AN_METRIC,
+      note:'This site is static and does not track visitors. All counts are 0 until an analytics service is connected.',
+      totals:{visitors:0, page_views:0, sessions:0, avg_session_duration_seconds:null},
+      top_pages:[
+        {path:'/(Home)', views:0},{path:'/about', views:0},{path:'/contact', views:0},{path:'/works', views:0},{path:'/blog', views:0}
+      ],
+      traffic_sources:{direct:0, google:0, youtube:0, social_media:0, other:0},
+      devices:{desktop:0, mobile:0, tablet:0},
+      countries:{bangladesh:0, india:0, united_states:0, united_kingdom:0, other:0}
+    };
+    var blob=new Blob([JSON.stringify(report,null,2)],{type:'application/json'});
+    var a=document.createElement('a');
+    a.href=URL.createObjectURL(blob);
+    a.download='analytics-report-'+today+'.json';
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(function(){ URL.revokeObjectURL(a.href); }, 1000);
+    toast('Report downloaded.');
+  });
+  // Meta description live counter.
+  function updateMetaCount(){
+    var mt=$('set-meta'), c=$('set-meta-count');
+    if(mt && c) c.textContent=mt.value.length+' / 160';
+  }
+  // System Info: real data only — last save time, real post count, real
+  // localStorage usage (all pw_* keys) vs the ~5 MB browser limit.
+  function updateSystemInfo(){
+    var sp=$('set-info-posts'); if(sp) sp.textContent=countArr('pw_blog_posts');
+    var saved=read(K_SAVED);
+    var sv=$('set-info-saved');
+    if(sv) sv.textContent=saved ? new Date(parseInt(saved,10)).toLocaleString('en-GB',{day:'numeric',month:'short',year:'numeric',hour:'numeric',minute:'2-digit'}) : '\u2014';
+    var bytes=0;
+    try{
+      for(var i=0;i<localStorage.length;i++){
+        var k=localStorage.key(i);
+        if(k && k.indexOf('pw_')===0) bytes+=(localStorage.getItem(k)||'').length*2;
+      }
+    }catch(e){}
+    var kb=Math.round(bytes/1024);
+    var st=$('set-info-storage'); if(st) st.textContent=kb+' KB';
+    var pct=Math.min(100, Math.round(bytes/(5*1024*1024)*100));
+    var pc=$('set-info-storage-pct'); if(pc) pc.textContent=pct+'%';
+    var fill=$('set-storage-fill'); if(fill) fill.style.width=pct+'%';
+  }
+  // Settings tabs: General / Customize / Advanced stay in Settings; the
+  // rest jump to that admin section (same as the sidebar).
+  var SET_TAB_VIEW={content:'blog', social:'social', brands:'brands', reviews:'reviews', community:'community', texts:'texts'};
+  function showSetTab(name){
+    document.querySelectorAll('.set-tab').forEach(function(b){ b.classList.toggle('active', b.getAttribute('data-set-tab')===name); });
+    if(name==='general' || name==='customize' || name==='advanced'){
+      document.querySelectorAll('.set-panel').forEach(function(p){ p.hidden=p.getAttribute('data-set-panel')!==name; });
+      if(name==='customize') fillCustomizeForm();
+    } else if(SET_TAB_VIEW[name]){
+      showAdminView(SET_TAB_VIEW[name]);
+    }
+  }
+  document.querySelectorAll('.set-tab').forEach(function(b){
+    b.addEventListener('click', function(){ showSetTab(b.getAttribute('data-set-tab')); });
+  });
+  // Toggles: flip + save immediately.
+  ['set-vis','set-dark','set-anim','set-analytics'].forEach(function(id){
+    var b=$(id);
+    if(b) b.addEventListener('click', function(){
+      var on=!b.classList.contains('on');
+      setToggle(id, on);
+      var s=getSettings();
+      s.visibility=getToggle('set-vis'); s.darkMode=getToggle('set-dark');
+      s.animations=getToggle('set-anim'); s.showAnalytics=getToggle('set-analytics');
+      storeSettings(s);
+      applySettings();
+      renderAdminDashboard();
+      toast('Preference saved.');
+    });
+  });
+  // Meta description live counter.
+  var metaEl=$('set-meta');
+  if(metaEl) metaEl.addEventListener('input', updateMetaCount);
+  // Quick Actions: Save / Clear / Backup / Restore.
+  var setSaveBtn=$('set-save');
+  if(setSaveBtn) setSaveBtn.addEventListener('click', saveSettingsForm);
+  var setClearBtn=$('set-clear');
+  if(setClearBtn) setClearBtn.addEventListener('click', function(){ var c=$('admin-clear-data'); if(c) c.click(); });
+  var setBackupBtn=$('set-backup');
+  if(setBackupBtn) setBackupBtn.addEventListener('click', function(){
+    var data={};
+    try{
+      for(var i=0;i<localStorage.length;i++){
+        var k=localStorage.key(i);
+        if(k && k.indexOf('pw_')===0) data[k]=localStorage.getItem(k);
+      }
+    }catch(e){}
+    var blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});
+    var a=document.createElement('a');
+    var d=new Date();
+    var pad=function(n){ return (n<10?'0':'')+n; };
+    a.download='personal-website-backup-'+d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate())+'.json';
+    a.href=URL.createObjectURL(blob);
+    a.click();
+    setTimeout(function(){ URL.revokeObjectURL(a.href); }, 1000);
+    toast('Backup downloaded.');
+  });
+  var setRestoreBtn=$('set-restore');
+  if(setRestoreBtn) setRestoreBtn.addEventListener('click', function(){ var f=$('set-restore-file'); if(f) f.click(); });
+  var setRestoreFile=$('set-restore-file');
+  if(setRestoreFile) setRestoreFile.addEventListener('change', function(){
+    var f=setRestoreFile.files && setRestoreFile.files[0];
+    if(!f) return;
+    var r=new FileReader();
+    r.onload=function(){
+      try{
+        var data=JSON.parse(r.result);
+        var n=0;
+        Object.keys(data).forEach(function(k){
+          if(k.indexOf('pw_')===0){ try{ localStorage.setItem(k, data[k]); n++; }catch(e){} }
+        });
+        if(!n){ toast('No website data found in that file.'); return; }
+        applySettings();
+        renderAdminDashboard();
+        fillSettingsForm();
+        document.dispatchEvent(new CustomEvent('pw-admin-open'));
+        toast('Backup restored ('+n+' items).');
+      }catch(e){ toast('That file is not a valid backup.'); }
+    };
+    r.readAsText(f);
+    setRestoreFile.value='';
+  });
+  // Favicon: Change (upload, downscaled to 32x32) / Remove (back to M logo).
+  var favChange=$('set-favicon-change');
+  if(favChange) favChange.addEventListener('click', function(){ var f=$('set-favicon-file'); if(f) f.click(); });
+  var favFile=$('set-favicon-file');
+  if(favFile) favFile.addEventListener('change', function(){
+    var f=favFile.files && favFile.files[0];
+    if(!f) return;
+    if(!/^image\//.test(f.type)){ toast('Please choose an image file.'); favFile.value=''; return; }
+    var img=new Image();
+    var url=URL.createObjectURL(f);
+    img.onload=function(){
+      var cv=document.createElement('canvas'); cv.width=32; cv.height=32;
+      var ctx=cv.getContext('2d');
+      ctx.drawImage(img, 0, 0, 32, 32);
+      var data=cv.toDataURL('image/png');
+      URL.revokeObjectURL(url);
+      var s=getSettings(); s.favicon=data; storeSettings(s); applySettings();
+      var fi=$('set-favicon-img'); if(fi) fi.src=data;
+      toast('Favicon updated.');
+    };
+    img.onerror=function(){ URL.revokeObjectURL(url); toast('Could not read that image.'); };
+    img.src=url;
+    favFile.value='';
+  });
+  var favRemove=$('set-favicon-remove');
+  if(favRemove) favRemove.addEventListener('click', function(){
+    var s=getSettings(); s.favicon=''; storeSettings(s); applySettings();
+    var fi=$('set-favicon-img'); if(fi) fi.src='m-logo.png';
+    toast('Favicon reset to the M logo.');
+  });
+  // Advanced: reset settings to default (posts/brands/links NOT touched).
+  var setResetBtn=$('set-reset');
+  if(setResetBtn) setResetBtn.addEventListener('click', function(){
+    try{ localStorage.removeItem(K_SET); }catch(e){}
+    try{ localStorage.removeItem(K_SAVED); }catch(e){}
+    applySettings();
+    fillSettingsForm();
+    renderAdminDashboard();
+    var m=$('set-reset-done'); if(m) m.hidden=false;
+    setTimeout(function(){ if(m) m.hidden=true; }, 3000);
+    toast('Settings reset to default.');
+  });
+  // Apply saved settings on every page load.
+  applySettings();
   // Open the admin panel and fill it with the saved settings.
   function openAdmin(){
     $('admin-link').value=(read(K_LINK)||'');
@@ -243,6 +710,8 @@
   // the button never breaks the page.
   var openBtn=$('admin-open');
   if(openBtn) openBtn.addEventListener('click', openAdmin);
+  // Social links changed (add/edit/remove) — refresh the dashboard counts.
+  document.addEventListener('pw-social-changed', renderAdminDashboard);
   $('admin-close').addEventListener('click', closeAdmin);
   $('admin-modal').addEventListener('click', function(e){ if(e.target===$('admin-modal')) closeAdmin(); });
   document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeAdmin(); });

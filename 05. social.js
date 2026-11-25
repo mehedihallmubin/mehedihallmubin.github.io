@@ -119,8 +119,9 @@
       hc.textContent = totalPlatforms + ' platform' + (totalPlatforms === 1 ? '' : 's');
     }
   }
-  // "All Social Media" list in Admin: the 26 fixed platforms (with their
-  // saved link / Not connected status) plus any custom platforms added.
+  // "All Social Media" list in Admin: ONLY the platforms actually added
+  // (fixed platforms with a saved profile link + custom platforms).
+  // Nothing unconnected is shown here.
   function renderAdminList(){
     var list = $('sl-list');
     if(!list) return;
@@ -128,15 +129,15 @@
     var custom = getCustom();
     var html = '';
     Object.keys(PLATFORMS).forEach(function(id){
-      var name = NAMES[id] || id;
       var saved = (links[id] || '').trim();
+      if(!validUrl(saved)) return;
+      var name = NAMES[id] || id;
       var letter = name.charAt(0).toUpperCase();
       html += '<li class="admin-social-row"><span class="sl-ic">' + esc(letter) + '</span>'
         + '<span class="sl-main"><span class="sl-name">' + esc(name) + '</span>'
-        + (validUrl(saved)
-            ? '<span class="sl-link connected">' + esc(saved) + '</span>'
-            : '<span class="sl-link">Not connected</span>')
-        + '</span><span class="sl-actions"><button type="button" class="sl-edit" data-edit-fixed="' + esc(id) + '">Edit</button></span></li>';
+        + '<span class="sl-link connected">' + esc(saved) + '</span>'
+        + '</span><span class="sl-actions"><button type="button" class="sl-edit" data-edit-fixed="' + esc(id) + '">Edit</button>'
+        + '<button type="button" class="sl-remove" data-remove-fixed="' + esc(id) + '">Remove</button></span></li>';
     });
     custom.forEach(function(c, i){
       var letter = (c.name || '?').trim().charAt(0).toUpperCase();
@@ -146,87 +147,101 @@
         + '</span><span class="sl-actions"><button type="button" class="sl-edit" data-edit-custom="' + i + '">Edit</button>'
         + '<button type="button" class="sl-remove" data-remove-custom="' + i + '">Remove</button></span></li>';
     });
+    if(!html) html = '<li class="hint" style="list-style:none">Ekhono kono social media add kora hoy nai — upore Add Social Media button-e chap diye add korun.</li>';
     list.innerHTML = html;
   }
-  // Fill the Admin inputs with the saved links when the panel opens.
+  // Refresh the Admin list when the panel opens.
   function fillAdmin(){
-    var links = getLinks();
-    Object.keys(PLATFORMS).forEach(function(id){
-      var input = $('sl-' + id);
-      if(input) input.value = links[id] || '';
-    });
-    $('social-saved').hidden = true;
     renderAdminList();
   }
-  // Save the Admin inputs: empty clears a platform, bare domains get https://.
-  function saveAdmin(){
-    var links = getLinks();
-    var changed = false;
-    Object.keys(PLATFORMS).forEach(function(id){
-      var input = $('sl-' + id);
-      if(!input) return;
-      var v = input.value.trim();
-      if(!v){ if(links[id]){ delete links[id]; changed = true; } return; }
-      if(!/^https?:\/\//i.test(v)) v = 'https://' + v;
-      if(links[id] !== v){ links[id] = v; changed = true; }
-    });
-    if(changed) store(KEY, JSON.stringify(links));
-    render();
-    renderAdminList();
-    var s = $('social-saved'); s.hidden = false;
-    setTimeout(function(){ s.hidden = true; }, 3000);
-    toast('Social links saved.');
-  }
-  // "Add Social Media": add any platform (name + profile link). Editing a
-  // custom platform reuses the same form (editing index >= 0).
+  // "Add Social Media": pick a platform preset (or Custom) + paste the
+  // profile link. Editing reuses the same form.
+  var editingFixed = '';
   var editingCustom = -1;
+  function onPlatformChange(){
+    var sel = $('sl-add-platform');
+    var wrap = $('sl-add-name-wrap');
+    if(!sel || !wrap) return;
+    var v = sel.value;
+    if(v === 'custom' || v === ''){
+      wrap.hidden = false;
+    } else {
+      wrap.hidden = true;
+    }
+  }
   function openAddForm(){
     var f = $('sl-add-form');
     if(!f) return;
     f.hidden = false;
-    var n = $('sl-add-name'); if(n) n.focus();
+    var sel = $('sl-add-platform');
+    if(sel) sel.focus();
   }
   function closeAddForm(){
     var f = $('sl-add-form');
     if(f) f.hidden = true;
+    var sel = $('sl-add-platform');
+    if(sel) sel.value = '';
+    var wrap = $('sl-add-name-wrap');
+    if(wrap) wrap.hidden = true;
     var n = $('sl-add-name'); if(n) n.value = '';
     var u = $('sl-add-url'); if(u) u.value = '';
+    editingFixed = '';
     editingCustom = -1;
     var saveBtn = $('sl-add-save');
     if(saveBtn) saveBtn.textContent = 'Add';
   }
   function saveAddForm(){
+    var sel = $('sl-add-platform');
     var nameInput = $('sl-add-name');
     var urlInput = $('sl-add-url');
-    if(!nameInput || !urlInput) return;
-    var name = nameInput.value.trim();
+    if(!sel || !urlInput) return;
+    var platform = sel.value;
     var url = urlInput.value.trim();
-    if(!name){ toast('Platform name din.'); nameInput.focus(); return; }
+    if(!platform){ toast('Platform beche nin.'); sel.focus(); return; }
     if(!url){ toast('Profile link din.'); urlInput.focus(); return; }
     if(!/^https?:\/\//i.test(url)) url = 'https://' + url;
     if(!validUrl(url)){ toast('Thik link din (https://...).'); urlInput.focus(); return; }
-    var custom = getCustom();
-    if(editingCustom >= 0 && custom[editingCustom]){
-      custom[editingCustom] = { name: name, url: url };
-      toast('Social media updated.');
+    if(platform === 'custom'){
+      var name = (nameInput ? nameInput.value : '').trim();
+      if(!name){ toast('Platform name din.'); if(nameInput) nameInput.focus(); return; }
+      var custom = getCustom();
+      if(editingCustom >= 0 && custom[editingCustom]){
+        custom[editingCustom] = { name: name, url: url };
+        toast('Social media updated.');
+      } else {
+        custom.push({ name: name, url: url });
+        toast('Social media added.');
+      }
+      storeCustom(custom);
     } else {
-      custom.push({ name: name, url: url });
-      toast('Social media added.');
+      var links = getLinks();
+      links[platform] = url;
+      store(KEY, JSON.stringify(links));
+      toast(editingFixed ? 'Social media updated.' : 'Social media added.');
     }
-    storeCustom(custom);
     closeAddForm();
     renderAdminList();
+    render();
     renderCustomPublic();
+    document.dispatchEvent(new CustomEvent('pw-social-changed'));
   }
-  // List actions: Edit (fixed -> focus its input; custom -> prefill the
-  // add form), Remove (custom only).
+  // List actions: Edit (fixed -> prefill the add form with that preset;
+  // custom -> prefill name + link), Remove (fixed clears the saved link,
+  // custom deletes the entry).
   function onListClick(e){
     var t = e.target;
     if(!t) return;
     var fixed = t.getAttribute && t.getAttribute('data-edit-fixed');
     if(fixed){
-      var input = $('sl-' + fixed);
-      if(input){ input.scrollIntoView({ block: 'center' }); input.focus(); }
+      var links = getLinks();
+      editingFixed = fixed;
+      editingCustom = -1;
+      var sel = $('sl-add-platform');
+      if(sel){ sel.value = fixed; onPlatformChange(); }
+      var u = $('sl-add-url'); if(u) u.value = links[fixed] || '';
+      var saveBtn = $('sl-add-save');
+      if(saveBtn) saveBtn.textContent = 'Update';
+      openAddForm();
       return;
     }
     var editIdx = t.getAttribute && t.getAttribute('data-edit-custom');
@@ -235,11 +250,26 @@
       var c = custom[parseInt(editIdx, 10)];
       if(!c) return;
       editingCustom = parseInt(editIdx, 10);
+      editingFixed = '';
+      var s = $('sl-add-platform');
+      if(s){ s.value = 'custom'; onPlatformChange(); }
       var n = $('sl-add-name'); if(n) n.value = c.name;
-      var u = $('sl-add-url'); if(u) u.value = c.url;
-      var saveBtn = $('sl-add-save');
-      if(saveBtn) saveBtn.textContent = 'Update';
+      var uu = $('sl-add-url'); if(uu) uu.value = c.url;
+      var sb = $('sl-add-save');
+      if(sb) sb.textContent = 'Update';
       openAddForm();
+      return;
+    }
+    var remFixed = t.getAttribute && t.getAttribute('data-remove-fixed');
+    if(remFixed){
+      var l = getLinks();
+      delete l[remFixed];
+      store(KEY, JSON.stringify(l));
+      renderAdminList();
+      render();
+      renderCustomPublic();
+      document.dispatchEvent(new CustomEvent('pw-social-changed'));
+      toast('Social media removed.');
       return;
     }
     var remIdx = t.getAttribute && t.getAttribute('data-remove-custom');
@@ -249,6 +279,7 @@
       storeCustom(list);
       renderAdminList();
       renderCustomPublic();
+      document.dispatchEvent(new CustomEvent('pw-social-changed'));
       toast('Social media removed.');
     }
   }
@@ -257,11 +288,10 @@
   document.addEventListener('pw-admin-open', fillAdmin);
   var openBtn = $('admin-open');
   if(openBtn) openBtn.addEventListener('click', fillAdmin);
-  var saveBtn = $('social-save');
-  if(saveBtn) saveBtn.addEventListener('click', saveAdmin);
-  // Add Social Media form wiring.
   var addOpenBtn = $('sl-add-open');
   if(addOpenBtn) addOpenBtn.addEventListener('click', function(){ closeAddForm(); openAddForm(); });
+  var addPlatformSel = $('sl-add-platform');
+  if(addPlatformSel) addPlatformSel.addEventListener('change', onPlatformChange);
   var addSaveBtn = $('sl-add-save');
   if(addSaveBtn) addSaveBtn.addEventListener('click', saveAddForm);
   var addCancelBtn = $('sl-add-cancel');

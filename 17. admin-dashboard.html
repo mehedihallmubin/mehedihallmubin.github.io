@@ -167,65 +167,73 @@
       <section class="admin-view" data-view="social" hidden>
         <div class="admin-panel admin-form-panel">
           <div class="admin-panel-head"><h3>Social links</h3><button type="button" class="admin-add-btn" id="sl-add-open">＋ Add Social Media</button></div>
-          <p class="hint">Prottek platform-er profile link paste korun — khali thakle Connect button platform-er site-e jabe. Link gula ei device-ei save thakbe.</p>
+          <p class="hint">Ekhane sudhu je koyta social media add kora ache sei koytai dekhabe. Notun ekta add korte Add Social Media button-e chap din.</p>
           <div class="admin-add-form" id="sl-add-form" hidden>
-            <label for="sl-add-name">Platform name</label>
-            <input id="sl-add-name" type="text" placeholder="e.g. Medium" autocomplete="off">
+            <label for="sl-add-platform">Platform</label>
+            <select id="sl-add-platform">
+              <option value="">Platform beche nin…</option>
+              <option value="facebook">Facebook</option>
+              <option value="instagram">Instagram</option>
+              <option value="youtube">YouTube</option>
+              <option value="linkedin">LinkedIn</option>
+              <option value="tiktok">TikTok</option>
+              <option value="pinterest">Pinterest</option>
+              <option value="rumble">Rumble</option>
+              <option value="threads">Threads</option>
+              <option value="x">X</option>
+              <option value="telegram">Telegram</option>
+              <option value="vimeo">Vimeo</option>
+              <option value="snapchat">Snapchat</option>
+              <option value="reddit">Reddit</option>
+              <option value="tumblr">Tumblr</option>
+              <option value="discord">Discord</option>
+              <option value="whatsapp">WhatsApp</option>
+              <option value="behance">Behance</option>
+              <option value="dribbble">Dribbble</option>
+              <option value="adobe-stock">Adobe Stock</option>
+              <option value="shutterstock">Shutterstock</option>
+              <option value="istock">iStock</option>
+              <option value="alamy">Alamy</option>
+              <option value="depositphotos">Depositphotos</option>
+              <option value="dreamstime">Dreamstime</option>
+              <option value="123rf">123RF</option>
+              <option value="freepik">Freepik (now Magnific)</option>
+              <option value="custom">Custom / Other</option>
+            </select>
+            <div id="sl-add-name-wrap" hidden>
+              <label for="sl-add-name">Platform name</label>
+              <input id="sl-add-name" type="text" placeholder="e.g. Medium" autocomplete="off">
+            </div>
             <label for="sl-add-url">Profile link</label>
             <input id="sl-add-url" type="url" placeholder="https://yourprofile" autocomplete="off">
             <div class="admin-add-actions">
               <button type="button" class="btn btn-solid btn-sm" id="sl-add-save">Add</button>
               <button type="button" class="admin-link-btn" id="sl-add-cancel">Cancel</button>
             </div>
-            <p class="hint">Jekono social media-r nam ar profile link din — list-e jog hobe ar Contact page-eo dekhabe. Live sign-in lage na, link paste korlei connect hobe.</p>
+            <p class="hint">Platform beche niye profile link paste korun — list-e jog hobe ar Contact page-eo dekhabe. Live sign-in lage na, link paste korlei connect hobe.</p>
           </div>
           <h4 class="admin-subhead">All Social Media</h4>
           <ul class="admin-social-list" id="sl-list"></ul>
-          <div class="social-admin-list">
-            <div class="social-admin-row"><label for="sl-facebook">Facebook</label><input id="sl-facebook" type="url" placeholder="https://www.facebook.com/yourprofile"></div>
-            <div class="social-admin-row"><label for="sl-instagram">Instagram</label><input id="sl-instagram" type="url" placeholder="https://www.instagram.com/yourprofile"></div>
-            <div class="social-admin-row"><label for="sl-youtube">YouTube</label><input id="sl-youtube" type="url" placeholder="https://www.youtube.com/@yourchannel"></div>
-            <div class="social-admin-row"><label for="sl-linkedin">LinkedIn</label><input id="sl-linkedin" type="url" placeholder="https://www.linkedin.com/in/yourprofile"></div>
-            <div class="social-admin-row"><label for="sl-tiktok">TikTok</label><input id="sl-tiktok" type="url" placeholder="https://www.tiktok.com/@yourprofile"></div>
-            <div class="social-admin-row"><label for="sl-pinterest">Pinterest</label><input id="sl-pinterest" type="url" placeholder="https://www.pinterest.com/yourprofile"></div>
-            <div class="social-admin-row"><label for="sl-rumble">Rumble</label><input id="sl-rumble" type="url" placeholder="https://rumble.com/c/yourchannel"></div>
-            <div class="social-admin-row"><label for="sl-threads">Threads</label><input id="sl-threads" type="url" placeholder="https://www.threads.net/@yourprofile"></div>
-            <div class="social-admin-row"><label for="sl-x">X</label><input id="sl-x" type="url" placeholder="https://x.com/yourprofile"></div>
-            <div class="social-admin-row"><label for="sl-telegram">Telegram</label><input id="sl-telegram" type="url" placeholder="https://t.me/yourname"></div>
-            <div class="social-admin-row"><label for="sl-vimeo">Vimeo</label><input id="sl-vimeo" type="url" placeholder="https://vimeo.com/yourprofile"></div>
-            <div class="social-admin-row"><label for="sl-snapchat">Snapchat</label><input id="sl-snapchat" type="url" placeholder="https://www.snapchat.com/add/yourname"></div>
-            <div class="social-admin-row"><label for="sl-reddit">Reddit</label><input id="sl-reddit" type="url" placeholder="https://www.reddit.com/user/yourname"></div>
-            <div class="social-admin-row"><label for="sl-tumblr">Tumblr</label><input id="sl-tumblr" type="url" placeholder="https://yourname.tumblr.com"></div>
-            <div class="social-admin-row"><label for="sl-discord">Discord</label><input id="sl-discord" type="url" placeholder="https://discord.com/users/yourid"></div>
-            <div class="social-admin-row"><label for="sl-whatsapp">WhatsApp</label><input id="sl-whatsapp" type="url" placeholder="https://wa.me/your-number"></div>
-            <div class="social-admin-row"><label for="sl-behance">Behance</label><input id="sl-behance" type="url" placeholder="https://www.behance.net/yourprofile"></div>
-            <div class="social-admin-row"><label for="sl-dribbble">Dribbble</label><input id="sl-dribbble" type="url" placeholder="https://dribbble.com/yourprofile"></div>
-            <div class="social-admin-row"><label for="sl-adobe-stock">Adobe Stock</label><input id="sl-adobe-stock" type="url" placeholder="https://stock.adobe.com/contributor/yourprofile"></div>
-            <div class="social-admin-row"><label for="sl-shutterstock">Shutterstock</label><input id="sl-shutterstock" type="url" placeholder="https://www.shutterstock.com/g/yourprofile"></div>
-            <div class="social-admin-row"><label for="sl-istock">iStock</label><input id="sl-istock" type="url" placeholder="https://www.istockphoto.com/portfolio/yourprofile"></div>
-            <div class="social-admin-row"><label for="sl-alamy">Alamy</label><input id="sl-alamy" type="url" placeholder="https://www.alamy.com/portfolio/yourprofile"></div>
-            <div class="social-admin-row"><label for="sl-depositphotos">Depositphotos</label><input id="sl-depositphotos" type="url" placeholder="https://depositphotos.com/yourprofile"></div>
-            <div class="social-admin-row"><label for="sl-dreamstime">Dreamstime</label><input id="sl-dreamstime" type="url" placeholder="https://www.dreamstime.com/yourprofile"></div>
-            <div class="social-admin-row"><label for="sl-123rf">123RF</label><input id="sl-123rf" type="url" placeholder="https://www.123rf.com/profile_yourprofile"></div>
-            <div class="social-admin-row"><label for="sl-freepik">Freepik (now Magnific)</label><input id="sl-freepik" type="url" placeholder="https://www.freepik.com/author/yourprofile"></div>
-          </div>
-          <div style="margin-top:14px"><button id="social-save" class="btn btn-solid btn-sm" type="button">Save social links</button></div>
-          <p id="social-saved" class="saved-msg" hidden>Saved — social links updated.</p>
         </div>
       </section>
 
       <!-- ============ BRANDS VIEW ============ -->
       <section class="admin-view" data-view="brands" hidden>
         <div class="admin-panel admin-form-panel">
-          <div class="admin-panel-head"><h3>Brands</h3></div>
+          <div class="admin-panel-head"><h3>Brands</h3><button type="button" class="admin-add-btn" id="br-add-open">＋ Add Brand</button></div>
           <p class="hint">Shudhu asol brand — fake brand kokhono na. Brand add/edit/remove korle Brands page-e dekhabe (ei device-e).</p>
-          <label for="br-name">Brand name</label>
-          <input id="br-name" type="text" placeholder="Brand name" maxlength="60">
-          <label for="br-role">Your role</label>
-          <input id="br-role" type="text" placeholder="e.g. Founder" maxlength="80">
-          <label for="br-line">One line about it</label>
-          <input id="br-line" type="text" placeholder="e.g. My own shoe brand." maxlength="140">
-          <div style="margin-top:12px"><button id="br-add" class="btn btn-solid btn-sm" type="button">Add brand</button> <button id="br-cancel" class="btn btn-ghost btn-sm" type="button" hidden>Cancel edit</button></div>
+          <div class="admin-add-form" id="br-add-form" hidden>
+            <label for="br-name">Brand name</label>
+            <input id="br-name" type="text" placeholder="Brand name" maxlength="60">
+            <label for="br-role">Your role</label>
+            <input id="br-role" type="text" placeholder="e.g. Founder" maxlength="80">
+            <label for="br-line">One line about it</label>
+            <input id="br-line" type="text" placeholder="e.g. My own shoe brand." maxlength="140">
+            <div class="admin-add-actions">
+              <button id="br-add" class="btn btn-solid btn-sm" type="button">Add brand</button>
+              <button id="br-cancel" class="btn btn-ghost btn-sm" type="button" hidden>Cancel edit</button>
+            </div>
+          </div>
           <div id="br-list" class="admin-list"></div>
         </div>
       </section>
@@ -292,26 +300,187 @@
 
       <!-- ============ ANALYTICS VIEW ============ -->
       <section class="admin-view" data-view="analytics" hidden>
-        <div class="admin-panel admin-form-panel">
-          <div class="admin-panel-head"><h3>Analytics</h3></div>
-          <div class="admin-empty-chart admin-empty-chart-tall">
-            <svg viewBox="0 0 24 24" width="34" height="34" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 15v3M12 10v8M17 6v12"/></svg>
-            <b>No visitor data yet</b>
-            <span>This site is static &mdash; it doesn&rsquo;t track visitors. Connect an analytics service (for example Google Analytics or Cloudflare Web Analytics) to see visits here.</span>
+        <div class="an-head">
+          <div class="an-title">
+            <span class="an-kicker"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 15v3M12 10v8M17 6v12"/></svg> Analytics</span>
+            <h2>Website <span>Analytics</span></h2>
+            <p>Track visitors, performance, and engagement on your website.</p>
+          </div>
+          <div class="an-head-actions">
+            <label class="an-period"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg><select id="an-period" aria-label="Period"><option value="7">Last 7 Days</option><option value="30" selected>Last 30 Days</option><option value="90">Last 90 Days</option></select></label>
+            <button type="button" class="an-export" id="an-export"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/><path d="M12 15V3"/></svg> Export Report</button>
           </div>
         </div>
+        <div class="an-stats">
+          <div class="an-stat"><span class="an-stat-ic"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.9"/><path d="M16 3.1a4 4 0 0 1 0 7.8"/></svg></span><div><span>Total Visitors</span><b>0</b><em class="an-flat">&mdash; no previous data</em></div><svg class="an-spark" viewBox="0 0 80 28" width="80" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M2 14 H78"/></svg></div>
+          <div class="an-stat"><span class="an-stat-ic"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 2 9 4.9-9 4.9-9-4.9z"/><path d="m3 11.9 9 4.9 9-4.9"/><path d="m3 16.9 9 4.9 9-4.9"/></svg></span><div><span>Page Views</span><b>0</b><em class="an-flat">&mdash; no previous data</em></div><svg class="an-spark" viewBox="0 0 80 28" width="80" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M2 14 H78"/></svg></div>
+          <div class="an-stat"><span class="an-stat-ic"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></span><div><span>Sessions</span><b>0</b><em class="an-flat">&mdash; no previous data</em></div><svg class="an-spark" viewBox="0 0 80 28" width="80" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M2 14 H78"/></svg></div>
+          <div class="an-stat"><span class="an-stat-ic"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></span><div><span>Avg. Session Duration</span><b>&mdash;</b><em class="an-flat">no visits yet</em></div><svg class="an-spark" viewBox="0 0 80 28" width="80" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M2 14 H78"/></svg></div>
+        </div>
+        <div class="an-mid">
+          <div class="admin-panel an-card an-chart-card">
+            <div class="an-card-head"><span class="an-card-ic"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.9"/><path d="M16 3.1a4 4 0 0 1 0 7.8"/></svg></span><div><h3>Visitors Overview</h3><span id="an-chart-sub">Daily visitor trends for the selected period.</span></div>
+              <div class="an-pills" role="tablist" aria-label="Chart metric"><button type="button" class="an-pill active" data-an-metric="visitors">Visitors</button><button type="button" class="an-pill" data-an-metric="views">Page Views</button><button type="button" class="an-pill" data-an-metric="sessions">Sessions</button></div>
+            </div>
+            <div class="an-chart-wrap"><svg id="an-chart" viewBox="0 0 720 260" width="100%" height="260" role="img" aria-label="Visitors chart — no data yet"></svg><div class="an-chart-empty"><b>No visitor data yet</b><span>This site is static &mdash; it doesn&rsquo;t track visitors.</span></div></div>
+          </div>
+          <div class="admin-panel an-card an-device-card">
+            <div class="an-card-head"><span class="an-card-ic"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></span><div><h3>Traffic by Device</h3></div></div>
+            <div class="an-donut-wrap">
+              <svg class="an-donut" viewBox="0 0 160 160" width="160" height="160"><circle cx="80" cy="80" r="62" fill="none" stroke="rgba(255,255,255,.08)" stroke-width="22"/><text x="80" y="78" text-anchor="middle" class="an-donut-num">0</text><text x="80" y="98" text-anchor="middle" class="an-donut-lbl">Visitors</text></svg>
+              <ul class="an-legend">
+                <li><span class="an-leg-ic"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></span><span>Desktop</span><b>0%</b></li>
+                <li><span class="an-leg-ic"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/></svg></span><span>Mobile</span><b>0%</b></li>
+                <li><span class="an-leg-ic"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M12 18h.01"/></svg></span><span>Tablet</span><b>0%</b></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="an-bottom">
+          <div class="admin-panel an-card">
+            <div class="an-card-head"><span class="an-card-ic"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg></span><div><h3>Top Pages</h3><span>Most visited pages on your website.</span></div></div>
+            <table class="an-table"><thead><tr><th>Page</th><th>Views</th><th></th><th>%</th></tr></thead><tbody>
+              <tr><td><span class="an-page-ic"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></span> /(Home)</td><td>0</td><td><span class="an-bar"><i style="width:0%"></i></span></td><td>0%</td></tr>
+              <tr><td><span class="an-page-ic"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></span> /about</td><td>0</td><td><span class="an-bar"><i style="width:0%"></i></span></td><td>0%</td></tr>
+              <tr><td><span class="an-page-ic"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 7l-10 6L2 7"/></svg></span> /contact</td><td>0</td><td><span class="an-bar"><i style="width:0%"></i></span></td><td>0%</td></tr>
+              <tr><td><span class="an-page-ic"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></span> /works</td><td>0</td><td><span class="an-bar"><i style="width:0%"></i></span></td><td>0%</td></tr>
+              <tr><td><span class="an-page-ic"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></span> /blog</td><td>0</td><td><span class="an-bar"><i style="width:0%"></i></span></td><td>0%</td></tr>
+            </tbody></table>
+          </div>
+          <div class="admin-panel an-card">
+            <div class="an-card-head"><span class="an-card-ic"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></span><div><h3>Traffic Sources</h3><span>Where your visitors are coming from.</span></div></div>
+            <ul class="an-src">
+              <li><span class="an-src-ic"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></span><div><b>Direct</b><span>(Typed URL / Bookmark)</span></div><span class="an-bar"><i style="width:0%"></i></span><b>0%</b></li>
+              <li><span class="an-src-ic"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg></span><div><b>Google</b><span>(Organic Search)</span></div><span class="an-bar"><i style="width:0%"></i></span><b>0%</b></li>
+              <li><span class="an-src-ic"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22.5 6.4a2.8 2.8 0 0 0-2-2C18.9 4 12 4 12 4s-6.9 0-8.5.4a2.8 2.8 0 0 0-2 2A29 29 0 0 0 1 11.7a29 29 0 0 0 .5 5.3 2.8 2.8 0 0 0 2 2c1.6.4 8.5.4 8.5.4s6.9 0 8.5-.4a2.8 2.8 0 0 0 2-2 29 29 0 0 0 .5-5.3 29 29 0 0 0-.5-5.3z"/><path d="m10 15 5-3.3L10 8.4z" fill="currentColor" stroke="none"/></svg></span><div><b>YouTube</b><span>(Referral)</span></div><span class="an-bar"><i style="width:0%"></i></span><b>0%</b></li>
+              <li><span class="an-src-ic"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/></svg></span><div><b>Social Media</b><span>(Facebook, X, etc.)</span></div><span class="an-bar"><i style="width:0%"></i></span><b>0%</b></li>
+              <li><span class="an-src-ic"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="1" fill="currentColor"/><circle cx="19" cy="12" r="1" fill="currentColor"/><circle cx="5" cy="12" r="1" fill="currentColor"/></svg></span><div><b>Other</b><span>(Referral / Campaign)</span></div><span class="an-bar"><i style="width:0%"></i></span><b>0%</b></li>
+            </ul>
+          </div>
+          <div class="admin-panel an-card">
+            <div class="an-card-head"><span class="an-card-ic"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></span><div><h3>Top Countries</h3><span>Visitor locations by country.</span></div></div>
+            <ul class="an-src an-countries">
+              <li><span class="an-flag an-flag-bd" aria-hidden="true"></span><div><b>Bangladesh</b></div><span class="an-bar"><i style="width:0%"></i></span><b>0%</b></li>
+              <li><span class="an-flag an-flag-in" aria-hidden="true"></span><div><b>India</b></div><span class="an-bar"><i style="width:0%"></i></span><b>0%</b></li>
+              <li><span class="an-flag an-flag-us" aria-hidden="true"></span><div><b>United States</b></div><span class="an-bar"><i style="width:0%"></i></span><b>0%</b></li>
+              <li><span class="an-flag an-flag-gb" aria-hidden="true"></span><div><b>United Kingdom</b></div><span class="an-bar"><i style="width:0%"></i></span><b>0%</b></li>
+              <li><span class="an-flag an-flag-other" aria-hidden="true">&middot;&middot;&middot;</span><div><b>Other Countries</b></div><span class="an-bar"><i style="width:0%"></i></span><b>0%</b></li>
+            </ul>
+          </div>
+        </div>
+        <div class="admin-note an-note"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><div><b>No visitor data yet.</b> This site is static &mdash; it doesn&rsquo;t track visitors, so every number above is 0. Connect an analytics service (for example Google Analytics or Cloudflare Web Analytics) and the real numbers will appear here.</div></div>
       </section>
 
       <!-- ============ SETTINGS VIEW ============ -->
       <section class="admin-view" data-view="settings" hidden>
-        <div class="admin-panel admin-form-panel">
-          <div class="admin-panel-head"><h3>Settings</h3></div>
-          <div class="admin-note"><b>Changes save on this device only.</b> Visitors won&rsquo;t see them until Rio publishes them live — ask Rio in the Personal Website chat. Anyone can open Admin on their own device, but their changes stay on their device and never touch yours or the live site.</div>
+        <div class="set-hero">
+          <span class="set-hero-ic"><svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.9l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.9-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1-1.6 1.7 1.7 0 0 0-1.9.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.9 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.6-1 1.7 1.7 0 0 0-.3-1.9l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.9.3h.1a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5h.1a1.7 1.7 0 0 0 1.9-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.9v.1a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg></span>
+          <div><h2>Settings</h2><p>Manage your website, content, and preferences from one place.</p></div>
+        </div>
+        <div class="set-tabs" role="tablist" aria-label="Settings sections">
+          <button type="button" class="set-tab active" data-set-tab="general"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.9l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.9-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1-1.6 1.7 1.7 0 0 0-1.9.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.9 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.6-1 1.7 1.7 0 0 0-.3-1.9l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.9.3h.1a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5h.1a1.7 1.7 0 0 0 1.9-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.9v.1a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg><span>General</span></button>
+          <button type="button" class="set-tab" data-set-tab="customize"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg><span>Customize</span></button>
+          <button type="button" class="set-tab" data-set-tab="content"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M9 13h6M9 17h6"/></svg><span>Content</span></button>
+          <button type="button" class="set-tab" data-set-tab="social"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/></svg><span>Social Links</span></button>
+          <button type="button" class="set-tab" data-set-tab="brands"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.6 13.4 12 22 2 12V2h10l8.6 8.6a2 2 0 0 1 0 2.8z"/><circle cx="7.5" cy="7.5" r="1.5"/></svg><span>Brands</span></button>
+          <button type="button" class="set-tab" data-set-tab="reviews"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg><span>Reviews</span></button>
+          <button type="button" class="set-tab" data-set-tab="community"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.9"/><path d="M16 3.1a4 4 0 0 1 0 7.8"/></svg><span>Community</span></button>
+          <button type="button" class="set-tab" data-set-tab="texts"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7V4h16v3"/><path d="M9 20h6"/><path d="M12 4v16"/></svg><span>Texts</span></button>
+          <button type="button" class="set-tab" data-set-tab="advanced"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3"/><path d="M1 14h6M9 8h6M17 16h6"/></svg><span>Advanced</span></button>
+        </div>
+        <div class="set-panel" data-set-panel="general">
+          <div class="set-grid">
+            <div class="admin-panel set-card">
+              <div class="set-card-head"><span class="set-card-ic"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.9l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.9-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1-1.6 1.7 1.7 0 0 0-1.9.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.9 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.6-1 1.7 1.7 0 0 0-.3-1.9l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.9.3h.1a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5h.1a1.7 1.7 0 0 0 1.9-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.9v.1a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg></span><div><h3>General Settings</h3><span>Basic website information and core preferences.</span></div></div>
+              <div class="set-row2">
+                <div><label for="set-title">Website Title</label><input id="set-title" type="text" maxlength="80" autocomplete="off"></div>
+                <div><label for="set-tagline">Website Tagline</label><input id="set-tagline" type="text" maxlength="80" autocomplete="off"></div>
+              </div>
+              <label for="set-meta">Meta Description</label>
+              <textarea id="set-meta" rows="3" maxlength="160"></textarea>
+              <span class="set-count" id="set-meta-count">0 / 160</span>
+              <div class="set-row2">
+                <div><label for="set-url">Website URL</label><input id="set-url" type="url" readonly></div>
+                <div><label>Favicon (32&times;32)</label><div class="set-favicon"><img id="set-favicon-img" src="m-logo.png" alt="Favicon" width="32" height="32"><button type="button" class="set-fav-btn" id="set-favicon-change"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m17 8-5-5-5 5"/><path d="M12 3v12"/></svg> Change</button><button type="button" class="set-fav-btn set-fav-del" id="set-favicon-remove" aria-label="Remove custom favicon"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg></button><input type="file" id="set-favicon-file" accept="image/*" hidden></div></div>
+              </div>
+            </div>
+            <div class="admin-panel set-card">
+              <div class="set-card-head"><span class="set-card-ic"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3"/><path d="M1 14h6M9 8h6M17 16h6"/></svg></span><div><h3>Site Preferences</h3><span>Control how your website works and behaves.</span></div></div>
+              <div class="set-pref"><span class="set-pref-ic"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></span><div class="set-pref-txt"><b>Website Visibility</b><span>Make your website live to everyone</span></div><button type="button" class="set-toggle on" id="set-vis" role="switch" aria-checked="true" aria-label="Website Visibility"><span></span></button></div>
+              <div class="set-pref"><span class="set-pref-ic"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8z"/></svg></span><div class="set-pref-txt"><b>Dark Mode (Default)</b><span>Load dark theme by default</span></div><button type="button" class="set-toggle on" id="set-dark" role="switch" aria-checked="true" aria-label="Dark Mode"><span></span></button></div>
+              <div class="set-pref"><span class="set-pref-ic"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="6 3 20 12 6 21 6 3"/></svg></span><div class="set-pref-txt"><b>UI Animations</b><span>Enable smooth animations and effects</span></div><button type="button" class="set-toggle on" id="set-anim" role="switch" aria-checked="true" aria-label="UI Animations"><span></span></button></div>
+              <div class="set-pref"><span class="set-pref-ic"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 15v3M12 10v8M17 6v12"/></svg></span><div class="set-pref-txt"><b>Show Analytics</b><span>Display visitor insights in dashboard</span></div><button type="button" class="set-toggle on" id="set-analytics" role="switch" aria-checked="true" aria-label="Show Analytics"><span></span></button></div>
+            </div>
+            <div class="set-side">
+              <div class="admin-panel set-card">
+                <div class="set-card-head"><span class="set-card-ic"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></span><div><h3>Quick Actions</h3></div></div>
+                <button type="button" class="set-qa set-qa-red" id="set-save"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><path d="M17 21v-8H7v8"/><path d="M7 3v5h8"/></svg> Save Changes</button>
+                <button type="button" class="set-qa" id="set-clear"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.6 13.4 12 22 2 12V2h10l8.6 8.6a2 2 0 0 1 0 2.8z"/><circle cx="7.5" cy="7.5" r="1.5"/></svg> Clear All Saved Data</button>
+                <button type="button" class="set-qa" id="set-backup"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 10h-1.3A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/><path d="M12 12v9"/><path d="m16 16-4-4-4 4"/></svg> Backup Website Data</button>
+                <button type="button" class="set-qa" id="set-restore"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.7 9.7 0 0 0-6.7 2.8L3 8"/><path d="M3 3v5h5"/><path d="M12 7v5l4 2"/></svg> Restore from Backup</button>
+                <input type="file" id="set-restore-file" accept="application/json,.json" hidden>
+              </div>
+              <div class="admin-panel set-card">
+                <div class="set-card-head"><span class="set-card-ic"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg></span><div><h3>System Info</h3></div></div>
+                <div class="set-info-row"><span><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.7l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.7l7 4a2 2 0 0 0 2 0l7-4a2 2 0 0 0 1-1.7z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg> Admin Panel</span><b id="set-info-version">GitHub Pages</b></div>
+                <div class="set-info-row"><span><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg> Last Saved</span><b id="set-info-saved">&mdash;</b></div>
+                <div class="set-info-row"><span><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg> Total Posts</span><b id="set-info-posts">0</b></div>
+                <div class="set-info-row"><span><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.7-4 3-9 3s-9-1.3-9-3"/><path d="M3 5v14c0 1.7 4 3 9 3s9-1.3 9-3V5"/></svg> Storage Used</span><b id="set-info-storage">0 KB</b></div>
+                <div class="set-storage-bar"><span id="set-storage-fill"></span></div>
+                <div class="set-info-row set-storage-pct"><span></span><b id="set-info-storage-pct">0%</b></div>
+              </div>
+            </div>
+          </div>
+          <div class="admin-note"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg><div><b>Changes save on this device only.</b> Visitors won&rsquo;t see them until you publish them live — ask Rio in the Personal Website chat. Anyone can open Admin on their own device, but their changes stay on their device and never touch yours or the live site.</div></div>
           <p class="hint">Admin panel opens only from the <b>#admin</b> link — there is no Admin button on the public site. Bookmark <b>https://mehedihallmubin.github.io/#admin</b>. No password is needed.</p>
-          <h4>Clear saved admin data</h4>
-          <p class="hint">Removes every change saved on this device (blog posts, reviews, links, brands, texts) and restores the original content.</p>
-          <div style="margin-top:12px"><button id="admin-clear-data" class="btn btn-ghost btn-sm" type="button">Clear all saved admin data</button></div>
+          <div class="admin-panel set-clear-card">
+            <span class="set-clear-ic"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg></span>
+            <div class="set-clear-txt"><h3>Clear Saved Admin Data</h3><p>Remove every change saved on this device (blog posts, reviews, links, brands, texts) and restore the original content.</p></div>
+            <button id="admin-clear-data" class="btn btn-ghost btn-sm set-clear-btn" type="button"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg> Clear All Saved Admin Data</button>
+          </div>
           <p id="admin-cleared" class="saved-msg" hidden>Cleared — original content restored. Reload the page to see it.</p>
+        </div>
+        <div class="set-panel" data-set-panel="customize" hidden>
+          <div class="admin-panel set-card">
+            <div class="set-card-head"><span class="set-card-ic"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></span><div><h3>Customize Your Website</h3><span>Change your name, banner, picture and all info from here.</span></div></div>
+            <div class="set-custom-media">
+              <div class="set-media-block">
+                <label>Profile Picture</label>
+                <div class="set-media-preview"><img id="cz-pic-img" src="mehedi-portrait.jpg" alt="Profile picture"></div>
+                <div class="set-media-actions"><button type="button" class="set-fav-btn" id="cz-pic-change"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m17 8-5-5-5 5"/><path d="M12 3v12"/></svg> Change Picture</button><button type="button" class="set-fav-btn set-fav-del" id="cz-pic-remove" aria-label="Remove custom picture"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg></button><input type="file" id="cz-pic-file" accept="image/*" hidden></div>
+              </div>
+              <div class="set-media-block">
+                <label>Banner Image</label>
+                <div class="set-media-preview set-banner-preview"><img id="cz-banner-img" src="" alt="Banner preview"><span id="cz-banner-empty">No banner yet — upload one to show a cover on the home page.</span></div>
+                <div class="set-media-actions"><button type="button" class="set-fav-btn" id="cz-banner-change"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m17 8-5-5-5 5"/><path d="M12 3v12"/></svg> Change Banner</button><button type="button" class="set-fav-btn set-fav-del" id="cz-banner-remove" aria-label="Remove banner"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg></button><input type="file" id="cz-banner-file" accept="image/*" hidden></div>
+              </div>
+            </div>
+            <div class="set-row2">
+              <div><label for="cz-name">Name</label><input id="cz-name" type="text" maxlength="80" autocomplete="off"></div>
+              <div><label for="cz-role">Role / Profession</label><input id="cz-role" type="text" maxlength="120" autocomplete="off"></div>
+            </div>
+            <div class="set-row2">
+              <div><label for="cz-email">Email</label><input id="cz-email" type="email" maxlength="120" autocomplete="off"></div>
+              <div><label for="cz-phone">Phone</label><input id="cz-phone" type="tel" maxlength="30" autocomplete="off"></div>
+            </div>
+            <label for="cz-location">Location</label>
+            <input id="cz-location" type="text" maxlength="80" autocomplete="off" placeholder="e.g. Dhaka, Bangladesh">
+            <label for="cz-about">About Me</label>
+            <textarea id="cz-about" rows="4" maxlength="600"></textarea>
+            <span class="set-count" id="cz-about-count">0 / 600</span>
+            <div class="admin-add-actions" style="margin-top:14px">
+              <button type="button" class="btn btn-solid btn-sm" id="cz-save">Save Changes</button>
+            </div>
+            <p class="hint">Picture and banner save on this device only — visitors will see them after Rio publishes them live. Ask Rio in the Personal Website chat to publish.</p>
+          </div>
+        </div>
+        <div class="set-panel" data-set-panel="advanced" hidden>
+          <div class="admin-panel set-card">
+            <div class="set-card-head"><span class="set-card-ic"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3"/><path d="M1 14h6M9 8h6M17 16h6"/></svg></span><div><h3>Advanced</h3><span>Reset settings and danger zone.</span></div></div>
+            <p class="hint">Resetting settings restores the original website title, tagline, meta description and all preferences. Your blog posts, brands, links, reviews and texts are NOT touched.</p>
+            <div style="margin-top:12px"><button id="set-reset" class="btn btn-ghost btn-sm" type="button">Reset Settings to Default</button></div>
+            <p id="set-reset-done" class="saved-msg" hidden>Reset — settings restored to default.</p>
+          </div>
         </div>
       </section>
     </div>
