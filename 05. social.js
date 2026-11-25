@@ -85,41 +85,7 @@
       }
     });
     renderCustomPublic();
-    fitConnect();
   }
-  // Home "Connect With Me" bar: show as many icons as fit the bar, hide
-  // the rest (the "···" link opens the full list on the Contact page).
-  // Bigger display -> more icons; smaller display -> fewer.
-  function fitConnect(){
-    var wrap = document.querySelector('.hp-connect-icons');
-    if(!wrap) return;
-    var icons = Array.prototype.slice.call(wrap.querySelectorAll('.hp-con-ic'));
-    var more = wrap.querySelector('.hp-con-more');
-    icons.forEach(function(ic){ ic.classList.remove('hp-con-hide'); });
-    if(more) more.classList.remove('hp-con-hide');
-    var avail = wrap.clientWidth;
-    if(!avail) return;
-    var gap = parseFloat(getComputedStyle(wrap).columnGap) || 0;
-    var vis = icons.filter(function(ic){ return getComputedStyle(ic).display !== 'none'; });
-    var total = 0;
-    vis.forEach(function(ic, i){ total += ic.offsetWidth + (i ? gap : 0); });
-    var showMore = total > avail;
-    var limit = showMore ? avail - (more ? more.offsetWidth : 0) - gap : avail;
-    var used = 0;
-    vis.forEach(function(ic){
-      var w = ic.offsetWidth;
-      var need = used === 0 ? w : used + gap + w;
-      if(need <= limit){ used = need; }
-      else ic.classList.add('hp-con-hide');
-    });
-    if(more) more.classList.toggle('hp-con-hide', !showMore);
-  }
-  var fitT = null;
-  window.addEventListener('resize', function(){
-    clearTimeout(fitT);
-    fitT = setTimeout(fitConnect, 120);
-  });
-  window.addEventListener('load', fitConnect);
   // Custom platforms on the public Contact page: append a tile per added
   // platform to the Social Media grid and keep the "(16)" count real.
   function renderCustomPublic(){

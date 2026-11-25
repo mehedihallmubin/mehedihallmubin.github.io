@@ -168,7 +168,7 @@
     </section>
     <!-- CONNECT -->
     <section class="hp-connect">
-      <span class="hp-connect-h"><span class="hp-h-ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/></svg></span>Connect With Me</span>
+      <span class="hp-connect-h"><span class="hp-h-ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/></svg></span>Connect<br>With Me</span>
       <div class="hp-connect-icons">
         <a class="hp-con-ic" data-platform="youtube" aria-label="YouTube" href="https://www.youtube.com" target="_blank" rel="noopener"><span class="bl bl-yt"><svg width="24" height="24" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M23.5 6.19a3.02 3.02 0 0 0-2.12-2.14C19.5 3.55 12 3.55 12 3.55s-7.5 0-9.38.5A3.02 3.02 0 0 0 .5 6.19C0 8.07 0 12 0 12s0 3.93.5 5.81a3.02 3.02 0 0 0 2.12 2.14c1.88.5 9.38.5 9.38.5s7.5 0 9.38-.5a3.02 3.02 0 0 0 2.12-2.14C24 15.93 24 12 24 12s0-3.93-.5-5.81zM9.55 15.57V8.43L15.82 12l-6.27 3.57z"/></svg></span></a>
         <a class="hp-con-ic" data-platform="facebook" aria-label="Facebook" href="https://www.facebook.com" target="_blank" rel="noopener"><span class="bl bl-fb">f</span></a>
@@ -194,38 +194,6 @@
   <div class="wrap"><span>&copy; 2026 <b>Mehedi H. All Mubin</b></span><span class="home-foot-div" aria-hidden="true"></span><span><a href="mailto:mehedih.allmubin@gmail.com"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 7l-10 6L2 7"/></svg> mehedih.allmubin@gmail.com</a></span></div>
 </footer>
 <!-- Reviews Admin: settings panel (discreet, opened from the footer Admin link) -->
-<!-- 17. admin-dashboard.html — Admin dashboard (Option A, liquid glass).
-     SOURCE OF TRUTH for the admin panel. Splice into all 6 page sources with
-     apply-admin-dashboard.py (replaces the old admin-modal block
-     up to the toast div). Then run 00. build.py.
-     ALL form IDs below must stay exactly as-is — 03/05/13/14/15/16.js read them.
-     Real data only: stats/donut/at-a-glance read localStorage counts;
-     views/visitors + the analytics chart are honest empty states (static site
-     tracks nothing); recent activity logs real admin opens to localStorage. -->
-<!-- 17. admin-dashboard.html — Admin dashboard (Option A, liquid glass).
-     SOURCE OF TRUTH for the admin panel. Splice into all 6 page sources with
-     apply-admin-dashboard.py (replaces the old admin-modal block
-     up to the toast div). Then run 00. build.py.
-     ALL form IDs below must stay exactly as-is — 03/05/13/14/15/16.js read them.
-     Real data only: stats/donut/at-a-glance read localStorage counts;
-     views/visitors + the analytics chart are honest empty states (static site
-     tracks nothing); recent activity logs real admin opens to localStorage. -->
-<!-- 17. admin-dashboard.html — Admin dashboard (Option A, liquid glass).
-     SOURCE OF TRUTH for the admin panel. Splice into all 6 page sources with
-     apply-admin-dashboard.py (replaces the old admin-modal block
-     up to the toast div). Then run 00. build.py.
-     ALL form IDs below must stay exactly as-is — 03/05/13/14/15/16.js read them.
-     Real data only: stats/donut/at-a-glance read localStorage counts;
-     views/visitors + the analytics chart are honest empty states (static site
-     tracks nothing); recent activity logs real admin opens to localStorage. -->
-<!-- 17. admin-dashboard.html — Admin dashboard (Option A, liquid glass).
-     SOURCE OF TRUTH for the admin panel. Splice into all 6 page sources with
-     apply-admin-dashboard.py (replaces the old admin-modal block
-     up to the toast div). Then run 00. build.py.
-     ALL form IDs below must stay exactly as-is — 03/05/13/14/15/16.js read them.
-     Real data only: stats/donut/at-a-glance read localStorage counts;
-     views/visitors + the analytics chart are honest empty states (static site
-     tracks nothing); recent activity logs real admin opens to localStorage. -->
 <!-- 17. admin-dashboard.html — Admin dashboard (Option A, liquid glass).
      SOURCE OF TRUTH for the admin panel. Splice into all 6 page sources with
      apply-admin-dashboard.py (replaces the old admin-modal block
@@ -861,9 +829,9 @@
 <!-- #mawa login: full-page, only email + password. No other content. -->
 <div id="mawa-login" class="mawa-login" hidden>
   <div class="mawa-login-card">
-    <input id="mawa-id" type="text" autocomplete="username" placeholder="Username or Email" aria-label="Username or Email">
+    <input id="mawa-email" type="email" autocomplete="username" placeholder="Email" aria-label="Email">
     <input id="mawa-pass" type="password" autocomplete="current-password" placeholder="Password" aria-label="Password">
-    <p id="mawa-error" class="mawa-error" hidden>Wrong username/email or password.</p>
+    <p id="mawa-error" class="mawa-error" hidden>Wrong email or password.</p>
     <button type="button" id="mawa-submit" class="btn btn-solid">Log In</button>
   </div>
 </div>

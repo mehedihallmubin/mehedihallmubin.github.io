@@ -1097,9 +1097,8 @@ html.light .admin-dash-modal,html.light .admin-side{background:#fff;color:var(--
 .hp-work-arrow{flex:none;width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,#DC143C,#8B0000);color:#fff;display:flex;align-items:center;justify-content:center;font-size:20px}
 /* --- connect bar --- */
 .hp-connect{display:flex;align-items:center;gap:18px;background:linear-gradient(135deg,rgba(220,20,60,.16),rgba(255,255,255,.03) 60%);border:1px solid rgba(220,20,60,.25);border-radius:18px;padding:16px 20px}
-.hp-connect-h{font-family:'Cormorant',serif;font-size:22px;line-height:1.15;display:flex;align-items:center;gap:9px;flex:none;white-space:nowrap}
-.hp-connect-icons{flex:1;display:flex;gap:10px;justify-content:space-between;flex-wrap:nowrap;overflow:hidden;min-width:0}
-.hp-connect-icons .hp-con-hide{display:none}
+.hp-connect-h{font-family:'Cormorant',serif;font-size:22px;line-height:1.15;display:flex;align-items:center;gap:9px;flex:none}
+.hp-connect-icons{flex:1;display:flex;gap:10px;justify-content:flex-end;flex-wrap:wrap}
 .hp-con-ic{flex:none;width:46px;height:46px;border-radius:12px;overflow:hidden;display:block}
 .hp-con-ic .bl{width:46px;height:46px;border-radius:12px;font-size:22px}
 .hp-con-ic .bl svg{width:24px;height:24px}
@@ -1172,189 +1171,6 @@ html.light .admin-dash-modal,html.light .admin-side{background:#fff;color:var(--
   .hp-stat span{font-size:10px}
   .hp-brand-txt b{font-size:10px}
   .hp-connect-icons{gap:1px}
-}
-
-/* ============ PORTFOLIO — TERMINAL (Neovim-style infinite canvas) ============ */
-/* Full-screen terminal portfolio (portfolio.html only, body.pf-terminal).
-   Monospace throughout; theme colours live in --pf-* vars, switched by
-   [data-theme] on .pf-app (see 14. brands.js THEMES). */
-body.pf-terminal{overflow:hidden;background:#0a0a0a}
-body.pf-terminal>header,body.pf-terminal>footer,body.pf-terminal .glow,
-body.pf-terminal #nav-drawer,body.pf-terminal #search-overlay,body.pf-terminal #drawer-backdrop{display:none!important}
-.pf-app{
-  --pf-bg:#0a0a0a;--pf-panel:#0d0d0d;--pf-panel2:#111111;
-  --pf-border:#2b2b2b;--pf-text:#e8e8e8;--pf-muted:#8a8a8a;
-  --pf-acc:#ff5c38;--pf-green:#4ade80;--pf-yellow:#facc15;
-  --pf-cyan:#22d3ee;--pf-purple:#c084fc;--pf-red:#f87171;
-  --pf-mono:ui-monospace,'SFMono-Regular',Menlo,Consolas,'Liberation Mono',monospace;
-  height:100dvh;display:flex;flex-direction:column;overflow:hidden;
-  background:var(--pf-bg);color:var(--pf-text);font-family:var(--pf-mono);
-  font-size:13px;line-height:1.55;
-}
-/* Theme palettes — one rule per theme, used by .pf-app AND by each theme card. */
-[data-theme="blackmoney"]{--pf-bg:#0a0a0a;--pf-panel:#0d0d0d;--pf-panel2:#111111;--pf-border:#2b2b2b;--pf-text:#e8e8e8;--pf-muted:#8a8a8a;--pf-acc:#ff5c38;--pf-green:#4ade80;--pf-yellow:#facc15;--pf-cyan:#22d3ee;--pf-purple:#c084fc;--pf-red:#f87171}
-[data-theme="circuit"]{--pf-bg:#0b1220;--pf-panel:#0e1626;--pf-panel2:#111c30;--pf-border:#1e2a3d;--pf-text:#dbeafe;--pf-muted:#7c8aa0;--pf-acc:#38bdf8;--pf-green:#34d399;--pf-yellow:#fbbf24;--pf-cyan:#22d3ee;--pf-purple:#a78bfa;--pf-red:#f87171}
-[data-theme="lightning"]{--pf-bg:#0a0a08;--pf-panel:#0f0f0a;--pf-panel2:#14140d;--pf-border:#2b2b1a;--pf-text:#fef9c3;--pf-muted:#a3a380;--pf-acc:#facc15;--pf-green:#a3e635;--pf-yellow:#fde047;--pf-cyan:#67e8f9;--pf-purple:#d8b4fe;--pf-red:#fca5a5}
-[data-theme="crimson"]{--pf-bg:#0d0205;--pf-panel:#120408;--pf-panel2:#18060c;--pf-border:#3d0a14;--pf-text:#ffe4e6;--pf-muted:#a37a82;--pf-acc:#dc143c;--pf-green:#4ade80;--pf-yellow:#fbbf24;--pf-cyan:#22d3ee;--pf-purple:#c084fc;--pf-red:#f87171}
-[data-theme="gold"]{--pf-bg:#0d0b06;--pf-panel:#12100a;--pf-panel2:#181509;--pf-border:#2e2a1a;--pf-text:#fef3c7;--pf-muted:#a39a7a;--pf-acc:#d4af37;--pf-green:#86efac;--pf-yellow:#fde047;--pf-cyan:#67e8f9;--pf-purple:#d8b4fe;--pf-red:#fca5a5}
-[data-theme="forest"]{--pf-bg:#060d08;--pf-panel:#0a120c;--pf-panel2:#0d1810;--pf-border:#1a2e1f;--pf-text:#dcfce7;--pf-muted:#7a9a82;--pf-acc:#22c55e;--pf-green:#4ade80;--pf-yellow:#fde047;--pf-cyan:#5eead4;--pf-purple:#c4b5fd;--pf-red:#fca5a5}
-[data-theme="ocean"]{--pf-bg:#050a12;--pf-panel:#081120;--pf-panel2:#0b1729;--pf-border:#16283d;--pf-text:#dbeafe;--pf-muted:#7c93a8;--pf-acc:#38bdf8;--pf-green:#2dd4bf;--pf-yellow:#fde047;--pf-cyan:#22d3ee;--pf-purple:#a78bfa;--pf-red:#f87171}
-[data-theme="mono"]{--pf-bg:#000000;--pf-panel:#050505;--pf-panel2:#0a0a0a;--pf-border:#333333;--pf-text:#ffffff;--pf-muted:#999999;--pf-acc:#ffffff;--pf-green:#ffffff;--pf-yellow:#ffffff;--pf-cyan:#ffffff;--pf-purple:#ffffff;--pf-red:#ffffff}
-/* Top bar */
-.pf-topbar{flex:none;height:48px;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:0 16px;border-bottom:1px solid var(--pf-border);background:var(--pf-panel)}
-.pf-logo{display:flex;align-items:center;gap:9px;text-decoration:none;color:var(--pf-text);font-size:13px;white-space:nowrap}
-.pf-logo b{display:grid;place-items:center;width:26px;height:26px;border-radius:6px;background:var(--pf-acc);color:#fff;font-size:12px}
-.pf-logo span{color:var(--pf-muted)}
-.pf-top-right{display:flex;align-items:center;gap:14px}
-.pf-counter{color:var(--pf-muted);font-size:12px;letter-spacing:.06em}
-.pf-gh{color:var(--pf-acc);text-decoration:none;font-size:13px}
-/* Body: rail + stage */
-.pf-body{flex:1;display:flex;min-height:0}
-.pf-rail{flex:none;width:168px;border-right:1px solid var(--pf-border);background:var(--pf-panel);padding:14px 10px;display:flex;flex-direction:column;gap:2px;overflow-y:auto}
-.pf-rail-head{padding:2px 10px 12px;font-size:11px;letter-spacing:.14em;line-height:1.7;color:var(--pf-muted)}
-.pf-rail-head b{display:block;font-size:16px;letter-spacing:.08em;color:var(--pf-acc)}
-.pf-rail-item{display:flex;align-items:center;gap:9px;width:100%;text-align:left;background:none;border:none;border-left:2px solid transparent;color:var(--pf-muted);font:inherit;font-size:13px;padding:7px 10px;border-radius:0 6px 6px 0;cursor:pointer}
-.pf-rail-item i{font-style:normal;font-size:10px;color:var(--pf-muted);opacity:.7}
-.pf-rail-item:hover{color:var(--pf-text);background:rgba(255,255,255,.04)}
-.pf-rail-item.is-active{color:var(--pf-text);background:rgba(255,255,255,.06);border-left-color:var(--pf-acc)}
-.pf-rail-home{margin-top:auto;padding:9px 10px;color:var(--pf-acc);text-decoration:none;font-size:13px}
-/* Stage + canvas */
-.pf-stage{flex:1;position:relative;overflow:hidden;cursor:grab;min-width:0;
-  background-image:radial-gradient(rgba(255,255,255,.055) 1px,transparent 1px);background-size:26px 26px}
-.pf-stage.dragging{cursor:grabbing}
-.pf-canvas{position:absolute;top:0;left:0;width:4030px;height:1700px;transform-origin:0 0;will-change:transform;transition:transform .55s cubic-bezier(.22,.8,.24,1)}
-.pf-panel[data-panel="0"]{left:90px;top:90px}
-.pf-panel[data-panel="1"]{left:1080px;top:90px}
-.pf-panel[data-panel="2"]{left:2070px;top:90px}
-.pf-panel[data-panel="3"]{left:3060px;top:90px}
-.pf-panel[data-panel="4"]{left:90px;top:950px}
-.pf-panel[data-panel="5"]{left:1080px;top:950px}
-.pf-panel[data-panel="6"]{left:2070px;top:950px}
-.pf-panel[data-panel="7"]{left:3060px;top:950px}
-.pf-canvas.no-anim{transition:none!important}
-/* Panel */
-.pf-panel{position:absolute;width:880px;min-height:420px;background:var(--pf-panel);border:1px solid var(--pf-border);border-radius:10px;display:flex;flex-direction:column;overflow:hidden;box-shadow:0 18px 50px rgba(0,0,0,.5)}
-.pf-prompt{flex:none;height:36px;display:flex;align-items:center;gap:8px;padding:0 12px;border-bottom:1px solid var(--pf-border);background:var(--pf-panel2);font-size:12.5px;color:var(--pf-muted)}
-.pf-dot{width:8px;height:8px;border-radius:50%;background:var(--pf-green);flex:none}
-.pf-prompt-right{margin-left:auto}
-.pf-content{flex:1;min-height:0;overflow:auto;padding:16px 18px;font-size:13px}
-.pf-content::-webkit-scrollbar{width:8px;height:8px}
-.pf-content::-webkit-scrollbar-thumb{background:var(--pf-border);border-radius:4px}
-.pf-status{flex:none;min-height:30px;display:flex;align-items:center;flex-wrap:wrap;gap:6px 16px;padding:5px 12px;border-top:1px solid var(--pf-border);background:var(--pf-panel2);font-size:11px;letter-spacing:.08em;color:var(--pf-muted)}
-.pf-status b{color:var(--pf-text);font-weight:700}
-.pf-status-right{margin-left:auto}
-.pf-muted{color:var(--pf-muted)}
-.c-acc{color:var(--pf-acc)}
-/* Intro editor */
-.pf-editor{display:flex;border:1px solid var(--pf-border);border-radius:8px;overflow:hidden;background:#000}
-.pf-gutter{flex:none;width:34px;text-align:right;padding:10px 8px 10px 0;color:var(--pf-muted);font-size:11.5px;line-height:18px;background:rgba(255,255,255,.02);border-right:1px solid var(--pf-border);user-select:none}
-.pf-code{flex:1;min-width:0;padding:10px 12px;font-size:12.5px;line-height:18px;overflow:hidden}
-.pf-cl{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.c-com{color:var(--pf-muted)}
-.c-kw{color:var(--pf-purple)}
-.c-var{color:var(--pf-cyan)}
-.c-key{color:var(--pf-yellow)}
-.c-str{color:var(--pf-green)}
-.c-num{color:var(--pf-acc)}
-.pf-portrait{width:240px;height:180px;overflow:hidden;border-radius:6px;margin:2px auto}
-.pf-portrait img{width:100%;height:100%;object-fit:cover;object-position:center 18%;display:block}
-.pf-kbd{margin-top:10px;border:1px solid var(--pf-border);border-radius:8px;padding:10px;background:var(--pf-panel2)}
-.pf-kbd-row{display:flex;gap:5px;justify-content:center;margin-bottom:5px}
-.pf-kbd-row:last-of-type{margin-bottom:0}
-.pf-kbd-row span{width:26px;height:26px;display:grid;place-items:center;border:1px solid var(--pf-border);border-radius:5px;font-size:11px;color:var(--pf-muted);background:var(--pf-panel)}
-.pf-kbd-row span.on{border-color:var(--pf-acc);color:var(--pf-acc);background:rgba(255,92,56,.12)}
-.pf-kbd-cap{text-align:center;font-size:10.5px;color:var(--pf-muted);margin-top:7px}
-/* whoami / generic terminal text */
-.pf-tree{margin:0 0 4px;font:inherit;font-size:12.5px;line-height:1.6;color:var(--pf-green);white-space:pre-wrap}
-.pf-cmd{margin:12px 0 6px;color:var(--pf-text)}
-.pf-cmd:first-child{margin-top:0}
-.pf-text{margin:0 0 8px;color:var(--pf-muted)}
-.pf-fetch{margin:0;font:inherit;font-size:12.5px;line-height:1.65;color:var(--pf-text);white-space:pre-wrap}
-.pf-links{margin:0;line-height:2}
-.pf-links a{color:var(--pf-acc);text-decoration:underline;text-underline-offset:2px;margin-right:14px;white-space:nowrap}
-.pf-links-big a{font-size:14px}
-.pf-cta{margin:14px 0 0}
-.pf-cta a{color:var(--pf-acc);text-decoration:underline;text-underline-offset:2px}
-/* stack */
-.pf-list{list-style:none;padding:0;margin:0 0 8px}
-.pf-list li{display:flex;align-items:center;gap:10px;margin-bottom:6px}
-.pf-list li span{width:110px;flex:none}
-.pf-list li i{flex:1;height:8px;background:rgba(255,255,255,.08);border-radius:4px;position:relative;display:block}
-.pf-list li i::after{content:"";position:absolute;left:0;top:0;bottom:0;width:var(--w,50%);background:var(--pf-green);border-radius:4px}
-.pf-tags{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 8px}
-.pf-tags span{border:1px solid var(--pf-border);border-radius:20px;padding:3px 10px;font-size:12px;color:var(--pf-text);background:var(--pf-panel2)}
-.pf-cal{display:grid;grid-template-rows:repeat(7,11px);grid-auto-flow:column;grid-auto-columns:11px;gap:3px;margin:6px 0 2px;overflow-x:auto;padding-bottom:2px}
-.pf-cal-cell{width:11px;height:11px;border-radius:2px;background:rgba(255,255,255,.07)}
-.pf-cal-cell.lv1{background:rgba(74,222,128,.4)}
-.pf-cal-cell.lv2{background:rgba(74,222,128,.6)}
-.pf-cal-cell.lv3{background:rgba(74,222,128,.85)}
-.pf-cal-cell.lv4{background:#4ade80}
-.pf-cal-cell.future{opacity:.35}
-.pf-cal-cap{font-size:11px;color:var(--pf-muted);margin:6px 0 0}
-/* themes */
-.pf-themes{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:4px}
-.pf-theme{border:1px solid var(--pf-border);border-radius:8px;overflow:hidden;background:var(--pf-panel2);cursor:pointer;text-align:left;font:inherit;padding:0;color:var(--pf-text)}
-.pf-theme:hover{border-color:var(--pf-muted)}
-.pf-theme.is-active{border-color:var(--pf-acc);box-shadow:0 0 0 1px var(--pf-acc)}
-.pf-theme-mini{display:block;height:76px;padding:9px 10px;font-size:10px;line-height:1.55;background:var(--pf-bg);color:var(--pf-text);overflow:hidden}
-.pf-theme-mini .t-line{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.t-kw{color:var(--pf-purple)}
-.t-var{color:var(--pf-cyan)}
-.t-str{color:var(--pf-green)}
-.t-com{color:var(--pf-muted)}
-.t-fn{color:var(--pf-yellow)}
-.pf-theme-name{display:flex;align-items:center;justify-content:space-between;padding:8px 10px;font-size:12px;border-top:1px solid var(--pf-border);color:var(--pf-text)}
-.pf-theme-name i{font-style:normal;color:var(--pf-acc);font-size:10px;visibility:hidden}
-.pf-theme.is-active .pf-theme-name i{visibility:visible}
-/* work log / projects / brands */
-.pf-head{margin:0 0 10px;font-size:14px}
-.pf-log{list-style:none;padding:0;margin:0}
-.pf-log li{display:flex;flex-wrap:wrap;gap:2px 12px;align-items:baseline;padding:9px 0;border-bottom:1px dashed var(--pf-border)}
-.pf-log-date{width:170px;flex:none;color:var(--pf-yellow);font-size:12px}
-.pf-log b{font-size:13px}
-.pf-log li span:last-child{color:var(--pf-muted);font-size:12.5px}
-.pf-proj{list-style:none;padding:0;margin:0}
-.pf-proj li{padding:11px 0;border-bottom:1px dashed var(--pf-border)}
-.pf-proj li:last-child{border-bottom:none}
-.pf-proj b{font-size:14px}
-.pf-proj p{margin:4px 0 0;color:var(--pf-muted);font-size:12.5px}
-.pf-tag{margin-left:8px;font-size:11px;color:var(--pf-cyan);border:1px solid var(--pf-border);padding:2px 8px;border-radius:20px;white-space:nowrap}
-.pf-brands{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-.pf-brand{display:flex;gap:10px;align-items:center;border:1px solid var(--pf-border);border-radius:8px;padding:9px 10px;background:var(--pf-panel2);min-width:0}
-.pf-b-mono{flex:none;width:38px;height:38px;border-radius:8px;display:grid;place-items:center;font-size:11px;font-weight:700;color:#fff;overflow:hidden;text-align:center;line-height:1.1}
-.pf-brand b{display:block;font-size:13px;line-height:1.3}
-.pf-brand div span{display:block;font-size:11.5px;color:var(--pf-muted);line-height:1.45}
-/* zoom + nav controls */
-.pf-zoom{position:absolute;right:14px;bottom:14px;display:flex;gap:6px;align-items:center;z-index:5}
-.pf-zoom button{background:var(--pf-panel);border:1px solid var(--pf-border);color:var(--pf-text);border-radius:6px;padding:5px 10px;font:inherit;font-size:12px;cursor:pointer}
-.pf-zoom button:hover{border-color:var(--pf-muted)}
-.pf-zoom span{font-size:12px;color:var(--pf-muted);min-width:44px;text-align:center}
-.pf-nav{position:absolute;top:50%;transform:translateY(-50%);z-index:5;width:38px;height:38px;border-radius:50%;background:var(--pf-panel);border:1px solid var(--pf-border);color:var(--pf-text);font-size:16px;cursor:pointer;display:grid;place-items:center}
-.pf-nav:hover{border-color:var(--pf-muted)}
-.pf-prev{left:12px}
-.pf-next{right:12px}
-/* Phone: stacked panels, horizontal rail */
-@media (max-width:760px){
-  body.pf-terminal{overflow:auto}
-  .pf-app{height:auto;min-height:100dvh;overflow:visible}
-  .pf-topbar{position:sticky;top:0;z-index:10}
-  .pf-logo span{display:none}
-  .pf-body{flex-direction:column}
-  .pf-rail{width:auto;flex-direction:row;overflow-x:auto;border-right:none;border-bottom:1px solid var(--pf-border);padding:8px;position:sticky;top:48px;z-index:9;gap:6px}
-  .pf-rail-head{display:none}
-  .pf-rail-item{width:auto;white-space:nowrap;border-left:none;border-bottom:2px solid transparent;border-radius:6px 6px 0 0;padding:6px 10px}
-  .pf-rail-item.is-active{border-bottom-color:var(--pf-acc)}
-  .pf-rail-home{margin:0 0 0 auto;white-space:nowrap;padding:6px 10px}
-  .pf-stage{overflow:visible;cursor:default;background-image:none}
-  .pf-canvas{position:static;display:block;transform:none!important;padding:12px;width:auto;height:auto}
-  .pf-panel{position:static;width:auto;height:auto;min-height:0;margin-bottom:14px}
-  .pf-content{overflow:visible}
-  .pf-zoom,.pf-nav{display:none}
-  .pf-themes{grid-template-columns:repeat(2,1fr)}
-  .pf-brands{grid-template-columns:1fr}
-  .pf-log-date{width:100%}
-  .pf-gutter{display:none}
-  .pf-portrait{width:auto;height:150px;margin:2px 0}
 }
 </style>
 </head>
@@ -1439,46 +1255,6 @@ body.pf-terminal #nav-drawer,body.pf-terminal #search-overlay,body.pf-terminal #
   <div class="wrap"><span>&copy; 2026 <b>Mehedi H. All Mubin</b> &middot; mehedih.allmubin</span><span>Designer &middot; Video Editor &middot; Social Media Manager</span></div>
 </footer>
 <!-- Reviews Admin: settings panel (discreet, opened from the footer Admin link) -->
-<!-- 17. admin-dashboard.html — Admin dashboard (Option A, liquid glass).
-     SOURCE OF TRUTH for the admin panel. Splice into all 6 page sources with
-     apply-admin-dashboard.py (replaces the old admin-modal block
-     up to the toast div). Then run 00. build.py.
-     ALL form IDs below must stay exactly as-is — 03/05/13/14/15/16.js read them.
-     Real data only: stats/donut/at-a-glance read localStorage counts;
-     views/visitors + the analytics chart are honest empty states (static site
-     tracks nothing); recent activity logs real admin opens to localStorage. -->
-<!-- 17. admin-dashboard.html — Admin dashboard (Option A, liquid glass).
-     SOURCE OF TRUTH for the admin panel. Splice into all 6 page sources with
-     apply-admin-dashboard.py (replaces the old admin-modal block
-     up to the toast div). Then run 00. build.py.
-     ALL form IDs below must stay exactly as-is — 03/05/13/14/15/16.js read them.
-     Real data only: stats/donut/at-a-glance read localStorage counts;
-     views/visitors + the analytics chart are honest empty states (static site
-     tracks nothing); recent activity logs real admin opens to localStorage. -->
-<!-- 17. admin-dashboard.html — Admin dashboard (Option A, liquid glass).
-     SOURCE OF TRUTH for the admin panel. Splice into all 6 page sources with
-     apply-admin-dashboard.py (replaces the old admin-modal block
-     up to the toast div). Then run 00. build.py.
-     ALL form IDs below must stay exactly as-is — 03/05/13/14/15/16.js read them.
-     Real data only: stats/donut/at-a-glance read localStorage counts;
-     views/visitors + the analytics chart are honest empty states (static site
-     tracks nothing); recent activity logs real admin opens to localStorage. -->
-<!-- 17. admin-dashboard.html — Admin dashboard (Option A, liquid glass).
-     SOURCE OF TRUTH for the admin panel. Splice into all 6 page sources with
-     apply-admin-dashboard.py (replaces the old admin-modal block
-     up to the toast div). Then run 00. build.py.
-     ALL form IDs below must stay exactly as-is — 03/05/13/14/15/16.js read them.
-     Real data only: stats/donut/at-a-glance read localStorage counts;
-     views/visitors + the analytics chart are honest empty states (static site
-     tracks nothing); recent activity logs real admin opens to localStorage. -->
-<!-- 17. admin-dashboard.html — Admin dashboard (Option A, liquid glass).
-     SOURCE OF TRUTH for the admin panel. Splice into all 6 page sources with
-     apply-admin-dashboard.py (replaces the old admin-modal block
-     up to the toast div). Then run 00. build.py.
-     ALL form IDs below must stay exactly as-is — 03/05/13/14/15/16.js read them.
-     Real data only: stats/donut/at-a-glance read localStorage counts;
-     views/visitors + the analytics chart are honest empty states (static site
-     tracks nothing); recent activity logs real admin opens to localStorage. -->
 <!-- 17. admin-dashboard.html — Admin dashboard (Option A, liquid glass).
      SOURCE OF TRUTH for the admin panel. Splice into all 6 page sources with
      apply-admin-dashboard.py (replaces the old admin-modal block
@@ -3096,41 +2872,7 @@ body.pf-terminal #nav-drawer,body.pf-terminal #search-overlay,body.pf-terminal #
       }
     });
     renderCustomPublic();
-    fitConnect();
   }
-  // Home "Connect With Me" bar: show as many icons as fit the bar, hide
-  // the rest (the "···" link opens the full list on the Contact page).
-  // Bigger display -> more icons; smaller display -> fewer.
-  function fitConnect(){
-    var wrap = document.querySelector('.hp-connect-icons');
-    if(!wrap) return;
-    var icons = Array.prototype.slice.call(wrap.querySelectorAll('.hp-con-ic'));
-    var more = wrap.querySelector('.hp-con-more');
-    icons.forEach(function(ic){ ic.classList.remove('hp-con-hide'); });
-    if(more) more.classList.remove('hp-con-hide');
-    var avail = wrap.clientWidth;
-    if(!avail) return;
-    var gap = parseFloat(getComputedStyle(wrap).columnGap) || 0;
-    var vis = icons.filter(function(ic){ return getComputedStyle(ic).display !== 'none'; });
-    var total = 0;
-    vis.forEach(function(ic, i){ total += ic.offsetWidth + (i ? gap : 0); });
-    var showMore = total > avail;
-    var limit = showMore ? avail - (more ? more.offsetWidth : 0) - gap : avail;
-    var used = 0;
-    vis.forEach(function(ic){
-      var w = ic.offsetWidth;
-      var need = used === 0 ? w : used + gap + w;
-      if(need <= limit){ used = need; }
-      else ic.classList.add('hp-con-hide');
-    });
-    if(more) more.classList.toggle('hp-con-hide', !showMore);
-  }
-  var fitT = null;
-  window.addEventListener('resize', function(){
-    clearTimeout(fitT);
-    fitT = setTimeout(fitConnect, 120);
-  });
-  window.addEventListener('load', fitConnect);
   // Custom platforms on the public Contact page: append a tile per added
   // platform to the Social Media grid and keep the "(16)" count real.
   function renderCustomPublic(){
@@ -3404,24 +3146,21 @@ body.pf-terminal #nav-drawer,body.pf-terminal #search-overlay,body.pf-terminal #
     if(m.length===1 && parts[0]) m=parts[0].slice(0,2).toUpperCase();
     return m||'?';
   }
-  // Render the terminal Portfolio brands panel (#pf-brands) from the list
-  // (Portfolio page only). Admin edits re-render here too.
+  // Render the Brands page grid from the list (Brands page only).
   function render(){
-    var box=document.getElementById('pf-brands');
-    if(!box) return;
+    var grid=document.querySelector('#brands .grid');
+    if(!grid) return;
     var list=getList();
-    box.innerHTML='';
+    grid.innerHTML='';
     list.forEach(function(b){
-      var d=document.createElement('div'); d.className='pf-brand';
-      var monoTxt=b.mono||mono(b.name);
-      var tile=b.tile||'bt-default';
-      d.innerHTML='<span class="pf-b-mono '+esc(tile)+'"></span><div><b></b><span></span></div>';
-      d.querySelector('.pf-b-mono').textContent=monoTxt;
-      d.querySelector('b').textContent=b.name;
-      d.querySelector('div span').textContent=b.role+' — '+b.line;
-      box.appendChild(d);
+      var card=document.createElement('article');
+      card.className='card brand-card';
+      card.innerHTML='<div class="who"><span class="avatar">'+esc(b.mono)+'</span><div><h3></h3><span></span></div></div><p></p>';
+      card.querySelector('h3').textContent=b.name;
+      card.querySelector('.who div span').textContent=b.role;
+      card.querySelector('p').textContent=b.line;
+      grid.appendChild(card);
     });
-    var c=$('pf-brands-count'); if(c) c.textContent=list.length;
   }
   // Render the home page "My Brands & Projects" grid (home page only).
   // Tile mark comes from the brand's logo (default brands) or its monogram
@@ -3534,235 +3273,9 @@ body.pf-terminal #nav-drawer,body.pf-terminal #search-overlay,body.pf-terminal #
   if(addBtn) addBtn.addEventListener('click', saveForm);
   var cancelBtn=$('br-cancel');
   if(cancelBtn) cancelBtn.addEventListener('click', resetForm);
-  // ---- Terminal portfolio (portfolio.html only) ----
-  // Infinite canvas: drag to pan, wheel to zoom, rail / arrows / keys to jump
-  // between the 8 panels, counter [n/8]. On phone the panels stack and
-  // scroll normally (see the phone CSS).
-  var THEMES=[
-    {id:'blackmoney', name:'Blackmoney', bg:'#0a0a0a', acc:'#ff5c38'},
-    {id:'circuit', name:'Circuit', bg:'#0b1220', acc:'#38bdf8'},
-    {id:'lightning', name:'Lightning', bg:'#0a0a08', acc:'#facc15'},
-    {id:'crimson', name:'Crimson', bg:'#0d0205', acc:'#dc143c'},
-    {id:'gold', name:'Gold', bg:'#0d0b06', acc:'#d4af37'},
-    {id:'forest', name:'Forest', bg:'#060d08', acc:'#22c55e'},
-    {id:'ocean', name:'Ocean', bg:'#050a12', acc:'#38bdf8'},
-    {id:'mono', name:'Mono', bg:'#000000', acc:'#ffffff'}
-  ];
-  // Real GitHub commit counts per day (api.github.com, 2026-11-26).
-  var COMMITS={'2026-11-22':3,'2026-11-23':11,'2026-11-24':7,'2026-11-25':6};
-  function initTerminal(){
-    var app=document.querySelector('.pf-app');
-    if(!app) return;
-    var stage=$('pf-stage'), canvas=$('pf-canvas');
-    if(!stage||!canvas) return;
-    var panels=Array.prototype.slice.call(canvas.querySelectorAll('.pf-panel'));
-    var railItems=Array.prototype.slice.call(document.querySelectorAll('.pf-rail-item'));
-    var counter=$('pf-counter'), zoomLabel=$('pf-zoom-label');
-    var N=panels.length;
-    var state={x:0,y:0,s:1,cur:0};
-    var isPhone=function(){ return window.innerWidth<=760; };
-    function apply(){ canvas.style.transform='translate('+state.x+'px,'+state.y+'px) scale('+state.s+')'; }
-    function stageSize(){ return {w:stage.clientWidth,h:stage.clientHeight}; }
-    function setAnim(on){ canvas.classList.toggle('no-anim', !on); }
-    function updateCounter(){
-      var best=0, bd=1e9, i, d;
-      if(isPhone()){
-        var mid=window.scrollY+window.innerHeight/2;
-        panels.forEach(function(p,idx){
-          var r=p.getBoundingClientRect();
-          var c=r.top+window.scrollY+r.height/2;
-          d=Math.abs(c-mid); if(d<bd){bd=d;best=idx;}
-        });
-      } else {
-        var st=stageSize();
-        var cx=(st.w/2-state.x)/state.s, cy=(st.h/2-state.y)/state.s;
-        panels.forEach(function(p,idx){
-          var px=p.offsetLeft+p.offsetWidth/2, py=p.offsetTop+p.offsetHeight/2;
-          d=Math.hypot(px-cx,py-cy); if(d<bd){bd=d;best=idx;}
-        });
-      }
-      state.cur=best;
-      if(counter) counter.textContent='['+(best+1)+'/'+N+']';
-      railItems.forEach(function(it,idx){ it.classList.toggle('is-active', idx===best); });
-    }
-    function goTo(i, animate){
-      i=Math.max(0, Math.min(N-1, i));
-      state.cur=i;
-      if(isPhone()){
-        panels[i].scrollIntoView({behavior:animate===false?'auto':'smooth', block:'start'});
-        updateCounter();
-        return;
-      }
-      var st=stageSize();
-      var fitS=Math.min(1, (st.w-80)/880);
-      var s=Math.max(fitS, 0.35);
-      state.s=s;
-      var cx=panels[i].offsetLeft+panels[i].offsetWidth/2;
-      var cy=panels[i].offsetTop+panels[i].offsetHeight/2;
-      state.x=st.w/2-cx*s;
-      state.y=st.h/2-cy*s;
-      setAnim(animate!==false);
-      apply();
-      if(zoomLabel) zoomLabel.textContent=Math.round(s*100)+'%';
-      updateCounter();
-    }
-    function fitAll(animate){
-      if(isPhone()) return;
-      var st=stageSize();
-      var cw=canvas.scrollWidth, ch=canvas.scrollHeight;
-      if(!cw||!ch) return;
-      var s=Math.min((st.w-60)/cw, (st.h-60)/ch, 1);
-      state.s=s;
-      state.x=(st.w-cw*s)/2;
-      state.y=(st.h-ch*s)/2;
-      setAnim(animate!==false);
-      apply();
-      if(zoomLabel) zoomLabel.textContent=Math.round(s*100)+'%';
-      updateCounter();
-    }
-    function zoomBy(f, cx, cy){
-      if(isPhone()) return;
-      var ns=Math.max(0.25, Math.min(1.5, state.s*f));
-      var st=stageSize();
-      cx=(cx===undefined)?st.w/2:cx;
-      cy=(cy===undefined)?st.h/2:cy;
-      var wx=(cx-state.x)/state.s, wy=(cy-state.y)/state.s;
-      state.s=ns;
-      state.x=cx-wx*ns;
-      state.y=cy-wy*ns;
-      setAnim(false);
-      apply();
-      if(zoomLabel) zoomLabel.textContent=Math.round(ns*100)+'%';
-      updateCounter();
-    }
-    // Drag to pan (a real drag pans; a plain click still follows links).
-    var pDown=null, pDrag=false, suppressClick=false;
-    stage.addEventListener('pointerdown', function(e){
-      if(isPhone()) return;
-      pDown={x:e.clientX, y:e.clientY, sx:state.x, sy:state.y};
-      pDrag=false;
-    });
-    window.addEventListener('pointermove', function(e){
-      if(!pDown||isPhone()) return;
-      var dx=e.clientX-pDown.x, dy=e.clientY-pDown.y;
-      if(!pDrag && Math.hypot(dx,dy)>5){ pDrag=true; stage.classList.add('dragging'); }
-      if(pDrag){
-        state.x=pDown.sx+dx; state.y=pDown.sy+dy;
-        setAnim(false);
-        apply();
-      }
-    });
-    window.addEventListener('pointerup', function(){
-      if(pDown && pDrag){ suppressClick=true; setTimeout(function(){ suppressClick=false; }, 50); setTimeout(updateCounter, 60); }
-      pDown=null;
-      if(pDrag){ pDrag=false; stage.classList.remove('dragging'); }
-    });
-    stage.addEventListener('click', function(e){
-      if(suppressClick){ e.stopPropagation(); e.preventDefault(); }
-    }, true);
-    // Wheel: zoom over the canvas background; scroll inside a panel's content.
-    stage.addEventListener('wheel', function(e){
-      if(isPhone()) return;
-      var el=e.target.closest ? e.target.closest('.pf-content') : null;
-      if(el){
-        var canUp=el.scrollTop>0;
-        var canDown=el.scrollTop+el.clientHeight<el.scrollHeight-1;
-        if((e.deltaY<0 && canUp)||(e.deltaY>0 && canDown)) return;
-      }
-      e.preventDefault();
-      var r=stage.getBoundingClientRect();
-      var f=e.deltaY<0 ? 1.12 : 1/1.12;
-      zoomBy(f, e.clientX-r.left, e.clientY-r.top);
-    }, {passive:false});
-    // Rail / prev / next / zoom buttons.
-    railItems.forEach(function(it,i){ it.addEventListener('click', function(){ goTo(i); }); });
-    var prevBtn=$('pf-prev'), nextBtn=$('pf-next');
-    if(prevBtn) prevBtn.addEventListener('click', function(){ goTo(state.cur-1); });
-    if(nextBtn) nextBtn.addEventListener('click', function(){ goTo(state.cur+1); });
-    var zi=$('pf-zoom-in'), zo=$('pf-zoom-out'), zf=$('pf-zoom-fit');
-    if(zi) zi.addEventListener('click', function(){ zoomBy(1.25); });
-    if(zo) zo.addEventListener('click', function(){ zoomBy(1/1.25); });
-    if(zf) zf.addEventListener('click', function(){ fitAll(); });
-    document.addEventListener('keydown', function(e){
-      if(!app) return;
-      var t=e.target;
-      if(t && (t.tagName==='INPUT'||t.tagName==='TEXTAREA'||t.tagName==='SELECT'||t.isContentEditable)) return;
-      var adm=$('admin-modal');
-      if(adm && !adm.hidden) return;
-      if(e.key==='ArrowRight'){ goTo(state.cur+1); }
-      else if(e.key==='ArrowLeft'){ goTo(state.cur-1); }
-      else if(e.key==='+'||e.key==='='){ zoomBy(1.25); }
-      else if(e.key==='-'){ zoomBy(1/1.25); }
-      else if(e.key==='0'){ fitAll(); }
-    });
-    var rT=null;
-    window.addEventListener('resize', function(){
-      clearTimeout(rT);
-      rT=setTimeout(function(){ goTo(state.cur, false); }, 150);
-    });
-    window.addEventListener('load', function(){ goTo(state.cur, false); });
-    // Themes: build the 8 cards, click recolors the whole terminal.
-    var themeBox=$('pf-themes');
-    if(themeBox){
-      themeBox.innerHTML='';
-      THEMES.forEach(function(t){
-        var b=document.createElement('button');
-        b.type='button'; b.className='pf-theme'; b.setAttribute('data-theme', t.id);
-        b.innerHTML='<span class="pf-theme-mini">'
-          +'<span class="t-line"><span class="t-kw">const</span> <span class="t-var">theme</span> = <span class="t-str">"'+esc(t.id)+'"</span>;</span>'
-          +'<span class="t-line"><span class="t-com">// bg '+esc(t.bg)+' &middot; accent '+esc(t.acc)+'</span></span>'
-          +'<span class="t-line"><span class="t-fn">apply</span>(theme);</span>'
-          +'</span><span class="pf-theme-name">'+esc(t.name)+'<i>&#9679; active</i></span>';
-        b.addEventListener('click', function(){ applyTheme(t.id); });
-        themeBox.appendChild(b);
-      });
-    }
-    function applyTheme(id){
-      var t=THEMES[0];
-      THEMES.forEach(function(x){ if(x.id===id) t=x; });
-      app.setAttribute('data-theme', t.id);
-      var cs=$('pf-cs-name'); if(cs) cs.textContent=t.id;
-      var at=$('pf-active-theme'); if(at) at.textContent=t.id;
-      Array.prototype.slice.call(document.querySelectorAll('.pf-theme')).forEach(function(c){
-        c.classList.toggle('is-active', c.getAttribute('data-theme')===t.id);
-      });
-      try{ localStorage.setItem('pw_pf_theme', t.id); }catch(e){}
-    }
-    var saved=null;
-    try{ saved=localStorage.getItem('pw_pf_theme'); }catch(e){}
-    applyTheme(saved||'blackmoney');
-    // Contribution calendar (real commit counts, see COMMITS).
-    var cal=$('pf-cal');
-    if(cal){
-      var weeks=26, today=new Date(); today.setHours(0,0,0,0);
-      var start=new Date(today);
-      start.setDate(start.getDate()-start.getDay()-(weeks-1)*7);
-      cal.innerHTML='';
-      var total=0;
-      for(var w=0; w<weeks; w++){
-        for(var d=0; d<7; d++){
-          var dt=new Date(start); dt.setDate(start.getDate()+w*7+d);
-          var key=dt.getFullYear()+'-'+String(dt.getMonth()+1).padStart(2,'0')+'-'+String(dt.getDate()).padStart(2,'0');
-          var c=COMMITS[key]||0; total+=c;
-          var lv=c===0?0:c<=3?1:c<=6?2:c<=10?3:4;
-          var cell=document.createElement('span');
-          cell.className='pf-cal-cell lv'+lv;
-          cell.title=key+' · '+c+' commit'+(c===1?'':'s');
-          if(dt>today) cell.classList.add('future');
-          cal.appendChild(cell);
-        }
-      }
-      var cap=$('pf-cal-cap');
-      if(cap) cap.textContent=total+' commits · since 22 Nov 2026 · github.com/mehedihallmubin';
-    }
-    // Start on the intro panel.
-    goTo(0, false);
-    window.addEventListener('scroll', updateCounter, {passive:true});
-  }
   renderAdminList();
   render();
   renderHome();
-  initTerminal();
 })();
 </script>
 <script>/* 15. blog.js - Blog page + Admin blog editor.
