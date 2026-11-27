@@ -1,7 +1,9 @@
 /* 05. social.js - Connect section for the personal website.
    Each platform's Connect button links to the profile URL pasted in
    Admin (localStorage, per device). Until one is pasted, the button
-   opens the platform's own site. No profile URL is ever invented. */
+   opens the platform's own site. No profile URL is ever invented.
+   Published links also live in SEED_LINKS / SEED_CUSTOM below (repo
+   file) so visitors and fresh browsers see them after a push. */
 (function(){
   // Platform ids and their own home pages (fallbacks, never profiles).
   var PLATFORMS = {
@@ -34,6 +36,13 @@
   };
   var KEY = 'pw_social_links';
   var KEY_CUSTOM = 'pw_social_custom';
+  // Published profile links shipped in the repo (seed). Same rule as blog:
+  // localStorage wins on this device; the seed is what visitors see.
+  // Rio copies the Settings Backup JSON into these seeds when publishing.
+  var SEED_LINKS = {"facebook": "https://www.facebook.com/mehedihallmubin", "instagram": "https://www.instagram.com/mehedihallmubin?dmpr=MWNuczgweTVtcndnMQ==", "youtube": "https://youtube.com/@mehedihallmubin", "linkedin": "https://www.linkedin.com/in/mehedi-h-all-mubin", "tiktok": "https://www.tiktok.com/@mehedih.allmubin?_r=1&_t=ZS-9Bi1EJywBHx"};
+  var SEED_CUSTOM = [];
+  window.PW_SEED_SOCIAL = SEED_LINKS;
+  window.PW_SEED_SOCIAL_CUSTOM = SEED_CUSTOM;
   // Display names for the 26 fixed platforms (same as the Admin form labels).
   var NAMES = {
     'facebook': 'Facebook', 'instagram': 'Instagram', 'youtube': 'YouTube',
@@ -47,7 +56,8 @@
     '123rf': '123RF', 'freepik': 'Freepik (now Magnific)'
   };
   // Custom platforms the user added via "Add Social Media": [{name, url}].
-  function getCustom(){ try{ var a = JSON.parse(read(KEY_CUSTOM) || '[]'); return Array.isArray(a) ? a : []; }catch(e){ return []; } }
+  // localStorage wins when set here; otherwise the published seed.
+  function getCustom(){ try{ var a = JSON.parse(read(KEY_CUSTOM) || 'null'); if(Array.isArray(a)) return a; }catch(e){} return SEED_CUSTOM.slice(); }
   function storeCustom(list){ store(KEY_CUSTOM, JSON.stringify(list)); }
   function esc(s){ return String(s == null ? '' : s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
   var mem = {};
@@ -58,7 +68,8 @@
   // Shortcut for document.getElementById.
   function $(id){ return document.getElementById(id); }
   // Load the saved profile links (an object of platform id -> URL).
-  function getLinks(){ try{ return JSON.parse(read(KEY) || '{}'); }catch(e){ return {}; } }
+  // localStorage wins when set here; otherwise the published seed.
+  function getLinks(){ try{ var l=JSON.parse(read(KEY) || 'null'); if(l && typeof l==='object' && !Array.isArray(l)) return l; }catch(e){} return Object.assign({}, SEED_LINKS); }
   // A saved value is usable only as a full http(s) URL.
   function validUrl(v){ return /^https?:\/\/.+/.test(v || ''); }
   // Show a short message at the bottom of the screen.

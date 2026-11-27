@@ -1,9 +1,16 @@
 /* 15. blog.js - Blog page + Admin blog editor.
    Posts are real posts only, written in Admin. They save in
    localStorage (per device) and render on the Blog page. With no
-   posts, the Blog page shows its honest empty state. */
+   posts, the Blog page shows its honest empty state.
+   Published posts also live in the SEED below (repo file) so visitors
+   and fresh browsers see them after a push; localStorage wins here. */
 (function(){
   var KEY='pw_blog_posts';
+  // Published posts shipped in the repo (seed). Visitors and fresh browsers
+  // see these. Admin saves to localStorage, which wins on this device.
+  // Rio copies the Settings Backup JSON into this seed when publishing.
+  var SEED=[{"title": "Luna is coming soon", "text": "Very soon Luna talk.", "date": "2026-11-25T20:34:25.796Z"}];
+  window.PW_SEED_BLOG=SEED;
   var mem={};
   // Save the post list (localStorage first, memory fallback).
   function store(v){ try{ localStorage.setItem(KEY,v); }catch(e){ mem[KEY]=v; } }
@@ -19,10 +26,11 @@
   }
   // Format an ISO date as "15 Nov 2026".
   function fmtDate(iso){ try{ return new Date(iso).toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'}); }catch(e){ return ''; } }
-  // Load the posts (newest first).
+  // Load the posts (newest first). localStorage wins when this device has
+  // saved posts; otherwise fall back to the published seed in the repo.
   function getPosts(){
     try{ var l=JSON.parse(read()||'null'); if(Array.isArray(l)) return l; }catch(e){}
-    return [];
+    return SEED.slice();
   }
   // Render the Blog page posts (Blog page only).
   function render(){

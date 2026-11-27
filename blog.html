@@ -1439,6 +1439,46 @@ html.light .admin-dash-modal,html.light .admin-side{background:#fff;color:var(--
      Real data only: stats/donut/at-a-glance read localStorage counts;
      views/visitors + the analytics chart are honest empty states (static site
      tracks nothing); recent activity logs real admin opens to localStorage. -->
+<!-- 17. admin-dashboard.html — Admin dashboard (Option A, liquid glass).
+     SOURCE OF TRUTH for the admin panel. Splice into all 6 page sources with
+     apply-admin-dashboard.py (replaces the old admin-modal block
+     up to the toast div). Then run 00. build.py.
+     ALL form IDs below must stay exactly as-is — 03/05/13/14/15/16.js read them.
+     Real data only: stats/donut/at-a-glance read localStorage counts;
+     views/visitors + the analytics chart are honest empty states (static site
+     tracks nothing); recent activity logs real admin opens to localStorage. -->
+<!-- 17. admin-dashboard.html — Admin dashboard (Option A, liquid glass).
+     SOURCE OF TRUTH for the admin panel. Splice into all 6 page sources with
+     apply-admin-dashboard.py (replaces the old admin-modal block
+     up to the toast div). Then run 00. build.py.
+     ALL form IDs below must stay exactly as-is — 03/05/13/14/15/16.js read them.
+     Real data only: stats/donut/at-a-glance read localStorage counts;
+     views/visitors + the analytics chart are honest empty states (static site
+     tracks nothing); recent activity logs real admin opens to localStorage. -->
+<!-- 17. admin-dashboard.html — Admin dashboard (Option A, liquid glass).
+     SOURCE OF TRUTH for the admin panel. Splice into all 6 page sources with
+     apply-admin-dashboard.py (replaces the old admin-modal block
+     up to the toast div). Then run 00. build.py.
+     ALL form IDs below must stay exactly as-is — 03/05/13/14/15/16.js read them.
+     Real data only: stats/donut/at-a-glance read localStorage counts;
+     views/visitors + the analytics chart are honest empty states (static site
+     tracks nothing); recent activity logs real admin opens to localStorage. -->
+<!-- 17. admin-dashboard.html — Admin dashboard (Option A, liquid glass).
+     SOURCE OF TRUTH for the admin panel. Splice into all 6 page sources with
+     apply-admin-dashboard.py (replaces the old admin-modal block
+     up to the toast div). Then run 00. build.py.
+     ALL form IDs below must stay exactly as-is — 03/05/13/14/15/16.js read them.
+     Real data only: stats/donut/at-a-glance read localStorage counts;
+     views/visitors + the analytics chart are honest empty states (static site
+     tracks nothing); recent activity logs real admin opens to localStorage. -->
+<!-- 17. admin-dashboard.html — Admin dashboard (Option A, liquid glass).
+     SOURCE OF TRUTH for the admin panel. Splice into all 6 page sources with
+     apply-admin-dashboard.py (replaces the old admin-modal block
+     up to the toast div). Then run 00. build.py.
+     ALL form IDs below must stay exactly as-is — 03/05/13/14/15/16.js read them.
+     Real data only: stats/donut/at-a-glance read localStorage counts;
+     views/visitors + the analytics chart are honest empty states (static site
+     tracks nothing); recent activity logs real admin opens to localStorage. -->
 <div id="admin-modal" class="modal admin-dash-modal" role="dialog" aria-modal="true" aria-labelledby="admin-h" hidden>
   <div class="admin-dash">
     <div class="admin-side-backdrop" id="admin-side-backdrop" hidden></div>
@@ -2027,7 +2067,24 @@ html.light .admin-dash-modal,html.light .admin-side{background:#fff;color:var(--
   // admin opens to localStorage; nothing here is invented.
   var K_ACT='pw_admin_activity';
   var DS_FIXED={social:26, community:9, texts:29};
-  function countArr(k){ try{ var a=JSON.parse(read(k)||'[]'); return Array.isArray(a)?a.length:0; }catch(e){ return 0; } }
+  // Published seed data (set by 15. blog.js / 05. social.js on load).
+  // Used only when this device never saved the key — the seed is what
+  // visitors see, so the dashboard counts should match it.
+  function seedVal(key){
+    if(key==='pw_blog_posts') return (window.PW_SEED_BLOG && Array.isArray(window.PW_SEED_BLOG)) ? window.PW_SEED_BLOG : null;
+    if(key==='pw_social_links') return (window.PW_SEED_SOCIAL && typeof window.PW_SEED_SOCIAL==='object' && !Array.isArray(window.PW_SEED_SOCIAL)) ? window.PW_SEED_SOCIAL : null;
+    if(key==='pw_social_custom') return (window.PW_SEED_SOCIAL_CUSTOM && Array.isArray(window.PW_SEED_SOCIAL_CUSTOM)) ? window.PW_SEED_SOCIAL_CUSTOM : null;
+    return null;
+  }
+  // Read a key, falling back to the published seed when never saved here.
+  function readSeeded(key, fallback){
+    var raw=null; try{ raw=read(key); }catch(e){}
+    if(raw!=null) return raw;
+    var s=seedVal(key);
+    if(s!=null) return JSON.stringify(s);
+    return fallback;
+  }
+  function countArr(k){ try{ var a=JSON.parse(readSeeded(k,'[]')); return Array.isArray(a)?a.length:0; }catch(e){ return 0; } }
   function getCounts(){
     var brands=read('pw_brands');
     var bn=9; // site ships 9 real brands; an edited list lives in pw_brands
@@ -2036,10 +2093,10 @@ html.light .admin-dash-modal,html.light .admin-side{background:#fff;color:var(--
     // + custom platforms), not the 26 fixed slots.
     var sc=0;
     try{
-      var lk=JSON.parse(read('pw_social_links')||'{}');
+      var lk=JSON.parse(readSeeded('pw_social_links','{}'));
       Object.keys(lk).forEach(function(id){ if(/^https?:\/\/.+/.test(lk[id]||'')) sc++; });
     }catch(e){}
-    try{ var cu=JSON.parse(read('pw_social_custom')||'[]'); if(Array.isArray(cu)) cu.forEach(function(c){ if(c && /^https?:\/\/.+/.test(c.url||'')) sc++; }); }catch(e){}
+    try{ var cu=JSON.parse(readSeeded('pw_social_custom','[]')); if(Array.isArray(cu)) cu.forEach(function(c){ if(c && /^https?:\/\/.+/.test(c.url||'')) sc++; }); }catch(e){}
     return {posts:countArr('pw_blog_posts'), brands:bn, reviews:countArr(K_MANUAL),
       social:sc, community:DS_FIXED.community, texts:DS_FIXED.texts};
   }
@@ -2626,6 +2683,7 @@ html.light .admin-dash-modal,html.light .admin-side{background:#fff;color:var(--
   applySettings();
   // Open the admin panel and fill it with the saved settings.
   function openAdmin(){
+    mawaTouch();
     $('admin-link').value=(read(K_LINK)||'');
     $('admin-widget').value=(read(K_WIDGET)||'');
     renderMrList();
@@ -2715,11 +2773,30 @@ html.light .admin-dash-modal,html.light .admin-side{background:#fff;color:var(--
   var MAWA_SESSION_DAYS=7;
   function mawaSessionValid(){
     var v=read(MAWA_SESSION_KEY);
-    return v && (+v)>Date.now();
+    if(!v || (+v)<=Date.now()) return false;
+    // 5-minute idle lock: even with a valid 7-day session, 5 idle minutes
+    // means the password is asked again.
+    if(mawaIdleExpired()) return false;
+    return true;
   }
   function mawaSetSession(){ store(MAWA_SESSION_KEY, String(Date.now()+MAWA_SESSION_DAYS*24*60*60*1000)); }
   function mawaClearSession(){ try{ localStorage.removeItem(MAWA_SESSION_KEY); }catch(e){} }
+  // 5-minute idle lock (his order 2026-11-27): if the admin sits unused
+  // for 5 minutes, it locks and the password is asked again.
+  var MAWA_IDLE_MS=5*60*1000;
+  var MAWA_IDLE_KEY='pw_admin_last_active';
+  function mawaTouch(){ try{ localStorage.setItem(MAWA_IDLE_KEY, String(Date.now())); }catch(e){} }
+  function mawaLastActive(){ try{ var v=localStorage.getItem(MAWA_IDLE_KEY); return v? (+v) : 0; }catch(e){ return 0; } }
+  function mawaIdleExpired(){ var la=mawaLastActive(); return la>0 && (Date.now()-la)>MAWA_IDLE_MS; }
+  function mawaLock(){
+    closeAdmin();
+    var err=$('mawa-error');
+    if(err){ err.textContent='5 minutes idle — please log in again.'; err.hidden=false; }
+    var l=$('mawa-login'); if(l) l.hidden=false;
+    var id=$('mawa-id'); if(id) setTimeout(function(){ id.focus(); }, 60);
+  }
   function mawaShowLogin(){
+    closeAdmin();
     var l=$('mawa-login'); if(l) l.hidden=false;
     var id=$('mawa-id'); if(id) id.value='';
     var p=$('mawa-pass'); if(p) p.value='';
@@ -2734,6 +2811,7 @@ html.light .admin-dash-modal,html.light .admin-side{background:#fff;color:var(--
     if((id===MAWA_USER || id===MAWA_EMAIL) && sha256Hex(pw)===MAWA_PASS_HASH){
       mawaHideLogin();
       mawaSetSession();
+      mawaTouch();
       openAdmin();
       history.replaceState(null,'',location.pathname+location.search);
     } else {
@@ -2751,6 +2829,18 @@ html.light .admin-dash-modal,html.light .admin-side{background:#fff;color:var(--
   if(mawaLoginEl) mawaLoginEl.addEventListener('click', function(e){
     if(e.target===mawaLoginEl){ mawaHideLogin(); history.replaceState(null,'',location.pathname+location.search); }
   });
+  // Any interaction inside the open admin counts as activity.
+  ['click','keydown','input','touchstart'].forEach(function(ev){
+    document.addEventListener(ev, function(){
+      var m=$('admin-modal');
+      if(m && !m.hidden) mawaTouch();
+    }, true);
+  });
+  // While the admin is open, lock it after 5 idle minutes.
+  setInterval(function(){
+    var m=$('admin-modal');
+    if(m && !m.hidden && mawaIdleExpired()) mawaLock();
+  }, 30000);
   // Open the panel from a #mawa link, then clear the hash so a reload
   // does not reopen it. The hashchange listener covers adding #mawa
   // to a page that is already open (no reload). The first check runs on
@@ -2788,7 +2878,9 @@ html.light .admin-dash-modal,html.light .admin-side{background:#fff;color:var(--
 <script>/* 05. social.js - Connect section for the personal website.
    Each platform's Connect button links to the profile URL pasted in
    Admin (localStorage, per device). Until one is pasted, the button
-   opens the platform's own site. No profile URL is ever invented. */
+   opens the platform's own site. No profile URL is ever invented.
+   Published links also live in SEED_LINKS / SEED_CUSTOM below (repo
+   file) so visitors and fresh browsers see them after a push. */
 (function(){
   // Platform ids and their own home pages (fallbacks, never profiles).
   var PLATFORMS = {
@@ -2821,6 +2913,13 @@ html.light .admin-dash-modal,html.light .admin-side{background:#fff;color:var(--
   };
   var KEY = 'pw_social_links';
   var KEY_CUSTOM = 'pw_social_custom';
+  // Published profile links shipped in the repo (seed). Same rule as blog:
+  // localStorage wins on this device; the seed is what visitors see.
+  // Rio copies the Settings Backup JSON into these seeds when publishing.
+  var SEED_LINKS = {"facebook": "https://www.facebook.com/mehedihallmubin", "instagram": "https://www.instagram.com/mehedihallmubin?dmpr=MWNuczgweTVtcndnMQ==", "youtube": "https://youtube.com/@mehedihallmubin", "linkedin": "https://www.linkedin.com/in/mehedi-h-all-mubin", "tiktok": "https://www.tiktok.com/@mehedih.allmubin?_r=1&_t=ZS-9Bi1EJywBHx"};
+  var SEED_CUSTOM = [];
+  window.PW_SEED_SOCIAL = SEED_LINKS;
+  window.PW_SEED_SOCIAL_CUSTOM = SEED_CUSTOM;
   // Display names for the 26 fixed platforms (same as the Admin form labels).
   var NAMES = {
     'facebook': 'Facebook', 'instagram': 'Instagram', 'youtube': 'YouTube',
@@ -2834,7 +2933,8 @@ html.light .admin-dash-modal,html.light .admin-side{background:#fff;color:var(--
     '123rf': '123RF', 'freepik': 'Freepik (now Magnific)'
   };
   // Custom platforms the user added via "Add Social Media": [{name, url}].
-  function getCustom(){ try{ var a = JSON.parse(read(KEY_CUSTOM) || '[]'); return Array.isArray(a) ? a : []; }catch(e){ return []; } }
+  // localStorage wins when set here; otherwise the published seed.
+  function getCustom(){ try{ var a = JSON.parse(read(KEY_CUSTOM) || 'null'); if(Array.isArray(a)) return a; }catch(e){} return SEED_CUSTOM.slice(); }
   function storeCustom(list){ store(KEY_CUSTOM, JSON.stringify(list)); }
   function esc(s){ return String(s == null ? '' : s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
   var mem = {};
@@ -2845,7 +2945,8 @@ html.light .admin-dash-modal,html.light .admin-side{background:#fff;color:var(--
   // Shortcut for document.getElementById.
   function $(id){ return document.getElementById(id); }
   // Load the saved profile links (an object of platform id -> URL).
-  function getLinks(){ try{ return JSON.parse(read(KEY) || '{}'); }catch(e){ return {}; } }
+  // localStorage wins when set here; otherwise the published seed.
+  function getLinks(){ try{ var l=JSON.parse(read(KEY) || 'null'); if(l && typeof l==='object' && !Array.isArray(l)) return l; }catch(e){} return Object.assign({}, SEED_LINKS); }
   // A saved value is usable only as a full http(s) URL.
   function validUrl(v){ return /^https?:\/\/.+/.test(v || ''); }
   // Show a short message at the bottom of the screen.
@@ -3281,9 +3382,16 @@ html.light .admin-dash-modal,html.light .admin-side{background:#fff;color:var(--
 <script>/* 15. blog.js - Blog page + Admin blog editor.
    Posts are real posts only, written in Admin. They save in
    localStorage (per device) and render on the Blog page. With no
-   posts, the Blog page shows its honest empty state. */
+   posts, the Blog page shows its honest empty state.
+   Published posts also live in the SEED below (repo file) so visitors
+   and fresh browsers see them after a push; localStorage wins here. */
 (function(){
   var KEY='pw_blog_posts';
+  // Published posts shipped in the repo (seed). Visitors and fresh browsers
+  // see these. Admin saves to localStorage, which wins on this device.
+  // Rio copies the Settings Backup JSON into this seed when publishing.
+  var SEED=[{"title": "Luna is coming soon", "text": "Very soon Luna talk.", "date": "2026-11-25T20:34:25.796Z"}];
+  window.PW_SEED_BLOG=SEED;
   var mem={};
   // Save the post list (localStorage first, memory fallback).
   function store(v){ try{ localStorage.setItem(KEY,v); }catch(e){ mem[KEY]=v; } }
@@ -3299,10 +3407,11 @@ html.light .admin-dash-modal,html.light .admin-side{background:#fff;color:var(--
   }
   // Format an ISO date as "15 Nov 2026".
   function fmtDate(iso){ try{ return new Date(iso).toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'}); }catch(e){ return ''; } }
-  // Load the posts (newest first).
+  // Load the posts (newest first). localStorage wins when this device has
+  // saved posts; otherwise fall back to the published seed in the repo.
   function getPosts(){
     try{ var l=JSON.parse(read()||'null'); if(Array.isArray(l)) return l; }catch(e){}
-    return [];
+    return SEED.slice();
   }
   // Render the Blog page posts (Blog page only).
   function render(){

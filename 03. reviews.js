@@ -96,7 +96,24 @@
   // admin opens to localStorage; nothing here is invented.
   var K_ACT='pw_admin_activity';
   var DS_FIXED={social:26, community:9, texts:29};
-  function countArr(k){ try{ var a=JSON.parse(read(k)||'[]'); return Array.isArray(a)?a.length:0; }catch(e){ return 0; } }
+  // Published seed data (set by 15. blog.js / 05. social.js on load).
+  // Used only when this device never saved the key — the seed is what
+  // visitors see, so the dashboard counts should match it.
+  function seedVal(key){
+    if(key==='pw_blog_posts') return (window.PW_SEED_BLOG && Array.isArray(window.PW_SEED_BLOG)) ? window.PW_SEED_BLOG : null;
+    if(key==='pw_social_links') return (window.PW_SEED_SOCIAL && typeof window.PW_SEED_SOCIAL==='object' && !Array.isArray(window.PW_SEED_SOCIAL)) ? window.PW_SEED_SOCIAL : null;
+    if(key==='pw_social_custom') return (window.PW_SEED_SOCIAL_CUSTOM && Array.isArray(window.PW_SEED_SOCIAL_CUSTOM)) ? window.PW_SEED_SOCIAL_CUSTOM : null;
+    return null;
+  }
+  // Read a key, falling back to the published seed when never saved here.
+  function readSeeded(key, fallback){
+    var raw=null; try{ raw=read(key); }catch(e){}
+    if(raw!=null) return raw;
+    var s=seedVal(key);
+    if(s!=null) return JSON.stringify(s);
+    return fallback;
+  }
+  function countArr(k){ try{ var a=JSON.parse(readSeeded(k,'[]')); return Array.isArray(a)?a.length:0; }catch(e){ return 0; } }
   function getCounts(){
     var brands=read('pw_brands');
     var bn=9; // site ships 9 real brands; an edited list lives in pw_brands
@@ -105,10 +122,10 @@
     // + custom platforms), not the 26 fixed slots.
     var sc=0;
     try{
-      var lk=JSON.parse(read('pw_social_links')||'{}');
+      var lk=JSON.parse(readSeeded('pw_social_links','{}'));
       Object.keys(lk).forEach(function(id){ if(/^https?:\/\/.+/.test(lk[id]||'')) sc++; });
     }catch(e){}
-    try{ var cu=JSON.parse(read('pw_social_custom')||'[]'); if(Array.isArray(cu)) cu.forEach(function(c){ if(c && /^https?:\/\/.+/.test(c.url||'')) sc++; }); }catch(e){}
+    try{ var cu=JSON.parse(readSeeded('pw_social_custom','[]')); if(Array.isArray(cu)) cu.forEach(function(c){ if(c && /^https?:\/\/.+/.test(c.url||'')) sc++; }); }catch(e){}
     return {posts:countArr('pw_blog_posts'), brands:bn, reviews:countArr(K_MANUAL),
       social:sc, community:DS_FIXED.community, texts:DS_FIXED.texts};
   }
@@ -695,6 +712,7 @@
   applySettings();
   // Open the admin panel and fill it with the saved settings.
   function openAdmin(){
+    mawaTouch();
     $('admin-link').value=(read(K_LINK)||'');
     $('admin-widget').value=(read(K_WIDGET)||'');
     renderMrList();
@@ -784,11 +802,30 @@
   var MAWA_SESSION_DAYS=7;
   function mawaSessionValid(){
     var v=read(MAWA_SESSION_KEY);
-    return v && (+v)>Date.now();
+    if(!v || (+v)<=Date.now()) return false;
+    // 5-minute idle lock: even with a valid 7-day session, 5 idle minutes
+    // means the password is asked again.
+    if(mawaIdleExpired()) return false;
+    return true;
   }
   function mawaSetSession(){ store(MAWA_SESSION_KEY, String(Date.now()+MAWA_SESSION_DAYS*24*60*60*1000)); }
   function mawaClearSession(){ try{ localStorage.removeItem(MAWA_SESSION_KEY); }catch(e){} }
+  // 5-minute idle lock (his order 2026-11-27): if the admin sits unused
+  // for 5 minutes, it locks and the password is asked again.
+  var MAWA_IDLE_MS=5*60*1000;
+  var MAWA_IDLE_KEY='pw_admin_last_active';
+  function mawaTouch(){ try{ localStorage.setItem(MAWA_IDLE_KEY, String(Date.now())); }catch(e){} }
+  function mawaLastActive(){ try{ var v=localStorage.getItem(MAWA_IDLE_KEY); return v? (+v) : 0; }catch(e){ return 0; } }
+  function mawaIdleExpired(){ var la=mawaLastActive(); return la>0 && (Date.now()-la)>MAWA_IDLE_MS; }
+  function mawaLock(){
+    closeAdmin();
+    var err=$('mawa-error');
+    if(err){ err.textContent='5 minutes idle — please log in again.'; err.hidden=false; }
+    var l=$('mawa-login'); if(l) l.hidden=false;
+    var id=$('mawa-id'); if(id) setTimeout(function(){ id.focus(); }, 60);
+  }
   function mawaShowLogin(){
+    closeAdmin();
     var l=$('mawa-login'); if(l) l.hidden=false;
     var id=$('mawa-id'); if(id) id.value='';
     var p=$('mawa-pass'); if(p) p.value='';
@@ -803,6 +840,7 @@
     if((id===MAWA_USER || id===MAWA_EMAIL) && sha256Hex(pw)===MAWA_PASS_HASH){
       mawaHideLogin();
       mawaSetSession();
+      mawaTouch();
       openAdmin();
       history.replaceState(null,'',location.pathname+location.search);
     } else {
@@ -820,6 +858,18 @@
   if(mawaLoginEl) mawaLoginEl.addEventListener('click', function(e){
     if(e.target===mawaLoginEl){ mawaHideLogin(); history.replaceState(null,'',location.pathname+location.search); }
   });
+  // Any interaction inside the open admin counts as activity.
+  ['click','keydown','input','touchstart'].forEach(function(ev){
+    document.addEventListener(ev, function(){
+      var m=$('admin-modal');
+      if(m && !m.hidden) mawaTouch();
+    }, true);
+  });
+  // While the admin is open, lock it after 5 idle minutes.
+  setInterval(function(){
+    var m=$('admin-modal');
+    if(m && !m.hidden && mawaIdleExpired()) mawaLock();
+  }, 30000);
   // Open the panel from a #mawa link, then clear the hash so a reload
   // does not reopen it. The hashchange listener covers adding #mawa
   // to a page that is already open (no reload). The first check runs on
