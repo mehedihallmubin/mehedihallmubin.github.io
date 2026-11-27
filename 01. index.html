@@ -346,6 +346,14 @@
      Real data only: stats/donut/at-a-glance read localStorage counts;
      views/visitors + the analytics chart are honest empty states (static site
      tracks nothing); recent activity logs real admin opens to localStorage. -->
+<!-- 17. admin-dashboard.html — Admin dashboard (Option A, liquid glass).
+     SOURCE OF TRUTH for the admin panel. Splice into all 6 page sources with
+     apply-admin-dashboard.py (replaces the old admin-modal block
+     up to the toast div). Then run 00. build.py.
+     ALL form IDs below must stay exactly as-is — 03/05/13/14/15/16.js read them.
+     Real data only: stats/donut/at-a-glance read localStorage counts;
+     views/visitors + the analytics chart are honest empty states (static site
+     tracks nothing); recent activity logs real admin opens to localStorage. -->
 <div id="admin-modal" class="modal admin-dash-modal" role="dialog" aria-modal="true" aria-labelledby="admin-h" hidden>
   <div class="admin-dash">
     <div class="admin-side-backdrop" id="admin-side-backdrop" hidden></div>
@@ -829,9 +837,9 @@
 <!-- #mawa login: full-page, only email + password. No other content. -->
 <div id="mawa-login" class="mawa-login" hidden>
   <div class="mawa-login-card">
-    <input id="mawa-email" type="email" autocomplete="username" placeholder="Email" aria-label="Email">
+    <input id="mawa-id" type="text" autocomplete="username" placeholder="Username or Email" aria-label="Username or Email">
     <input id="mawa-pass" type="password" autocomplete="current-password" placeholder="Password" aria-label="Password">
-    <p id="mawa-error" class="mawa-error" hidden>Wrong email or password.</p>
+    <p id="mawa-error" class="mawa-error" hidden>Wrong username/email or password.</p>
     <button type="button" id="mawa-submit" class="btn btn-solid">Log In</button>
   </div>
 </div>
